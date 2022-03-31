@@ -46,10 +46,10 @@ CREATE TABLE IF NOT EXISTS public.rooms
     id bigint NOT NULL,
     hotel_id bigint NOT NULL,
     count bigint NOT NULL,
-    "price_RO" bigint NOT NULL,
-    "price_BB" bigint NOT NULL,
-    "price_HB" bigint NOT NULL,
-    "price_FB" bigint NOT NULL,
+    "price_ro" bigint NOT NULL,
+    "price_bb" bigint NOT NULL,
+    "price_hb" bigint NOT NULL,
+    "price_fb" bigint NOT NULL,
     bed bigint NOT NULL,
     PRIMARY KEY (id)
 );
