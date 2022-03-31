@@ -128,14 +128,14 @@ async function saveHotelChanges(hotelId, hardCreate="false") {
     var response = null;
     if (hotelId) {
         var request = {
-            "HOTEL": prepareChangedData()
+            "HOTEL": prepareHotelChangedData()
         }
         response = await callEndpoint("POST", "/hotels/updateHotel", request);
     }
     else {
         var request = {
             "HARD_CREATE": hardCreate,
-            "HOTEL": prepareChangedData()
+            "HOTEL": prepareHotelChangedData()
         }
         response = await callEndpoint("POST", "/hotels/createHotel", request);
     }
@@ -162,13 +162,9 @@ async function saveHotelChanges(hotelId, hardCreate="false") {
     }
 }
 
-function prepareChangedData() {
-    hotelId = null;
-    if (activeHotel.ID) {
-        hotelId = activeHotel.ID;
-    }
+function prepareHotelChangedData() {
     var newHotel = {
-        "ID": hotelId,
+        "ID": activeHotel.ID,
         "TITLE": getValueOf("titleInpEdit"),
         "STREET": getValueOf("streetInpEdit"),
         "CITY": getValueOf("cityInpEdit"),

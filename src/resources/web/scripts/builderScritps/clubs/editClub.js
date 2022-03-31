@@ -78,14 +78,14 @@ async function saveClubChanges(clubId, hardCreate="false") {
     var response = null;
     if (clubId) {
         var request = {
-            "CLUB": prepareChangedData()
+            "CLUB": prepareClubChangedData()
         }
         response = await callEndpoint("POST", "/clubs/updateClub", request);
     }
     else {
         var request = {
             "HARD_CREATE": hardCreate,
-            "CLUB": prepareChangedData()
+            "CLUB": prepareClubChangedData()
         }
         response = await callEndpoint("POST", "/clubs/createClub", request);
     }
@@ -112,7 +112,7 @@ async function saveClubChanges(clubId, hardCreate="false") {
     }
 }
 
-function prepareChangedData() {
+function prepareClubChangedData() {
     var newClub = {
         "ID": activeClub.ID,
         "TITLE": getValueOf("titleInpEdit"),
