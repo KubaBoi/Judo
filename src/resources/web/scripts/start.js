@@ -1,4 +1,4 @@
-newContent("hotelsDiv");
+newContent("clubssDiv");
 debug = true;
 var userAccountName;
 var userName = getCookie("userName");

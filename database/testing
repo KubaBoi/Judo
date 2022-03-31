@@ -1,0 +1,23 @@
+insert into hotels (id, title, street, city, zip, email, phone, web) values (0, 'titl', 'strut', 'citu', '34401', 'mejl', 'phune', 'wub');
+insert into hotels (id, title, street, city, zip, email, phone, web) values (1, 'titl2', 'strut2', 'citu2', '344012', 'mejl2', 'phune2', 'wub2');
+
+insert into rooms (id, hotel_id, bed, count, price_RO, price_BB, price_HB, price_FB) values (0, 0, 1, 5, 20, 30, 40, 50);
+insert into rooms (id, hotel_id, bed, count, price_RO, price_BB, price_HB, price_FB) values (1, 0, 2, 10, 200, 300, 400, 500);
+insert into rooms (id, hotel_id, bed, count, price_RO, price_BB, price_HB, price_FB) values (2, 1, 2, 6, 200, 30, 400, 50);
+insert into rooms (id, hotel_id, bed, count, price_RO, price_BB, price_HB, price_FB) values (3, 0, 3, 7, 2000, 3000, 4000, 5000);
+insert into rooms (id, hotel_id, bed, count, price_RO, price_BB, price_HB, price_FB) values (4, 0, 4, 2, 20012, 3212, 41210, 502111);
+
+select * from hotels;
+select * from rooms;
+
+delete from rooms where hotel_id>5;
+delete from hotels where id > 5;
+
+select * from rooms where hotel_id=0;
+
+select distinct h.id, h.title, h.street, h.city, h.zip, h.email, h.phone, h.web from rooms r inner join hotels h on h.id = r.hotel_id 
+where h.title LIKE '%%';
+
+insert into rooms (id,hotel_id,bed,count,price_RO,price_BB,price_HB,price_FB) values (5, 2, 1, '', '', '', '', '');
+
+insert into clubs (id, title, code, eju, street, city, zip, email, phone, web) values ()

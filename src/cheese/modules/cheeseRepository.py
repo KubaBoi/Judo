@@ -7,6 +7,7 @@ from cheese.resourceManager import ResMan
 from cheese.databaseControll.database import Database
 
 #REPOSITORIES
+from cheese.repositories.clubRepositoryImpl import ClubRepositoryImpl
 from cheese.repositories.hotelRepositoryImpl import HotelRepositoryImpl
 from cheese.repositories.roomRepositoryImpl import RoomRepositoryImpl
 from cheese.repositories.tokenRepositoryImpl import TokenRepositoryImpl
@@ -21,6 +22,40 @@ Database query of Cheese Application
 
 class CheeseRepository:
 
+    @staticmethod
+    def findClubById(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.findClubById(args)
+    @staticmethod
+    def findAllClubsBy(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.findAllClubsBy(args)
+    @staticmethod
+    def doesClubExists(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.doesClubExists(args)
+    @staticmethod
+    def findNewId(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.findNewId(args)
+        elif (userRepository == "hotelRepository"):
+            return HotelRepositoryImpl.findNewId(args)
+        elif (userRepository == "roomRepository"):
+            return RoomRepositoryImpl.findNewId(args)
+        elif (userRepository == "tokenRepository"):
+            return TokenRepositoryImpl.findNewId(args)
     @staticmethod
     def findHotelById(args):
         userRepository = CheeseRepository.findUserRepository()
@@ -42,17 +77,6 @@ class CheeseRepository:
 
         if (userRepository == "hotelRepository"):
             return HotelRepositoryImpl.doesHotelExists(args)
-    @staticmethod
-    def findNewId(args):
-        userRepository = CheeseRepository.findUserRepository()
-        args = CheeseRepository.getTypeOf(args)
-
-        if (userRepository == "hotelRepository"):
-            return HotelRepositoryImpl.findNewId(args)
-        elif (userRepository == "roomRepository"):
-            return RoomRepositoryImpl.findNewId(args)
-        elif (userRepository == "tokenRepository"):
-            return TokenRepositoryImpl.findNewId(args)
     @staticmethod
     def findRoomsByHotelId(args):
         userRepository = CheeseRepository.findUserRepository()
@@ -87,7 +111,9 @@ class CheeseRepository:
     def save(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "hotelRepository"):
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.save(args)
+        elif (userRepository == "hotelRepository"):
             return HotelRepositoryImpl.save(args)
         elif (userRepository == "roomRepository"):
             return RoomRepositoryImpl.save(args)
@@ -99,7 +125,9 @@ class CheeseRepository:
     def update(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "hotelRepository"):
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.update(args)
+        elif (userRepository == "hotelRepository"):
             return HotelRepositoryImpl.update(args)
         elif (userRepository == "roomRepository"):
             return RoomRepositoryImpl.update(args)
@@ -111,7 +139,9 @@ class CheeseRepository:
     def delete(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "hotelRepository"):
+        if (userRepository == "clubRepository"):
+            return ClubRepositoryImpl.delete(args)
+        elif (userRepository == "hotelRepository"):
             return HotelRepositoryImpl.delete(args)
         elif (userRepository == "roomRepository"):
             return RoomRepositoryImpl.delete(args)
@@ -123,6 +153,7 @@ class CheeseRepository:
 
     @staticmethod
     def initRepositories():
+        ClubRepositoryImpl.init()
         HotelRepositoryImpl.init()
         RoomRepositoryImpl.init()
         TokenRepositoryImpl.init()

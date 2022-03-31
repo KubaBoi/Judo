@@ -29,7 +29,7 @@
         <table id="menuTable">
             <tr>
                 <th onclick="newContent('eventsDiv')" id="eventsDivTh">Events</th>
-                <th onclick="newContent('clubsDiv')" id="clubsDivTh">Countires/clubs</th>
+                <th onclick="buildClubTable()" id="clubsDivTh">Countries/clubs</th>
                 <th onclick="newContent('categDiv')" id="categDivTh">Categories</th>
                 <th onclick="buildHotelTable()" id="hotelsDivTh">Hotels</th>
                 <th onclick="newContent('transportDiv')" id="transportDivTh">Transportation</th>
@@ -48,7 +48,20 @@
         <h2>Events</h2>
     </div>
     <div id="clubsDiv" class="contentDiv">
-        <h2>Clubs</h2>
+        <div id="clubsFilterDiv">
+            <input type="text" class="textBoxDark" id="clubSearchInp"/>
+            <label>Search club by:</label>
+            <div class="custom-select">
+                <select id="typeClubSearchInp">
+                    <option value=-1></option>
+                    <option value=0 selected="selected">Title</option>
+                    <option value=1>Code</option>
+                    <option value=2>City</option>
+                </select>
+            </div>
+            <button class="rightButton" onclick="editClubTab(null)">Add Country/Club</button>
+        </div>
+        <table id="clubTable"></table>
     </div>
     <div id="categDiv" class="contentDiv">
         <h2>Categories</h2>
@@ -58,13 +71,13 @@
             <input type="text" class="textBoxDark" id="hotelSearchInp"/>
             <label>Search hotel by:</label>
             <div class="custom-select">
-                <select id="typeSearchInp">
+                <select id="typeHotelSearchInp">
                     <option value=-1></option>
                     <option value=0 selected="selected">Title</option>
                     <option value=1>City</option>
                 </select>
             </div>
-            <div class="roomFilterDiv">
+            <div>
                 <label><b>Only rooms with:</b></label>
                 <ul id="changeType" class="filter-switch">
                     <li class="filter-switch-item">
@@ -119,9 +132,13 @@
 <script src="scripts/searchHotels.js"></script>
 <script src="scripts/elementManager.js"></script>
 
-<script src="scripts/builderScritps/hotelsBuilder.js"></script>
-<script src="scripts/builderScritps/editHotel.js"></script>
-<script src="scripts/builderScritps/showHotel.js"></script>
+<script src="scripts/builderScritps/hotels/hotelsBuilder.js"></script>
+<script src="scripts/builderScritps/hotels/editHotel.js"></script>
+<script src="scripts/builderScritps/hotels/showHotel.js"></script>
+
+<script src="scripts/builderScritps/clubs/clubsBuilder.js"></script>
+<script src="scripts/builderScritps/clubs/editClub.js"></script>
+<script src="scripts/builderScritps/clubs/showClub.js"></script>
 
 <script src="scripts/start.js"></script>
 

@@ -1,15 +1,14 @@
 var hotelTable;
-var hotels = [];
+
 async function buildHotelTable() {
     hotelTable = document.getElementById("hotelTable");
 
     newContent("hotelsDiv");
 
-    var response = await callEndpoint("GET", "/hotels/getHotels" + createFilters());
+    var response = await callEndpoint("GET", "/hotels/getHotels" + createHotelFilters());
     if (!response.ERROR) {
-        hotels = response.HOTELS[i];
         hotelTable.innerHTML = "";
-        createHeaderRow();
+        createHotelHeaderRow();
         for (var i = 0; i < response.HOTELS.length; i++) {
             buildHotelRow(response.HOTELS[i]);
         }
@@ -19,11 +18,11 @@ async function buildHotelTable() {
     }
 }
 
-function createFilters() {
+function createHotelFilters() {
     var filter = "";
 
     var searchInput = document.getElementById("hotelSearchInp");
-    var searchType = document.getElementById("typeSearchInp");
+    var searchType = document.getElementById("typeHotelSearchInp");
     if (searchType.value == 0) {
         filter += "?title=" + searchInput.value;
         filter += "&city=";
@@ -73,12 +72,10 @@ function buildHotelRow(hotel) {
     ]);
 }
 
-function createHeaderRow() {
-    var row = document.createElement("tr");
-    var titleColumn = createElement("th", row, "Title");
-    var addressColumn = createElement("th", row, "Address");
-    var editColumn = createElement("th", row);
-    var removeColumn = createElement("th", row);
-
-    hotelTable.appendChild(row);
+function createHotelHeaderRow() {
+    var row = createElement("tr", hotelTable);
+    createElement("th", row, "Title");
+    createElement("th", row, "Address");
+    createElement("th", row);
+    createElement("th", row);
 }

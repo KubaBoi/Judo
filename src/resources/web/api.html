@@ -29,6 +29,12 @@
                     <li><a href="#2.5">/deleteHotel</a></li>
                 </ol>
             </li>
+            <li>
+                <a href="#3">/clubs
+                <ol>
+                    <li><a href="#3.1">/getClubs</a></li>
+                </ol>
+            </li>
         </ol>
     </div>
 
@@ -104,7 +110,7 @@
                                     <pre><code class="language-json">
 "ERROR": "Wrong json structure"
                                     </code></pre></figure>
-                </li>
+            </li>
                 <li class="num">
                     <span class="hd3" id="2.2">/getRooms - GET</span>
                     <figure>
@@ -252,6 +258,46 @@
                                     <pre><code class="language-json">
 "ERROR": "Hotel with id {hotelId} does not exist."
                                     </code></pre></figure>
+                </li>
+            </ol>
+        </li>
+        <li class="num">
+            <span class="hd2" id="3">/clubs</span><br><br>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="3.1">/getClubs - GET</span>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+"title": "title",
+"code": "code",
+"eju": true,
+"city": "city"
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+"CLUBS": [
+    {
+        "ID": 0,
+        "TITLE": "club",
+        "CODE": "CZE",
+        "EJU": true,
+        "STREET": "street",
+        "CITY": "city",
+        "ZIP": "zip",
+        "EMAIL": "email",
+        "PHONE": "phone",
+        "WEB": "web"
+    }
+]
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when wrong request - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+
                 </li>
             </ol>
         </li>

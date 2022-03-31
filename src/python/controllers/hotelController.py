@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from os import stat
-from pyexpat import model
-import string
-import random
-
 from cheese.resourceManager import ResMan
 from cheese.modules.cheeseController import CheeseController
 from cheese.ErrorCodes import Error
