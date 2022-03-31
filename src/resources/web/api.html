@@ -1,0 +1,263 @@
+<html lang="cs">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://frogie.cz:8002/style.css">
+    <link rel="stylesheet" href="http://frogie.cz:8002/prism.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>API</title>
+</head>
+<body>
+    <script src="http://frogie.cz:8002/prism.js"></script>
+
+    <div id="toc_container">
+        <p class="toc_title">Contents</p>
+        <ol>
+            <li>
+                <a href="#1">/authentication</a>
+                <ol>
+                    <li><a href="#1.1">/login</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#2">/hotels
+                <ol>
+                    <li><a href="#2.1">/getHotels</a></li>
+                    <li><a href="#2.2">/getHotel</a></li>
+                    <li><a href="#2.3">/updateHotel</a></li>
+                    <li><a href="#2.4">/createHotel</a></li>
+                    <li><a href="#2.5">/deleteHotel</a></li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+
+    <ol class="num">
+        <li class="num">
+            <span class="hd2" id="1">/authentication</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="1.1">/login - GET</span>
+                    <figure>
+                        <figcaption>Accepts cookies:</figcaption>
+                        <pre><code class="language-json">
+"userName": "user_name",
+"password": "password"
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+"TOKEN": "token",
+"USER": {
+    "ACCOUNT_NAME": "account_name",
+    "ID": 0,
+    "USER_NAME": "user_name"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when cookies are missing - 401:</figcaption>
+                        <pre><code class="language-json">
+"ERROR": "No cookies"
+                                </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when wrong credentials - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong credentials"
+                                    </code></pre></figure>
+                </li>
+            </ol>
+        </li>
+        <li class="num">
+            <span class="hd2" id="2">/hotels</span><br><br>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="2.1">/getHotels - GET</span>
+                    <figure>
+                        <figcaption>Accepts path arguments - first two if empty than search everything:</figcaption>
+                        <pre><code class="language-json">
+"title": "title",
+"city": "city",
+"oneBed": true,
+"twoBed": false,
+"threeBed": true,
+"fourBed": true
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+"HOTELS": [
+    {
+        "ID": 0,
+        "TITLE": "title",
+        "STREET": "street",
+        "CITY": "city",
+        "ZIP": "zip",
+        "EMAIL": "email",
+        "PHONE": "phone",
+        "WEB": "web",
+        "ROOMS": []
+    }
+]
+                        </code></pre></figure>
+                        <figure>
+                        <figcaption>Return when request is wrong - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+                </li>
+                <li class="num">
+                    <span class="hd3" id="2.2">/getRooms - GET</span>
+                    <figure>
+                        <figcaption>Accepts path argumets:</figcaption>
+                                    <pre><code class="language-json">
+"hotelId": 0
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+"HOTEL": {
+    "ID": 0,
+    "TITLE": "title",
+    "STREET": "street",
+    "CITY": "city",
+    "ZIP": "zip",
+    "EMAIL": "email",
+    "PHONE": "phone",
+    "WEB": "web",
+    "ROOMS": [
+        {
+            "ID": 0,
+            "HOTEL_ID": 0,
+            "BED": 1,
+            "COUNT": 5,
+            "PRICE_RO": 20,
+            "PRICE_BB": 30,
+            "PRICE_HB": 40,
+            "PRICE_FB": 50
+        }
+    ]
+}
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when missing hotelId - 400:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel with hotelId does not exists - 404:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Hotel with id {hotelId} does not exist."
+                                    </code></pre></figure>
+                </li>
+                <li class="num">
+                    <span class="hd3" id="2.3">/updateHotel - POST</span>
+                    <figure>
+                        <figcaption>Accepts body argumets:</figcaption>
+                                    <pre><code class="language-json">
+"HOTEL": {
+    "ID": 0,
+    "TITLE": "hotel",
+    "STREET": "street",
+    "CITY": "city",
+    "ZIP":  "zip",
+    "EMAIL": "email",
+    "PHONE": "phone",
+    "WEB": "web",
+    "ROOMS": [
+        {
+            "ID": 1,
+            "BED": 1,
+            "HOTEL_ID": 0,
+            "COUNT": 5,
+            "PRICE_RO": 20,
+            "PRICE_BB": 30,
+            "PRICE_HB": 40,
+            "PRICE_FB": 50,
+        }
+    ]
+}
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel was changed - 200:</figcaption>
+                                    <pre><code class="language-json">
+"STATUS": "OK"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when wrong request - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+                </li>
+                <li class="num">
+                    <span class="hd3" id="2.4">/createHotel - POST</span>
+                    <figure>
+                        <figcaption>Accepts body argumets:</figcaption>
+                                    <pre><code class="language-json">
+"HARD_CREATE": true, //create hotel even if there is hotel in database with same name
+"HOTEL": {
+    "TITLE": "hotel",
+    "STREET": "street",
+    "CITY": "city",
+    "ZIP":  "zip",
+    "EMAIL": "email",
+    "PHONE": "phone",
+    "WEB": "web",
+    "ROOMS": [
+        {
+            "BED": 1,
+            "COUNT": 5,
+            "PRICE_RO": 20,
+            "PRICE_BB": 30,
+            "PRICE_HB": 40,
+            "PRICE_FB": 50,
+        }
+    ]
+}
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel was created - 200:</figcaption>
+                                    <pre><code class="language-json">
+"STATUS": "OK"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel already exists and HARD_CREATE is false - 200:</figcaption>
+                                    <pre><code class="language-json">
+"STATUS": "Already exists"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when wrong request - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+                </li>
+                <li class="num">
+                    <span class="hd3" id="2.5">/deleteHotel - GET</span>
+                    <figure>
+                        <figcaption>Accepts path argumets:</figcaption>
+                                    <pre><code class="language-json">
+"hotelId": 0
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel was deleted - 200:</figcaption>
+                                    <pre><code class="language-json">
+"STATUS": "OK"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when wrong request - 401:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Wrong json structure"
+                                    </code></pre></figure>
+                    <figure>
+                        <figcaption>Return when hotel with hotelId does not exists - 404:</figcaption>
+                                    <pre><code class="language-json">
+"ERROR": "Hotel with id {hotelId} does not exist."
+                                    </code></pre></figure>
+                </li>
+            </ol>
+        </li>
+    </ol>
+
+
+
+</body>
+</html>

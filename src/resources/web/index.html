@@ -1,0 +1,129 @@
+<html lang="cs">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/filterStyle.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/loginStyle.css">
+    <link rel="stylesheet" href="styles/headerStyle.css">
+    <link rel="stylesheet" href="styles/contentStyle.css">
+    <link rel="stylesheet" href="styles/selectStyle.css">
+    <link rel="stylesheet" href="styles/hotelStyle.css">
+    <link rel="stylesheet" href="styles/alertsStyle.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Český svaz juda</title>
+</head>
+
+<div id="loginDiv" class="loginDiv">
+    <img src="szj_logo.png">
+    <p>Sing in</p>
+    <label>Username: </label><input id="nameInp" type="text" placeholder="User name" value="kuba" class="textBox"><br><br>
+    <lable>Password: </lable><input id="passInp" type="password" placeholder="Password" value="heslo" class="textBox"><br><br>
+    <button id="singInButt" onclick="login()">Sign in</button><br>
+    <button id="forgPassButt">I forgot my password</button>
+</div>
+
+<div id="loggedDiv">
+    <div class="header">
+        <img src="szj_logo.png" onclick="newContent('mainDiv')">
+        <table id="menuTable">
+            <tr>
+                <th onclick="newContent('eventsDiv')" id="eventsDivTh">Events</th>
+                <th onclick="newContent('clubsDiv')" id="clubsDivTh">Countires/clubs</th>
+                <th onclick="newContent('categDiv')" id="categDivTh">Categories</th>
+                <th onclick="buildHotelTable()" id="hotelsDivTh">Hotels</th>
+                <th onclick="newContent('transportDiv')" id="transportDivTh">Transportation</th>
+                <th onclick="newContent('guideDiv')" id="guideDivTh">Guide</th>
+            </tr>
+        </table>
+        <div class="loggedAsDiv">
+            <label id="loggedAs"></label>
+            <button onclick="logout()">Log out</button>
+        </div>
+    </div>
+    <div id="mainDiv" class="contentDiv">
+        <h1>Welcome to the Czech judo federation's website</h1>
+    </div>
+    <div id="eventsDiv" class="contentDiv">
+        <h2>Events</h2>
+    </div>
+    <div id="clubsDiv" class="contentDiv">
+        <h2>Clubs</h2>
+    </div>
+    <div id="categDiv" class="contentDiv">
+        <h2>Categories</h2>
+    </div>
+    <div id="hotelsDiv" class="contentDiv">
+        <div id="hotelsFilterDiv">
+            <input type="text" class="textBoxDark" id="hotelSearchInp"/>
+            <label>Search hotel by:</label>
+            <div class="custom-select">
+                <select id="typeSearchInp">
+                    <option value=-1></option>
+                    <option value=0 selected="selected">Title</option>
+                    <option value=1>City</option>
+                </select>
+            </div>
+            <div class="roomFilterDiv">
+                <label><b>Only rooms with:</b></label>
+                <ul id="changeType" class="filter-switch">
+                    <li class="filter-switch-item">
+                        <input type="checkbox" name="changeType" id="1bed" onclick="buildHotelTable()" class="sr-only" checked>
+                        <label for="1bed">
+                            1 bed
+                        </label>
+                    </li>
+                    <li class="filter-switch-item">
+                        <input type="checkbox" name="changeType" id="2bed" onclick="buildHotelTable()" class="sr-only" checked>
+                        <label for="2bed">2 bed</label>
+                        <div aria-hidden="true" class="filter-active"></div>
+                    </li>
+                    <li class="filter-switch-item">
+                        <input type="checkbox" name="changeType" id="3bed" onclick="buildHotelTable()" class="sr-only" checked>
+                        <label for="3bed">
+                            3 bed
+                        </label>
+                        <div aria-hidden="true" class="filter-active"></div>
+                    </li>
+                    <li class="filter-switch-item">
+                        <input type="checkbox" name="changeType" id="4bed" onclick="buildHotelTable()" class="sr-only" checked>
+                        <label for="4bed">
+                            4 bed
+                        </label>
+                        <div aria-hidden="true" class="filter-active"></div>
+                    </li>
+                </ul>
+            </div>
+            <button class="rightButton" onclick="editHotelTab(null)">Add Hotel</button>
+        </div>
+        <table id="hotelTable"></table>
+    </div>
+    <div id="transportDiv" class="contentDiv">
+        <h2>Transport</h2>
+    </div>
+    <div id="guideDiv" class="contentDiv">
+        <h2>Guide</h2>
+    </div>
+    <div id="hiddenTab" class="closeTab"></div>
+</div>
+
+<script src="http://frogie.cz/scripts/public/communication.js"></script>
+<script src="http://frogie.cz/scripts/public/cookies.js"></script>
+<script src="scripts/alerts.js"></script>
+
+<script src="scripts/selectStyle.js"></script>
+<script src="scripts/hiddenTabOperations.js"></script>
+
+<script src="scripts/login.js"></script>
+<script src="scripts/contentSwitch.js"></script>
+<script src="scripts/searchHotels.js"></script>
+<script src="scripts/elementManager.js"></script>
+
+<script src="scripts/builderScritps/hotelsBuilder.js"></script>
+<script src="scripts/builderScritps/editHotel.js"></script>
+<script src="scripts/builderScritps/showHotel.js"></script>
+
+<script src="scripts/start.js"></script>
+
+</body>
+</html>

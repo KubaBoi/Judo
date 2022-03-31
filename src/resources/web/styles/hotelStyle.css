@@ -1,0 +1,35 @@
+.editTableDiv {
+    width: auto;
+    display: inline-flex;
+}
+
+.editTableDiv table {
+    margin: 10px;
+}
+
+.showTableDiv {
+    width: auto;
+    background-color: var(--light-color);
+    border-radius: 5px;
+}
+
+.showTableDiv table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.showTableDiv tr:nth-child(even) {
+    background-color: var(--secondary-light-color);
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+.showTableDiv td, th {
+    padding: 10px;
+}
+
+.showTableDiv th {
+    background-color: var(--main-color);
+}
