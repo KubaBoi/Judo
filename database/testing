@@ -20,4 +20,6 @@ where h.title LIKE '%%';
 
 insert into rooms (id,hotel_id,bed,count,price_RO,price_BB,price_HB,price_FB) values (5, 2, 1, '', '', '', '', '');
 
-insert into clubs (id, title, code, eju, street, city, zip, email, phone, web) values ()
+insert into clubs (id, title, code, eju, street, city, zip, email, phone, web) values (0, 'club', 'CZE', true, 'steet', 'city', 'zip', 'mail', 'phone', 'web');
+
+select * from clubs;
