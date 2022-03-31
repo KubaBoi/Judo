@@ -163,8 +163,12 @@ async function saveHotelChanges(hotelId, hardCreate="false") {
 }
 
 function prepareChangedData() {
+    hotelId = null;
+    if (activeHotel.ID) {
+        hotelId = activeHotel.ID;
+    }
     var newHotel = {
-        "ID": activeHotel.ID,
+        "ID": hotelId,
         "TITLE": getValueOf("titleInpEdit"),
         "STREET": getValueOf("streetInpEdit"),
         "CITY": getValueOf("cityInpEdit"),
