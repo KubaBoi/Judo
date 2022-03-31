@@ -1,4 +1,4 @@
-newContent("clubssDiv");
+newContent("mainDiv");
 debug = true;
 var userAccountName;
 var userName = getCookie("userName");
