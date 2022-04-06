@@ -6,13 +6,31 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@repository users
 #@dbscheme (id, rule_id, login, phone, full_name)
 #@dbmodel Users
-class Usersrepository(CheeseRepository):
+class UsersRepository(CheeseRepository):
 
 
 
-	#@query "select max(id) from users";
+	#@query "select * from users;"
+	#@return array
+	@staticmethod
+	def findAll():
+		return CheeseRepository.findAll([])
+
+	#@query "select * from users where id=:id;"
+	#@return one
+	@staticmethod
+	def find(id):
+		return CheeseRepository.find([id])
+
+	#@query "select * from users where :columnName=:value;"
+	#@return array
+	@staticmethod
+	def findBy(columnName, value):
+		return CheeseRepository.findBy([columnName, value])
+
+	#@query "select max(id) from users;"
 	#@return num
-	#@staticmethod
+	@staticmethod
 	def findNewId():
 		try:
 			return CheeseRepository.findNewId([])+1

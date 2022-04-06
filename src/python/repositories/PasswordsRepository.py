@@ -3,32 +3,32 @@
 
 from cheese.modules.cheeseRepository import CheeseRepository
 
-#@repository rooms
-#@dbscheme (id, bed, price, hotel_id, available)
-#@dbmodel Rooms
-class RoomsRepository(CheeseRepository):
+#@repository passwords
+#@dbscheme (id, password, login)
+#@dbmodel Passwords
+class PasswordsRepository(CheeseRepository):
 
 
 
-	#@query "select * from rooms;"
+	#@query "select * from passwords;"
 	#@return array
 	@staticmethod
 	def findAll():
 		return CheeseRepository.findAll([])
 
-	#@query "select * from rooms where id=:id;"
+	#@query "select * from passwords where id=:id;"
 	#@return one
 	@staticmethod
 	def find(id):
 		return CheeseRepository.find([id])
 
-	#@query "select * from rooms where :columnName=:value;"
+	#@query "select * from passwords where :columnName=:value;"
 	#@return array
 	@staticmethod
 	def findBy(columnName, value):
 		return CheeseRepository.findBy([columnName, value])
 
-	#@query "select max(id) from rooms;"
+	#@query "select max(id) from passwords;"
 	#@return num
 	@staticmethod
 	def findNewId():

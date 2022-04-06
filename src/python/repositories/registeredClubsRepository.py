@@ -6,13 +6,31 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@repository registered_clubs
 #@dbscheme (id, event_id, club_id, visa, checked)
 #@dbmodel RegisteredClubs
-class Registeredclubsrepository(CheeseRepository):
+class RegisteredClubsRepository(CheeseRepository):
 
 
 
-	#@query "select max(id) from registered_clubs";
+	#@query "select * from registered_clubs;"
+	#@return array
+	@staticmethod
+	def findAll():
+		return CheeseRepository.findAll([])
+
+	#@query "select * from registered_clubs where id=:id;"
+	#@return one
+	@staticmethod
+	def find(id):
+		return CheeseRepository.find([id])
+
+	#@query "select * from registered_clubs where :columnName=:value;"
+	#@return array
+	@staticmethod
+	def findBy(columnName, value):
+		return CheeseRepository.findBy([columnName, value])
+
+	#@query "select max(id) from registered_clubs;"
 	#@return num
-	#@staticmethod
+	@staticmethod
 	def findNewId():
 		try:
 			return CheeseRepository.findNewId([])+1

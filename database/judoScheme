@@ -2,7 +2,6 @@
 -- Please log an issue at https://redmine.postgresql.org/projects/pgadmin4/issues/new if you find any bugs, including reproduction steps.
 BEGIN;
 
-
 CREATE TABLE IF NOT EXISTS public.events
 (
     id bigint NOT NULL,
@@ -23,7 +22,7 @@ CREATE TABLE IF NOT EXISTS public.events
     ag_price bigint NOT NULL,
     trans_price bigint NOT NULL,
     other_price bigint NOT NULL,
-    show_hotel bigint NOT NULL,
+    show_hotel boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -154,6 +153,7 @@ CREATE TABLE IF NOT EXISTS public.registered_jb
     arrive bigint NOT NULL,
     departure bigint NOT NULL,
     transport boolean NOT NULL,
+    flight_number text NOT NULL,
     PRIMARY KEY (id)
 );
 

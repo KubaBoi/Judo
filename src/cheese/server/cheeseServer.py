@@ -14,7 +14,8 @@ from cheese.ErrorCodes import Error
 from python.authorization import Authorization
 
 #REST CONTROLLERS
-from python.controllers.HelloWorldController import HelloWorldController
+from python.controllers.clubController import clubController
+from python.controllers.userController import userController
 
 
 """
@@ -44,14 +45,10 @@ class CheeseHandler(BaseHTTPRequestHandler):
 
             if (path == "/"):
                 CheeseController.serveFile(self, "index.html")
-            elif (path.startswith("/hello")):
-                if (path.startswith("/hello/world")):
-                    HelloWorldController.helloWorld(self, self.path, auth)
-                else:
-                    if (self.path.endswith(".css")):
-                        CheeseController.serveFile(self, self.path, "text/css")
-                    else:
-                        CheeseController.serveFile(self, self.path)
+            elif (path.startswith("/clubs")):
+                pass
+            elif (path.startswith("/users")):
+                pass
             else:
                 if (self.path.endswith(".css")):
                     CheeseController.serveFile(self, self.path, "text/css")
@@ -67,8 +64,16 @@ class CheeseHandler(BaseHTTPRequestHandler):
         try:
             auth = None
 
-            if (self.path.startswith("/hello")):
-                pass
+            if (self.path.startswith("/clubs")):
+                if (self.path.startswith("/clubs/create")):
+                    clubController.createNotification(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/users")):
+                if (self.path.startswith("/users/create")):
+                    userController.createUser(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
             else:
                 Error.sendCustomError(self, "Endpoint not found :(", 404)
 
