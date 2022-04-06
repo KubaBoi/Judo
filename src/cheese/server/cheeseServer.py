@@ -14,9 +14,7 @@ from cheese.ErrorCodes import Error
 from python.authorization import Authorization
 
 #REST CONTROLLERS
-from python.controllers.authenticationController import AuthenticationController
-from python.controllers.clubController import ClubController
-from python.controllers.hotelController import HotelController
+from python.controllers.HelloWorldController import HelloWorldController
 
 
 """
@@ -46,33 +44,9 @@ class CheeseHandler(BaseHTTPRequestHandler):
 
             if (path == "/"):
                 CheeseController.serveFile(self, "index.html")
-            elif (path.startswith("/authentication")):
-                if (path.startswith("/authentication/login")):
-                    AuthenticationController.login(self, self.path, auth)
-                else:
-                    if (self.path.endswith(".css")):
-                        CheeseController.serveFile(self, self.path, "text/css")
-                    else:
-                        CheeseController.serveFile(self, self.path)
-            elif (path.startswith("/clubs")):
-                if (path.startswith("/clubs/getClubs")):
-                    ClubController.getClubs(self, self.path, auth)
-                elif (path.startswith("/clubs/getClub")):
-                    ClubController.getClub(self, self.path, auth)
-                elif (path.startswith("/clubs/deleteClub")):
-                    ClubController.deleteClub(self, self.path, auth)
-                else:
-                    if (self.path.endswith(".css")):
-                        CheeseController.serveFile(self, self.path, "text/css")
-                    else:
-                        CheeseController.serveFile(self, self.path)
-            elif (path.startswith("/hotels")):
-                if (path.startswith("/hotels/getHotels")):
-                    HotelController.getHotels(self, self.path, auth)
-                elif (path.startswith("/hotels/getRooms")):
-                    HotelController.getRooms(self, self.path, auth)
-                elif (path.startswith("/hotels/deleteHotel")):
-                    HotelController.deleteHotel(self, self.path, auth)
+            elif (path.startswith("/hello")):
+                if (path.startswith("/hello/world")):
+                    HelloWorldController.helloWorld(self, self.path, auth)
                 else:
                     if (self.path.endswith(".css")):
                         CheeseController.serveFile(self, self.path, "text/css")
@@ -93,22 +67,8 @@ class CheeseHandler(BaseHTTPRequestHandler):
         try:
             auth = None
 
-            if (self.path.startswith("/authentication")):
+            if (self.path.startswith("/hello")):
                 pass
-            elif (self.path.startswith("/clubs")):
-                if (self.path.startswith("/clubs/updateClub")):
-                    ClubController.updateClub(self, self.path, auth)
-                elif (self.path.startswith("/clubs/createClub")):
-                    ClubController.createClub(self, self.path, auth)
-                else:
-                    Error.sendCustomError(self, "Endpoint not found :(", 404)
-            elif (self.path.startswith("/hotels")):
-                if (self.path.startswith("/hotels/updateHotel")):
-                    HotelController.updateHotel(self, self.path, auth)
-                elif (self.path.startswith("/hotels/createHotel")):
-                    HotelController.createHotel(self, self.path, auth)
-                else:
-                    Error.sendCustomError(self, "Endpoint not found :(", 404)
             else:
                 Error.sendCustomError(self, "Endpoint not found :(", 404)
 
