@@ -28,14 +28,9 @@ class RegisteredClubsRepository(CheeseRepository):
 	def findBy(columnName, value):
 		return CheeseRepository.findBy([columnName, value])
 
-	#@query "select max(id) from registered_clubs;"
-	#@return num
 	@staticmethod
-	def findNewId():
-		try:
-			return CheeseRepository.findNewId([])+1
-		except:
-			return 0
+	def findNewId(obj):
+		return CheeseRepository.findNewId([obj])+1
 
 	@staticmethod
 	def save(obj):

@@ -14,8 +14,14 @@ from cheese.ErrorCodes import Error
 from python.authorization import Authorization
 
 #REST CONTROLLERS
-from python.controllers.clubController import clubController
-from python.controllers.userController import userController
+from python.controllers.ClubsController import ClubsController
+from python.controllers.EventsController import EventsController
+from python.controllers.HotelsController import HotelsController
+from python.controllers.JbController import JbController
+from python.controllers.RegisteredClubsController import RegisteredClubsController
+from python.controllers.RegisteredHotelsController import RegisteredHotelsController
+from python.controllers.RegisteredJbController import RegisteredJbController
+from python.controllers.UsersController import UsersController
 
 
 """
@@ -46,9 +52,51 @@ class CheeseHandler(BaseHTTPRequestHandler):
             if (path == "/"):
                 CheeseController.serveFile(self, "index.html")
             elif (path.startswith("/clubs")):
+                if (path.startswith("/clubs/getAll")):
+                    ClubsController.getAll(self, self.path, auth)
+                else:
+                    if (self.path.endswith(".css")):
+                        CheeseController.serveFile(self, self.path, "text/css")
+                    else:
+                        CheeseController.serveFile(self, self.path)
+            elif (path.startswith("/events")):
+                if (path.startswith("/events/getAll")):
+                    EventsController.getAll(self, self.path, auth)
+                else:
+                    if (self.path.endswith(".css")):
+                        CheeseController.serveFile(self, self.path, "text/css")
+                    else:
+                        CheeseController.serveFile(self, self.path)
+            elif (path.startswith("/hotels")):
+                if (path.startswith("/hotels/getAll")):
+                    HotelsController.getAll(self, self.path, auth)
+                else:
+                    if (self.path.endswith(".css")):
+                        CheeseController.serveFile(self, self.path, "text/css")
+                    else:
+                        CheeseController.serveFile(self, self.path)
+            elif (path.startswith("/jb")):
+                if (path.startswith("/jb/getByClub")):
+                    JbController.getByClub(self, self.path, auth)
+                else:
+                    if (self.path.endswith(".css")):
+                        CheeseController.serveFile(self, self.path, "text/css")
+                    else:
+                        CheeseController.serveFile(self, self.path)
+            elif (path.startswith("/registeredClubs")):
+                pass
+            elif (path.startswith("/registeredHotels")):
+                pass
+            elif (path.startswith("/registeredJb")):
                 pass
             elif (path.startswith("/users")):
-                pass
+                if (path.startswith("/users/login")):
+                    UsersController.login(self, self.path, auth)
+                else:
+                    if (self.path.endswith(".css")):
+                        CheeseController.serveFile(self, self.path, "text/css")
+                    else:
+                        CheeseController.serveFile(self, self.path)
             else:
                 if (self.path.endswith(".css")):
                     CheeseController.serveFile(self, self.path, "text/css")
@@ -66,12 +114,96 @@ class CheeseHandler(BaseHTTPRequestHandler):
 
             if (self.path.startswith("/clubs")):
                 if (self.path.startswith("/clubs/create")):
-                    clubController.createNotification(self, self.path, auth)
+                    ClubsController.create(self, self.path, auth)
+                elif (self.path.startswith("/clubs/update")):
+                    ClubsController.update(self, self.path, auth)
+                elif (self.path.startswith("/clubs/getByUser")):
+                    ClubsController.getByUser(self, self.path, auth)
+                elif (self.path.startswith("/clubs/remove")):
+                    ClubsController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/events")):
+                if (self.path.startswith("/events/create")):
+                    EventsController.create(self, self.path, auth)
+                elif (self.path.startswith("/events/update")):
+                    EventsController.update(self, self.path, auth)
+                elif (self.path.startswith("/events/getByCategory")):
+                    EventsController.getByCategory(self, self.path, auth)
+                elif (self.path.startswith("/events/getByName")):
+                    EventsController.getByName(self, self.path, auth)
+                elif (self.path.startswith("/events/getByPlace")):
+                    EventsController.getByPlace(self, self.path, auth)
+                elif (self.path.startswith("/events/getByStart")):
+                    EventsController.getByStart(self, self.path, auth)
+                elif (self.path.startswith("/events/remove")):
+                    EventsController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/hotels")):
+                if (self.path.startswith("/hotels/create")):
+                    HotelsController.create(self, self.path, auth)
+                elif (self.path.startswith("/hotels/update")):
+                    HotelsController.update(self, self.path, auth)
+                elif (self.path.startswith("/hotels/getByName")):
+                    HotelsController.getByName(self, self.path, auth)
+                elif (self.path.startswith("/hotels/getByPlace")):
+                    HotelsController.getByPlace(self, self.path, auth)
+                elif (self.path.startswith("/hotels/getRooms")):
+                    HotelsController.getRooms(self, self.path, auth)
+                elif (self.path.startswith("/hotels/reserveBed")):
+                    HotelsController.reserveBed(self, self.path, auth)
+                elif (self.path.startswith("/hotels/remove")):
+                    HotelsController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/jb")):
+                if (self.path.startswith("/jb/create")):
+                    JbController.create(self, self.path, auth)
+                elif (self.path.startswith("/jb/createFromCvs")):
+                    JbController.createFromCvs(self, self.path, auth)
+                elif (self.path.startswith("/jb/update")):
+                    JbController.update(self, self.path, auth)
+                elif (self.path.startswith("/jb/remove")):
+                    JbController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/registeredClubs")):
+                if (self.path.startswith("/registeredClubs/create")):
+                    RegisteredClubsController.create(self, self.path, auth)
+                elif (self.path.startswith("/registeredClubs/register")):
+                    RegisteredClubsController.register(self, self.path, auth)
+                elif (self.path.startswith("/registeredClubs/getByEvent")):
+                    RegisteredClubsController.getByEvent(self, self.path, auth)
+                elif (self.path.startswith("/registeredClubs/remove")):
+                    RegisteredClubsController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/registeredHotels")):
+                if (self.path.startswith("/registeredHotels/create")):
+                    RegisteredHotelsController.create(self, self.path, auth)
+                elif (self.path.startswith("/registeredHotels/getByEvent")):
+                    RegisteredHotelsController.getByEvent(self, self.path, auth)
+                elif (self.path.startswith("/registeredHotels/remove")):
+                    RegisteredHotelsController.remove(self, self.path, auth)
+                else:
+                    Error.sendCustomError(self, "Endpoint not found :(", 404)
+            elif (self.path.startswith("/registeredJb")):
+                if (self.path.startswith("/registeredJb/create")):
+                    RegisteredJbController.create(self, self.path, auth)
+                elif (self.path.startswith("/registeredJb/update")):
+                    RegisteredJbController.update(self, self.path, auth)
+                elif (self.path.startswith("/registeredJb/getByRegisteredClub")):
+                    RegisteredJbController.getByRegisteredClub(self, self.path, auth)
+                elif (self.path.startswith("/registeredJb/remove")):
+                    RegisteredJbController.remove(self, self.path, auth)
                 else:
                     Error.sendCustomError(self, "Endpoint not found :(", 404)
             elif (self.path.startswith("/users")):
                 if (self.path.startswith("/users/create")):
-                    userController.createUser(self, self.path, auth)
+                    UsersController.create(self, self.path, auth)
+                elif (self.path.startswith("/users/get")):
+                    UsersController.get(self, self.path, auth)
                 else:
                     Error.sendCustomError(self, "Endpoint not found :(", 404)
             else:
