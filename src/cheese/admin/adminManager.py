@@ -142,9 +142,9 @@ class AdminManager:
 
     @staticmethod
     def __shutDown(server):
-        Logger.warning(20*"=", header=False, silence=False)
-        Logger.warning("REQUEST FOR SERVER SHUT DOWN SUCCESSFULLY RECIEVED", header=False, silence=False)
-        Logger.warning("Shut down will start in 5 seconds", header=False, silence=False)
+        Logger.warning(20*"=", allowHeader=False, silence=False)
+        Logger.warning("REQUEST FOR SERVER SHUT DOWN SUCCESSFULLY RECIEVED", allowHeader=False, silence=False)
+        Logger.warning("Shut down will start in 5 seconds", allowHeader=False, silence=False)
         time.sleep(5)
         server.server.socket.close()
 
@@ -154,8 +154,8 @@ class AdminManager:
         
     @staticmethod
     def __update(server):
-        Logger.warning(20*"=", header=False, silence=False)
-        Logger.warning("Updating from git", header=False, silence=False)
+        Logger.warning(20*"=", allowHeader=False, silence=False)
+        Logger.warning("Updating from git", allowHeader=False, silence=False)
         subprocess.call("git pull")
         Logger.warning("Project has been updated. Restart for apply changes.")
         response = CheeseController.createResponse({"RESPONSE": "OK"}, 200)
