@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+
+from cheese.resourceManager import ResMan
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
 from python.repositories.JbRepository import JbRepository
 
 from python.models.Jb import Jb
+
+from python.cvsParser import CVSparser
 
 #@controller /jb
 class JbController(cc):
@@ -66,24 +71,52 @@ class JbController(cc):
 			Error.sendCustomError(server, "There are no bytes in request", 400)
 			return
 
+		name = "cvs"
+		fileName = name
+		i = 0
+		while (os.path.exists(os.path.join(ResMan.resources(), fileName + ".txt"))):
+			i += 1
+			fileName = name + str(i)
 
-		newId = JbRepository.findNewId()
-		jbModel = Jb()
-		jbModel.id = newId
-		jbModel.club_id = clubId
-		jbModel.jb = jb
-		jbModel.name = name
-		jbModel.sur_name = surName
-		jbModel.function = function
-		jbModel.birthday = birthday
-		jbModel.gender = gender
-		jbModel.pass_id = passId
-		jbModel.pass_release = passRelease
-		jbModel.pass_expiration = passExpiration
-		JbRepository.save(jbModel)
+		with open(f"{ResMan.resources()}/{fileName}.txt", "wb") as f:
+			f.write(args)
 
-		response = cc.createResponse({"ID": newId}, 200)
+		response = cc.createResponse({"FILE_NAME": fileName + ".txt"}, 200)
 		cc.sendResponse(server, response)
+
+	#@post /createByCvs
+	@staticmethod
+	def createFromCvs(server, path, auth):
+		if (auth["role"] > 1):
+			Error.sendCustomError(server, "Unauthorized access", 400)
+			return
+
+		args = cc.readArgs(server)
+
+		if (not cc.validateJson(["FILE_NAME", "CLUB_ID"], args)):
+			Error.sendCustomError(server, "Wrong json structure", 400)
+			return
+
+		clubId = args["CLUB_ID"]
+		fileName = args["FILE_NAME"]
+		jbsArray = CVSparser.parse(fileName)
+
+		for jb in jbsArray:
+			newId = JbRepository.findNewId()
+			jbModel = Jb()
+			jbModel.id = newId
+			jbModel.club_id = clubId
+			jbModel.birthday = jb["BIRTHDAY"]
+			jbModel.name = jb["NAME"]
+			jbModel.sur_name = jb["SUR_NAME"]
+			jbModel.function = jb["FUNCTION"]
+			jbModel.gender = jb["GENDER"]
+			jbModel.jb = jb["JB"]
+			JbRepository.save(jbModel)
+
+		response = cc.createResponse({"STATUS": "JBs have been created"}, 200)
+		cc.sendResponse(server, response)
+
 
 	#@post /update
 	@staticmethod

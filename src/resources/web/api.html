@@ -2,13 +2,13 @@
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://frogie.cz:8002/style.css">
-    <link rel="stylesheet" href="http://frogie.cz:8002/prism.css">
+    <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/style.css">
+    <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/prism.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>API</title>
 </head>
 <body>
-    <script src="http://frogie.cz:8002/prism.js"></script>
+    <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/prism.js"></script>
 
     <div id="toc_container">
         <p class="toc_title">Contents</p>
@@ -49,9 +49,10 @@
                 <ol>
                     <li><a href="#4.1">/create</a></li>
                     <li><a href="#4.2">/createFromCvs</a></li>
-                    <li><a href="#4.3">/update</a></li>
-                    <li><a href="#4.4">/getByClub</a></li>
-                    <li><a href="#4.5">/remove</a></li>
+                    <li><a href="#4.3">/createByCvs</a></li>
+                    <li><a href="#4.4">/update</a></li>
+                    <li><a href="#4.5">/getByClub</a></li>
+                    <li><a href="#4.6">/remove</a></li>
                 </ol>
             </li>
             <li>
@@ -918,7 +919,42 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="4.3">/update - POST</span>
+                    <span class="hd3" id="4.3">/createByCvs - POST</span>
+                    <p>Creates new jb from .cvs fileName that has been send by /createFromCvs</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "FILE_NAME": "str",
+    "CLUB_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "JBs have been created"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.4">/update - POST</span>
                     <p>Updates jb</p>
                     <p class="role">Role = 2</p>
                     <p>Changes can do only user who owns club (CLUB_ID -> USER_ID) </p>
@@ -963,7 +999,7 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="4.4">/getByClub - GET</span>
+                    <span class="hd3" id="4.5">/getByClub - GET</span>
                     <p>Returns array of jbs by club</p>
                     <p class="role">Role = 2</p>
                     <p>Can only get club owner (CLUB_ID -> USER_ID)</p>
@@ -1012,7 +1048,7 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="4.5">/remove - POST</span>
+                    <span class="hd3" id="4.6">/remove - POST</span>
                     <p>Remove jb</p>
                     <p class="role">Role = 2</p>
                     <p>Remove can do only user who owns club (CLUB_UD -> USER_ID) </p>

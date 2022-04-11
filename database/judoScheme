@@ -8,12 +8,12 @@ CREATE TABLE IF NOT EXISTS public.events
     name text NOT NULL,
     category text NOT NULL,
     place text NOT NULL,
-    start bigint NOT NULL,
-    "end" bigint NOT NULL,
-    arrive bigint NOT NULL,
-    depart bigint NOT NULL,
-    end_visa bigint NOT NULL,
-    end_room bigint NOT NULL,
+    start date NOT NULL,
+    "end" date NOT NULL,
+    arrive timestamp with time zone NOT NULL,
+    depart timestamp with time zone NOT NULL,
+    end_visa date NOT NULL,
+    end_room date NOT NULL,
     organiser_id bigint NOT NULL,
     visa_mail text NOT NULL,
     visa_phone text NOT NULL,
@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS public.jb
     name text NOT NULL,
     sur_name text NOT NULL,
     function text NOT NULL,
-    birthday bigint NOT NULL,
+    birthday date NOT NULL,
     gender text NOT NULL,
     pass_id text NOT NULL,
-    pass_release bigint NOT NULL,
-    pass_expiration bigint NOT NULL,
+    pass_release date NOT NULL,
+    pass_expiration date NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS public.registered_jb
     id bigint NOT NULL,
     reg_club_id bigint NOT NULL,
     jb_id bigint NOT NULL,
-    arrive bigint NOT NULL,
-    departure bigint NOT NULL,
+    arrive timestamp with time zone NOT NULL,
+    departure timestamp with time zone NOT NULL,
     transport boolean NOT NULL,
     flight_number text NOT NULL,
     PRIMARY KEY (id)
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS public.registered_tests
     id bigint NOT NULL,
     reg_jb_id bigint NOT NULL,
     pcr boolean NOT NULL,
-    date bigint NOT NULL,
+    date timestamp with time zone NOT NULL,
     PRIMARY KEY (id)
 );
 

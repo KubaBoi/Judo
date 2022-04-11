@@ -5,8 +5,12 @@ from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
 from python.repositories.HotelsRepository import HotelsRepository
+from python.repositories.RoomsRepository import RoomsRepository
+from python.repositories.BedRepository import BedRepository
 
 from python.models.Hotels import Hotels
+from python.models.Rooms import Rooms
+from python.models.Bed import Bed
 
 #@controller /hotels
 class HotelsController(cc):
@@ -50,14 +54,12 @@ class HotelsController(cc):
 		hotelsModel.phone = phone
 		hotelsModel.package = package
 		hotelsModel.p_nights = pNights
-		hotelsModel.one_room = oneRoom
-		hotelsModel.one_room_price = oneRoomPrice
-		hotelsModel.two_room = twoRoom
-		hotelsModel.two_room_price = twoRoomPrice
-		hotelsModel.three_room = threeRoom
-		hotelsModel.three_room_price = threeRoomPrice
-		hotelsModel.apartman_room = apartmanRoom
-		hotelsModel.apartman_room_price = apartmanRoomPrice
+
+		HotelsController.createRooms(1, oneRoom, newId, oneRoomPrice)
+		HotelsController.createRooms(2, twoRoom, newId, twoRoomPrice)
+		HotelsController.createRooms(3, threeRoom, newId, threeRoomPrice)
+		HotelsController.createRooms(4, apartmanRoom, newId, apartmanRoomPrice)
+
 		HotelsRepository.save(hotelsModel)
 
 		response = cc.createResponse({"ID": newId}, 200)
@@ -102,14 +104,6 @@ class HotelsController(cc):
 		hotelsModel.phone = phone
 		hotelsModel.package = package
 		hotelsModel.p_nights = pNights
-		hotelsModel.one_room = oneRoom
-		hotelsModel.one_room_price = oneRoomPrice
-		hotelsModel.two_room = twoRoom
-		hotelsModel.two_room_price = twoRoomPrice
-		hotelsModel.three_room = threeRoom
-		hotelsModel.three_room_price = threeRoomPrice
-		hotelsModel.apartman_room = apartmanRoom
-		hotelsModel.apartman_room_price = apartmanRoomPrice
 		HotelsRepository.update(hotelsModel)
 
 		response = cc.createResponse({'STATUS': 'Hotel has been updated'}, 200)
@@ -193,11 +187,12 @@ class HotelsController(cc):
 			return
 
 		hotelId = args["HOTEL_ID"]
+		roomsArray = RoomsRepository.findBy("columnName-hotel_id", hotelId)
 
 		jsonResponse = {}
-		jsonResponse["HOTELS"] = []
-		for hotel in hotelsArray:
-			jsonResponse["HOTELS"].append(hotel.toJson())
+		jsonResponse["ROOMS"] = []
+		for room in roomsArray:
+			jsonResponse["ROOMS"].append(room.toJson())
 
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
@@ -218,6 +213,26 @@ class HotelsController(cc):
 		hotelId = args["HOTEL_ID"]
 		roomId = args["ROOM_ID"]
 		jbs = args["JBS"]
+
+		room = RoomsRepository.find(roomId)
+
+		if (not room.available):
+			Error.sendCustomError("Room is already occupied")
+			return
+
+		beds = BedRepository.findBy("columnName-room_id", roomId)
+
+		if (len(beds) < len(jbs)):
+			Error.sendCustomError(server, "Room does not have such a capacity", 103)
+			return
+
+		for bed in beds:
+			if (bed.jb_id == -1):
+				bed.jb_id = jbs
+				BedRepository.update(bed)
+
+		room.available = False
+		RoomsRepository.update(room)
 
 		response = cc.createResponse({'STATUS': 'Bed has been reserved'}, 200)
 		cc.sendResponse(server, response)
@@ -242,4 +257,29 @@ class HotelsController(cc):
 
 		response = cc.createResponse({'STATUS': 'Hotel has been removed'}, 200)
 		cc.sendResponse(server, response)
+
+
+
+
+	# METHODS
+
+	@staticmethod
+	def createRooms(countOfBeds, countOfRooms, hotelId, price):
+		for i in range(countOfRooms):
+			newId = RoomsRepository.findNewId()
+			newRoom = Rooms()
+			newRoom.id = newId
+			newRoom.bed = countOfBeds
+			newRoom.hotel_id = hotelId
+			newRoom.price = price
+			newRoom.available = True
+			RoomsRepository.save(newRoom)
+
+			for o in range(countOfBeds):
+				newBedId = BedRepository.findNewId()
+				newBed = Bed()
+				newBed.id = newBedId
+				newBed.jb_id = -1
+				newBed.room_id = newId
+				BedRepository.save(newBed)
 
