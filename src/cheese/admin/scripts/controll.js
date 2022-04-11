@@ -62,3 +62,10 @@ async function checkLife() {
         }
     );
 }
+
+async function update() {
+    var response = await apiFunction("/admin/update");
+    if (response.ERROR) {
+        alert(response.ERROR);
+    }
+}
