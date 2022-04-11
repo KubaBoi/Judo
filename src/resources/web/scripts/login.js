@@ -19,7 +19,7 @@ async function login(alert=true) {
 
 function succLogin(response) {
     var loggedAs = document.getElementById("loggedAs")
-    loggedAs.innerHTML = response.USER.ACCOUNT_NAME;
+    loggedAs.innerHTML = response.USER.FULL_NAME;
 
     var loginDiv = document.getElementById("loginDiv");
     loginDiv.style.animationName = "loginDone";

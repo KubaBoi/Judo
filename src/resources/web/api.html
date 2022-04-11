@@ -119,7 +119,7 @@
                         <figcaption>Accepts cookies:</figcaption>
                         <pre><code class="language-json">
 {
-    "loin": "str",
+    "login": "str",
     "password": "str"
 }
                         </code></pre></figure>
@@ -127,7 +127,14 @@
                         <figcaption>Return OK - 200:</figcaption>
                         <pre><code class="language-json">
 {
-    "TOKEN": "str"
+    "TOKEN": "str",
+    "USER": {
+        "ID": 0,
+        "LOGIN": "str",
+        "PHONE": "str",
+        "FULL_NAME": "str",
+        "RULE_ID": 0
+    }
 }
                             </code></pre></figure>
                     <figure>

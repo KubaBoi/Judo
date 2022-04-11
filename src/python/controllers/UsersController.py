@@ -9,7 +9,6 @@ import json
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 from cheese.resourceManager import ResMan
-from python.models.Passwords import Passwords
 
 from python.repositories.UsersRepository import UsersRepository
 from python.repositories.TokensRepository import TokensRepository
@@ -17,6 +16,9 @@ from python.repositories.PasswordsRepository import PasswordsRepository
 
 from python.models.Users import Users
 from python.models.Tokens import Tokens
+from python.models.Passwords import Passwords
+
+from python.emailSender import EmailSender
 
 #@controller /users
 class UsersController(cc):
@@ -43,7 +45,7 @@ class UsersController(cc):
 		userIp = cc.getClientAddress(server)
 		token = UsersController.getToken(user.id, userIp)
 
-		response = cc.createResponse({'TOKEN': token.toJson()}, 200)
+		response = cc.createResponse({"TOKEN": token.toJson(), "USER": user.toJson()}, 200)
 		cc.sendResponse(server, response)
 
 	#@post /register
@@ -63,6 +65,12 @@ class UsersController(cc):
 		password = args["PASSWORD"]
 		phone = args["PHONE"]
 		fullName = args["FULL_NAME"]
+
+		users = UsersRepository.findBy("columnName-login", login)
+		if (len(users) > 0):
+			Error.sendCustomError(server, "User with this login already exists", 409)
+			return
+
 		randomCode = UsersController.randomString(20)
 
 		registration = {
@@ -83,6 +91,8 @@ class UsersController(cc):
 		with open(os.path.join(ResMan.web(), "registrations", "reg" + randomCode + ".html"), "w") as f:
 			template = template.replace("&CODE&", randomCode)
 			f.write(template)
+
+		EmailSender.sendRegistrationEmail(login, randomCode)
 
 		response = cc.createResponse({'STATUS': "Confirmation has been created"}, 200)
 		cc.sendResponse(server, response)
@@ -127,6 +137,9 @@ class UsersController(cc):
 		newPassId = PasswordsRepository.findNewId()
 		passwordsModel = Passwords(newPassId, password, login)
 		PasswordsRepository.save(passwordsModel)
+
+		os.remove(os.path.join(ResMan.resources(), "registrations", code + ".json"))
+		os.remove(os.path.join(ResMan.web(), "registrations", "reg" + code + ".html"))
 
 		response = cc.createResponse({"STATUS": "User has been created"}, 200)
 		cc.sendResponse(server, response)

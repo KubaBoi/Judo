@@ -37,8 +37,14 @@ async function register() {
             {"name": "okHideAlert", "duration": "0.5s"}
         );
     } 
-    else if (response.ERROR != "No cookies") {
+    else if (response.ERROR != "User with this login already exists") {
         showAlert("An error occurred :(", response.ERROR);
+    }
+    else {
+        showAlert("Error", "This email is already registered", "divWrongAlert",
+            {"name": "okShowAlert", "duration": "0.5s"},
+            {"name": "okHideAlert", "duration": "0.5s"}
+        );
     }
 }
 
