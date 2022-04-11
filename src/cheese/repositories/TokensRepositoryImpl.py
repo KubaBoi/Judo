@@ -54,6 +54,24 @@ class TokensRepositoryImpl:
         return tuple
 
     @staticmethod
+    def findToken(args):
+        userId = args[0]
+        userIp = args[1]
+
+        response = None
+        try:
+            db = Database()
+            response = db.query(f"select {TokensRepositoryImpl.schemeNoBrackets} from tokens where user_id = {userId} and ip = {userIp};")
+            db.done()
+        except Exception as e:
+            Logger.fail("An error occurred while query request", str(e))
+
+        if (response == None): return response
+        if (len(response) > 0):
+            return TokensRepositoryImpl.toModel(response[0])
+        else: return None
+
+    @staticmethod
     def findAll(args):
 
         response = None

@@ -8,7 +8,13 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@dbmodel Tokens
 class TokensRepository(CheeseRepository):
 
-
+	#@query "select * from tokens where 
+	# 		user_id = :userId and
+	# 		ip = :userIp;"
+	#@return one
+	@staticmethod
+	def findToken(userId, userIp):
+		return CheeseRepository.findToken([userId, userIp])
 
 	#@query "select * from tokens;"
 	#@return array
@@ -29,8 +35,8 @@ class TokensRepository(CheeseRepository):
 		return CheeseRepository.findBy([columnName, value])
 
 	@staticmethod
-	def findNewId(obj):
-		return CheeseRepository.findNewId([obj])+1
+	def findNewId():
+		return CheeseRepository.findNewId([])+1
 
 	@staticmethod
 	def save(obj):

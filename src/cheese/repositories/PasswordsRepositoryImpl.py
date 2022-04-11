@@ -52,6 +52,23 @@ class PasswordsRepositoryImpl:
         return tuple
 
     @staticmethod
+    def login(args):
+        login = args[0]
+        password = args[1]
+
+        response = None
+        try:
+            db = Database()
+            response = db.query(f"select case when exists (select * from passwords p where p.login = {login} and p.password = {password}) then cast(1 as bit) else cast(0 as bit) end;")
+            db.done()
+        except Exception as e:
+            Logger.fail("An error occurred while query request", str(e))
+
+        if (response == None): return response
+        if (response[0][0] == "1"): return True
+        return False
+
+    @staticmethod
     def findAll(args):
 
         response = None

@@ -8,7 +8,16 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@dbmodel Passwords
 class PasswordsRepository(CheeseRepository):
 
-
+	#@query "select case when exists
+	#       (select * from passwords p 
+	# 		where p.login = :login and
+	# 		p.password = :password)
+	#       then cast(1 as bit)
+	#       else cast(0 as bit) end;"
+	#@return bool
+	@staticmethod
+	def login(login, password):
+		return CheeseRepository.login([login, password])
 
 	#@query "select * from passwords;"
 	#@return array
@@ -29,8 +38,8 @@ class PasswordsRepository(CheeseRepository):
 		return CheeseRepository.findBy([columnName, value])
 
 	@staticmethod
-	def findNewId(obj):
-		return CheeseRepository.findNewId([obj])+1
+	def findNewId():
+		return CheeseRepository.findNewId([])+1
 
 	@staticmethod
 	def save(obj):

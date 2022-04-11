@@ -29,8 +29,8 @@ class UsersRepository(CheeseRepository):
 		return CheeseRepository.findBy([columnName, value])
 
 	@staticmethod
-	def findNewId(obj):
-		return CheeseRepository.findNewId([obj])+1
+	def findNewId():
+		return CheeseRepository.findNewId([])+1
 
 	@staticmethod
 	def save(obj):

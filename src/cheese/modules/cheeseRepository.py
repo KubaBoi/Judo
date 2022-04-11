@@ -130,6 +130,20 @@ class CheeseRepository:
             return TokensRepositoryImpl.findBy(args)
         elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findBy(args)
+    @staticmethod
+    def login(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "PasswordsRepository"):
+            return PasswordsRepositoryImpl.login(args)
+    @staticmethod
+    def findToken(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "TokensRepository"):
+            return TokensRepositoryImpl.findToken(args)
 
 
     @staticmethod
@@ -304,6 +318,8 @@ class CheeseRepository:
                         newArgs.append(arg.replace("columnName-", ""))
                     else:
                         newArgs.append(f"\'{arg}\'")
+                else:
+                    newArgs.append(str(arg))
             elif (type(arg) is list):
                 newArgs.append("(" + ",".join(CheeseRepository.getTypeOf(arg)) + ")")
             else:
