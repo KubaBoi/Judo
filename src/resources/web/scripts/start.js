@@ -3,7 +3,7 @@ var userAccountName;
 var userName = getCookie("login");
 var password = getCookie("password");
 loadPage(
-    ["login", "registration", "header", "hotels"], 
+    ["login", "registration", "header", "hotels", "phoneCodes"], 
     ["main", "events", "clubs", "categ", "transport", "guide"]
 )
 
@@ -43,6 +43,8 @@ function after() {
     if (userName && password) {
         login(false);
     }
+
+    prepareSelect();
 
     // hotels input select
     var hotelSearchInp = document.getElementById("hotelSearchInp");

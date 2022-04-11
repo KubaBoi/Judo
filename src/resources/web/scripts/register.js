@@ -1,14 +1,41 @@
 async function register() {
-    userName = document.getElementById("nameInp").value;
-    password = document.getElementById("passInp").value;
 
-    setCookie("login", userName, 5);
-    setCookie("password", password, 5);
+    login = document.getElementById("mailInp").value;
+    password = document.getElementById("regPass1Inp").value;
+    password2 = document.getElementById("regPass2Inp").value;
+    fullName = document.getElementById("fullNameInp").value;
+    phone = document.getElementById("phoneInp").value;
+    phone = document.getElementById("phoneCodeInp").value + " " + phone;
 
-    var response = await callEndpoint("GET", "/users/login");
+    if (password != password2) {
+        showAlert("Error", "Passwords are not same", "divWrongAlert",
+            {"name": "okShowAlert", "duration": "0.5s"},
+            {"name": "okHideAlert", "duration": "0.5s"}
+        );
+        return;
+    }
+
+    if (!validateEmail(login)) {
+        showAlert("Error", "Email is in wrong format", "divWrongAlert",
+            {"name": "okShowAlert", "duration": "0.5s"},
+            {"name": "okHideAlert", "duration": "0.5s"}
+        );
+        return;
+    }
+
+    request = {
+        "LOGIN": login,
+        "PASSWORD": password,
+        "PHONE": phone,
+        "FULL_NAME": fullName
+    }
+
+    var response = await callEndpoint("POST", "/users/register", request);
     if (!response.ERROR) {
-        setCookie("token", response.TOKEN, 5);
-        succLogin(response);
+        showAlert("Registration", "Check your email and confirm registration", "divOkAlert",
+            {"name": "okShowAlert", "duration": "0.5s"},
+            {"name": "okHideAlert", "duration": "0.5s"}
+        );
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
@@ -44,3 +71,9 @@ function logout() {
     setCookie("password", "", 0);
     location.reload();
 }
+
+function validateEmail(email) {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};

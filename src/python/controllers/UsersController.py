@@ -3,9 +3,12 @@
 
 import random
 import string
+import os
+import json
 
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
+from cheese.resourceManager import ResMan
 from python.models.Passwords import Passwords
 
 from python.repositories.UsersRepository import UsersRepository
@@ -35,15 +38,17 @@ class UsersController(cc):
 			return
 
 		user = UsersRepository.findBy("columnName-login", login)
+		if (len(user) > 0):
+			user = user[0]
 		userIp = cc.getClientAddress(server)
 		token = UsersController.getToken(user.id, userIp)
 
 		response = cc.createResponse({'TOKEN': token.toJson()}, 200)
 		cc.sendResponse(server, response)
 
-	#@post /create
+	#@post /register
 	@staticmethod
-	def create(server, path, auth):
+	def register(server, path, auth):
 		if (auth["role"] > 2):
 			Error.sendCustomError(server, "Unauthorized access", 400)
 			return
@@ -58,13 +63,64 @@ class UsersController(cc):
 		password = args["PASSWORD"]
 		phone = args["PHONE"]
 		fullName = args["FULL_NAME"]
+		randomCode = UsersController.randomString(20)
+
+		registration = {
+			"login": login,
+			"password": password,
+			"phone": phone,
+			"fullName": fullName,
+			"password": password,
+			"registration_code": randomCode
+		}
+
+		with open(os.path.join(ResMan.resources(), "registrations", randomCode + ".json"), "w") as f:
+			f.write(json.dumps(registration))
+
+		with open(os.path.join(ResMan.web(), "registrations", "regTemplate.html"), "r") as f:
+			template = f.read()
+
+		with open(os.path.join(ResMan.web(), "registrations", "reg" + randomCode + ".html"), "w") as f:
+			template = template.replace("&CODE&", randomCode)
+			f.write(template)
+
+		response = cc.createResponse({'STATUS': "Confirmation has been created"}, 200)
+		cc.sendResponse(server, response)
+
+	#@get /create
+	@staticmethod
+	def create(server, path, auth):
+		if (auth["role"] > 2):
+			Error.sendCustomError(server, "Unauthorized access", 401)
+			return
+
+		args = cc.getArgs(path)
+
+		if (not cc.validateJson(['code'], args)):
+			Error.sendCustomError(server, "Wrong json structure", 400)
+			return
+
+		code = args["code"]
+		if (not os.path.exists(os.path.join(ResMan.resources(), "registrations", code + ".json"))):
+			Error.sendCustomError(server, "Registration is invalid", 401)
+			return
+
+		with open(os.path.join(ResMan.resources(), "registrations", code + ".json"), "r") as f:
+			data = json.loads(f.read())
+
+		if (code != data["registration_code"]):
+			Error.sendCustomError(server, "Registration is invalid", 401)
+			return
+
+		login = data["login"]
+		password = data["password"]
 
 		newId = UsersRepository.findNewId()
 		usersModel = Users()
 		usersModel.id = newId
 		usersModel.login = login
-		usersModel.phone = phone
-		usersModel.full_name = fullName
+		usersModel.phone = data["phone"]
+		usersModel.full_name = data["fullName"]
 		usersModel.rule_id = 2
 		UsersRepository.save(usersModel)
 
@@ -72,7 +128,7 @@ class UsersController(cc):
 		passwordsModel = Passwords(newPassId, password, login)
 		PasswordsRepository.save(passwordsModel)
 
-		response = cc.createResponse({"ID": newId}, 200)
+		response = cc.createResponse({"STATUS": "User has been created"}, 200)
 		cc.sendResponse(server, response)
 
 	#@post /get
@@ -104,10 +160,10 @@ class UsersController(cc):
 	def getToken(userId, userIp):
 		token = TokensRepository.findToken(userId, userIp)
 		if (token == None):
-			tokenString = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+			tokenString = UsersController.randomString(10)
 			oldToken = TokensRepository.findBy("columnName-token", tokenString)
-			while (oldToken != None):
-				tokenString = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+			while (len(oldToken) > 0):
+				tokenString = UsersController.randomString(10)
 				oldToken = TokensRepository.findBy("columnName-token", tokenString)
 			
 			token = Tokens()
@@ -117,5 +173,9 @@ class UsersController(cc):
 			token.ip = userIp
 			TokensRepository.save(token)
 		return token
+
+	@staticmethod
+	def randomString(length):
+		return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
 		
 

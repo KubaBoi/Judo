@@ -47,7 +47,10 @@ class CheeseHandler(BaseHTTPRequestHandler):
             return
         try:
             path = CheeseController.getPath(self.path)
-            auth = None
+            auth = Authorization.authorize(self, path, "GET")
+            if (auth == -1): 
+                CheeseController.sendResponse(self, Error.BadToken)
+                return
 
             if (path == "/"):
                 CheeseController.serveFile(self, "index.html")
@@ -92,6 +95,8 @@ class CheeseHandler(BaseHTTPRequestHandler):
             elif (path.startswith("/users")):
                 if (path.startswith("/users/login")):
                     UsersController.login(self, self.path, auth)
+                elif (path.startswith("/users/create")):
+                    UsersController.create(self, self.path, auth)
                 else:
                     if (self.path.endswith(".css")):
                         CheeseController.serveFile(self, self.path, "text/css")
@@ -110,7 +115,10 @@ class CheeseHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         self.__log()
         try:
-            auth = None
+            auth = Authorization.authorize(self, self.path, "POST")
+            if (auth == -1): 
+                CheeseController.sendResponse(self, Error.BadToken)
+                return
 
             if (self.path.startswith("/clubs")):
                 if (self.path.startswith("/clubs/create")):
@@ -202,8 +210,8 @@ class CheeseHandler(BaseHTTPRequestHandler):
                 else:
                     Error.sendCustomError(self, "Endpoint not found :(", 404)
             elif (self.path.startswith("/users")):
-                if (self.path.startswith("/users/create")):
-                    UsersController.create(self, self.path, auth)
+                if (self.path.startswith("/users/register")):
+                    UsersController.register(self, self.path, auth)
                 elif (self.path.startswith("/users/get")):
                     UsersController.get(self, self.path, auth)
                 else:

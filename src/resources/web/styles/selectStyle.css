@@ -1,7 +1,9 @@
 .custom-select {
     position: relative;
-    width: 100px;
+    max-width: 200px;
+    min-width: 130px;
     display: inline-table;
+    text-align: center;
 }
   
 .custom-select select {
@@ -58,6 +60,8 @@
     z-index: 99;
     transition: all;
     transition-duration: 0.5s;
+    overflow-y: scroll;
+    height: 300px;
 }
   
   /* Hide the items when the select box is closed: */
