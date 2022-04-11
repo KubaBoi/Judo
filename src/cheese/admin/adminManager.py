@@ -154,9 +154,9 @@ class AdminManager:
         
     @staticmethod
     def __update(server):
-        Logger.info(20*"=", header=False, silence=False)
-        Logger.info("Updating from git", header=False, silence=False)
+        Logger.warning(20*"=", header=False, silence=False)
+        Logger.warning("Updating from git", header=False, silence=False)
         subprocess.call("git pull")
-        Logger.info("Project has been updated. Restart for apply changes.")
+        Logger.warning("Project has been updated. Restart for apply changes.")
         response = CheeseController.createResponse({"RESPONSE": "OK"}, 200)
         CheeseController.sendResponse(server, response)
