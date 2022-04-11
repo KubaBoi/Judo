@@ -24,6 +24,8 @@ class CVSparser:
             person["GENDER"] = data[9]
             jsonReturn["ARRAY"].append(person)
 
+        os.remove(os.path.join(ResMan.resources(), "cvs", file))
+
         return jsonReturn
 
 

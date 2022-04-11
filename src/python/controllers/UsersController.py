@@ -23,12 +23,12 @@ class UsersController(cc):
 	def login(server, path, auth):
 		args = cc.getCookies(server)
 
-		if (not cc.validateJson(['LOGIN', 'PASSWORD'], args)):
+		if (not cc.validateJson(['login', 'password'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		login = args["LOGIN"]
-		password = args["PASSWORD"]
+		login = args["login"]
+		password = args["password"]
 
 		if (not PasswordsRepository.login(login, password)):
 			Error.sendCustomError(server, "Wrong credentials", 401)

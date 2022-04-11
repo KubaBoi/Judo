@@ -118,8 +118,8 @@
                         <figcaption>Accepts cookies:</figcaption>
                         <pre><code class="language-json">
 {
-    "LOGIN": "str",
-    "PASSWORD": "str"
+    "loin": "str",
+    "password": "str"
 }
                         </code></pre></figure>
                     <figure>
@@ -164,6 +164,13 @@
                         <pre><code class="language-json">
 {
     "STATUS": "User has been created"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Conflict - 409:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "User with this login already exists"
 }
                             </code></pre></figure>
                     <figure>

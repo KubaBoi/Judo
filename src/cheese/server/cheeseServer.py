@@ -162,6 +162,8 @@ class CheeseHandler(BaseHTTPRequestHandler):
                     JbController.create(self, self.path, auth)
                 elif (self.path.startswith("/jb/createFromCvs")):
                     JbController.createFromCvs(self, self.path, auth)
+                elif (self.path.startswith("/jb/createByCvs")):
+                    JbController.createFromCvs(self, self.path, auth)
                 elif (self.path.startswith("/jb/update")):
                     JbController.update(self, self.path, auth)
                 elif (self.path.startswith("/jb/remove")):

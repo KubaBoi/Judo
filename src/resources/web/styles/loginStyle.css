@@ -3,3 +3,42 @@
     text-align: center;
     position: relative;
 }
+
+.registrationDiv {
+    padding: 150 0;
+    text-align: center;
+    position: relative;
+    top: -80%;
+    left: 150%;
+}
+
+.centerTable {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+@keyframes loginDone {
+    0% { opacity: 100%; top: 0px; visibility: visible; }
+    100% { opacity: 0%; top: -1000px; visibility: hidden; }
+}
+
+@keyframes loginBack {
+    100% { opacity: 100%; top: 0px; visibility: visible; }
+    0% { opacity: 0%; top: -1000px; visibility: hidden; }
+}
+
+@keyframes loggedDivCome {
+    0% { top: 100%; visibility: visible; }
+    100% { top: 10px; visibility: visible; }
+}
+
+@keyframes registrationCome {
+    0% { left: 150%; }
+    100% { left: 0%; }
+}
+
+@keyframes registrationOut {
+    100% { left: 150%; }
+    0% { left: 0%; }
+}

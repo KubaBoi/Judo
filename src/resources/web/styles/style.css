@@ -29,16 +29,6 @@ body {
     padding: 10px;
 }
 
-@keyframes loginDone {
-    0% { opacity: 100%; top: 0px; visibility: visible; }
-    100% { opacity: 0%; top: -1000px; visibility: hidden; }
-}
-
-@keyframes loggedDivCome {
-    0% { top: 100%; visibility: visible; }
-    100% { top: 10px; visibility: visible; }
-}
-
 button {
     background-color: var(--light-color);
     color: var(--main-text-color);

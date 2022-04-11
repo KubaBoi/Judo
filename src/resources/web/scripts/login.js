@@ -1,17 +1,19 @@
-async function login() {
+async function login(alert=true) {
     userName = document.getElementById("nameInp").value;
     password = document.getElementById("passInp").value;
 
-    setCookie("userName", userName, 5);
+    setCookie("login", userName, 5);
     setCookie("password", password, 5);
 
-    var response = await callEndpoint("GET", "/authentication/login");
+    var response = await callEndpoint("GET", "/users/login");
     if (!response.ERROR) {
         setCookie("token", response.TOKEN, 5);
         succLogin(response);
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        if (alert) {
+            showAlert("An error occurred :(", response.ERROR);
+        }
     }
 }
 

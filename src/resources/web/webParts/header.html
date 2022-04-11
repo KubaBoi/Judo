@@ -1,0 +1,15 @@
+<img src="szj_logo.png" onclick="newContent('mainDiv')">
+<table id="menuTable">
+    <tr>
+        <th onclick="newContent('eventsDiv')" id="eventsDivTh">Events</th>
+        <th onclick="buildClubTable()" id="clubsDivTh">Countries/clubs</th>
+        <th onclick="newContent('categDiv')" id="categDivTh">Categories</th>
+        <th onclick="buildHotelTable()" id="hotelsDivTh">Hotels</th>
+        <th onclick="newContent('transportDiv')" id="transportDivTh">Transportation</th>
+        <th onclick="newContent('guideDiv')" id="guideDivTh">Guide</th>
+    </tr>
+</table>
+<div class="loggedAsDiv">
+    <label id="loggedAs"></label>
+    <button onclick="logout()">Log out</button>
+</div>
