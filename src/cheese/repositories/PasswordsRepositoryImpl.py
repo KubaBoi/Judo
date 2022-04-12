@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.passwords import Passwords
+from python.models.Passwords import Passwords
 
 
 class PasswordsRepositoryImpl:

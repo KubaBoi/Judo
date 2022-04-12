@@ -4,9 +4,9 @@
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
-from python.repositories.eventsRepository import EventsRepository
+from python.repositories.EventsRepository import EventsRepository
 
-from python.models.events import Events
+from python.models.Events import Events
 
 #@controller /events
 class EventsController(cc):

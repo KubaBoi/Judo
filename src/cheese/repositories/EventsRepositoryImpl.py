@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.events import Events
+from python.models.Events import Events
 
 
 class EventsRepositoryImpl:

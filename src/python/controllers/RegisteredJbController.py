@@ -4,9 +4,9 @@
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
-from python.repositories.registeredJbRepository import RegisteredJbRepository
+from python.repositories.RegisteredJbRepository import RegisteredJbRepository
 
-from python.models.registeredJb import RegisteredJb
+from python.models.RegisteredJb import RegisteredJb
 
 #@controller /registeredJb
 class RegisteredJbController(cc):

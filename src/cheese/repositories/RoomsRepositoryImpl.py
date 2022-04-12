@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.rooms import Rooms
+from python.models.Rooms import Rooms
 
 
 class RoomsRepositoryImpl:

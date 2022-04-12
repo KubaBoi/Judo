@@ -7,9 +7,9 @@ from cheese.resourceManager import ResMan
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
-from python.repositories.jbRepository import JbRepository
+from python.repositories.JbRepository import JbRepository
 
-from python.models.jb import Jb
+from python.models.Jb import Jb
 
 from python.cvsParser import CVSparser
 

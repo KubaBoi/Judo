@@ -4,9 +4,9 @@
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
-from python.repositories.clubsRepository import ClubsRepository
+from python.repositories.ClubsRepository import ClubsRepository
 
-from python.models.clubs import Clubs
+from python.models.Clubs import Clubs
 
 #@controller /clubs
 class ClubsController(cc):
