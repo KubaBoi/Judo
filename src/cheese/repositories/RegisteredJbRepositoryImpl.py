@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.RegisteredJb import RegisteredJb
+from python.models.registeredJb import RegisteredJb
 
 
 class RegisteredJbRepositoryImpl:

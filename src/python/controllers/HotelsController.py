@@ -4,13 +4,13 @@
 from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 
-from python.repositories.HotelsRepository import HotelsRepository
-from python.repositories.RoomsRepository import RoomsRepository
-from python.repositories.BedRepository import BedRepository
+from python.repositories.hotelsRepository import HotelsRepository
+from python.repositories.roomsRepository import RoomsRepository
+from python.repositories.bedRepository import BedRepository
 
-from python.models.Hotels import Hotels
-from python.models.Rooms import Rooms
-from python.models.Bed import Bed
+from python.models.hotels import Hotels
+from python.models.rooms import Rooms
+from python.models.bed import Bed
 
 #@controller /hotels
 class HotelsController(cc):

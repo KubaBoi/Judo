@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.Tokens import Tokens
+from python.models.tokens import Tokens
 
 
 class TokensRepositoryImpl:
