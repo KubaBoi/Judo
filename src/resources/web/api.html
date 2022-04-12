@@ -1,0 +1,1817 @@
+<html lang="cs">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/style.css">
+    <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/prism.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>API</title>
+</head>
+<body>
+    <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/prism.js"></script>
+
+    <div id="toc_container">
+        <p class="toc_title">Contents</p>
+        <ol>
+            <li>
+                <a href="#1">/users</a>
+                <ol>
+                    <li><a href="#1.1">/login</a></li>
+                    <li><a href="#1.2">/create</a></li>
+                    <li><a href="#1.3">/get</a></li>
+                    <li><a href="#1.4">/register</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#2">/events</a>
+                <ol>
+                    <li><a href="#2.1">/create</a></li>
+                    <li><a href="#2.2">/update</a></li>
+                    <li><a href="#2.3">/getEvent</a></li>
+                    <li><a href="#2.4">/getBy</a></li>
+                    <li><a href="#2.5">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#3">/clubs</a>
+                <ol>
+                    <li><a href="#3.1">/create</a></li>
+                    <li><a href="#3.2">/update</a></li>
+                    <li><a href="#3.3">/getAll</a></li>
+                    <li><a href="#3.4">/getByUser</a></li>
+                    <li><a href="#3.5">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#4">/jb</a>
+                <ol>
+                    <li><a href="#4.1">/create</a></li>
+                    <li><a href="#4.2">/createFromCvs</a></li>
+                    <li><a href="#4.3">/createByCvs</a></li>
+                    <li><a href="#4.4">/update</a></li>
+                    <li><a href="#4.5">/getByClub</a></li>
+                    <li><a href="#4.6">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#5">/hotels</a>
+                <ol>
+                    <li><a href="#5.1">/create</a></li>
+                    <li><a href="#5.2">/update</a></li>
+                    <li><a href="#5.3">/getAll</a></li>
+                    <li><a href="#5.4">/getByName</a></li>
+                    <li><a href="#5.5">/getByPlace</a></li>
+                    <li><a href="#5.6">/getRooms</a></li>
+                    <li><a href="#5.7">/reserveBed</a></li>
+                    <li><a href="#5.8">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#6">/registeredClubs</a>
+                <ol>
+                    <li><a href="#6.1">/create</a></li>
+                    <li><a href="#6.2">/register</a></li>
+                    <li><a href="#6.3">/getByEvent</a></li>
+                    <li><a href="#6.4">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#7">/registeredHotels</a>
+                <ol>
+                    <li><a href="#7.1">/create</a></li>
+                    <li><a href="#7.2">/getByEvent</a></li>
+                    <li><a href="#7.3">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#8">/registeredJb</a>
+                <ol>
+                    <li><a href="#8.1">/create</a></li>
+                    <li><a href="#8.2">/update</a></li>
+                    <li><a href="#8.3">/getByRegisteredClub</a></li>
+                    <li><a href="#8.4">/remove</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="#9">/registeredTests</a>
+                <ol>
+                    <li><a href="#9.1">/create</a></li>
+                    <li><a href="#9.2">/update</a></li>
+                    <li><a href="#9.3">/getByRegisteredJb</a></li>
+                    <li><a href="#9.4">/remove</a></li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+
+    <ol class="num">
+        <li class="num">
+            <span class="hd2" id="1">/users</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="1.1">/login - GET</span>
+                    <p>Creates or finds token</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts cookies:</figcaption>
+                        <pre><code class="language-json">
+{
+    "login": "str",
+    "password": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "TOKEN": "str",
+    "USER": {
+        "ID": 0,
+        "LOGIN": "str",
+        "PHONE": "str",
+        "FULL_NAME": "str",
+        "RULE_ID": 0
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong credentials"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="1.2">/create - GET</span>
+                    <p>Creates a new user</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "registration_code": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "User has been created"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="1.3">/get - POST</span>
+                    <p>Get user by id</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "USER_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "USER": {
+        "LOGIN": "str",
+        "PHONE": "str",
+        "FULL_NAME": "str",
+        "RULE_ID": 0
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="1.4">/register - POST</span>
+                    <p>Prepare confirmation for registration</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "LOGIN": "str",
+    "PASSWORD": "str",
+    "PHONE": "str",
+    "FULL_NAME": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Confirmation has been created"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Conflict - 409:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "User with this login already exists"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                    </li>
+                </li>
+            </ol>
+        </li>
+        
+        <li class="num">
+            <span class="hd2" id="2">/events</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="2.1">/create - POST</span>
+                    <p>Create new event</p>
+                    <p>If HARD_CREATE is true than event is created even there is on with same name</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HARD_CREATE": true
+    "NAME": "str",
+    "CATEGORY": "str",
+    "PLACE": "str",
+    "START": "date",
+    "END": "date",
+    "ARRIVE": "date",
+    "DEPART": "date",
+    "END_VISA": "date",
+    "END_ROOM": "date",
+    "ORGANISER_ID": 0,
+    "VISA_MAIL": "str",
+    "VISA_PHONE": "str",
+    "EJU_PRICE": 0,
+    "PCR_PRICE": 0,
+    "AG_PRICE": 0,
+    "TRANS_PRICE": 0,
+    "OTHER_PRICE": 0,
+    "SHOW_HOTEL": true
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "OK"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 409:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Event already exists"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.2">/update - POST</span>
+                    <p>Updates event</p>
+                    <p class="role">Role = 1</p>
+                    <p>Changes can do only user who organise event (ORGANISER_ID)</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0, // cannot be changed
+    "NAME": "str",
+    "CATEGORY": "str",
+    "PLACE": "str",
+    "START": "date",
+    "END": "date",
+    "ARRIVE": "date",
+    "DEPART": "date",
+    "END_VISA": "date",
+    "END_ROOM": "date",
+    "ORGANISER_ID": 0,
+    "VISA_MAIL": "str",
+    "VISA_PHONE": "str",
+    "EJU_PRICE": 0,
+    "PCR_PRICE": 0,
+    "AG_PRICE": 0,
+    "TRANS_PRICE": 0,
+    "OTHER_PRICE": 0,
+    "SHOW_HOTEL": true
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Event has been changed"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.3">/getEvent - GET</span>
+                    <p>Return array of all events</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENT": {
+        "ID": 0,
+        "NAME": "str",
+        "CATEGORY": "str",
+        "PLACE": "str",
+        "START": "date",
+        "END": "date",
+        "ARRIVE": "date",
+        "DEPART": "date",
+        "END_VISA": "date",
+        "END_ROOM": "date",
+        "ORGANISER_ID": 0,
+        "VISA_MAIL": "str",
+        "VISA_PHONE": "str",
+        "EJU_PRICE": 0,
+        "PCR_PRICE": 0,
+        "AG_PRICE": 0,
+        "TRANS_PRICE": 0,
+        "OTHER_PRICE": 0,
+        "SHOW_HOTEL": true
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Not found - 404:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Event was not found"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.4">/getBy - GET</span>
+                    <p>Returns array of events by sorted by column</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "column": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENTS": [
+        {
+            "ID": 0,
+            "NAME": "str",
+            "CATEGORY": "str",
+            "PLACE": "str",
+            "START": "date",
+            "END": "date",
+            "ARRIVE": "date",
+            "DEPART": "date",
+            "END_VISA": "date",
+            "END_ROOM": "date",
+            "ORGANISER_ID": 0,
+            "VISA_MAIL": "str",
+            "VISA_PHONE": "str",
+            "EJU_PRICE": 0,
+            "PCR_PRICE": 0,
+            "AG_PRICE": 0,
+            "TRANS_PRICE": 0,
+            "OTHER_PRICE": 0,
+            "SHOW_HOTEL": true
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.5">/remove - GET</span>
+                    <p>Removes event</p>
+                    <p class="role">Role = 1</p>
+                    <p>Remove can do only user who organise event (ORGANISER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "id": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Event has been removed"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="3">/clubs</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="3.1">/create - POST</span>
+                    <p>Creates new club</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATE": "str",
+    "NAME": "str",
+    "ADDRESS": "str",
+    "EJU": true,
+    "USER_ID": 0 // club owner
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0 // club id
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="3.2">/update - POST</span>
+                    <p>Updates club</p>
+                    <p class="role">Role = 2</p>
+                    <p>Changes can do only user who owns club (USER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0, // cannot be changed
+    "STATE": "str",
+    "NAME": "str",
+    "ADDRESS": "str",
+    "EJU": true,
+    "USER_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Club has been updated"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="3.3">/getAll - GET</span>
+                    <p>Returns array of clubs</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts nothing:</figcaption>
+                        <pre><code class="language-json">
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUBS": [
+        {
+            "ID": 0,
+            "STATE": "str",
+            "NAME": "str",
+            "ADDRESS": "str",
+            "EJU": true,
+            "USER_ID": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="3.4">/getByUser - GET</span>
+                    <p>Returns array of clubs by USER_ID</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "userId": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUBS": [
+        {
+            "ID": 0,
+            "STATE": "str",
+            "NAME": "str",
+            "ADDRESS": "str",
+            "EJU": true,
+            "USER_ID": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="3.5">/remove - POST</span>
+                    <p>Remove club</p>
+                    <p class="role">Role = 2</p>
+                    <p>Remove can do only user who owns club (USER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Club has been removed"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="4">/jb</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="4.1">/create - POST</span>
+                    <p>Creates new jb</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUB_ID": 0,
+    "JB": "str",
+    "NAME": "str",
+    "SUR_NAME": "str",
+    "FUNCTION": "str",
+    "BIRTHDAY": "date",
+    "GENDER": "str",
+    "PASS_ID": "str",
+    "PASS_RELEASE": "date",
+    "PASS_EXPIRATION": "date"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.2">/createFromCvs - POST</span>
+                    <p>Creates new jb from .cvs file and returns fileName</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts bytes:</figcaption>
+                        <pre><code class="language-json">
+.cvs file of jb users
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "FILE_NAME": "str"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "There are no bytes in request"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.3">/createByCvs - POST</span>
+                    <p>Creates new jb from .cvs fileName that has been send by /createFromCvs</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "FILE_NAME": "str",
+    "CLUB_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "JBs have been created"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.4">/update - POST</span>
+                    <p>Updates jb</p>
+                    <p class="role">Role = 2</p>
+                    <p>Changes can do only user who owns club (CLUB_ID -> USER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0, // cannot be changed
+    "CLUB_ID": 0,
+    "JB": "str",
+    "NAME": "str",
+    "SUR_NAME": "str",
+    "FUNCTION": "str",
+    "BIRTHDAY": "date",
+    "GENDER": "str",
+    "PASS_ID": "str",
+    "PASS_RELEASE": "date",
+    "PASS_EXPIRATION": "date"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Jb has been updated"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.5">/getByClub - GET</span>
+                    <p>Returns array of jbs by club</p>
+                    <p class="role">Role = 2</p>
+                    <p>Can only get club owner (CLUB_ID -> USER_ID)</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUB_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "JBS": [
+        {
+            "ID": 0,
+            "CLUB_ID": 0,
+            "JB": "str",
+            "NAME": "str",
+            "SUR_NAME": "str",
+            "FUNCTION": "str",
+            "BIRTHDAY": "date",
+            "GENDER": "str",
+            "PASS_ID": "str",
+            "PASS_RELEASE": "date",
+            "PASS_EXPIRATION": "date"
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="4.6">/remove - POST</span>
+                    <p>Remove jb</p>
+                    <p class="role">Role = 2</p>
+                    <p>Remove can do only user who owns club (CLUB_UD -> USER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Jb has been removed"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="5">/hotels</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="5.1">/create - POST</span>
+                    <p>Creates new hotel</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "NAME": "str",
+    "ADDRESS": "str",
+    "MAIL": "str",
+    "WEB": "str",
+    "PHONE": "str",
+    "PACKAGE": true,
+    "P_NIGHTS": 0,
+    "ONE_ROOM": 0,
+    "ONE_ROOM_PRICE": 0,
+    "TWO_ROOM": 0,
+    "TWO_ROOM_PRICE": 0,
+    "THREE_ROOM": 0,
+    "THREE_ROOM_PRICE": 0,
+    "APARTMAN_ROOM": 0,
+    "APARTMAN_ROOM_PRICE": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.2">/update - POST</span>
+                    <p>Updates hotel</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0, // cannot be changed
+    "NAME": "str",
+    "ADDRESS": "str",
+    "MAIL": "str",
+    "WEB": "str",
+    "PHONE": "str",
+    "PACKAGE": true,
+    "P_NIGHTS": 0,
+    "ONE_ROOM": 0,
+    "ONE_ROOM_PRICE": 0,
+    "TWO_ROOM": 0,
+    "TWO_ROOM_PRICE": 0,
+    "THREE_ROOM": 0,
+    "THREE_ROOM_PRICE": 0,
+    "APARTMAN_ROOM": 0,
+    "APARTMAN_ROOM_PRICE": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Hotel has been updated"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.3">/getAll - GET</span>
+                    <p>Return all hotels</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts nothing:</figcaption>
+                        <pre><code class="language-json">
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTELS": [
+        {
+            "ID": 0,
+            "NAME": "str",
+            "ADDRESS": "str",
+            "MAIL": "str",
+            "WEB": "str",
+            "PHONE": "str",
+            "PACKAGE": true,
+            "P_NIGHTS": 0,
+            "ONE_ROOM": 0,
+            "ONE_ROOM_PRICE": 0,
+            "TWO_ROOM": 0,
+            "TWO_ROOM_PRICE": 0,
+            "THREE_ROOM": 0,
+            "THREE_ROOM_PRICE": 0,
+            "APARTMAN_ROOM": 0,
+            "APARTMAN_ROOM_PRICE": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.4">/getByName - POST</span>
+                    <p>Returns array of hotels by NAME</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "NAME": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTELS": [
+        {
+            "ID": 0,
+            "NAME": "str",
+            "ADDRESS": "str",
+            "MAIL": "str",
+            "WEB": "str",
+            "PHONE": "str",
+            "PACKAGE": true,
+            "P_NIGHTS": 0,
+            "ONE_ROOM": 0,
+            "ONE_ROOM_PRICE": 0,
+            "TWO_ROOM": 0,
+            "TWO_ROOM_PRICE": 0,
+            "THREE_ROOM": 0,
+            "THREE_ROOM_PRICE": 0,
+            "APARTMAN_ROOM": 0,
+            "APARTMAN_ROOM_PRICE": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.5">/getByPlace - POST</span>
+                    <p>Returns array of hotels by PLACE</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "PLACE": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTELS": [
+        {
+            "ID": 0,
+            "NAME": "str",
+            "ADDRESS": "str",
+            "MAIL": "str",
+            "WEB": "str",
+            "PHONE": "str",
+            "PACKAGE": true,
+            "P_NIGHTS": 0,
+            "ONE_ROOM": 0,
+            "ONE_ROOM_PRICE": 0,
+            "TWO_ROOM": 0,
+            "TWO_ROOM_PRICE": 0,
+            "THREE_ROOM": 0,
+            "THREE_ROOM_PRICE": 0,
+            "APARTMAN_ROOM": 0,
+            "APARTMAN_ROOM_PRICE": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.6">/getRooms - POST</span>
+                    <p>Returns array of rooms by HOTEL_ID</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTEL_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ROOMS": [
+        {
+            "BED": 0, // count of beds
+            "PRICE": 0,
+            "HOTEL_ID": 0,
+            "AVAILABLE": true,
+            "BEDS": [
+                {
+                    "ROOM_ID": 0,
+                    "JB_ID": 0
+                }
+            ]
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.7">/reserveBed - POST</span>
+                    <p>Reserves bed</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTEL_ID": 0,
+    "ROOM_ID": 0,
+    "JBS": [
+        {
+            "ID": 0
+        }
+    ]
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Bed has been reserved"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 403:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Room does not have such a capacity"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 403:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Room is already occupied"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.8">/remove - POST</span>
+                    <p>Remove hotel and all its rooms and beds</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Hotel has been removed"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="6">/registeredClubs</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="6.1">/create - POST</span>
+                    <p>Register club into event</p>
+                    <p class="role">Role = 2</p>
+                    <p>Register club can only club owner (CLUB_ID -> USER_ID)
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUB_ID": 0,
+    "EVENT_ID": 0,
+    "VISA": true
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="6.2">/register - POST</span>
+                    <p>Register registered club by organiser</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Club has been registered"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="6.3">/getByEvent - POST</span>
+                    <p>Return all clubs registered in event</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENT_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "REGISTERED_CLUBS": [
+        {
+            "ID": 0,
+            "CLUB_ID": 0,
+            "EVENT_ID": 0,
+            "VISA": true,
+            "CHECKED": true
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="6.4">/remove - POST</span>
+                    <p>Remove club and all its jb from registration</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Club has been removed from registration"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="7">/registeredHotels</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="7.1">/create - POST</span>
+                    <p>Register hotel into event</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTEL_ID": 0,
+    "EVENT_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="7.2">/getByEvent - POST</span>
+                    <p>Return all clubs registered in event</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENT_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "REGISTERED_HOTELS": [
+        {
+            "ID": 0,
+            "EVENT_ID": 0,
+            "HOTEL_ID": 0
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="7.3">/remove - POST</span>
+                    <p>Remove hotel and from registration</p>
+                    <p class="role">Role = 1</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Hotel has been removed from registration"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="8">/registeredJb</span>
+            <ol class="num">
+                <li class="num">
+                    <span class="hd3" id="8.1">/create - POST</span>
+                    <p>Register jb into event</p>
+                    <p class="role">Role = 2</p>
+                    <p>Register club can only club owner (CLUB_ID -> USER_ID)
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "REG_CLUB_ID": 0,
+    "JB_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="8.2">/update - POST</span>
+                    <p>Updates registered jb</p>
+                    <p class="role">Role = 2</p>
+                    <p>Changes can do only club owner (CLUB_ID -> USER_ID)</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0, // cannot be changed
+    "ARRIVE": "date",
+    "DEPARTURE": "date",
+    "TRANSPORT": true
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Jb has been updated"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="8.3">/getByRegisteredClub - POST</span>
+                    <p>Return all reg_jbs from reg_club</p>
+                    <p class="role">Role = 2</p>
+                    <p>Changes can do only club owner (CLUB_ID -> USER_ID)</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "REG_CLUB_ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "JBS": [
+        {
+            "ID": 0,
+            "REG_CLUB_ID": 0,
+            "JB_ID": 0,
+            "ARRIVE": "date",
+            "DEPARTURE": "date",
+            "TRANSPORT": true
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="8.4">/remove - POST</span>
+                    <p>Remove jb from registration</p>
+                    <p class="role">Role = 2</p>
+                    <p>Changes can do only club owner (CLUB_ID -> USER_ID)</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "JB has been removed from registration"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+            </ol>
+        </li>
+
+        <li class="num">
+            <span class="hd2" id="9">/registeredTests WIP</span>
+            <ol class="num">
+                
+            </ol>
+        </li>
+
+    </ol>
+
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<div id="eventsFilterDiv">
+    <div>
+        <label><b>Sort by:</b></label>
+        <ul id="changeType" class="filter-switch">
+            <li class="filter-switch-item">
+                <input type="radio" value="event_start" name="changeType" id="startEventSort" onclick="buildEventTable()" checked class="sr-only">
+                <label for="startEventSort">
+                    Start date
+                </label>
+            </li>
+            <li class="filter-switch-item">
+                <input type="radio" value="name" name="changeType" id="nameEventSort" onclick="buildEventTable()" class="sr-only">
+                <label for="nameEventSort">
+                    Name
+                </label>
+            </li>
+            <li class="filter-switch-item">
+                <input type="radio" value="category" name="changeType" id="categoryEventSort" onclick="buildEventTable()" class="sr-only">
+                <label for="categoryEventSort">
+                    Category
+                </label>
+            </li>
+            <li class="filter-switch-item">
+                <input type="radio" value="place" name="changeType" id="placeEventSort" onclick="buildEventTable()" class="sr-only">
+                <label for="placeEventSort">
+                    Place
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<table id="eventTable"></table>
