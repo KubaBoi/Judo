@@ -132,24 +132,9 @@ class CheeseRepository:
         elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findBy(args)
     @staticmethod
-    def login(args):
-        userRepository = CheeseRepository.findUserRepository()
-        args = CheeseRepository.getTypeOf(args)
-
-        if (userRepository == "PasswordsRepository"):
-            return PasswordsRepositoryImpl.login(args)
-    @staticmethod
-    def findToken(args):
-        userRepository = CheeseRepository.findUserRepository()
-        args = CheeseRepository.getTypeOf(args)
-
-        if (userRepository == "TokensRepository"):
-            return TokensRepositoryImpl.findToken(args)
-
-
-    @staticmethod
     def findNewId(args):
         userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
 
         if (userRepository == "BedRepository"):
             return BedRepositoryImpl.findNewId(args)
@@ -179,6 +164,22 @@ class CheeseRepository:
             return TokensRepositoryImpl.findNewId(args)
         elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findNewId(args)
+    @staticmethod
+    def login(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "PasswordsRepository"):
+            return PasswordsRepositoryImpl.login(args)
+    @staticmethod
+    def findToken(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "TokensRepository"):
+            return TokensRepositoryImpl.findToken(args)
+
+
     @staticmethod
     def save(args):
         userRepository = CheeseRepository.findUserRepository()

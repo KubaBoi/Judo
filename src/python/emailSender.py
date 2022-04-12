@@ -30,5 +30,5 @@ class EmailSender:
         s.ehlo()
         s.starttls()
         s.login(smtp_user, smtp_password)
-        s.sendmail(smtp_user, "jakubanderle@outlook.cz", msg.as_string())
+        s.sendmail(smtp_user, email, msg.as_string())
         s.quit()
