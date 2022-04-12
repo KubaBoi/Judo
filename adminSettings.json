@@ -1,7 +1,7 @@
 {
     "adminUsers":[
         {
-            "name": "admin",
+            "name": "adminJudo",
             "password": "admin"
         }
     ]
