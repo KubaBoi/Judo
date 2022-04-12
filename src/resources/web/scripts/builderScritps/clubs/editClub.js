@@ -7,15 +7,12 @@ async function editClubTab(clubId) {
     else {
         response = {
             "CLUB": {
-                "TITLE": "",
-                "CODE": "",
+                "ID": "",
+                "STATE": "",
+                "NAME": "",
+                "ADDRESS": "",
                 "EJU": "",
-                "STREET": "",
-                "CITY": "",
-                "ZIP": "",
-                "EMAIL": "",
-                "PHONE": "",
-                "WEB": ""
+                "USER_ID": ""
             }
         }
     }
@@ -34,14 +31,10 @@ async function editClubTab(clubId) {
 
         var tbl = createElement("table", editDiv);
 
-        createEditTableRow(tbl, "Title: ", "titleInpEdit", activeClub.TITLE);
-        createEditTableRow(tbl, "Code: ", "codeInpEdit", activeClub.CODE);
-        createEditTableRow(tbl, "Street: ", "streetInpEdit", activeClub.STREET);
-        createEditTableRow(tbl, "City: ", "cityInpEdit", activeClub.CITY);
-        createEditTableRow(tbl, "ZIP: ", "zipInpEdit", activeClub.ZIP);
-        createEditTableRow(tbl, "E-mail: ", "emailInpEdit", activeClub.EMAIL);
-        createEditTableRow(tbl, "Phone: ", "phoneInpEdit", activeClub.PHONE);
-        createEditTableRow(tbl, "Web: ", "webInpEdit", activeClub.WEB);
+        createEditTableRow(tbl, "Name: ", "nameInpEdit", activeClub.NAME);
+        createEditTableRow(tbl, "State: ", "stateInpEdit", activeClub.STATE);
+        createEditTableRow(tbl, "Address: ", "addressInpEdit", activeClub.ADDRESS);
+        createEditTableRow(tbl, "EJU: ", "ejuInpEdit", activeClub.EJU, "checkbox");
 
         createElement("button", hiddenTab, "Save changes", 
         [
@@ -54,40 +47,15 @@ async function editClubTab(clubId) {
     }
 }
 
-function createEditTableRow(tbl, label, id, defValue) {
-    var row = createElement("tr", tbl);
-    createElement("td", row, label);
-    var value = createElement("td", row);
-    createEditTableInput(value, id, defValue);
-}
-
-function createEditTableInput(parent, id, defValue) {
-    if (defValue == 0) defValue = "";
-
-    var input = createElement("input", parent, "", 
-    [
-        {"name": "id", "value": id},
-        {"name": "type", "value": "text"},
-        {"name": "value", "value": defValue},
-        {"name": "class", "value": "textBox"}
-    ]);
-    return input;
-}
-
-async function saveClubChanges(clubId, hardCreate="false") {
+async function saveClubChanges(clubId) {
     var response = null;
     if (clubId) {
-        var request = {
-            "CLUB": prepareClubChangedData()
-        }
-        response = await callEndpoint("POST", "/clubs/updateClub", request);
+        var request = prepareClubChangedData();
+        response = await callEndpoint("POST", "/clubs/update", request);
     }
     else {
-        var request = {
-            "HARD_CREATE": hardCreate,
-            "CLUB": prepareClubChangedData()
-        }
-        response = await callEndpoint("POST", "/clubs/createClub", request);
+        var request = prepareClubChangedData();
+        response = await callEndpoint("POST", "/clubs/create", request);
     }
     if (!response.ERROR) {
         if (clubId) {
@@ -95,16 +63,8 @@ async function saveClubChanges(clubId, hardCreate="false") {
             showAlert("Success :)", "Club was updated");
         }
         else {
-            console.log(response);
-            if (response.STATUS == "OK") {
-                buildClubTable();
-                showAlert("Success :)", "Club was created");
-            }
-            else {
-                showConfirm("Existing club",
-                    "Club with this title already exists. Do you still wanna create new one?",
-                    function() {saveClubChanges(null, "true")});
-            }
+            buildClubTable();
+            showAlert("Success :)", "Club was created");
         }
     }
     else {
@@ -115,16 +75,12 @@ async function saveClubChanges(clubId, hardCreate="false") {
 function prepareClubChangedData() {
     var newClub = {
         "ID": activeClub.ID,
-        "TITLE": getValueOf("titleInpEdit"),
-        "CODE": getValueOf("codeInpEdit"),
+        "NAME": getValueOf("nameInpEdit"),
+        "STATE": getValueOf("stateInpEdit"),
+        "ADDRESS": getValueOf("addressInpEdit"),
         "EJU": getValueOf("ejuInpEdit"),
-        "STREET": getValueOf("streetInpEdit"),
-        "CITY": getValueOf("cityInpEdit"),
-        "ZIP": getValueOf("zipInpEdit"),
-        "EMAIL": getValueOf("emailInpEdit"),
-        "PHONE": getValueOf("phoneInpEdit"),
-        "WEB": getValueOf("webInpEdit")
-    }
+        "USER_ID": (!activeClub.USER_ID) ? loggedUser.ID : activeClub.USER_ID,
+    };
     return newClub;
 }
 

@@ -91,20 +91,20 @@ class ClubsController(cc):
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
 
-	#@post /getByUser
+	#@get /getByUser
 	@staticmethod
 	def getByUser(server, path, auth):
 		if (auth["role"] > 2):
 			Error.sendCustomError(server, "Unauthorized access", 400)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['USER_ID'], args)):
+		if (not cc.validateJson(['userId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		userId = args["USER_ID"]
+		userId = int(args["userId"])
 
 		clubsArray = ClubsRepository.findBy("columnName-user_id", userId)
 		jsonResponse = {}

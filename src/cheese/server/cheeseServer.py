@@ -57,14 +57,20 @@ class CheeseHandler(BaseHTTPRequestHandler):
             elif (path.startswith("/clubs")):
                 if (path.startswith("/clubs/getAll")):
                     ClubsController.getAll(self, self.path, auth)
+                elif (path.startswith("/clubs/getByUser")):
+                    ClubsController.getByUser(self, self.path, auth)
                 else:
                     if (self.path.endswith(".css")):
                         CheeseController.serveFile(self, self.path, "text/css")
                     else:
                         CheeseController.serveFile(self, self.path)
             elif (path.startswith("/events")):
-                if (path.startswith("/events/getAll")):
-                    EventsController.getAll(self, self.path, auth)
+                if (path.startswith("/events/getEvent")):
+                    EventsController.getEvent(self, self.path, auth)
+                elif (path.startswith("/events/getBy")):
+                    EventsController.getBy(self, self.path, auth)
+                elif (path.startswith("/events/remove")):
+                    EventsController.remove(self, self.path, auth)
                 else:
                     if (self.path.endswith(".css")):
                         CheeseController.serveFile(self, self.path, "text/css")
@@ -125,8 +131,6 @@ class CheeseHandler(BaseHTTPRequestHandler):
                     ClubsController.create(self, self.path, auth)
                 elif (self.path.startswith("/clubs/update")):
                     ClubsController.update(self, self.path, auth)
-                elif (self.path.startswith("/clubs/getByUser")):
-                    ClubsController.getByUser(self, self.path, auth)
                 elif (self.path.startswith("/clubs/remove")):
                     ClubsController.remove(self, self.path, auth)
                 else:
@@ -136,16 +140,6 @@ class CheeseHandler(BaseHTTPRequestHandler):
                     EventsController.create(self, self.path, auth)
                 elif (self.path.startswith("/events/update")):
                     EventsController.update(self, self.path, auth)
-                elif (self.path.startswith("/events/getByCategory")):
-                    EventsController.getByCategory(self, self.path, auth)
-                elif (self.path.startswith("/events/getByName")):
-                    EventsController.getByName(self, self.path, auth)
-                elif (self.path.startswith("/events/getByPlace")):
-                    EventsController.getByPlace(self, self.path, auth)
-                elif (self.path.startswith("/events/getByStart")):
-                    EventsController.getByStart(self, self.path, auth)
-                elif (self.path.startswith("/events/remove")):
-                    EventsController.remove(self, self.path, auth)
                 else:
                     Error.sendCustomError(self, "Endpoint not found :(", 404)
             elif (self.path.startswith("/hotels")):

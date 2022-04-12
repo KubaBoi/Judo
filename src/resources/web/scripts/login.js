@@ -1,3 +1,5 @@
+var loggedUser = null;
+
 async function login(alert=true) {
     userName = document.getElementById("nameInp").value;
     password = document.getElementById("passInp").value;
@@ -8,6 +10,7 @@ async function login(alert=true) {
     var response = await callEndpoint("GET", "/users/login");
     if (!response.ERROR) {
         setCookie("token", response.TOKEN, 5);
+        loggedUser = response.USER;
         succLogin(response);
     } 
     else if (response.ERROR != "No cookies") {
@@ -24,29 +27,29 @@ async function login(alert=true) {
 }
 
 async function succLogin(response) {
+    document.getElementById("singInButt").setAttribute("disabled", "");
+    document.getElementById("regButt").setAttribute("disabled", "");
+    document.getElementById("forgPassButt").setAttribute("disabled", "");
+
     if (response.USER.RULE_ID == 2) {
         await getHtml("headerClient", "main/", "loggedDiv", "header");
-        await getHtml("main", "main/", "loggedDiv", "contentDiv");
-        newContent("mainDiv");
         await getHtml("events", "main/",  "loggedDiv", "contentDiv");
-        await getHtml("clubs", "main/",  "loggedDiv", "contentDiv");
-        await getHtml("account", "main/",  "loggedDiv", "contentDiv");
     }
     else if (response.USER.RULE_ID < 2) {
         await getHtml("headerAdmin", "adminFiles/", "loggedDiv", "header");
-        await getHtml("main", "main/",  "loggedDiv", "contentDiv");
-        newContent("mainDiv");
         await getHtml("events", "adminFiles/",  "loggedDiv", "contentDiv");
-        await getHtml("clubs", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("allClubs", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("registrations", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("hotels", "adminFiles/",  "loggedDiv", "contentDiv");
-        await getHtml("account", "main/",  "loggedDiv", "contentDiv");
 
         var loggedAs = document.getElementById("loggedAs")
         loggedAs.innerHTML = "admin<br>";
     }
 
+    await getHtml("main", "main/",  "loggedDiv", "contentDiv");
+    await getHtml("clubs", "main/",  "loggedDiv", "contentDiv");
+    await getHtml("account", "main/",  "loggedDiv", "contentDiv");
+    newContent("mainDiv");
 
     var loggedAs = document.getElementById("loggedAs")
     loggedAs.innerHTML += response.USER.FULL_NAME;

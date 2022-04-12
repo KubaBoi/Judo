@@ -165,6 +165,13 @@ class CheeseRepository:
         elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findNewId(args)
     @staticmethod
+    def findBySorted(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "EventsRepository"):
+            return EventsRepositoryImpl.findBySorted(args)
+    @staticmethod
     def login(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)

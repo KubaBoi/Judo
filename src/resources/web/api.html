@@ -27,12 +27,9 @@
                 <ol>
                     <li><a href="#2.1">/create</a></li>
                     <li><a href="#2.2">/update</a></li>
-                    <li><a href="#2.3">/getAll</a></li>
-                    <li><a href="#2.4">/getByCategory</a></li>
-                    <li><a href="#2.5">/getByName</a></li>
-                    <li><a href="#2.6">/getByPlace</a></li>
-                    <li><a href="#2.7">/getByStart</a></li>
-                    <li><a href="#2.8">/remove</a></li>
+                    <li><a href="#2.3">/getEvent</a></li>
+                    <li><a href="#2.4">/getBy</a></li>
+                    <li><a href="#2.5">/remove</a></li>
                 </ol>
             </li>
             <li>
@@ -279,20 +276,22 @@
                 <li class="num">
                     <span class="hd3" id="2.1">/create - POST</span>
                     <p>Create new event</p>
+                    <p>If HARD_CREATE is true than event is created even there is on with same name</p>
                     <p class="role">Role = 1</p>
                     <figure>
                         <figcaption>Accepts post body:</figcaption>
                         <pre><code class="language-json">
 {
+    "HARD_CREATE": true
     "NAME": "str",
     "CATEGORY": "str",
     "PLACE": "str",
-    "START": 0,
-    "END": 0,
-    "ARRIVE": 0,
-    "DEPART": 0,
-    "END_VISA": 0,
-    "END_ROOM": 0,
+    "START": "date",
+    "END": "date",
+    "ARRIVE": "date",
+    "DEPART": "date",
+    "END_VISA": "date",
+    "END_ROOM": "date",
     "ORGANISER_ID": 0,
     "VISA_MAIL": "str",
     "VISA_PHONE": "str",
@@ -308,7 +307,14 @@
                         <figcaption>Return OK - 200:</figcaption>
                         <pre><code class="language-json">
 {
-    "ID": 0 // new event id
+    "STATUS": "OK"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 409:</figcaption>
+                        <pre><code class="language-json">
+{
+    "STATUS": "Event already exists"
 }
                             </code></pre></figure>
                     <figure>
@@ -340,12 +346,12 @@
     "NAME": "str",
     "CATEGORY": "str",
     "PLACE": "str",
-    "START": 0,
-    "END": 0,
-    "ARRIVE": 0,
-    "DEPART": 0,
-    "END_VISA": 0,
-    "END_ROOM": 0,
+    "START": "date",
+    "END": "date",
+    "ARRIVE": "date",
+    "DEPART": "date",
+    "END_VISA": "date",
+    "END_ROOM": "date",
     "ORGANISER_ID": 0,
     "VISA_MAIL": "str",
     "VISA_PHONE": "str",
@@ -381,285 +387,125 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="2.3">/getAll - GET</span>
+                    <span class="hd3" id="2.3">/getEvent - GET</span>
                     <p>Return array of all events</p>
                     <p class="role">Role = 2</p>
                     <figure>
-                        <figcaption>Accepts nothing:</figcaption>
-                        <pre><code class="language-json">
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "EVENTS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "CATEGORY": "str",
-            "PLACE": "str",
-            "START": 0,
-            "END": 0,
-            "ARRIVE": 0,
-            "DEPART": 0,
-            "END_VISA": 0,
-            "END_ROOM": 0,
-            "ORGANISER_ID": 0,
-            "VISA_MAIL": "str",
-            "VISA_PHONE": "str",
-            "EJU_PRICE": 0,
-            "PCR_PRICE": 0,
-            "AG_PRICE": 0,
-            "TRANS_PRICE": 0,
-            "OTHER_PRICE": 0,
-            "SHOW_HOTEL": true
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="2.4">/getByCategory - POST</span>
-                    <p>Returns array of events by CATEGORY</p>
-                    <p class="role">Role = 2</p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
-                        <pre><code class="language-json">
-{
-    "CATEGORY": "str"
-}
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "EVENTS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "CATEGORY": "str",
-            "PLACE": "str",
-            "START": 0,
-            "END": 0,
-            "ARRIVE": 0,
-            "DEPART": 0,
-            "END_VISA": 0,
-            "END_ROOM": 0,
-            "ORGANISER_ID": 0,
-            "VISA_MAIL": "str",
-            "VISA_PHONE": "str",
-            "EJU_PRICE": 0,
-            "PCR_PRICE": 0,
-            "AG_PRICE": 0,
-            "TRANS_PRICE": 0,
-            "OTHER_PRICE": 0,
-            "SHOW_HOTEL": true
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Bad request - 400:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Wrong json structure"
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="2.5">/getByName - POST</span>
-                    <p>Returns array of events by NAME</p>
-                    <p class="role">Role = 2</p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
-                        <pre><code class="language-json">
-{
-    "NAME": "str"
-}
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "EVENTS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "CATEGORY": "str",
-            "PLACE": "str",
-            "START": 0,
-            "END": 0,
-            "ARRIVE": 0,
-            "DEPART": 0,
-            "END_VISA": 0,
-            "END_ROOM": 0,
-            "ORGANISER_ID": 0,
-            "VISA_MAIL": "str",
-            "VISA_PHONE": "str",
-            "EJU_PRICE": 0,
-            "PCR_PRICE": 0,
-            "AG_PRICE": 0,
-            "TRANS_PRICE": 0,
-            "OTHER_PRICE": 0,
-            "SHOW_HOTEL": true
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Bad request - 400:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Wrong json structure"
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="2.6">/getByPlace - POST</span>
-                    <p>Returns array of events by PLACE</p>
-                    <p class="role">Role = 2</p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
-                        <pre><code class="language-json">
-{
-    "PLACE": "str"
-}
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "EVENTS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "CATEGORY": "str",
-            "PLACE": "str",
-            "START": 0,
-            "END": 0,
-            "ARRIVE": 0,
-            "DEPART": 0,
-            "END_VISA": 0,
-            "END_ROOM": 0,
-            "ORGANISER_ID": 0,
-            "VISA_MAIL": "str",
-            "VISA_PHONE": "str",
-            "EJU_PRICE": 0,
-            "PCR_PRICE": 0,
-            "AG_PRICE": 0,
-            "TRANS_PRICE": 0,
-            "OTHER_PRICE": 0,
-            "SHOW_HOTEL": true
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Bad request - 400:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Wrong json structure"
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="2.7">/getByStart - POST</span>
-                    <p>Returns array of events by START</p>
-                    <p class="role">Role = 2</p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
-                        <pre><code class="language-json">
-{
-    "START": 0
-}
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "EVENTS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "CATEGORY": "str",
-            "PLACE": "str",
-            "START": 0,
-            "END": 0,
-            "ARRIVE": 0,
-            "DEPART": 0,
-            "END_VISA": 0,
-            "END_ROOM": 0,
-            "ORGANISER_ID": 0,
-            "VISA_MAIL": "str",
-            "VISA_PHONE": "str",
-            "EJU_PRICE": 0,
-            "PCR_PRICE": 0,
-            "AG_PRICE": 0,
-            "TRANS_PRICE": 0,
-            "OTHER_PRICE": 0,
-            "SHOW_HOTEL": true
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Bad request - 400:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Wrong json structure"
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="2.8">/remove - POST</span>
-                    <p>Returns array of events by START</p>
-                    <p class="role">Role = 1</p>
-                    <p>Remove can do only user who organise event (ORGANISER_ID) </p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
+                        <figcaption>Accepts path arguments:</figcaption>
                         <pre><code class="language-json">
 {
     "ID": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENT": {
+        "ID": 0,
+        "NAME": "str",
+        "CATEGORY": "str",
+        "PLACE": "str",
+        "START": "date",
+        "END": "date",
+        "ARRIVE": "date",
+        "DEPART": "date",
+        "END_VISA": "date",
+        "END_ROOM": "date",
+        "ORGANISER_ID": 0,
+        "VISA_MAIL": "str",
+        "VISA_PHONE": "str",
+        "EJU_PRICE": 0,
+        "PCR_PRICE": 0,
+        "AG_PRICE": 0,
+        "TRANS_PRICE": 0,
+        "OTHER_PRICE": 0,
+        "SHOW_HOTEL": true
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Not found - 404:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Event was not found"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.4">/getBy - GET</span>
+                    <p>Returns array of events by sorted by column</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "column": "str"
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "EVENTS": [
+        {
+            "ID": 0,
+            "NAME": "str",
+            "CATEGORY": "str",
+            "PLACE": "str",
+            "START": "date",
+            "END": "date",
+            "ARRIVE": "date",
+            "DEPART": "date",
+            "END_VISA": "date",
+            "END_ROOM": "date",
+            "ORGANISER_ID": 0,
+            "VISA_MAIL": "str",
+            "VISA_PHONE": "str",
+            "EJU_PRICE": 0,
+            "PCR_PRICE": 0,
+            "AG_PRICE": 0,
+            "TRANS_PRICE": 0,
+            "OTHER_PRICE": 0,
+            "SHOW_HOTEL": true
+        }
+    ]
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="2.5">/remove - GET</span>
+                    <p>Removes event</p>
+                    <p class="role">Role = 1</p>
+                    <p>Remove can do only user who organise event (ORGANISER_ID) </p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "id": 0
 }
                         </code></pre></figure>
                     <figure>
@@ -810,14 +656,14 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="3.4">/getByUser - POST</span>
+                    <span class="hd3" id="3.4">/getByUser - GET</span>
                     <p>Returns array of clubs by USER_ID</p>
                     <p class="role">Role = 2</p>
                     <figure>
-                        <figcaption>Accepts post body:</figcaption>
+                        <figcaption>Accepts path arguments:</figcaption>
                         <pre><code class="language-json">
 {
-    "USER_ID": 0
+    "userId": 0
 }
                         </code></pre></figure>
                     <figure>
@@ -906,11 +752,11 @@
     "NAME": "str",
     "SUR_NAME": "str",
     "FUNCTION": "str",
-    "BIRTHDAY": 0,
+    "BIRTHDAY": "date",
     "GENDER": "str",
     "PASS_ID": "str",
-    "PASS_RELEASE": 0,
-    "PASS_EXPIRATION": 0
+    "PASS_RELEASE": "date",
+    "PASS_EXPIRATION": "date"
 }
                         </code></pre></figure>
                     <figure>
@@ -1018,11 +864,11 @@
     "NAME": "str",
     "SUR_NAME": "str",
     "FUNCTION": "str",
-    "BIRTHDAY": 0,
+    "BIRTHDAY": "date",
     "GENDER": "str",
     "PASS_ID": "str",
-    "PASS_RELEASE": 0,
-    "PASS_EXPIRATION": 0
+    "PASS_RELEASE": "date",
+    "PASS_EXPIRATION": "date"
 }
                         </code></pre></figure>
                     <figure>
@@ -1072,11 +918,11 @@
             "NAME": "str",
             "SUR_NAME": "str",
             "FUNCTION": "str",
-            "BIRTHDAY": 0,
+            "BIRTHDAY": "date",
             "GENDER": "str",
             "PASS_ID": "str",
-            "PASS_RELEASE": 0,
-            "PASS_EXPIRATION": 0
+            "PASS_RELEASE": "date",
+            "PASS_EXPIRATION": "date"
         }
     ]
 }
@@ -1846,8 +1692,8 @@
                         <pre><code class="language-json">
 {
     "ID": 0, // cannot be changed
-    "ARRIVE": 0,
-    "DEPARTURE": 0,
+    "ARRIVE": "date",
+    "DEPARTURE": "date",
     "TRANSPORT": true
 }
                         </code></pre></figure>
@@ -1895,8 +1741,8 @@
             "ID": 0,
             "REG_CLUB_ID": 0,
             "JB_ID": 0,
-            "ARRIVE": 0,
-            "DEPARTURE": 0,
+            "ARRIVE": "date",
+            "DEPARTURE": "date",
             "TRANSPORT": true
         }
     ]

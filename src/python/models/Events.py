@@ -5,15 +5,15 @@ from cheese.modules.cheeseModel import CheeseModel
 
 #@model
 class Events(CheeseModel):
-	def __init__(self, id=None, show_hotel=None, pcr_price=None, ag_price=None, trans_price=None, other_price=None, start=None, end=None, arrive=None, depart=None, end_visa=None, end_room=None, organiser_id=None, eju_price=None, name=None, category=None, place=None, visa_phone=None, visa_mail=None):
+	def __init__(self, id=None, show_hotel=None, pcr_price=None, ag_price=None, trans_price=None, other_price=None, event_start=None, event_end=None, arrive=None, depart=None, end_visa=None, end_room=None, organiser_id=None, eju_price=None, name=None, category=None, place=None, visa_phone=None, visa_mail=None):
 		self.id=id
 		self.show_hotel=show_hotel
 		self.pcr_price=pcr_price
 		self.ag_price=ag_price
 		self.trans_price=trans_price
 		self.other_price=other_price
-		self.start=start
-		self.end=end
+		self.event_start=event_start
+		self.event_end=event_end
 		self.arrive=arrive
 		self.depart=depart
 		self.end_visa=end_visa
@@ -34,8 +34,8 @@ class Events(CheeseModel):
 			"AG_PRICE": self.ag_price,
 			"TRANS_PRICE": self.trans_price,
 			"OTHER_PRICE": self.other_price,
-			"START": self.start,
-			"END": self.end,
+			"START": self.event_start,
+			"END": self.event_end,
 			"ARRIVE": self.arrive,
 			"DEPART": self.depart,
 			"END_VISA": self.end_visa,
@@ -56,8 +56,8 @@ class Events(CheeseModel):
 		self.ag_price = json["AG_PRICE"]
 		self.trans_price = json["TRANS_PRICE"]
 		self.other_price = json["OTHER_PRICE"]
-		self.start = json["START"]
-		self.end = json["END"]
+		self.event_start = json["START"]
+		self.event_end = json["END"]
 		self.arrive = json["ARRIVE"]
 		self.depart = json["DEPART"]
 		self.end_visa = json["END_VISA"]

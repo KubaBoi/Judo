@@ -12,8 +12,8 @@ class EventsRepositoryImpl:
     @staticmethod
     def init():
         EventsRepositoryImpl.table = "events"
-        EventsRepositoryImpl.scheme = "(id,show_hotel,pcr_price,ag_price,trans_price,other_price,start,end,arrive,depart,end_visa,end_room,organiser_id,eju_price,name,category,place,visa_phone,visa_mail)"
-        EventsRepositoryImpl.schemeNoBrackets = "id,show_hotel,pcr_price,ag_price,trans_price,other_price,start,end,arrive,depart,end_visa,end_room,organiser_id,eju_price,name,category,place,visa_phone,visa_mail"
+        EventsRepositoryImpl.scheme = "(id,show_hotel,pcr_price,ag_price,trans_price,other_price,event_start,event_end,arrive,depart,end_visa,end_room,organiser_id,eju_price,name,category,place,visa_phone,visa_mail)"
+        EventsRepositoryImpl.schemeNoBrackets = "id,show_hotel,pcr_price,ag_price,trans_price,other_price,event_start,event_end,arrive,depart,end_visa,end_room,organiser_id,eju_price,name,category,place,visa_phone,visa_mail"
 
     @staticmethod
     def convert(var):
@@ -43,8 +43,8 @@ class EventsRepositoryImpl:
         model.ag_price = EventsRepositoryImpl.convert(obj[3])
         model.trans_price = EventsRepositoryImpl.convert(obj[4])
         model.other_price = EventsRepositoryImpl.convert(obj[5])
-        model.start = EventsRepositoryImpl.convert(obj[6])
-        model.end = EventsRepositoryImpl.convert(obj[7])
+        model.event_start = EventsRepositoryImpl.convert(obj[6])
+        model.event_end = EventsRepositoryImpl.convert(obj[7])
         model.arrive = EventsRepositoryImpl.convert(obj[8])
         model.depart = EventsRepositoryImpl.convert(obj[9])
         model.end_visa = EventsRepositoryImpl.convert(obj[10])
@@ -67,8 +67,8 @@ class EventsRepositoryImpl:
             model.ag_price,
             model.trans_price,
             model.other_price,
-            model.start,
-            model.end,
+            model.event_start,
+            model.event_end,
             model.arrive,
             model.depart,
             model.end_visa,
@@ -82,6 +82,24 @@ class EventsRepositoryImpl:
             model.visa_mail
         )
         return tuple
+
+    @staticmethod
+    def findBySorted(args):
+        columnName = args[0]
+
+        response = None
+        try:
+            db = Database()
+            response = db.query(f"select {EventsRepositoryImpl.schemeNoBrackets} from events order by {columnName} ASC;")
+            db.done()
+        except Exception as e:
+            Logger.fail("An error occurred while query request", str(e))
+
+        if (response == None): return response
+        resp = []
+        for a in response:
+            resp.append(EventsRepositoryImpl.toModel(a))
+        return resp
 
     @staticmethod
     def findAll(args):

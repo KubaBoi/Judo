@@ -20,10 +20,11 @@ class EventsController(cc):
 
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
+		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
+		hardCreate = args["HARD_CREATE"]
 		name = args["NAME"]
 		category = args["CATEGORY"]
 		place = args["PLACE"]
@@ -43,14 +44,21 @@ class EventsController(cc):
 		otherPrice = args["OTHER_PRICE"]
 		showHotel = args["SHOW_HOTEL"]
 
+		exists = EventsRepository.findBy("columnName-name", name)
+		if (exists == None):
+			return
+		if (len(exists) > 0 and not hardCreate):
+			Error.sendCustomError(server, "Event already exists", 409)
+			return
+
 		newId = EventsRepository.findNewId()
 		eventsModel = Events()
 		eventsModel.id = newId
 		eventsModel.name = name
 		eventsModel.category = category
 		eventsModel.place = place
-		eventsModel.start = start
-		eventsModel.end = end
+		eventsModel.event_start = start
+		eventsModel.event_end = end
 		eventsModel.arrive = arrive
 		eventsModel.depart = depart
 		eventsModel.end_visa = endVisa
@@ -102,13 +110,13 @@ class EventsController(cc):
 		otherPrice = args["OTHER_PRICE"]
 		showHotel = args["SHOW_HOTEL"]
 
-		eventsModel = EventsRepository.findById(id)
+		eventsModel = EventsRepository.find(id)
 		eventsModel.id = id
 		eventsModel.name = name
 		eventsModel.category = category
 		eventsModel.place = place
-		eventsModel.start = start
-		eventsModel.end = end
+		eventsModel.event_start = start
+		eventsModel.event_end = end
 		eventsModel.arrive = arrive
 		eventsModel.depart = depart
 		eventsModel.end_visa = endVisa
@@ -127,62 +135,48 @@ class EventsController(cc):
 		response = cc.createResponse({'STATUS': 'Event has been changed'}, 200)
 		cc.sendResponse(server, response)
 
-	#@get /getAll
+	#@get /getEvent
 	@staticmethod
-	def getAll(server, path, auth):
+	def getEvent(server, path, auth):
 		if (auth["role"] > 2):
 			Error.sendCustomError(server, "Unauthorized access", 400)
 			return
 
-		eventsArray = EventsRepository.findAll()
-		jsonResponse = {}
-		jsonResponse["EVENTS"] = []
-		for event in eventsArray:
-			jsonResponse["EVENTS"].append(event.toJson())
+		args = cc.getArgs(path)
 
-		response = cc.createResponse(jsonResponse, 200)
-		cc.sendResponse(server, response)
-
-	#@post /getByCategory
-	@staticmethod
-	def getByCategory(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['CATEGORY'], args)):
+		if (not cc.validateJson(['id'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		category = args["CATEGORY"]
+		id = args["id"]
 
-		eventsArray = EventsRepository.findBy("columnName-category", category)
+		event = EventsRepository.find(id)
+		if (event == None):
+			Error.sendCustomError(server, "Event was not found", 404)
+			return
+
 		jsonResponse = {}
-		jsonResponse["EVENTS"] = []
-		for event in eventsArray:
-			jsonResponse["EVENTS"].append(event.toJson())
+		jsonResponse["EVENT"] = event.toJson()
 
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
 
-	#@post /getByName
+	#@get /getBy
 	@staticmethod
-	def getByName(server, path, auth):
+	def getBy(server, path, auth):
 		if (auth["role"] > 2):
 			Error.sendCustomError(server, "Unauthorized access", 400)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['NAME'], args)):
+		if (not cc.validateJson(["column"], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		name = args["NAME"]
+		column = args["column"]
 
-		eventsArray = EventsRepository.findBy("columnName-name", name)
+		eventsArray = EventsRepository.findBySorted("columnName-" + column)
 		jsonResponse = {}
 		jsonResponse["EVENTS"] = []
 		for event in eventsArray:
@@ -191,68 +185,20 @@ class EventsController(cc):
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
 
-	#@post /getByPlace
-	@staticmethod
-	def getByPlace(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['PLACE'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
-
-		place = args["PLACE"]
-
-		eventsArray = EventsRepository.findBy("columnName-place", place)
-		jsonResponse = {}
-		jsonResponse["EVENTS"] = []
-		for event in eventsArray:
-			jsonResponse["EVENTS"].append(event.toJson())
-
-		response = cc.createResponse(jsonResponse, 200)
-		cc.sendResponse(server, response)
-
-	#@post /getByStart
-	@staticmethod
-	def getByStart(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['START'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
-
-		start = args["START"]
-
-		eventsArray = EventsRepository.findBy("columnName-start", start)
-		jsonResponse = {}
-		jsonResponse["EVENTS"] = []
-		for event in eventsArray:
-			jsonResponse["EVENTS"].append(event.toJson())
-
-		response = cc.createResponse(jsonResponse, 200)
-		cc.sendResponse(server, response)
-
-	#@post /remove
+	#@get /remove
 	@staticmethod
 	def remove(server, path, auth):
 		if (auth["role"] > 1):
 			Error.sendCustomError(server, "Unauthorized access", 400)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['ID'], args)):
+		if (not cc.validateJson(['id'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		id = args["ID"]
+		id = args["id"]
 
 		eventsModel = EventsRepository.findById(id)
 		EventsRepository.delete(eventsModel)

@@ -1,11 +1,11 @@
 var clubTable;
 
-async function buildClubTable() {
+async function buildClubAllTable() {
     clubTable = document.getElementById("clubTable");
 
     newContent("clubsDiv");
 
-    var response = await callEndpoint("GET", "/clubs/getClubs" + createClubFilters());
+    var response = await callEndpoint("GET", "/clubs/getAll" + createClubFilters());
     if (!response.ERROR) {
         clubTable.innerHTML = "";
         createClubHeaderRow();
@@ -18,61 +18,69 @@ async function buildClubTable() {
     }
 }
 
-function createClubFilters() {
-    var filter = "";
+async function buildClubTable() {
+    clubTable = document.getElementById("clubTable");
 
-    var searchInput = document.getElementById("clubSearchInp");
-    var searchType = document.getElementById("typeClubSearchInp");
-    if (searchType.value == 0) {
-        filter += "?title=" + searchInput.value;
-        filter += "&city=";
-        filter += "&code=";
-    }
-    else if (searchType.value == 1) {
-        filter += "?title="
-        filter += "&city=";
-        filter += "&code=" + searchInput.value;
-    }
-    else {
-        filter += "?title="
-        filter += "&city=" + searchInput.value;
-        filter += "&code=";
-    }
+    newContent("clubsDiv");
 
-    filter += "&eju=";
-
-    return filter;
+    var response = await callEndpoint("GET", "/clubs/getByUser?userId=" + loggedUser.ID);
+    if (!response.ERROR) {
+        clubTable.innerHTML = "";
+        createClubHeaderRow(true);
+        for (var i = 0; i < response.CLUBS.length; i++) {
+            buildClubRow(response.CLUBS[i], true);
+        }
+    } 
+    else if (response.ERROR != "No cookies") {
+        showAlert("An error occurred :(", response.ERROR);
+    }
 }
 
-function buildClubRow(club) {
+function buildClubRow(club, owner=false) {
     var row = createElement("tr", clubTable);
-    createElement("td", row, club.TITLE, 
+    createElement("td", row, club.NAME, 
     [
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
 
-    createElement("td", row, club.STREET + ", " + club.CITY + ", " + club.ZIP, 
+    createElement("td", row, club.STATE, 
     [
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
     
-    createElement("td", row, "<img src='/images/editIcon48.png'>",
+    createElement("td", row, club.OWNER, 
     [
-        {"name": "class", "value": "smallCell"},
-        {"name": "onclick", "value": "editClubTab(" + club.ID + ")"}
+        {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
 
-    createElement("td", row, "<img src='/images/deleteIcon48.png'>",
+    createElement("td", row, club.ADDRESS, 
     [
-        {"name": "class", "value": "smallCellLast"},
-        {"name": "onclick", "value": "deleteClub(" + club.ID + ")"}
+        {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
+
+    if (loggedUser.RULE_ID < 2 || owner) {
+        createElement("td", row, "<img src='/images/editIcon48.png'>",
+        [
+            {"name": "class", "value": "smallCell"},
+            {"name": "onclick", "value": "editClubTab(" + club.ID + ")"}
+        ]);
+
+        createElement("td", row, "<img src='/images/deleteIcon48.png'>",
+        [
+            {"name": "class", "value": "smallCellLast"},
+            {"name": "onclick", "value": "deleteClub(" + club.ID + ")"}
+        ]);
+    }
 }
 
-function createClubHeaderRow() {
+function createClubHeaderRow(owner) {
     var row = createElement("tr", clubTable);
-    createElement("th", row, "Title");
+    createElement("th", row, "Name");
+    createElement("th", row, "Nationality");
+    createElement("th", row, "Owner");
     createElement("th", row, "Address");
-    createElement("th", row);
-    createElement("th", row);
+    if (loggedUser.RULE_ID < 2 || owner) {
+        createElement("th", row);
+        createElement("th", row);
+    }
 }
