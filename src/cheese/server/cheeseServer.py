@@ -14,14 +14,14 @@ from cheese.ErrorCodes import Error
 from python.authorization import Authorization
 
 #REST CONTROLLERS
-from python.controllers.clubsController import ClubsController
-from python.controllers.eventsController import EventsController
-from python.controllers.hotelsController import HotelsController
-from python.controllers.jbController import JbController
-from python.controllers.registeredClubsController import RegisteredClubsController
-from python.controllers.registeredHotelsController import RegisteredHotelsController
-from python.controllers.registeredJbController import RegisteredJbController
-from python.controllers.usersController import UsersController
+from python.controllers.ClubsController import ClubsController
+from python.controllers.EventsController import EventsController
+from python.controllers.HotelsController import HotelsController
+from python.controllers.JbController import JbController
+from python.controllers.RegisteredClubsController import RegisteredClubsController
+from python.controllers.RegisteredHotelsController import RegisteredHotelsController
+from python.controllers.RegisteredJbController import RegisteredJbController
+from python.controllers.UsersController import UsersController
 
 
 """

@@ -8,20 +8,20 @@ from cheese.resourceManager import ResMan
 from cheese.databaseControll.database import Database
 
 #REPOSITORIES
-from cheese.repositories.bedRepositoryImpl import BedRepositoryImpl
-from cheese.repositories.clubsRepositoryImpl import ClubsRepositoryImpl
-from cheese.repositories.eventsRepositoryImpl import EventsRepositoryImpl
-from cheese.repositories.hotelsRepositoryImpl import HotelsRepositoryImpl
-from cheese.repositories.jbRepositoryImpl import JbRepositoryImpl
-from cheese.repositories.passwordsRepositoryImpl import PasswordsRepositoryImpl
-from cheese.repositories.registeredClubsRepositoryImpl import RegisteredClubsRepositoryImpl
-from cheese.repositories.registeredHotelsRepositoryImpl import RegisteredHotelsRepositoryImpl
-from cheese.repositories.registeredJbRepositoryImpl import RegisteredJbRepositoryImpl
-from cheese.repositories.registeredTestsRepositoryImpl import RegisteredTestsRepositoryImpl
-from cheese.repositories.rolesRepositoryImpl import RolesRepositoryImpl
-from cheese.repositories.roomsRepositoryImpl import RoomsRepositoryImpl
-from cheese.repositories.tokensRepositoryImpl import TokensRepositoryImpl
-from cheese.repositories.usersRepositoryImpl import UsersRepositoryImpl
+from cheese.repositories.BedRepositoryImpl import BedRepositoryImpl
+from cheese.repositories.ClubsRepositoryImpl import ClubsRepositoryImpl
+from cheese.repositories.EventsRepositoryImpl import EventsRepositoryImpl
+from cheese.repositories.HotelsRepositoryImpl import HotelsRepositoryImpl
+from cheese.repositories.JbRepositoryImpl import JbRepositoryImpl
+from cheese.repositories.PasswordsRepositoryImpl import PasswordsRepositoryImpl
+from cheese.repositories.RegisteredClubsRepositoryImpl import RegisteredClubsRepositoryImpl
+from cheese.repositories.RegisteredHotelsRepositoryImpl import RegisteredHotelsRepositoryImpl
+from cheese.repositories.RegisteredJbRepositoryImpl import RegisteredJbRepositoryImpl
+from cheese.repositories.RegisteredTestsRepositoryImpl import RegisteredTestsRepositoryImpl
+from cheese.repositories.RolesRepositoryImpl import RolesRepositoryImpl
+from cheese.repositories.RoomsRepositoryImpl import RoomsRepositoryImpl
+from cheese.repositories.TokensRepositoryImpl import TokensRepositoryImpl
+from cheese.repositories.UsersRepositoryImpl import UsersRepositoryImpl
 
 
 """
@@ -37,153 +37,153 @@ class CheeseRepository:
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.findAll(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.findAll(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.findAll(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.findAll(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.findAll(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.findAll(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.findAll(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.findAll(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.findAll(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findAll(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.findAll(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.findAll(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.findAll(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findAll(args)
     @staticmethod
     def find(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.find(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.find(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.find(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.find(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.find(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.find(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.find(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.find(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.find(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.find(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.find(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.find(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.find(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.find(args)
     @staticmethod
     def findBy(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.findBy(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.findBy(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.findBy(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.findBy(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.findBy(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.findBy(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.findBy(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.findBy(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.findBy(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findBy(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.findBy(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.findBy(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.findBy(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findBy(args)
     @staticmethod
     def findNewId(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.findNewId(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.findNewId(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.findNewId(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.findNewId(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.findNewId(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.findNewId(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.findNewId(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.findNewId(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.findNewId(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findNewId(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.findNewId(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.findNewId(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.findNewId(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.findNewId(args)
     @staticmethod
     def findBySorted(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "eventsRepository"):
+        if (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.findBySorted(args)
     @staticmethod
     def login(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "passwordsRepository"):
+        if (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.login(args)
     @staticmethod
     def findToken(args):
         userRepository = CheeseRepository.findUserRepository()
         args = CheeseRepository.getTypeOf(args)
 
-        if (userRepository == "tokensRepository"):
+        if (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.findToken(args)
 
 
@@ -191,97 +191,97 @@ class CheeseRepository:
     def save(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.save(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.save(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.save(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.save(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.save(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.save(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.save(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.save(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.save(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.save(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.save(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.save(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.save(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.save(args)
     @staticmethod
     def update(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.update(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.update(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.update(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.update(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.update(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.update(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.update(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.update(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.update(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.update(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.update(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.update(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.update(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.update(args)
     @staticmethod
     def delete(args):
         userRepository = CheeseRepository.findUserRepository()
 
-        if (userRepository == "bedRepository"):
+        if (userRepository == "BedRepository"):
             return BedRepositoryImpl.delete(args)
-        elif (userRepository == "clubsRepository"):
+        elif (userRepository == "ClubsRepository"):
             return ClubsRepositoryImpl.delete(args)
-        elif (userRepository == "eventsRepository"):
+        elif (userRepository == "EventsRepository"):
             return EventsRepositoryImpl.delete(args)
-        elif (userRepository == "hotelsRepository"):
+        elif (userRepository == "HotelsRepository"):
             return HotelsRepositoryImpl.delete(args)
-        elif (userRepository == "jbRepository"):
+        elif (userRepository == "JbRepository"):
             return JbRepositoryImpl.delete(args)
-        elif (userRepository == "passwordsRepository"):
+        elif (userRepository == "PasswordsRepository"):
             return PasswordsRepositoryImpl.delete(args)
-        elif (userRepository == "registeredClubsRepository"):
+        elif (userRepository == "RegisteredClubsRepository"):
             return RegisteredClubsRepositoryImpl.delete(args)
-        elif (userRepository == "registeredHotelsRepository"):
+        elif (userRepository == "RegisteredHotelsRepository"):
             return RegisteredHotelsRepositoryImpl.delete(args)
-        elif (userRepository == "registeredJbRepository"):
+        elif (userRepository == "RegisteredJbRepository"):
             return RegisteredJbRepositoryImpl.delete(args)
-        elif (userRepository == "registeredTestsRepository"):
+        elif (userRepository == "RegisteredTestsRepository"):
             return RegisteredTestsRepositoryImpl.delete(args)
-        elif (userRepository == "rolesRepository"):
+        elif (userRepository == "RolesRepository"):
             return RolesRepositoryImpl.delete(args)
-        elif (userRepository == "roomsRepository"):
+        elif (userRepository == "RoomsRepository"):
             return RoomsRepositoryImpl.delete(args)
-        elif (userRepository == "tokensRepository"):
+        elif (userRepository == "TokensRepository"):
             return TokensRepositoryImpl.delete(args)
-        elif (userRepository == "usersRepository"):
+        elif (userRepository == "UsersRepository"):
             return UsersRepositoryImpl.delete(args)
 
 
