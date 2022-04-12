@@ -4,7 +4,7 @@
 
 from cheese.databaseControll.database import Database
 from cheese.Logger import Logger
-from python.models.RegisteredTests import RegisteredTests
+from python.models.registeredTests import RegisteredTests
 
 
 class RegisteredTestsRepositoryImpl:

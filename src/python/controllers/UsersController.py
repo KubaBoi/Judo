@@ -10,13 +10,13 @@ from cheese.ErrorCodes import Error
 from cheese.modules.cheeseController import CheeseController as cc
 from cheese.resourceManager import ResMan
 
-from python.repositories.UsersRepository import UsersRepository
-from python.repositories.TokensRepository import TokensRepository
-from python.repositories.PasswordsRepository import PasswordsRepository
+from python.repositories.usersRepository import UsersRepository
+from python.repositories.tokensRepository import TokensRepository
+from python.repositories.passwordsRepository import PasswordsRepository
 
-from python.models.Users import Users
-from python.models.Tokens import Tokens
-from python.models.Passwords import Passwords
+from python.models.users import Users
+from python.models.tokens import Tokens
+from python.models.passwords import Passwords
 
 from python.emailSender import EmailSender
 
