@@ -13,10 +13,12 @@ from cheese.resourceManager import ResMan
 from python.repositories.usersRepository import UsersRepository
 from python.repositories.tokensRepository import TokensRepository
 from python.repositories.passwordsRepository import PasswordsRepository
+from python.repositories.registrationsRepository import RegistrationsRepository
 
 from python.models.users import Users
 from python.models.tokens import Tokens
 from python.models.passwords import Passwords
+from python.models.registrations import Registrations
 
 from python.emailSender import EmailSender
 
@@ -73,16 +75,15 @@ class UsersController(cc):
 
 		randomCode = UsersController.randomString(20)
 
-		registration = {
-			"login": login,
-			"password": password,
-			"phone": phone,
-			"fullName": fullName,
-			"registration_code": randomCode
-		}
-
-		with open(os.path.join(ResMan.resources(), "registrations", randomCode + ".json"), "w") as f:
-			f.write(json.dumps(registration))
+		regId = RegistrationsRepository.findNewId()
+		registration = Registrations()
+		registration.id = regId
+		registration.login = login
+		registration.password = password
+		registration.phone = phone
+		registration.full_name = fullName
+		registration.registration_code = randomCode
+		RegistrationsRepository.save(registration)
 
 		with open(os.path.join(ResMan.web(), "registrations", "regTemplate.html"), "r") as f:
 			template = f.read()
@@ -110,26 +111,26 @@ class UsersController(cc):
 			return
 
 		code = args["code"]
-		if (not os.path.exists(os.path.join(ResMan.resources(), "registrations", code + ".json"))):
+		registration = RegistrationsRepository.findBy("columnName-registration_code", code)
+		if (registration == None):
 			Error.sendCustomError(server, "Registration is invalid", 401)
 			return
 
-		with open(os.path.join(ResMan.resources(), "registrations", code + ".json"), "r") as f:
-			data = json.loads(f.read())
-
-		if (code != data["registration_code"]):
+		if (code != registration.registration_code):
 			Error.sendCustomError(server, "Registration is invalid", 401)
 			return
 
-		login = data["login"]
-		password = data["password"]
+		login = registration.login
+		password = registration.password
+		phone = registration.phone
+		fullName = registration.full_name
 
 		newId = UsersRepository.findNewId()
 		usersModel = Users()
 		usersModel.id = newId
 		usersModel.login = login
-		usersModel.phone = data["phone"]
-		usersModel.full_name = data["fullName"]
+		usersModel.phone = phone
+		usersModel.full_name = fullName
 		usersModel.rule_id = 2
 		UsersRepository.save(usersModel)
 
@@ -137,7 +138,7 @@ class UsersController(cc):
 		passwordsModel = Passwords(newPassId, password, login)
 		PasswordsRepository.save(passwordsModel)
 
-		os.remove(os.path.join(ResMan.resources(), "registrations", code + ".json"))
+		RegistrationsRepository.delete(registration)
 		os.remove(os.path.join(ResMan.web(), "registrations", "reg" + code + ".html"))
 
 		response = cc.createResponse({"STATUS": "User has been created"}, 200)

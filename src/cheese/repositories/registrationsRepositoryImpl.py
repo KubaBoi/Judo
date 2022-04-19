@@ -105,10 +105,9 @@ class RegistrationsRepositoryImpl:
             Logger.fail("An error occurred while query request", str(e))
 
         if (response == None): return response
-        resp = []
-        for a in response:
-            resp.append(RegistrationsRepositoryImpl.toModel(a))
-        return resp
+        if (len(response) > 0):
+            return RegistrationsRepositoryImpl.toModel(response[0])
+        else: return None
 
     @staticmethod
     def findNewId(args):

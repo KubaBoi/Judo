@@ -25,7 +25,7 @@ class RegistrationsRepository(CheeseRepository):
 		return CheeseRepository.find([id])
 
 	#@query "select * from registrations where :columnName=:value;"
-	#@return array
+	#@return one
 	@staticmethod
 	def findBy(columnName, value):
 		return CheeseRepository.findBy([columnName, value])
