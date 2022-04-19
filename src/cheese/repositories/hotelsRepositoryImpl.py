@@ -62,6 +62,24 @@ class HotelsRepositoryImpl:
         return tuple
 
     @staticmethod
+    def findBySorted(args):
+        columnName = args[0]
+
+        response = None
+        try:
+            db = Database()
+            response = db.query(f"select {HotelsRepositoryImpl.schemeNoBrackets} from hotels order by {columnName} ASC;")
+            db.done()
+        except Exception as e:
+            Logger.fail("An error occurred while query request", str(e))
+
+        if (response == None): return response
+        resp = []
+        for a in response:
+            resp.append(HotelsRepositoryImpl.toModel(a))
+        return resp
+
+    @staticmethod
     def findAll(args):
 
         response = None

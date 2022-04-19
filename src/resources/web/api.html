@@ -59,8 +59,8 @@
                     <li><a href="#5.1">/create</a></li>
                     <li><a href="#5.2">/update</a></li>
                     <li><a href="#5.3">/getAll</a></li>
-                    <li><a href="#5.4">/getByName</a></li>
-                    <li><a href="#5.5">/getByPlace</a></li>
+                    <li><a href="#5.4">/get</a></li>
+                    <li><a href="#5.5">/getBy</a></li>
                     <li><a href="#5.6">/getRooms</a></li>
                     <li><a href="#5.7">/reserveBed</a></li>
                     <li><a href="#5.8">/remove</a></li>
@@ -286,8 +286,8 @@
     "NAME": "str",
     "CATEGORY": "str",
     "PLACE": "str",
-    "START": "date",
-    "END": "date",
+    "EVENT_START": "date",
+    "EVENT_END": "date",
     "ARRIVE": "date",
     "DEPART": "date",
     "END_VISA": "date",
@@ -346,8 +346,8 @@
     "NAME": "str",
     "CATEGORY": "str",
     "PLACE": "str",
-    "START": "date",
-    "END": "date",
+    "EVENT_START": "date",
+    "EVENT_END": "date",
     "ARRIVE": "date",
     "DEPART": "date",
     "END_VISA": "date",
@@ -406,8 +406,8 @@
         "NAME": "str",
         "CATEGORY": "str",
         "PLACE": "str",
-        "START": "date",
-        "END": "date",
+        "EVENT_START": "date",
+        "EVENT_END": "date",
         "ARRIVE": "date",
         "DEPART": "date",
         "END_VISA": "date",
@@ -461,8 +461,8 @@
             "NAME": "str",
             "CATEGORY": "str",
             "PLACE": "str",
-            "START": "date",
-            "END": "date",
+            "EVENT_START": "date",
+            "EVENT_END": "date",
             "ARRIVE": "date",
             "DEPART": "date",
             "END_VISA": "date",
@@ -992,6 +992,7 @@
                         <figcaption>Accepts post body:</figcaption>
                         <pre><code class="language-json">
 {
+    "HARD_CREATE": true,
     "NAME": "str",
     "ADDRESS": "str",
     "MAIL": "str",
@@ -1132,14 +1133,72 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="5.4">/getByName - POST</span>
-                    <p>Returns array of hotels by NAME</p>
+                    <span class="hd3" id="5.4">/get - GET</span>
+                    <p>Returns hotel by id</p>
                     <p class="role">Role = 2</p>
                     <figure>
-                        <figcaption>Accepts post body:</figcaption>
+                        <figcaption>Accepts path arguments:</figcaption>
                         <pre><code class="language-json">
 {
-    "NAME": "str"
+    "id": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "HOTEL": {
+        "ID": 0,
+        "NAME": "str",
+        "ADDRESS": "str",
+        "MAIL": "str",
+        "WEB": "str",
+        "PHONE": "str",
+        "PACKAGE": true,
+        "P_NIGHTS": 0,
+        "ONE_ROOM": 0,
+        "ONE_ROOM_PRICE": 0,
+        "TWO_ROOM": 0,
+        "TWO_ROOM_PRICE": 0,
+        "THREE_ROOM": 0,
+        "THREE_ROOM_PRICE": 0,
+        "APARTMAN_ROOM": 0,
+        "APARTMAN_ROOM_PRICE": 0
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Not found - 404:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Hotel was not found"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="5.5">/getBy - GET</span>
+                    <p>Returns array of hotels by sorted by column</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts path arguments:</figcaption>
+                        <pre><code class="language-json">
+{
+    "column": "str"
 }
                         </code></pre></figure>
                     <figure>
@@ -1185,67 +1244,14 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="5.5">/getByPlace - POST</span>
-                    <p>Returns array of hotels by PLACE</p>
-                    <p class="role">Role = 2</p>
-                    <figure>
-                        <figcaption>Accepts post body:</figcaption>
-                        <pre><code class="language-json">
-{
-    "PLACE": "str"
-}
-                        </code></pre></figure>
-                    <figure>
-                        <figcaption>Return OK - 200:</figcaption>
-                        <pre><code class="language-json">
-{
-    "HOTELS": [
-        {
-            "ID": 0,
-            "NAME": "str",
-            "ADDRESS": "str",
-            "MAIL": "str",
-            "WEB": "str",
-            "PHONE": "str",
-            "PACKAGE": true,
-            "P_NIGHTS": 0,
-            "ONE_ROOM": 0,
-            "ONE_ROOM_PRICE": 0,
-            "TWO_ROOM": 0,
-            "TWO_ROOM_PRICE": 0,
-            "THREE_ROOM": 0,
-            "THREE_ROOM_PRICE": 0,
-            "APARTMAN_ROOM": 0,
-            "APARTMAN_ROOM_PRICE": 0
-        }
-    ]
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Bad request - 400:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Wrong json structure"
-}
-                            </code></pre></figure>
-                    <figure>
-                        <figcaption>Return Unauthorized - 401:</figcaption>
-                        <pre><code class="language-json">
-{
-    "ERROR": "Unauthorized access"
-}
-                            </code></pre></figure>
-                </li>
-
-                <li class="num">
-                    <span class="hd3" id="5.6">/getRooms - POST</span>
+                    <span class="hd3" id="5.6">/getRooms - GET</span>
                     <p>Returns array of rooms by HOTEL_ID</p>
                     <p class="role">Role = 2</p>
                     <figure>
-                        <figcaption>Accepts post body:</figcaption>
+                        <figcaption>Accepts path arguments:</figcaption>
                         <pre><code class="language-json">
 {
-    "HOTEL_ID": 0
+    "hotelId": 0
 }
                         </code></pre></figure>
                     <figure>
@@ -1254,12 +1260,14 @@
 {
     "ROOMS": [
         {
+            "ID": 0,
             "BED": 0, // count of beds
             "PRICE": 0,
             "HOTEL_ID": 0,
             "AVAILABLE": true,
             "BEDS": [
                 {
+                    "ID": 0,
                     "ROOM_ID": 0,
                     "JB_ID": 0
                 }
@@ -1339,14 +1347,14 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="5.8">/remove - POST</span>
+                    <span class="hd3" id="5.8">/remove - GET</span>
                     <p>Remove hotel and all its rooms and beds</p>
                     <p class="role">Role = 1</p>
                     <figure>
-                        <figcaption>Accepts post body:</figcaption>
+                        <figcaption>Accepts path arguments:</figcaption>
                         <pre><code class="language-json">
 {
-    "ID": 0
+    "id": 0
 }
                         </code></pre></figure>
                     <figure>

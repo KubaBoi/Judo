@@ -3,58 +3,29 @@ var hotelTable;
 async function buildHotelTable() {
     hotelTable = document.getElementById("hotelTable");
 
-    newContent("hotelsDiv");
-
-    var response = await callEndpoint("GET", "/hotels/getHotels" + createHotelFilters());
+    var response = await callEndpoint("GET", "/hotels/getAll");
     if (!response.ERROR) {
         hotelTable.innerHTML = "";
         createHotelHeaderRow();
         for (var i = 0; i < response.HOTELS.length; i++) {
             buildHotelRow(response.HOTELS[i]);
         }
+
+        setTimeout(function() { newContent("hotelsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
     }
 }
 
-function createHotelFilters() {
-    var filter = "";
-
-    var searchInput = document.getElementById("hotelSearchInp");
-    var searchType = document.getElementById("typeHotelSearchInp");
-    if (searchType.value == 0) {
-        filter += "?title=" + searchInput.value;
-        filter += "&city=";
-    }
-    else {
-        filter += "?title="
-        filter += "&city=" + searchInput.value;;
-    }
-
-    if (document.getElementById("1bed").checked) filter += "&oneBed=true";
-    else filter += "&oneBed=false";
-
-    if (document.getElementById("2bed").checked) filter += "&twoBed=true";
-    else filter += "&twoBed=false";
-
-    if (document.getElementById("3bed").checked) filter += "&threeBed=true";
-    else filter += "&threeBed=false";
-
-    if (document.getElementById("4bed").checked) filter += "&fourBed=true";
-    else filter += "&fourBed=false";
-
-    return filter;
-}
-
 function buildHotelRow(hotel) {
     var row = createElement("tr", hotelTable);
-    createElement("td", row, hotel.TITLE, 
+    createElement("td", row, hotel.NAME, 
     [
         {"name": "onclick", "value": "showHotelTab(" + hotel.ID + ")"}
     ]);
 
-    createElement("td", row, hotel.STREET + ", " + hotel.CITY + ", " + hotel.ZIP, 
+    createElement("td", row, hotel.ADDRESS, 
     [
         {"name": "onclick", "value": "showHotelTab(" + hotel.ID + ")"}
     ]);
@@ -74,7 +45,7 @@ function buildHotelRow(hotel) {
 
 function createHotelHeaderRow() {
     var row = createElement("tr", hotelTable);
-    createElement("th", row, "Title");
+    createElement("th", row, "Name");
     createElement("th", row, "Address");
     createElement("th", row);
     createElement("th", row);

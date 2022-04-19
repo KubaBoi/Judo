@@ -1,5 +1,3 @@
-var loggedUser = null;
-
 async function login(alert=true) {
     userName = document.getElementById("nameInp").value;
     password = document.getElementById("passInp").value;
@@ -15,7 +13,7 @@ async function login(alert=true) {
     } 
     else if (response.ERROR != "No cookies") {
         if (response.ERROR == "Wrong credentials") {
-            showAlert("Error", "Wrong credentials", "divWrongAlert",
+            showTimerAlert("Error", "Wrong credentials", alertTime, "divWrongAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );

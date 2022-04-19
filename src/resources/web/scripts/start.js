@@ -1,10 +1,15 @@
 debug = true;
+
+var contentTimeout = 10;
+var activeContent;
+var alertTime = 2000;
+var loggedUser = null;
 var userAccountName;
 var userName = getCookie("login");
 var password = getCookie("password");
 loadPage(["login", "registration", "phoneCodes"], true);
 
-// startArray are divs that are ennecessary for first run
+// startArray are divs that are nnecessary for first run
 // divArray are others that do not need to be now
 async function loadPage(startArray, doAfter=false) {
     for (let i = 0; i < startArray.length; i++) {

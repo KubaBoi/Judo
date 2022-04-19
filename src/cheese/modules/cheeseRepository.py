@@ -180,6 +180,8 @@ class CheeseRepository:
 
         if (userRepository == "eventsRepository"):
             return EventsRepositoryImpl.findBySorted(args)
+        elif (userRepository == "hotelsRepository"):
+            return HotelsRepositoryImpl.findBySorted(args)
     @staticmethod
     def login(args):
         userRepository = CheeseRepository.findUserRepository()
@@ -187,6 +189,13 @@ class CheeseRepository:
 
         if (userRepository == "passwordsRepository"):
             return PasswordsRepositoryImpl.login(args)
+    @staticmethod
+    def findByHotelAndBeds(args):
+        userRepository = CheeseRepository.findUserRepository()
+        args = CheeseRepository.getTypeOf(args)
+
+        if (userRepository == "roomsRepository"):
+            return RoomsRepositoryImpl.findByHotelAndBeds(args)
     @staticmethod
     def findToken(args):
         userRepository = CheeseRepository.findUserRepository()

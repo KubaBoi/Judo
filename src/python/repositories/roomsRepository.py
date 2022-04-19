@@ -8,7 +8,11 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@dbmodel Rooms
 class RoomsRepository(CheeseRepository):
 
-
+	#@query "select * from rooms where hotel_id=:hotelId and bed=:bedCount;"
+	#@return array
+	@staticmethod
+	def findByHotelAndBeds(hotelId, bedCount):
+		return CheeseRepository.findByHotelAndBeds([hotelId, bedCount])
 
 	#GENERATED METHODS
 

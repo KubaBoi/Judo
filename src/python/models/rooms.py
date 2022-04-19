@@ -11,14 +11,20 @@ class Rooms(CheeseModel):
 		self.price=price
 		self.hotel_id=hotel_id
 		self.available=available
+		self.beds=[]
 
 	def toJson(self):
+		beds = []
+		for bed in self.beds:
+			beds.append(bed.toJson())
+
 		return {
 			"ID": self.id,
 			"BED": self.bed,
 			"PRICE": self.price,
 			"HOTEL_ID": self.hotel_id,
-			"AVAILABLE": self.available
+			"AVAILABLE": self.available,
+			"BEDS": beds
 		}
 
 	def toModel(self, json):

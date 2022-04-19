@@ -15,7 +15,7 @@ class EventsController(cc):
 	@staticmethod
 	def create(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.readArgs(server)
@@ -81,7 +81,7 @@ class EventsController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.readArgs(server)
@@ -139,7 +139,7 @@ class EventsController(cc):
 	@staticmethod
 	def getEvent(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.getArgs(path)
@@ -165,7 +165,7 @@ class EventsController(cc):
 	@staticmethod
 	def getBy(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.getArgs(path)
@@ -189,7 +189,7 @@ class EventsController(cc):
 	@staticmethod
 	def remove(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.getArgs(path)

@@ -1,5 +1,3 @@
-var activeContent;
-
 function newContent(id) {
     var newCont = document.getElementById(id);
     if (newCont == activeContent) return;

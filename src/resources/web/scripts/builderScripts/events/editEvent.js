@@ -76,25 +76,6 @@ async function editEventTab(eventId) {
     }
 }
 
-function createEditTableRow(tbl, label, id, defValue, type="text") {
-    var row = createElement("tr", tbl);
-    createElement("td", row, label);
-    var value = createElement("td", row);
-    createEditTableInput(value, id, defValue, type);
-}
-
-function createEditTableInput(parent, id, defValue, type) {
-    cls = "textBox";
-
-    var input = createElement("input", parent, "", 
-    [
-        {"name": "id", "value": id},
-        {"name": "type", "value": type},
-        {"name": "value", "value": defValue},
-        {"name": "class", "value": cls}
-    ]);
-    return input;
-}
 
 async function saveEventChanges(eventId, hardCreate=false) {
     var response = null;
@@ -109,11 +90,18 @@ async function saveEventChanges(eventId, hardCreate=false) {
     if (!response.ERROR) {
         if (eventId) {
             buildEventTable();
-            showAlert("Success :)", "Event was updated");
+            showTimerAlert("Success :)", "Event was updated", alertTime, "divOkAlert",
+                {"name": "okShowAlert", "duration": "0.5s"},
+                {"name": "okHideAlert", "duration": "0.5s"}
+            );
         }
         else {
             buildEventTable();
-            showAlert("Success :)", "Event was created");
+            showTimerAlert("Success :)", "Event was created", alertTime, "divOkAlert",
+                {"name": "okShowAlert", "duration": "0.5s"},
+                {"name": "okHideAlert", "duration": "0.5s"}
+            );
+            closeHiddenTab();
         }
     }
     else {
@@ -163,7 +151,10 @@ function deleteEvent(eventId) {
 async function reallyDeleteEvent(eventId) {
     var response = await callEndpoint("GET", "/events/remove?id=" + eventId);
     if (!response.ERROR) {
-        showAlert("Success :)", "Event was deleted");
+        showTimerAlert("Success :)", "Event was deleted", alertTime, "divOkAlert",
+                {"name": "okShowAlert", "duration": "0.5s"},
+                {"name": "okHideAlert", "duration": "0.5s"}
+            );
         buildEventTable();
     }
     else {

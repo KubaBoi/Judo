@@ -8,7 +8,7 @@ async function register() {
     phone = document.getElementById("phoneCodeInp").value + " " + phone;
 
     if (password != password2) {
-        showAlert("Error", "Passwords are not same", "divWrongAlert",
+        showTimerAlert("Error", "Passwords are not same", alertTime, "divWrongAlert",
             {"name": "okShowAlert", "duration": "0.5s"},
             {"name": "okHideAlert", "duration": "0.5s"}
         );
@@ -16,7 +16,7 @@ async function register() {
     }
 
     if (!validateEmail(login)) {
-        showAlert("Error", "Email is in wrong format", "divWrongAlert",
+        showTimerAlert("Error", "Email is in wrong format", alertTime, "divWrongAlert",
             {"name": "okShowAlert", "duration": "0.5s"},
             {"name": "okHideAlert", "duration": "0.5s"}
         );
@@ -32,7 +32,7 @@ async function register() {
 
     var response = await callEndpoint("POST", "/users/register", request);
     if (!response.ERROR) {
-        showAlert("Registration", "Check your email and confirm registration", "divOkAlert",
+        showTimerAlert("Registration", "Check your email and confirm registration", alertTime, "divOkAlert",
             {"name": "okShowAlert", "duration": "0.5s"},
             {"name": "okHideAlert", "duration": "0.5s"}
         );
@@ -41,7 +41,7 @@ async function register() {
         showAlert("An error occurred :(", response.ERROR);
     }
     else {
-        showAlert("Error", "This email is already registered", "divWrongAlert",
+        showTimerAlert("Error", "This email is already registered", alertTime, "divWrongAlert",
             {"name": "okShowAlert", "duration": "0.5s"},
             {"name": "okHideAlert", "duration": "0.5s"}
         );

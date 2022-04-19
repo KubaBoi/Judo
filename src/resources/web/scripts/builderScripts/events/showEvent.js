@@ -25,8 +25,8 @@ async function showEventTab(eventId) {
 
         var dateTbl = createElement("table", showDiv);
 
-        createShowTableRow(dateTbl, "Start: ", activeEvent.START);
-        createShowTableRow(dateTbl, "End: ", activeEvent.END);
+        createShowTableRow(dateTbl, "Start: ", activeEvent.EVENT_START);
+        createShowTableRow(dateTbl, "End: ", activeEvent.EVENT_END);
         createShowTableRow(dateTbl, "Arrive: ", activeEvent.ARRIVE);
         createShowTableRow(dateTbl, "Departure: ", activeEvent.DEPART);
         createShowTableRow(dateTbl, "Visa deadline: ", activeEvent.END_VISA);
@@ -36,10 +36,4 @@ async function showEventTab(eventId) {
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
     }
-}
-
-function createShowTableRow(tbl, label, defValue) {
-    var row = createElement("tr", tbl);
-    createElement("td", row, label);
-    createElement("td", row, defValue);
 }

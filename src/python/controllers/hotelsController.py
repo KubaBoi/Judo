@@ -19,12 +19,12 @@ class HotelsController(cc):
 	@staticmethod
 	def create(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
+		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
@@ -43,6 +43,14 @@ class HotelsController(cc):
 		threeRoomPrice = args["THREE_ROOM_PRICE"]
 		apartmanRoom = args["APARTMAN_ROOM"]
 		apartmanRoomPrice = args["APARTMAN_ROOM_PRICE"]
+
+		if (not args["HARD_CREATE"]):
+			existingHotel = HotelsRepository.findBy("columnName-name", name)
+			if (existingHotel == None):
+				return
+			if (len(existingHotel) > 0):
+				Error.sendCustomError(server, "Hotel already exists", 409)
+				return
 
 		newId = HotelsRepository.findNewId()
 		hotelsModel = Hotels()
@@ -69,7 +77,7 @@ class HotelsController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.readArgs(server)
@@ -95,7 +103,7 @@ class HotelsController(cc):
 		apartmanRoom = args["APARTMAN_ROOM"]
 		apartmanRoomPrice = args["APARTMAN_ROOM_PRICE"]
 
-		hotelsModel = HotelsRepository.findById(id)
+		hotelsModel = HotelsRepository.find(id)
 		hotelsModel.id = id
 		hotelsModel.name = name
 		hotelsModel.address = address
@@ -106,6 +114,16 @@ class HotelsController(cc):
 		hotelsModel.p_nights = pNights
 		HotelsRepository.update(hotelsModel)
 
+		oneRooms = RoomsRepository.findByHotelAndBeds(id, 1)
+		twoRooms = RoomsRepository.findByHotelAndBeds(id, 2)
+		threeRooms = RoomsRepository.findByHotelAndBeds(id, 3)
+		apartmanRooms = RoomsRepository.findByHotelAndBeds(id, 4)
+
+		HotelsController.updateRoom(oneRooms, oneRoom, oneRoomPrice, id, 1)
+		HotelsController.updateRoom(twoRooms, twoRoom, twoRoomPrice, id, 2)
+		HotelsController.updateRoom(threeRooms, threeRoom, threeRoomPrice, id, 3)
+		HotelsController.updateRoom(apartmanRooms, apartmanRoom, apartmanRoomPrice, id, 4)
+
 		response = cc.createResponse({'STATUS': 'Hotel has been updated'}, 200)
 		cc.sendResponse(server, response)
 
@@ -113,7 +131,7 @@ class HotelsController(cc):
 	@staticmethod
 	def getAll(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		hotelsArray = HotelsRepository.findAll()
@@ -125,22 +143,61 @@ class HotelsController(cc):
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
 
-	#@post /getByName
+	#@get /get
 	@staticmethod
-	def getByName(server, path, auth):
+	def get(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['NAME'], args)):
+		if (not cc.validateJson(["id"], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		name = args["NAME"]
+		id = args["id"]
 
-		hotelsArray = HotelsRepository.findBy("columnName-name", name)
+		hotel = HotelsRepository.find(id)
+		if (hotel == None):
+			Error.sendCustomError(server, "Hotel was not found", 404)
+			return
+
+		jsonResponse = hotel.toJson()
+
+		oneRooms = RoomsRepository.findByHotelAndBeds(id, 1)
+		twoRooms = RoomsRepository.findByHotelAndBeds(id, 2)
+		threeRooms = RoomsRepository.findByHotelAndBeds(id, 3)
+		apartmanRooms = RoomsRepository.findByHotelAndBeds(id, 4)
+
+		jsonResponse["ONE_ROOM"] = len(oneRooms)
+		jsonResponse["ONE_ROOM_PRICE"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].price
+		jsonResponse["TWO_ROOM"] = len(twoRooms)
+		jsonResponse["TWO_ROOM_PRICE"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].price
+		jsonResponse["THREE_ROOM"] = len(threeRooms)
+		jsonResponse["THREE_ROOM_PRICE"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].price
+		jsonResponse["APARTMAN_ROOM"] = len(apartmanRooms)
+		jsonResponse["APARTMAN_ROOM_PRICE"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].price
+
+		response = cc.createResponse({"HOTEL": jsonResponse}, 200)
+		cc.sendResponse(server, response)
+
+	#@get /getBy
+	@staticmethod
+	def getBy(server, path, auth):
+		if (auth["role"] > 2):
+			Error.sendCustomError(server, "Unauthorized access", 401)
+			return
+
+		args = cc.getArgs(path)
+
+		if (not cc.validateJson(["column"], args)):
+			Error.sendCustomError(server, "Wrong json structure", 400)
+			return
+
+		column = args["column"]
+
+		hotelsArray = HotelsRepository.findBySorted("columnName-" + column)
 		jsonResponse = {}
 		jsonResponse["HOTELS"] = []
 		for hotel in hotelsArray:
@@ -149,49 +206,26 @@ class HotelsController(cc):
 		response = cc.createResponse(jsonResponse, 200)
 		cc.sendResponse(server, response)
 
-	#@post /getByPlace
-	@staticmethod
-	def getByPlace(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['PLACE'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
-
-		place = args["PLACE"]
-
-		hotelsArray = HotelsRepository.findBy("columnName-place", place)
-		jsonResponse = {}
-		jsonResponse["HOTELS"] = []
-		for hotel in hotelsArray:
-			jsonResponse["HOTELS"].append(hotel.toJson())
-
-		response = cc.createResponse(jsonResponse, 200)
-		cc.sendResponse(server, response)
-
-	#@post /getRooms
+	#@get /getRooms
 	@staticmethod
 	def getRooms(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['HOTEL_ID'], args)):
+		if (not cc.validateJson(['hotelId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		hotelId = args["HOTEL_ID"]
+		hotelId = args["hotelId"]
 		roomsArray = RoomsRepository.findBy("columnName-hotel_id", hotelId)
 
 		jsonResponse = {}
 		jsonResponse["ROOMS"] = []
 		for room in roomsArray:
+			room.beds = BedRepository.findBy("columnName-room_id", room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		response = cc.createResponse(jsonResponse, 200)
@@ -201,7 +235,7 @@ class HotelsController(cc):
 	@staticmethod
 	def reserveBed(server, path, auth):
 		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
 		args = cc.readArgs(server)
@@ -237,22 +271,29 @@ class HotelsController(cc):
 		response = cc.createResponse({'STATUS': 'Bed has been reserved'}, 200)
 		cc.sendResponse(server, response)
 
-	#@post /remove
+	#@get /remove
 	@staticmethod
 	def remove(server, path, auth):
 		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
+			Error.sendCustomError(server, "Unauthorized access", 401)
 			return
 
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['ID'], args)):
+		if (not cc.validateJson(['id'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		id = args["ID"]
+		id = args["id"]
 
-		hotelsModel = HotelsRepository.findById(id)
+		rooms = RoomsRepository.findBy("columnName-hotel_id", id)
+		for room in rooms:
+			beds = BedRepository.findBy("columnName-room_id", room.id)
+			for bed in beds:
+				BedRepository.delete(bed)
+			RoomsRepository.delete(room)
+
+		hotelsModel = HotelsRepository.find(id)
 		HotelsRepository.delete(hotelsModel)
 
 		response = cc.createResponse({'STATUS': 'Hotel has been removed'}, 200)
@@ -282,4 +323,23 @@ class HotelsController(cc):
 				newBed.jb_id = -1
 				newBed.room_id = newId
 				BedRepository.save(newBed)
+
+	@staticmethod
+	def updateRoom(rooms, roomCount, roomPrice, hotelId, bed):
+		if (len(rooms) > roomCount):
+			more = len(rooms) - roomCount
+			for i in range(more):
+				beds = BedRepository.findBy("columnName-room_id", rooms[0].id)
+				for bed in beds:
+					BedRepository.delete(bed)
+				RoomsRepository.delete(rooms[0])
+				rooms.remove(rooms[0])
+
+		elif (len(rooms) < roomCount):
+			less = roomCount - len(rooms)
+			HotelsController.createRooms(bed, less, hotelId, roomPrice)
+
+		for room in rooms:
+			room.price = roomPrice
+			RoomsRepository.update(room)
 

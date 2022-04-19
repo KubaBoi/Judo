@@ -1,17 +1,17 @@
 var clubTable;
 
 async function buildClubAllTable() {
-    clubTable = document.getElementById("clubTable");
+    clubTable = document.getElementById("clubAllTable");
 
-    newContent("clubsDiv");
-
-    var response = await callEndpoint("GET", "/clubs/getAll" + createClubFilters());
+    var response = await callEndpoint("GET", "/clubs/getAll");
     if (!response.ERROR) {
         clubTable.innerHTML = "";
         createClubHeaderRow();
         for (var i = 0; i < response.CLUBS.length; i++) {
             buildClubRow(response.CLUBS[i]);
         }
+
+        setTimeout(function() { newContent("allClubsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
@@ -21,8 +21,6 @@ async function buildClubAllTable() {
 async function buildClubTable() {
     clubTable = document.getElementById("clubTable");
 
-    newContent("clubsDiv");
-
     var response = await callEndpoint("GET", "/clubs/getByUser?userId=" + loggedUser.ID);
     if (!response.ERROR) {
         clubTable.innerHTML = "";
@@ -30,13 +28,15 @@ async function buildClubTable() {
         for (var i = 0; i < response.CLUBS.length; i++) {
             buildClubRow(response.CLUBS[i], true);
         }
+
+        setTimeout(function() { newContent("clubsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
     }
 }
 
-function buildClubRow(club, owner=false) {
+async function buildClubRow(club, owner=false) {
     var row = createElement("tr", clubTable);
     createElement("td", row, club.NAME, 
     [
@@ -48,7 +48,13 @@ function buildClubRow(club, owner=false) {
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
     
-    createElement("td", row, club.OWNER, 
+    var ownerName = "Not loaded";
+    var response = await callEndpoint("POST", "/users/get", {"USER_ID": club.USER_ID});
+    if (!response.ERROR) {
+        ownerName = response.USER.FULL_NAME;
+    }
+
+    createElement("td", row, ownerName, 
     [
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);

@@ -25,9 +25,3 @@ async function showClubTab(clubId) {
         showAlert("An error occurred :(", response.ERROR);
     }
 }
-
-function createShowTableRow(tbl, label, defValue) {
-    var row = createElement("tr", tbl);
-    createElement("td", row, label);
-    createElement("td", row, defValue);
-}

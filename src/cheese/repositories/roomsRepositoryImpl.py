@@ -56,6 +56,25 @@ class RoomsRepositoryImpl:
         return tuple
 
     @staticmethod
+    def findByHotelAndBeds(args):
+        hotelId = args[0]
+        bedCount = args[1]
+
+        response = None
+        try:
+            db = Database()
+            response = db.query(f"select {RoomsRepositoryImpl.schemeNoBrackets} from rooms where hotel_id={hotelId} and bed={bedCount};")
+            db.done()
+        except Exception as e:
+            Logger.fail("An error occurred while query request", str(e))
+
+        if (response == None): return response
+        resp = []
+        for a in response:
+            resp.append(RoomsRepositoryImpl.toModel(a))
+        return resp
+
+    @staticmethod
     def findAll(args):
 
         response = None

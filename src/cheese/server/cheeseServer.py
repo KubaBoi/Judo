@@ -79,6 +79,14 @@ class CheeseHandler(BaseHTTPRequestHandler):
             elif (path.startswith("/hotels")):
                 if (path.startswith("/hotels/getAll")):
                     HotelsController.getAll(self, self.path, auth)
+                elif (path.startswith("/hotels/get")):
+                    HotelsController.get(self, self.path, auth)
+                elif (path.startswith("/hotels/getBy")):
+                    HotelsController.getBy(self, self.path, auth)
+                elif (path.startswith("/hotels/getRooms")):
+                    HotelsController.getRooms(self, self.path, auth)
+                elif (path.startswith("/hotels/remove")):
+                    HotelsController.remove(self, self.path, auth)
                 else:
                     if (self.path.endswith(".css")):
                         CheeseController.serveFile(self, self.path, "text/css")
@@ -147,16 +155,8 @@ class CheeseHandler(BaseHTTPRequestHandler):
                     HotelsController.create(self, self.path, auth)
                 elif (self.path.startswith("/hotels/update")):
                     HotelsController.update(self, self.path, auth)
-                elif (self.path.startswith("/hotels/getByName")):
-                    HotelsController.getByName(self, self.path, auth)
-                elif (self.path.startswith("/hotels/getByPlace")):
-                    HotelsController.getByPlace(self, self.path, auth)
-                elif (self.path.startswith("/hotels/getRooms")):
-                    HotelsController.getRooms(self, self.path, auth)
                 elif (self.path.startswith("/hotels/reserveBed")):
                     HotelsController.reserveBed(self, self.path, auth)
-                elif (self.path.startswith("/hotels/remove")):
-                    HotelsController.remove(self, self.path, auth)
                 else:
                     Error.sendCustomError(self, "Endpoint not found :(", 404)
             elif (self.path.startswith("/jb")):

@@ -8,6 +8,11 @@ from cheese.modules.cheeseRepository import CheeseRepository
 #@dbmodel Hotels
 class HotelsRepository(CheeseRepository):
 
+	#@query "select * from hotels order by :columnName ASC;"
+	#@return array
+	@staticmethod
+	def findBySorted(columnName):
+		return CheeseRepository.findBySorted([columnName])
 
 
 	#GENERATED METHODS

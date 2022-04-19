@@ -22,6 +22,8 @@
     border-right: 1px;
     margin-top: 20px;
     width: 100%;
+    height: 100%;
+    transition: height 0.5s;
 }
 
 .contentDiv td {
