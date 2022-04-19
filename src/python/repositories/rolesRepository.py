@@ -10,6 +10,8 @@ class RolesRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from roles;"
 	#@return array
 	@staticmethod

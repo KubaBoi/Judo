@@ -18,6 +18,7 @@ from cheese.repositories.registeredClubsRepositoryImpl import RegisteredClubsRep
 from cheese.repositories.registeredHotelsRepositoryImpl import RegisteredHotelsRepositoryImpl
 from cheese.repositories.registeredJbRepositoryImpl import RegisteredJbRepositoryImpl
 from cheese.repositories.registeredTestsRepositoryImpl import RegisteredTestsRepositoryImpl
+from cheese.repositories.registrationsRepositoryImpl import RegistrationsRepositoryImpl
 from cheese.repositories.rolesRepositoryImpl import RolesRepositoryImpl
 from cheese.repositories.roomsRepositoryImpl import RoomsRepositoryImpl
 from cheese.repositories.tokensRepositoryImpl import TokensRepositoryImpl
@@ -57,6 +58,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.findAll(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findAll(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.findAll(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.findAll(args)
         elif (userRepository == "roomsRepository"):
@@ -90,6 +93,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.find(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.find(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.find(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.find(args)
         elif (userRepository == "roomsRepository"):
@@ -123,6 +128,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.findBy(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findBy(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.findBy(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.findBy(args)
         elif (userRepository == "roomsRepository"):
@@ -156,6 +163,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.findNewId(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.findNewId(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.findNewId(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.findNewId(args)
         elif (userRepository == "roomsRepository"):
@@ -211,6 +220,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.save(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.save(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.save(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.save(args)
         elif (userRepository == "roomsRepository"):
@@ -243,6 +254,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.update(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.update(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.update(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.update(args)
         elif (userRepository == "roomsRepository"):
@@ -275,6 +288,8 @@ class CheeseRepository:
             return RegisteredJbRepositoryImpl.delete(args)
         elif (userRepository == "registeredTestsRepository"):
             return RegisteredTestsRepositoryImpl.delete(args)
+        elif (userRepository == "registrationsRepository"):
+            return RegistrationsRepositoryImpl.delete(args)
         elif (userRepository == "rolesRepository"):
             return RolesRepositoryImpl.delete(args)
         elif (userRepository == "roomsRepository"):
@@ -297,6 +312,7 @@ class CheeseRepository:
         RegisteredHotelsRepositoryImpl.init()
         RegisteredJbRepositoryImpl.init()
         RegisteredTestsRepositoryImpl.init()
+        RegistrationsRepositoryImpl.init()
         RolesRepositoryImpl.init()
         RoomsRepositoryImpl.init()
         TokensRepositoryImpl.init()

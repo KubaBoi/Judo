@@ -10,6 +10,8 @@ class RegisteredTestsRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from registered_tests;"
 	#@return array
 	@staticmethod

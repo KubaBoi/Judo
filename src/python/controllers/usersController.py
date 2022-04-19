@@ -78,7 +78,6 @@ class UsersController(cc):
 			"password": password,
 			"phone": phone,
 			"fullName": fullName,
-			"password": password,
 			"registration_code": randomCode
 		}
 

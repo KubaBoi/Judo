@@ -10,6 +10,8 @@ class UsersRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from users;"
 	#@return array
 	@staticmethod

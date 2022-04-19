@@ -10,6 +10,8 @@ class BedRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from bed;"
 	#@return array
 	@staticmethod

@@ -10,6 +10,8 @@ class RegisteredJbRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from registered_jb;"
 	#@return array
 	@staticmethod

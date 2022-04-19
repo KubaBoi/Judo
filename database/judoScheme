@@ -2,6 +2,7 @@
 -- Please log an issue at https://redmine.postgresql.org/projects/pgadmin4/issues/new if you find any bugs, including reproduction steps.
 BEGIN;
 
+
 CREATE TABLE IF NOT EXISTS public.events
 (
     id bigint NOT NULL,
@@ -174,4 +175,15 @@ COMMENT ON TABLE public.registered_tests
 
 COMMENT ON COLUMN public.registered_tests.pcr
     IS 'if false => anitgen';
+
+CREATE TABLE IF NOT EXISTS public.registrations
+(
+    id bigint NOT NULL,
+    login text NOT NULL,
+    password text NOT NULL,
+    phone text NOT NULL,
+    full_name text NOT NULL,
+    registration_code text NOT NULL,
+    PRIMARY KEY (id)
+);
 END;

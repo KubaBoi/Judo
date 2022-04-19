@@ -34,8 +34,8 @@ class Events(CheeseModel):
 			"AG_PRICE": self.ag_price,
 			"TRANS_PRICE": self.trans_price,
 			"OTHER_PRICE": self.other_price,
-			"START": self.event_start,
-			"END": self.event_end,
+			"EVENT_START": self.event_start,
+			"EVENT_END": self.event_end,
 			"ARRIVE": self.arrive,
 			"DEPART": self.depart,
 			"END_VISA": self.end_visa,
@@ -56,8 +56,8 @@ class Events(CheeseModel):
 		self.ag_price = json["AG_PRICE"]
 		self.trans_price = json["TRANS_PRICE"]
 		self.other_price = json["OTHER_PRICE"]
-		self.event_start = json["START"]
-		self.event_end = json["END"]
+		self.event_start = json["EVENT_START"]
+		self.event_end = json["EVENT_END"]
 		self.arrive = json["ARRIVE"]
 		self.depart = json["DEPART"]
 		self.end_visa = json["END_VISA"]

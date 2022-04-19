@@ -10,6 +10,8 @@ class ClubsRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from clubs;"
 	#@return array
 	@staticmethod

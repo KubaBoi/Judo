@@ -10,6 +10,8 @@ class RoomsRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from rooms;"
 	#@return array
 	@staticmethod

@@ -10,6 +10,8 @@ class JbRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from jb;"
 	#@return array
 	@staticmethod

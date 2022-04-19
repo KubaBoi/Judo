@@ -16,6 +16,8 @@ class TokensRepository(CheeseRepository):
 	def findToken(userId, userIp):
 		return CheeseRepository.findToken([userId, userIp])
 
+	#GENERATED METHODS
+
 	#@query "select * from tokens;"
 	#@return array
 	@staticmethod

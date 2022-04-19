@@ -10,6 +10,8 @@ class RegisteredHotelsRepository(CheeseRepository):
 
 
 
+	#GENERATED METHODS
+
 	#@query "select * from registered_hotels;"
 	#@return array
 	@staticmethod
