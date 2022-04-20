@@ -37,9 +37,10 @@
                 <ol>
                     <li><a href="#3.1">/create</a></li>
                     <li><a href="#3.2">/update</a></li>
-                    <li><a href="#3.3">/getAll</a></li>
-                    <li><a href="#3.4">/getByUser</a></li>
-                    <li><a href="#3.5">/remove</a></li>
+                    <li><a href="#3.3">/get</li>
+                    <li><a href="#3.4">/getAll</a></li>
+                    <li><a href="#3.5">/getByUser</a></li>
+                    <li><a href="#3.6">/remove</a></li>
                 </ol>
             </li>
             <li>
@@ -616,7 +617,54 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="3.3">/getAll - GET</span>
+                    <span class="hd3" id="3.3">/get - GET</span>
+                    <p>Get club by id</p>
+                    <p class="role">Role = 2</p>
+                    <figure>
+                        <figcaption>Accepts post body:</figcaption>
+                        <pre><code class="language-json">
+{
+    "id": 0
+}
+                        </code></pre></figure>
+                    <figure>
+                        <figcaption>Return OK - 200:</figcaption>
+                        <pre><code class="language-json">
+{
+    "CLUB": {
+        "ID": 0,
+        "STATE": "str",
+        "NAME": "str",
+        "ADDRESS": "str",
+        "USER_ID": 0
+    }
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Bad request - 400:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Wrong json structure"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Not found - 404:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Club was not found"
+}
+                            </code></pre></figure>
+                    <figure>
+                        <figcaption>Return Unauthorized - 401:</figcaption>
+                        <pre><code class="language-json">
+{
+    "ERROR": "Unauthorized access"
+}
+                            </code></pre></figure>
+                </li>
+
+                <li class="num">
+                    <span class="hd3" id="3.4">/getAll - GET</span>
                     <p>Returns array of clubs</p>
                     <p class="role">Role = 2</p>
                     <figure>
@@ -656,7 +704,7 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="3.4">/getByUser - GET</span>
+                    <span class="hd3" id="3.5">/getByUser - GET</span>
                     <p>Returns array of clubs by USER_ID</p>
                     <p class="role">Role = 2</p>
                     <figure>
@@ -699,7 +747,7 @@
                 </li>
 
                 <li class="num">
-                    <span class="hd3" id="3.5">/remove - POST</span>
+                    <span class="hd3" id="3.6">/remove - POST</span>
                     <p>Remove club</p>
                     <p class="role">Role = 2</p>
                     <p>Remove can do only user who owns club (USER_ID) </p>

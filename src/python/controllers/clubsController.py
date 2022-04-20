@@ -75,6 +75,31 @@ class ClubsController(cc):
 		response = cc.createResponse({'STATUS': 'Club has been updated'}, 200)
 		cc.sendResponse(server, response)
 
+	#@get /get
+	@staticmethod
+	def get(server, path, auth):
+		if (auth["role"] > 2):
+			Error.sendCustomError(server, "Unauthorized access", 401)
+			return
+
+		args = cc.getArgs(path)
+
+		if (not cc.validateJson(["id"], args)):
+			Error.sendCustomError(server, "Wrong json structure", 400)
+			return
+
+		id = args["id"]
+
+		club = ClubsRepository.find(id)
+		if (club == None):
+			Error.sendCustomError(server, "Club was not found", 404)
+			return
+
+		jsonResponse = club.toJson()
+
+		response = cc.createResponse({"CLUB": jsonResponse}, 200)
+		cc.sendResponse(server, response)
+
 	#@get /getAll
 	@staticmethod
 	def getAll(server, path, auth):

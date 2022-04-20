@@ -2,7 +2,7 @@ var activeClub;
 async function editClubTab(clubId) {
     var response = null;
     if (clubId != null) {
-        response = await callEndpoint("GET", "/clubs/getClub?clubId=" + clubId);
+        response = await callEndpoint("GET", "/clubs/get?id=" + clubId);
     }
     else {
         response = {

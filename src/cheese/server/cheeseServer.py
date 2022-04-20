@@ -55,7 +55,9 @@ class CheeseHandler(BaseHTTPRequestHandler):
             if (path == "/"):
                 CheeseController.serveFile(self, "index.html")
             elif (path.startswith("/clubs")):
-                if (path.startswith("/clubs/getAll")):
+                if (path.startswith("/clubs/get")):
+                    ClubsController.get(self, self.path, auth)
+                elif (path.startswith("/clubs/getAll")):
                     ClubsController.getAll(self, self.path, auth)
                 elif (path.startswith("/clubs/getByUser")):
                     ClubsController.getByUser(self, self.path, auth)
