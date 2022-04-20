@@ -1,6 +1,5 @@
 debug = true;
 
-var contentTimeout = 10;
 var activeContent;
 var alertTime = 2000;
 var loggedUser = null;

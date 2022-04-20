@@ -3,6 +3,8 @@ var clubTable;
 async function buildClubAllTable() {
     clubTable = document.getElementById("clubAllTable");
 
+    newContent("allClubsDiv");
+
     var response = await callEndpoint("GET", "/clubs/getAll");
     if (!response.ERROR) {
         clubTable.innerHTML = "";
@@ -10,8 +12,6 @@ async function buildClubAllTable() {
         for (var i = 0; i < response.CLUBS.length; i++) {
             buildClubRow(response.CLUBS[i]);
         }
-
-        setTimeout(function() { newContent("allClubsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
@@ -21,6 +21,8 @@ async function buildClubAllTable() {
 async function buildClubTable() {
     clubTable = document.getElementById("clubTable");
 
+    newContent("clubsDiv");
+
     var response = await callEndpoint("GET", "/clubs/getByUser?userId=" + loggedUser.ID);
     if (!response.ERROR) {
         clubTable.innerHTML = "";
@@ -28,8 +30,6 @@ async function buildClubTable() {
         for (var i = 0; i < response.CLUBS.length; i++) {
             buildClubRow(response.CLUBS[i], true);
         }
-
-        setTimeout(function() { newContent("clubsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);

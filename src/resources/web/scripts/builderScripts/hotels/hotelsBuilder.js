@@ -3,6 +3,8 @@ var hotelTable;
 async function buildHotelTable() {
     hotelTable = document.getElementById("hotelTable");
 
+    newContent("hotelsDiv");
+
     var response = await callEndpoint("GET", "/hotels/getAll");
     if (!response.ERROR) {
         hotelTable.innerHTML = "";
@@ -10,8 +12,6 @@ async function buildHotelTable() {
         for (var i = 0; i < response.HOTELS.length; i++) {
             buildHotelRow(response.HOTELS[i]);
         }
-
-        setTimeout(function() { newContent("hotelsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);

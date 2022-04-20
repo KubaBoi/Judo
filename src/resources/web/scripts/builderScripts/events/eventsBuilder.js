@@ -3,6 +3,8 @@ var eventTable;
 async function buildEventTable() {
     eventTable = document.getElementById("eventTable");
 
+    newContent("eventsDiv");
+
     var response = await callEndpoint("GET", "/events/getBy" + createEventFilters());
     if (!response.ERROR) {
         eventTable.innerHTML = "";
@@ -10,8 +12,6 @@ async function buildEventTable() {
         for (var i = 0; i < response.EVENTS.length; i++) {
             buildEventRow(response.EVENTS[i]);
         }
-
-        setTimeout(function() { newContent("eventsDiv"); }, activeContent);
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
