@@ -40,8 +40,9 @@ async function succLogin(response) {
         await getHtml("registrations", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("hotels", "adminFiles/",  "loggedDiv", "contentDiv");
 
-        var loggedAs = document.getElementById("loggedAs")
+        var loggedAs = document.getElementById("loggedAs");
         loggedAs.innerHTML = "admin<br>";
+        console.log(loggedAs);
     }
 
     await getHtml("main", "main/",  "loggedDiv", "contentDiv");
@@ -49,7 +50,7 @@ async function succLogin(response) {
     await getHtml("account", "main/",  "loggedDiv", "contentDiv");
     newContent("mainDiv");
 
-    var loggedAs = document.getElementById("loggedAs")
+    var loggedAs = document.getElementById("loggedAs");
     loggedAs.innerHTML += response.USER.FULL_NAME;
 
     var loginDiv = document.getElementById("loginDiv");
