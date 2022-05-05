@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS public.tokens
 CREATE TABLE IF NOT EXISTS public.roles
 (
     id bigint NOT NULL,
-    "desc" bigint NOT NULL,
+    "desc" text NOT NULL,
     PRIMARY KEY (id)
 );
 

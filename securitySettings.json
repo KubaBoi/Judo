@@ -1,0 +1,91 @@
+{
+    "authentication": {
+        "enabled": true,
+        "cookies": {
+            "attributes": {
+                "token&user.id": {
+                    "validation": "select * from tokens t where t.user_id = $user.id and t.token = $token and ip = $ip$",
+                    "roleId": "select rule_id from users where id = $user.id"
+                }
+            }
+        }
+    },
+
+    "roles": {
+        "admin": {
+            "roleId": 0,
+            "description": "Admin"
+        },
+        "organiser": {
+            "roleId": 1,
+            "description": "Organiser"
+        },
+        "client": {
+            "roleId": 2,
+            "description": "Client"
+        }
+    },
+
+    "access": {
+        "/users/get": {
+            "minRoleId": 2 
+        },
+
+        "/events/create": {
+            "minRoleId": 1
+        },
+        "/events/update": {
+            "minRoleId": 1
+        },
+        "/events/remove": {
+            "minRoleId": 1
+        },
+
+        "/clubs/*": {
+            "minRoleId": 2
+        },
+
+        "/jb/create": {
+            "minRoleId": 1
+        },
+        "/jb/createFromCvs": {
+            "minRoleId": 1
+        },
+        "/jb/createByCvs": {
+            "minRoleId": 1
+        },
+        "/jb/update": {
+            "minRoleId": 2
+        },
+        "/jb/getByClub": {
+            "minRoleId": 2
+        },
+        "/jb/remove": {
+            "minRoleId": 2
+        },
+        
+        "/hotels/create": {
+            "minRoleId": 1
+        },
+
+    },
+
+    "exceptions": [
+        {
+            "method": "GET",
+            "path": "*.html"
+        },
+        {
+            "method": "GET",
+            "path": "*.css"
+        },
+        {
+            "method": "GET",
+            "path": "*.js"
+        },
+        {
+            "method": "GET",
+            "path": "*.png"
+        }
+    ]
+}
