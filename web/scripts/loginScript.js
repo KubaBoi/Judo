@@ -5,6 +5,8 @@ async function login(alert=true) {
     setCookie("login", userName, 5);
     setCookie("password", password, 5);
 
+    authorization = `${userName}:${password}`;
+
     var response = await callEndpoint("GET", "/users/login");
     if (!response.ERROR) {
         setCookie("token", response.TOKEN, 5);
@@ -29,11 +31,11 @@ async function succLogin(response) {
     document.getElementById("regButt").setAttribute("disabled", "");
     document.getElementById("forgPassButt").setAttribute("disabled", "");
 
-    if (response.USER.RULE_ID == 2) {
+    if (response.USER.ROLE_ID == 2) {
         await getHtml("headerClient", "main/", "loggedDiv", "header");
         await getHtml("events", "main/",  "loggedDiv", "contentDiv");
     }
-    else if (response.USER.RULE_ID < 2) {
+    else if (response.USER.ROLE_ID < 2) {
         await getHtml("headerAdmin", "adminFiles/", "loggedDiv", "header");
         await getHtml("events", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("allClubs", "adminFiles/",  "loggedDiv", "contentDiv");
