@@ -56,6 +56,15 @@ button:hover {
     transition-duration: 0.5s;
 }
 
+button:disabled {
+    color: var(--main-color);
+}
+
+button:disabled:hover {
+    color: var(--lighter-color);
+    background-color: var(--light-color);
+}
+
 .textBox {
     padding: 0.3em;
     border-width: 2px;

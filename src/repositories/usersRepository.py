@@ -4,7 +4,7 @@
 from Cheese.cheeseRepository import CheeseRepository
 
 #@repository users;
-#@dbscheme (id, rule_id, login, phone, full_name);
+#@dbscheme (id, role_id, login, phone, full_name);
 #@dbmodel Users;
 class UsersRepository(CheeseRepository):
 

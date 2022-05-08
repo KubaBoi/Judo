@@ -1,28 +1,27 @@
 {
     "authentication": {
         "enabled": true,
-        "cookies": {
-            "attributes": {
-                "token&user.id": {
-                    "validation": "select * from tokens t where t.user_id = $user.id and t.token = $token and ip = $ip$",
-                    "roleId": "select rule_id from users where id = $user.id"
-                }
+        "types": [
+            {
+                "patern": "Basic $login$:$password$",
+                "validation": "select * from passwords where password = $password$ and login = $login$",
+                "roleId": "select role_id from users where login = $login$"
             }
-        }
+        ]
     },
 
     "roles": {
-        "admin": {
-            "roleId": 0,
-            "description": "Admin"
+        "0": {
+            "value": 0,
+            "name": "Admin"
         },
-        "organiser": {
-            "roleId": 1,
-            "description": "Organiser"
+        "1": {
+            "value": 1,
+            "name": "Organiser"
         },
-        "client": {
-            "roleId": 2,
-            "description": "Client"
+        "2": {
+            "value": 2,
+            "name": "Client"
         }
     },
 
@@ -66,26 +65,6 @@
         
         "/hotels/create": {
             "minRoleId": 1
-        },
-
-    },
-
-    "exceptions": [
-        {
-            "method": "GET",
-            "path": "*.html"
-        },
-        {
-            "method": "GET",
-            "path": "*.css"
-        },
-        {
-            "method": "GET",
-            "path": "*.js"
-        },
-        {
-            "method": "GET",
-            "path": "*.png"
         }
-    ]
+    }
 }
