@@ -17,10 +17,6 @@ class JbController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
@@ -57,10 +53,6 @@ class JbController(cc):
 	#@post /createFromCvs;
 	@staticmethod
 	def createFromCvs(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readBytes(server)
 
 		if (not args):
@@ -83,10 +75,6 @@ class JbController(cc):
 	#@post /createByCvs;
 	@staticmethod
 	def createFromCvs(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(["FILE_NAME", "CLUB_ID"], args)):
@@ -115,10 +103,6 @@ class JbController(cc):
 	#@post /update;
 	@staticmethod
 	def update(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
@@ -156,10 +140,6 @@ class JbController(cc):
 	#@get /getByClub;
 	@staticmethod
 	def getByClub(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['CLUB_ID'], args)):
@@ -180,10 +160,6 @@ class JbController(cc):
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):

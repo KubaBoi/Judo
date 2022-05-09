@@ -12,10 +12,6 @@ class ClubsController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['STATE', 'NAME', 'ADDRESS', 'EJU', 'USER_ID'], args)):
@@ -43,10 +39,6 @@ class ClubsController(cc):
 	#@post /update;
 	@staticmethod
 	def update(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'STATE', 'NAME', 'ADDRESS', 'EJU', 'USER_ID'], args)):
@@ -73,10 +65,6 @@ class ClubsController(cc):
 	#@get /get;
 	@staticmethod
 	def get(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["id"], args)):
@@ -97,10 +85,6 @@ class ClubsController(cc):
 	#@get /getAll;
 	@staticmethod
 	def getAll(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		clubsArray = ClubsRepository.findAll()
 		jsonResponse = {}
 		jsonResponse["CLUBS"] = []
@@ -112,10 +96,6 @@ class ClubsController(cc):
 	#@get /getByUser;
 	@staticmethod
 	def getByUser(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['userId'], args)):
@@ -135,10 +115,6 @@ class ClubsController(cc):
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):

@@ -12,10 +12,6 @@ class RegisteredJbController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['REG_CLUB_ID', 'JB_ID'], args)):
@@ -35,10 +31,6 @@ class RegisteredJbController(cc):
 	#@post /update;
 	@staticmethod
 	def update(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'ARRIVE', 'DEPARTURE', 'TRANSPORT'], args)):
@@ -61,10 +53,6 @@ class RegisteredJbController(cc):
 	#@post /getByRegisteredClub;
 	@staticmethod
 	def getByRegisteredClub(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['REG_CLUB_ID'], args)):
@@ -84,10 +72,6 @@ class RegisteredJbController(cc):
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):

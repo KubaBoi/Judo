@@ -12,10 +12,6 @@ class RegisteredHotelsController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HOTEL_ID', 'EVENT_ID'], args)):
@@ -36,10 +32,6 @@ class RegisteredHotelsController(cc):
 	#@post /getByEvent;
 	@staticmethod
 	def getByEvent(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['EVENT_ID'], args)):
@@ -60,10 +52,6 @@ class RegisteredHotelsController(cc):
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):

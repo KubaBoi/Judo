@@ -12,10 +12,6 @@ class RegisteredClubsController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['CLUB_ID', 'EVENT_ID', 'VISA'], args)):
@@ -38,10 +34,6 @@ class RegisteredClubsController(cc):
 	#@post /register;
 	@staticmethod
 	def register(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
@@ -56,10 +48,6 @@ class RegisteredClubsController(cc):
 	#@post /getByEvent;
 	@staticmethod
 	def getByEvent(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['EVENT_ID'], args)):
@@ -80,10 +68,6 @@ class RegisteredClubsController(cc):
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):

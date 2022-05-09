@@ -14,10 +14,6 @@ class HotelsController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
@@ -70,10 +66,6 @@ class HotelsController(cc):
 	#@post /update;
 	@staticmethod
 	def update(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
@@ -123,10 +115,6 @@ class HotelsController(cc):
 	#@get /getAll;
 	@staticmethod
 	def getAll(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		hotelsArray = HotelsRepository.findAll()
 		jsonResponse = {}
 		jsonResponse["HOTELS"] = []
@@ -139,10 +127,6 @@ class HotelsController(cc):
 	#@get /get;
 	@staticmethod
 	def get(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["id"], args)):
@@ -178,10 +162,6 @@ class HotelsController(cc):
 	#@get /getBy;
 	@staticmethod
 	def getBy(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["column"], args)):
@@ -202,10 +182,6 @@ class HotelsController(cc):
 	#@get /getRooms;
 	@staticmethod
 	def getRooms(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['hotelId'], args)):
@@ -227,10 +203,6 @@ class HotelsController(cc):
 	#@post /reserveBed;
 	@staticmethod
 	def reserveBed(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HOTEL_ID', 'ROOM_ID', 'JBS'], args)):
@@ -267,10 +239,6 @@ class HotelsController(cc):
 	#@get /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['id'], args)):

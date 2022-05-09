@@ -12,10 +12,6 @@ class EventsController(cc):
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
@@ -75,10 +71,6 @@ class EventsController(cc):
 	#@post /update;
 	@staticmethod
 	def update(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
@@ -131,10 +123,6 @@ class EventsController(cc):
 	#@get /getEvent;
 	@staticmethod
 	def getEvent(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['id'], args)):
@@ -156,10 +144,6 @@ class EventsController(cc):
 	#@get /getBy;
 	@staticmethod
 	def getBy(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["column"], args)):
@@ -179,10 +163,6 @@ class EventsController(cc):
 	#@get /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		if (auth["role"] > 1):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['id'], args)):

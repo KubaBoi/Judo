@@ -49,10 +49,6 @@ class UsersController(cc):
 	#@post /register;
 	@staticmethod
 	def register(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['LOGIN', 'PASSWORD', 'PHONE', 'FULL_NAME'], args)):
@@ -138,10 +134,6 @@ class UsersController(cc):
 	#@post /get;
 	@staticmethod
 	def get(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 400)
-			return
-
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['USER_ID'], args)):
