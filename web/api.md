@@ -206,7 +206,7 @@ Role = 2
 
 ```json
 {
-    "ERROR": "User with this login already exists
+    "ERROR": "User with this login already exists"
 }
 ```
 
@@ -622,7 +622,7 @@ Role = 1
 
 ```POST```
 
-Creates new jb from .cvs fileName that has been send by /createFromCvs```
+Creates new jb from .cvs fileName that has been send by ```/createFromCvs```
 
 Role = 1
 
