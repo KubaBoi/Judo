@@ -2,56 +2,56 @@
 
 ## Contents
 
- - [/users](#1-```/users```)
-    - [/login](#11-```/login```)
-    - [/create](#12-```/create```)
-    - [/get](#13-```/get```)
-    - [/register](#14-```/register```)
- - [/events](#2-```/events```)
-    - [/create](#21-```/create```)
-    - [/update](#22-```/update```)
-    - [/get](#23-```/get```)
-    - [/remove](#24-```/remove```)
- - [/clubs](#3-```/clubs```)
-    - [/create](#31-```/create```)
-    - [/update](#32-```/update```)
-    - [/get](#33-```/get```)
-    - [/getAll](#34-```/getAll```)
-    - [/getByUser](#35-```/getByUser```)
-    - [/remove](#36-```/remove```)
- - [/jb](#4-```/jb```)
-    - [/createFromCvs](#41-```/createFromCvs```)
-    - [/createByCvs](#42-```/createByCvs```)
-    - [/update](#43-```/update```)
-    - [/getByClub](#44-```/getByClub```)
-    - [/remove](#45-```/remove```)
- - [/hotels](#5-```/hotels```)
-    - [/create](#51-```/create```)
-    - [/update](#52-```/update```)
-    - [/getAll](#53-```/getAll```)
-    - [/get](#54-```/get```)
-    - [/getRooms](#55-```/getRooms```)
-    - [/reserveBed](#56-```/reserveBed```)
-    - [/remove](#57-```/remove```)
- - [/registeredClubs](#6-```/registeredClubs```)
-    - [/create](#61-```/create```)
-    - [/register](#62-```/register```)
-    - [/getByEvent](#63-```/getByEvent```)
-    - [/remove](#64-```/remove```)
- - [/registeredHotels](#7-```/registeredHotels```)
-    - [/create](#71-```/create```)
-    - [/getByEvent](#72-```/getByEvent```)
-    - [/remove](#73-```/remove```)
- - [/registeredJb](#8-```/registeredJb```)
-    - [/create](#81-```/create```)
-    - [/update](#82-```/update```)
-    - [/getByRegisteredClub](#83-```/getByRegisteredClub```)
-    - [/remove](#84-```/remove```)
- - [/registeredTests](#9-```/registeredTests```)
-    - [/create](#91-```/create```)
-    - [/update](#92-```/update```)
-    - [/getByRegisteredJb](#93-```/getByRegisteredJb```)
-    - [/remove](#94-```/remove```)
+ - [/users](#1-/users)
+    - [/login](#11-/login)
+    - [/create](#12-/create)
+    - [/get](#13-/get)
+    - [/register](#14-/register)
+ - [/events](#2-/events)
+    - [/create](#21-/create)
+    - [/update](#22-/update)
+    - [/get](#23-/get)
+    - [/remove](#24-/remove)
+ - [/clubs](#3-/clubs)
+    - [/create](#31-/create)
+    - [/update](#32-/update)
+    - [/get](#33-/get)
+    - [/getAll](#34-/getAll)
+    - [/getByUser](#35-/getByUser)
+    - [/remove](#36-/remove)
+ - [/jb](#4-/jb)
+    - [/createFromCvs](#41-/createFromCvs)
+    - [/createByCvs](#42-/createByCvs)
+    - [/update](#43-/update)
+    - [/getByClub](#44-/getByClub)
+    - [/remove](#45-/remove)
+ - [/hotels](#5-/hotels)
+    - [/create](#51-/create)
+    - [/update](#52-/update)
+    - [/getAll](#53-/getAll)
+    - [/get](#54-/get)
+    - [/getRooms](#55-/getRooms)
+    - [/reserveBed](#56-/reserveBed)
+    - [/remove](#57-/remove)
+ - [/registeredClubs](#6-/registeredClubs)
+    - [/create](#61-/create)
+    - [/register](#62-/register)
+    - [/getByEvent](#63-/getByEvent)
+    - [/remove](#64-/remove)
+ - [/registeredHotels](#7-/registeredHotels)
+    - [/create](#71-/create)
+    - [/getByEvent](#72-/getByEvent)
+    - [/remove](#73-/remove)
+ - [/registeredJb](#8-/registeredJb)
+    - [/create](#81-/create)
+    - [/update](#82-/update)
+    - [/getByRegisteredClub](#83-/getByRegisteredClub)
+    - [/remove](#84-/remove)
+ - [/registeredTests](#9-/registeredTests)
+    - [/create](#91-/create)
+    - [/update](#92-/update)
+    - [/getByRegisteredJb](#93-/getByRegisteredJb)
+    - [/remove](#94-/remove)
 
 ## RestApi
 
@@ -82,9 +82,9 @@ Request is missing some of necessary parts. And it cannot be done.
 <hr>
 <hr>
 
-# 1 ```/users```
+# 1 /users
 
-## 1.1 ```/login```
+## 1.1 /login
 
 ```GET```
 
@@ -118,7 +118,7 @@ Role = 2
 
 <hr>
 
-## 1.2 ```/create```
+## 1.2 /create
 
 ```GET```
 
@@ -144,7 +144,7 @@ Role = 2
 
 <hr>
 
-## 1.3 ```/get```
+## 1.3 /get
 
 ```POST```
 
@@ -175,7 +175,7 @@ Role = 2
 
 <hr>
 
-## 1.4 ```/register```
+## 1.4 /register
 
 ```POST```
 
@@ -213,9 +213,9 @@ Role = 2
 <hr>
 <hr>
 
-# 2 ```/events```
+# 2 /events
 
-## 2.1 ```/create```
+## 2.1 /create
 
 ```POST```
 
@@ -267,7 +267,7 @@ Role = 1
 
 <hr>
 
-## 2.2 ```/update```
+## 2.2 /update
 
 ```POST```
 
@@ -311,7 +311,7 @@ Role = 1
 
 <hr>
 
-## 2.3 ```/get```
+## 2.3 /get
 
 ```GET```
 
@@ -365,7 +365,7 @@ Role = 2
 
 <hr>
 
-## 2.4 ```/remove```
+## 2.4 /remove
 
 ```GET```
 
@@ -395,9 +395,9 @@ Remove can do only user who organise event (ORGANISER_ID)
 <hr>
 <hr>
 
-# 3 ```/clubs```
+# 3 /clubs
 
-## 3.1 ```/create```
+## 3.1 /create
 
 ```POST```
 
@@ -427,7 +427,7 @@ Role = 2
 
 <hr>
 
-## 3.2 ```/update```
+## 3.2 /update
 
 ```POST```
 
@@ -460,7 +460,7 @@ Changes can do only user who owns club (USER_ID)
 
 <hr>
 
-## 3.3 ```/get```
+## 3.3 /get
 
 ```GET```
 
@@ -500,7 +500,7 @@ Role = 2
 
 <hr>
 
-## 3.4 ```/getAll```
+## 3.4 /getAll
 
 ```GET```
 
@@ -527,7 +527,7 @@ Role = 2
 
 <hr>
 
-## 3.5 ```/getByUser```
+## 3.5 /getByUser
 
 ```GET```
 
@@ -562,7 +562,7 @@ Role = 2
 
 <hr>
 
-## 3.6 ```/remove```
+## 3.6 /remove
 
 ```POST```
 
@@ -592,9 +592,9 @@ Remove can do only user who owns club (USER_ID)
 <hr>
 <hr>
 
-# 4 ```/jb```
+# 4 /jb
 
-## 4.1 ```/createFromCvs```
+## 4.1 /createFromCvs
 
 ```POST```
 
@@ -618,11 +618,11 @@ Role = 1
 
 <hr>
 
-## 4.2 ```/createByCvs```
+## 4.2 /createByCvs
 
 ```POST```
 
-Creates new jb from .cvs fileName that has been send by ```/createFromCvs```
+Creates new jb from .cvs fileName that has been send by /createFromCvs```
 
 Role = 1
 
@@ -645,7 +645,7 @@ Role = 1
 
 <hr>
 
-## 4.3 ```/update```
+## 4.3 /update
 
 ```POST```
 
@@ -683,7 +683,7 @@ Changes can do only user who owns club (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 4.4 ```/getByClub```
+## 4.4 /getByClub
 
 ```GET```
 
@@ -725,7 +725,7 @@ Can only get club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 4.5 ```/remove```
+## 4.5 /remove
 
 ```POST```
 
@@ -755,9 +755,9 @@ Remove can do only user who owns club (CLUB_UD -> USER_ID)
 <hr>
 
 
-# 5 ```/hotels```
+# 5 /hotels
 
-## 5.1 ```/create```
+## 5.1 /create
 
 ```POST```
 
@@ -798,7 +798,7 @@ Role = 1
 
 <hr>
 
-## 5.2 ```/update```
+## 5.2 /update
 
 ```POST```
 
@@ -839,7 +839,7 @@ Role = 1
 
 <hr>
 
-## 5.3 ```/getAll```
+## 5.3 /getAll
 
 ```GET```
 
@@ -876,7 +876,7 @@ Role = 2
 
 <hr>
 
-## 5.4 ```/get```
+## 5.4 /get
 
 ```GET```
 
@@ -919,7 +919,7 @@ Role = 2
 
 <hr>
 
-## 5.5 ```/getRooms```
+## 5.5 /getRooms
 
 ```GET```
 
@@ -960,7 +960,7 @@ Role = 2
 
 <hr>
 
-## 5.6 ```/reserveBed```
+## 5.6 /reserveBed
 
 ```POST```
 
@@ -1008,7 +1008,7 @@ Role = 2
 
 <hr>
 
-## 5.7 ```/remove```
+## 5.7 /remove
 
 ```POST```
 
@@ -1035,9 +1035,9 @@ Role = 1
 <hr>
 <hr>
 
-# 6 ```/registeredClubs```
+# 6 /registeredClubs
 
-## 6.1 ```/create```
+## 6.1 /create
 
 ```POST```
 
@@ -1067,7 +1067,7 @@ Register club can only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 6.2 ```/register```
+## 6.2 /register
 
 ```POST```
 
@@ -1093,7 +1093,7 @@ Role = 1
 
 <hr>
 
-## 6.3 ```/getByEvent```
+## 6.3 /getByEvent
 
 ```POST```
 
@@ -1127,7 +1127,7 @@ Role = 1
 
 <hr>
 
-## 6.4 ```/remove```
+## 6.4 /remove
 
 ```POST```
 
@@ -1154,9 +1154,9 @@ Role = 1
 <hr>
 <hr>
 
-# 7 ```/registeredHotels```
+# 7 /registeredHotels
 
-## 7.1 ```/create```
+## 7.1 /create
 
 ```POST```
 
@@ -1183,7 +1183,7 @@ Role = 1
 
 <hr>
 
-## 7.2 ```/getByEvent```
+## 7.2 /getByEvent
 
 ```POST```
 
@@ -1215,7 +1215,7 @@ Role = 1
 
 <hr>
 
-## 7.3 ```/remove```
+## 7.3 /remove
 
 ```POST```
 
@@ -1242,9 +1242,9 @@ Role = 1
 <hr>
 <hr>
 
-# 8 ```/registeredJb```
+# 8 /registeredJb
 
-## 8.1 ```/create```
+## 8.1 /create
 
 ```POST```
 
@@ -1273,7 +1273,7 @@ Register club can only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.2 ```/update```
+## 8.2 /update
 
 ```POST```
 
@@ -1304,7 +1304,7 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.3 ```/getByRegisteredClub```
+## 8.3 /getByRegisteredClub
 
 ```POST```
 
@@ -1341,7 +1341,7 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.4 ```/remove```
+## 8.4 /remove
 
 ```POST```
 
@@ -1370,27 +1370,27 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 <hr>
 <hr>
 
-# 9 ```/registeredTests```
+# 9 /registeredTests
 
-## 9.1 ```/create```
-
-WIP
-
-<hr>
-
-## 9.2 ```/update```
+## 9.1 /create
 
 WIP
 
 <hr>
 
-## 9.3 ```/getByRegisteredJb```
+## 9.2 /update
 
 WIP
 
 <hr>
 
-## 9.4 ```/remove```
+## 9.3 /getByRegisteredJb
+
+WIP
+
+<hr>
+
+## 9.4 /remove
 
 WIP
 
