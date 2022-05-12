@@ -1,8 +1,5 @@
 # Judo
 
-:-1:
-:+1:
-
 ## Contents
 
  - [/users](#1-/users)
