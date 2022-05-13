@@ -9,6 +9,13 @@ from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 #@controller /registeredClubs;
 class RegisteredClubsController(cc):
 
+	"""
+	status:
+	0 - not checked by organiser
+	1 - not checked by club owner
+	2 - registered
+	"""
+
 	#@post /create;
 	@staticmethod
 	def create(server, path, auth):
@@ -26,6 +33,7 @@ class RegisteredClubsController(cc):
 		registeredclubsModel.club_id = clubId
 		registeredclubsModel.event_id = eventId
 		registeredclubsModel.visa = visa
+		registeredclubsModel.status = 0
 		RegisteredClubsRepository.save(registeredclubsModel)
 
 		return cc.createResponse({"ID": registeredclubsModel.id}, 200)
@@ -41,9 +49,17 @@ class RegisteredClubsController(cc):
 			return
 
 		id = args["ID"]
+		registeredClub = RegisteredClubsRepository.findBy("columnName-id", id)[0]
+		registeredClub.status = 1
+		RegisteredClubsRepository.update(registeredClub)
 
 		return cc.createResponse({'STATUS': 'Club has been registered'}, 200)
 
+	#@get /getAll;
+	@staticmethod
+	def getAll(server, path, auth):
+		regClubs = RegisteredClubsRepository.findAll()
+		return cc.createResponse({"REGISTERED_CLUBS": cc.modulesToJsonArray(regClubs)}, 200)
 
 	#@post /getByEvent;
 	@staticmethod

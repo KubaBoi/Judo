@@ -14,24 +14,3 @@ class HotelsRepository(CheeseRepository):
 	def findBySorted(columnName):
 		return CheeseRepository.query([columnName])
 
-
-	#GENERATED METHODS
-
-	#@query "select * from hotels;";
-	#@return array;
-	@staticmethod
-	def findAll():
-		return CheeseRepository.query()
-
-	#@query "select * from hotels where id=:id;";
-	#@return one;
-	@staticmethod
-	def find(id):
-		return CheeseRepository.query(id=id)
-
-	#@query "select * from hotels where :columnName=:value;";
-	#@return array;
-	@staticmethod
-	def findBy(columnName, value):
-		return CheeseRepository.query(columnName=columnName, value=value)
-

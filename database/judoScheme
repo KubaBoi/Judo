@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS public.users
     login text NOT NULL,
     phone text NOT NULL,
     full_name text NOT NULL,
-    role_id bigint NOT NULL,
+    rule_id bigint NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -80,6 +80,16 @@ CREATE TABLE IF NOT EXISTS public.tokens
     ip text NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS public.roles
+(
+    id bigint NOT NULL,
+    "desc" text NOT NULL,
+    PRIMARY KEY (id)
+);
+
+COMMENT ON TABLE public.roles
+    IS 'rule 0 = admin, rule 1 = organiser, rule 2 = client';
 
 CREATE TABLE IF NOT EXISTS public.hotels
 (
@@ -118,7 +128,7 @@ CREATE TABLE IF NOT EXISTS public.registered_clubs
     event_id bigint NOT NULL,
     club_id bigint NOT NULL,
     visa boolean NOT NULL,
-    checked boolean NOT NULL,
+    status bigint NOT NULL,
     PRIMARY KEY (id)
 );
 

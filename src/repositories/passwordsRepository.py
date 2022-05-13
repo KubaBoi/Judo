@@ -19,23 +19,3 @@ class PasswordsRepository(CheeseRepository):
 	def login(login, password):
 		return CheeseRepository.query(login=login, password=password)
 
-	#GENERATED METHODS
-
-	#@query "select * from passwords;";
-	#@return array;
-	@staticmethod
-	def findAll():
-		return CheeseRepository.query()
-
-	#@query "select * from passwords where id=:id;";
-	#@return one;
-	@staticmethod
-	def find(id):
-		return CheeseRepository.query(id=id)
-
-	#@query "select * from passwords where :columnName=:value;";
-	#@return array;
-	@staticmethod
-	def findBy(columnName, value):
-		return CheeseRepository.query(columnName=columnName, value=value)
-

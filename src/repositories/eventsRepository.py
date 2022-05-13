@@ -13,25 +13,4 @@ class EventsRepository(CheeseRepository):
 	@staticmethod
 	def findBySorted(columnName):
 		return CheeseRepository.query(columnName=columnName)
-		
-
-	#GENERATED METHODS
-
-	#@query "select * from events;";
-	#@return array;
-	@staticmethod
-	def findAll():
-		return CheeseRepository.query()
-
-	#@query "select * from events where id=:id;";
-	#@return one;
-	@staticmethod
-	def find(id):
-		return CheeseRepository.query(id=id)
-
-	#@query "select * from events where :columnName=:value;";
-	#@return array;
-	@staticmethod
-	def findBy(columnName, value):
-		return CheeseRepository.query(columnName=columnName, value=value)
 

@@ -3,7 +3,7 @@
         "enabled": true,
         "types": [
             {
-                "patern": "$login$:$password$",
+                "patern": "(?P<login>\\w+):(?P<password>\\w+)",
                 "validation": "select * from passwords where password = $password$ and login = $login$",
                 "roleId": "select role_id from users where login = $login$"
             }

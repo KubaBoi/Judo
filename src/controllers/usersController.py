@@ -38,7 +38,7 @@ class UsersController(cc):
 			Error.sendCustomError(server, "Wrong credentials", 401)
 			return
 
-		user = UsersRepository.findBy("columnName-login", login)
+		user = UsersRepository.findBy("login", login)
 		if (len(user) > 0):
 			user = user[0]
 		userIp = cc.getClientAddress(server)
