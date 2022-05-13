@@ -40,7 +40,7 @@ class RegisteredHotelsController(cc):
 
 		eventId = args["EVENT_ID"]
 
-		registeredhotelsArray = RegisteredHotelsRepository.findBy("columnName-event_id", eventId)
+		registeredhotelsArray = RegisteredHotelsRepository.findBy("event_id", eventId)
 		jsonResponse = {}
 		jsonResponse["REGISTERED_HOTELS"] = []
 		for registered_hotel in registeredhotelsArray:

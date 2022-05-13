@@ -60,7 +60,7 @@ class UsersController(cc):
 		phone = args["PHONE"]
 		fullName = args["FULL_NAME"]
 
-		users = UsersRepository.findBy("columnName-login", login)
+		users = UsersRepository.findBy("login", login)
 		if (len(users) > 0):
 			Error.sendCustomError(server, "User with this login already exists", 409)
 			return
@@ -100,7 +100,7 @@ class UsersController(cc):
 			return
 
 		code = args["code"]
-		registration = RegistrationsRepository.findBy("columnName-registration_code", code)
+		registration = RegistrationsRepository.findBy("registration_code", code)
 		if (registration == None):
 			Error.sendCustomError(server, "Registration is invalid", 401)
 			return
@@ -156,10 +156,10 @@ class UsersController(cc):
 		token = TokensRepository.findToken(userId, userIp)
 		if (token == None):
 			tokenString = UsersController.randomString(10)
-			oldToken = TokensRepository.findBy("columnName-token", tokenString)
+			oldToken = TokensRepository.findBy("token", tokenString)
 			while (len(oldToken) > 0):
 				tokenString = UsersController.randomString(10)
-				oldToken = TokensRepository.findBy("columnName-token", tokenString)
+				oldToken = TokensRepository.findBy("token", tokenString)
 			
 			token = TokensRepository.model()
 			token.token = tokenString

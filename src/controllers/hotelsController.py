@@ -37,7 +37,7 @@ class HotelsController(cc):
 		apartmanRoomPrice = args["APARTMAN_ROOM_PRICE"]
 
 		if (not args["HARD_CREATE"]):
-			existingHotel = HotelsRepository.findBy("columnName-name", name)
+			existingHotel = HotelsRepository.findBy("name", name)
 			if (existingHotel == None):
 				return
 			if (len(existingHotel) > 0):
@@ -219,7 +219,7 @@ class HotelsController(cc):
 			Error.sendCustomError("Room is already occupied")
 			return
 
-		beds = BedRepository.findBy("columnName-room_id", roomId)
+		beds = BedRepository.findBy("room_id", roomId)
 
 		if (len(beds) < len(jbs)):
 			Error.sendCustomError(server, "Room does not have such a capacity", 103)
@@ -247,9 +247,9 @@ class HotelsController(cc):
 
 		id = args["id"]
 
-		rooms = RoomsRepository.findBy("columnName-hotel_id", id)
+		rooms = RoomsRepository.findBy("hotel_id", id)
 		for room in rooms:
-			beds = BedRepository.findBy("columnName-room_id", room.id)
+			beds = BedRepository.findBy("room_id", room.id)
 			for bed in beds:
 				BedRepository.delete(bed)
 			RoomsRepository.delete(room)
@@ -286,7 +286,7 @@ class HotelsController(cc):
 		if (len(rooms) > roomCount):
 			more = len(rooms) - roomCount
 			for i in range(more):
-				beds = BedRepository.findBy("columnName-room_id", rooms[0].id)
+				beds = BedRepository.findBy("room_id", rooms[0].id)
 				for bed in beds:
 					BedRepository.delete(bed)
 				RoomsRepository.delete(rooms[0])

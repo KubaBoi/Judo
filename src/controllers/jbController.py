@@ -148,7 +148,7 @@ class JbController(cc):
 
 		clubId = args["CLUB_ID"]
 
-		jbArray = JbRepository.findBy("columnName-club_id", clubId)
+		jbArray = JbRepository.findBy("club_id", clubId)
 		jsonResponse = {}
 		jsonResponse["JBS"] = []
 		for jb in jbArray:

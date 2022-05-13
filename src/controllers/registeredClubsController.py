@@ -49,7 +49,7 @@ class RegisteredClubsController(cc):
 			return
 
 		id = args["ID"]
-		registeredClub = RegisteredClubsRepository.findBy("columnName-id", id)[0]
+		registeredClub = RegisteredClubsRepository.find(id)
 		registeredClub.status = 1
 		RegisteredClubsRepository.update(registeredClub)
 
@@ -72,7 +72,7 @@ class RegisteredClubsController(cc):
 
 		eventId = args["EVENT_ID"]
 
-		registeredclubsArray = RegisteredClubsRepository.findBy("columnName-event_id", eventId)
+		registeredclubsArray = RegisteredClubsRepository.findBy("event_id", eventId)
 		jsonResponse = {}
 		jsonResponse["REGISTERED_CLUBS"] = []
 		for registered_club in registeredclubsArray:

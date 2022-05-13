@@ -61,7 +61,7 @@ class RegisteredJbController(cc):
 
 		regClubId = args["REG_CLUB_ID"]
 
-		registeredjbArray = RegisteredJbRepository.findBy("columnName-reg_club_id", regClubId)
+		registeredjbArray = RegisteredJbRepository.findBy("reg_club_id", regClubId)
 		jsonResponse = {}
 		jsonResponse["REGISTERED_JBS"] = []
 		for registered_jb in registeredjbArray:

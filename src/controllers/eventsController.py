@@ -38,7 +38,7 @@ class EventsController(cc):
 		otherPrice = args["OTHER_PRICE"]
 		showHotel = args["SHOW_HOTEL"]
 
-		exists = EventsRepository.findBy("columnName-name", name)
+		exists = EventsRepository.findBy("name", name)
 		if (exists == None):
 			return
 		if (len(exists) > 0 and not hardCreate):

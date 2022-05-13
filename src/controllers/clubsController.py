@@ -104,7 +104,7 @@ class ClubsController(cc):
 
 		userId = int(args["userId"])
 
-		clubsArray = ClubsRepository.findBy("columnName-user_id", userId)
+		clubsArray = ClubsRepository.findBy("user_id", userId)
 		jsonResponse = {}
 		jsonResponse["CLUBS"] = []
 		for club in clubsArray:
