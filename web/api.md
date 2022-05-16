@@ -38,6 +38,7 @@
     - [/register](#62-register)
     - [/getByEvent](#63-getByEvent)
     - [/remove](#64-remove)
+    - [/getAll](#65-getall)
  - [/registeredHotels](#7-registeredHotels)
     - [/create](#71-create)
     - [/getByEvent](#72-getByEvent)
@@ -92,12 +93,11 @@ Creates or finds token
 
 Role = 2
 
-### Accepts cookies
+### Authorization
 
 ```json
 {
-    "login": "str",
-    "password": "str"
+    "username":"password"
 }
 ```
 
@@ -146,17 +146,17 @@ Role = 2
 
 ## 1.3 /get
 
-```POST```
+```GET```
 
 Get user by id
 
 Role = 2
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "USER_ID": 0
+    "userId": 0
 }
 ```
 
@@ -323,7 +323,7 @@ Role = 2
 
 ```json
 {
-    "id": 0
+    "eventId": 0
 }
 ```
 
@@ -367,7 +367,7 @@ Role = 2
 
 ## 2.4 /remove
 
-```GET```
+```POST```
 
 Removes event
 
@@ -375,11 +375,11 @@ Role = 1
 
 Remove can do only user who organise event (ORGANISER_ID)
 
-### Accepts path arguments
+### Accepts post body
 
 ```json
 {
-    "id": 0
+    "EVENT_ID": 0
 }
 ```
 
@@ -421,7 +421,7 @@ Role = 2
 
 ```json
 {
-    "ID": 0 //club id
+    "CLUB_ID": 0 //club id
 }
 ```
 
@@ -468,11 +468,11 @@ Get club by id
 
 Role = 2
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "id": 0
+    "club_id": 0
 }
 ```
 
@@ -576,7 +576,7 @@ Remove can do only user who owns club (USER_ID)
 
 ```json
 {
-    "ID": 0
+    "CLUB_ID": 0
 }
 ```
 
@@ -693,11 +693,11 @@ Role = 2
 
 Can only get club owner (CLUB_ID -> USER_ID)
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "CLUB_ID": 0
+    "clubId": 0
 }
 ```
 
@@ -888,7 +888,7 @@ Role = 2
 
 ```json
 {
-    "id": 0
+    "hotel_id": 0
 }
 ```
 
@@ -1095,17 +1095,17 @@ Role = 1
 
 ## 6.3 /getByEvent
 
-```POST```
+```GET```
 
 Return all clubs registered in event
 
 Role = 1
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "EVENT_ID": 0
+    "eventId": 0
 }
 ```
 
@@ -1119,7 +1119,7 @@ Role = 1
             "CLUB_ID": 0,
             "EVENT_ID": 0,
             "VISA": true,
-            "CHECKED": true
+            "STATUS": 0
         }
     ]
 }
@@ -1148,6 +1148,30 @@ Role = 1
 ```json
 {
     "STATUS": "Club has been removed from registration"
+}
+```
+
+## 6.5 /getAll
+
+```GET```
+
+Get all registrations
+
+Role = 1
+
+### Return OK - 200
+
+```json
+{
+    "REGISTERED_CLUBS": [
+        {
+            "ID": 0,
+            "CLUB_ID": 0,
+            "EVENT_ID": 0,
+            "VISA": true,
+            "STATUS": 0
+        }
+    ]
 }
 ```
 
@@ -1185,17 +1209,17 @@ Role = 1
 
 ## 7.2 /getByEvent
 
-```POST```
+```GET```
 
 Return all clubs registered in event
 
 Role = 1
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "EVENT_ID": 0
+    "eventId": 0
 }
 ```
 
@@ -1306,7 +1330,7 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 
 ## 8.3 /getByRegisteredClub
 
-```POST```
+```GET```
 
 Return all reg_jbs from reg_club
 
@@ -1314,11 +1338,11 @@ Role = 2
 
 Changes can do only club owner (CLUB_ID -> USER_ID)
 
-### Accepts post body
+### Accepts path arguments
 
 ```json
 {
-    "REG_CLUB_ID": 0
+    "regClubId": 0
 }
 ```
 
