@@ -29,16 +29,16 @@ class RegisteredHotelsController(cc):
 		return cc.createResponse({"ID": registeredhotelsModel.id}, 200)
 
 
-	#@post /getByEvent;
+	#@get /getByEvent;
 	@staticmethod
 	def getByEvent(server, path, auth):
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['EVENT_ID'], args)):
+		if (not cc.validateJson(['eventId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		eventId = args["EVENT_ID"]
+		eventId = args["eventId"]
 
 		registeredhotelsArray = RegisteredHotelsRepository.findBy("event_id", eventId)
 		jsonResponse = {}

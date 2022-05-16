@@ -67,11 +67,11 @@ class ClubsController(cc):
 	def get(server, path, auth):
 		args = cc.getArgs(path)
 
-		if (not cc.validateJson(["id"], args)):
+		if (not cc.validateJson(["clubId"], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		id = args["id"]
+		id = args["clubId"]
 
 		club = ClubsRepository.find(id)
 		if (club == None):

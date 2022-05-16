@@ -50,16 +50,16 @@ class RegisteredJbController(cc):
 
 		return cc.createResponse({'STATUS': 'Jb has been updated'}, 200)
 
-	#@post /getByRegisteredClub;
+	#@get /getByRegisteredClub;
 	@staticmethod
 	def getByRegisteredClub(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['REG_CLUB_ID'], args)):
+		if (not cc.validateJson(['regClubId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		regClubId = args["REG_CLUB_ID"]
+		regClubId = args["regClubId"]
 
 		registeredjbArray = RegisteredJbRepository.findBy("reg_club_id", regClubId)
 		jsonResponse = {}

@@ -25,26 +25,13 @@ class UsersController(cc):
 	#@get /login;
 	@staticmethod
 	def login(server, path, auth):
-		args = cc.getCookies(server)
-
-		if (not cc.validateJson(['login', 'password'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
-
-		login = args["login"]
-		password = args["password"]
-
-		if (not PasswordsRepository.login(login, password)):
-			Error.sendCustomError(server, "Wrong credentials", 401)
-			return
+		login = auth["login"]["login"]
 
 		user = UsersRepository.findBy("login", login)
 		if (len(user) > 0):
 			user = user[0]
-		userIp = cc.getClientAddress(server)
-		token = UsersController.getToken(user.id, userIp)
 
-		return cc.createResponse({"TOKEN": token.toJson(), "USER": user.toJson()}, 200)
+		return cc.createResponse({"USER": user.toJson()}, 200)
 
 	#@post /register;
 	@staticmethod
@@ -131,16 +118,16 @@ class UsersController(cc):
 
 		return cc.createResponse({"STATUS": "User has been created"}, 200)
 
-	#@post /get;
+	#@get /get;
 	@staticmethod
 	def get(server, path, auth):
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['USER_ID'], args)):
+		if (not cc.validateJson(['userId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		userId = args["USER_ID"]
+		userId = args["userId"]
 
 		usersModel = UsersRepository.find(userId)
 		jsonResponse = {}

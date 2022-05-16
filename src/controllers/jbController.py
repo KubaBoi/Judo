@@ -140,13 +140,13 @@ class JbController(cc):
 	#@get /getByClub;
 	@staticmethod
 	def getByClub(server, path, auth):
-		args = cc.readArgs(server)
+		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['CLUB_ID'], args)):
+		if (not cc.validateJson(['clubId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		clubId = args["CLUB_ID"]
+		clubId = args["clubId"]
 
 		jbArray = JbRepository.findBy("club_id", clubId)
 		jsonResponse = {}

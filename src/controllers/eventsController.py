@@ -125,11 +125,11 @@ class EventsController(cc):
 	def getEvent(server, path, auth):
 		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['id'], args)):
+		if (not cc.validateJson(['eventId'], args)):
 			Error.sendCustomError(server, "Wrong json structure", 400)
 			return
 
-		id = args["id"]
+		id = args["eventId"]
 
 		event = EventsRepository.find(id)
 		if (event == None):

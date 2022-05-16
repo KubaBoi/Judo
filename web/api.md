@@ -89,7 +89,7 @@ Request is missing some of necessary parts. And it cannot be done.
 
 ```GET```
 
-Creates or finds token
+Validates login credentials
 
 Role = 2
 
@@ -105,7 +105,6 @@ Role = 2
 
 ```json
 {
-    "TOKEN": "str",
     "USER": {
         "ID": 0,
         "LOGIN": "str",
