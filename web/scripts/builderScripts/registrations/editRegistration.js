@@ -2,7 +2,7 @@ var activeHotel;
 async function editHotelTab(hotelId) {
     var response = null;
     if (hotelId != null) {
-        response = await callEndpoint("GET", "/hotels/get?id=" + hotelId);
+        response = await callEndpoint("GET", "/registeredClubs/get?id=" + hotelId);
     }
     else {
         response = {

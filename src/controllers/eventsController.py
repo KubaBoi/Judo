@@ -120,9 +120,9 @@ class EventsController(cc):
 
 		return cc.createResponse({'STATUS': 'Event has been changed'}, 200)
 
-	#@get /getEvent;
+	#@get /get;
 	@staticmethod
-	def getEvent(server, path, auth):
+	def get(server, path, auth):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['eventId'], args)):

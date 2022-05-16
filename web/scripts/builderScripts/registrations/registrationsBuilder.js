@@ -1,16 +1,36 @@
-var hotelTable;
+var registrationsTable;
 
 async function buildRegistrationsTable() {
-    hotelTable = document.getElementById("hotelTable");
+    registrationsTable = document.getElementById("registrationsTable");
 
-    newContent("hotelsDiv");
+    let tables = [
+        "PENDING",
+        "CHECKED",
+        "REGISTERED"
+    ]
 
-    var response = await callEndpoint("GET", "/hotels/getAll");
+    newContent("registrationsDiv");
+
+    var response = await callEndpoint("GET", "/registeredClubs/getAllData");
     if (!response.ERROR) {
-        hotelTable.innerHTML = "";
-        createHotelHeaderRow();
-        for (var i = 0; i < response.HOTELS.length; i++) {
-            buildHotelRow(response.HOTELS[i]);
+        clearTable(registrationsTable);
+
+        createRegistrationsHeaderRow();
+
+        for (let tblI = 0; tblI < 3; tblI++) {
+
+            for (var i = 0; i < response.REGISTERED_CLUBS.length; i++) {
+                let regC = response.REGISTERED_CLUBS[i];
+
+                if (regC.STATUS != tblI) continue;
+
+                addRow(registrationsTable, [
+                    {"text": regC.CLUB_NAME},
+                    {"text": regC.EVENT_NAME},
+                    {"text": regC.VISA},
+                    {"text": tables[tblI]}
+                ]);
+            }
         }
     } 
     else if (response.ERROR != "No cookies") {
@@ -18,35 +38,10 @@ async function buildRegistrationsTable() {
     }
 }
 
-function buildHotelRow(hotel) {
-    var row = createElement("tr", hotelTable);
-    createElement("td", row, hotel.NAME, 
-    [
-        {"name": "onclick", "value": "showHotelTab(" + hotel.ID + ")"}
-    ]);
-
-    createElement("td", row, hotel.ADDRESS, 
-    [
-        {"name": "onclick", "value": "showHotelTab(" + hotel.ID + ")"}
-    ]);
-    
-    createElement("td", row, "<img src='/images/editIcon48.png'>",
-    [
-        {"name": "class", "value": "smallCell"},
-        {"name": "onclick", "value": "editHotelTab(" + hotel.ID + ")"}
-    ]);
-
-    createElement("td", row, "<img src='/images/deleteIcon48.png'>",
-    [
-        {"name": "class", "value": "smallCellLast"},
-        {"name": "onclick", "value": "deleteHotel(" + hotel.ID + ")"}
-    ]);
-}
-
-function createHotelHeaderRow() {
-    var row = createElement("tr", hotelTable);
-    createElement("th", row, "Name");
-    createElement("th", row, "Address");
-    createElement("th", row);
-    createElement("th", row);
+function createRegistrationsHeaderRow() {
+    var row = createElement("tr", registrationsTable);
+    createElement("th", row, "Club");
+    createElement("th", row, "Event");
+    createElement("th", row, "Visa");
+    createElement("th", row, "Status");
 }

@@ -5,6 +5,8 @@ from Cheese.ErrorCodes import Error
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
+from src.repositories.clubsRepository import ClubsRepository
+from src.repositories.eventsRepository import EventsRepository
 
 #@controller /registeredClubs;
 class RegisteredClubsController(cc):
@@ -96,5 +98,18 @@ class RegisteredClubsController(cc):
 		RegisteredClubsRepository.delete(registeredclubsModel)
 
 		return cc.createResponse({'STATUS': 'Club has been removed from registration'}, 200)
+
+	#@get /getAllData;
+	@staticmethod
+	def getAllData(server, path, auth):
+		regClubs = RegisteredClubsRepository.findAll()
+		jsonArr = cc.modulesToJsonArray(regClubs)
+
+		for item in jsonArr:
+			item["CLUB_NAME"] = ClubsRepository.find(item["CLUB_ID"]).name
+			item["EVENT_NAME"] = EventsRepository.find(item["EVENT_ID"]).name
+
+
+		return cc.createResponse({"REGISTERED_CLUBS": jsonArr}, 200)
 
 

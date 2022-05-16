@@ -39,6 +39,7 @@
     - [/getByEvent](#63-getByEvent)
     - [/remove](#64-remove)
     - [/getAll](#65-getall)
+    - [/getAllData](#66-getalldata)
  - [/registeredHotels](#7-registeredHotels)
     - [/create](#71-create)
     - [/getByEvent](#72-getByEvent)
@@ -471,7 +472,7 @@ Role = 2
 
 ```json
 {
-    "club_id": 0
+    "clubId": 0
 }
 ```
 
@@ -1150,6 +1151,8 @@ Role = 1
 }
 ```
 
+<hr>
+
 ## 6.5 /getAll
 
 ```GET```
@@ -1169,6 +1172,34 @@ Role = 1
             "EVENT_ID": 0,
             "VISA": true,
             "STATUS": 0
+        }
+    ]
+}
+```
+
+<hr>
+
+## 6.6 /getAllData
+
+```GET```
+
+Get all registrations and names of clubs and events
+
+Role = 1
+
+### Return OK - 200
+
+```json
+{
+    "REGISTERED_CLUBS": [
+        {
+            "ID": 0,
+            "CLUB_ID": 0,
+            "EVENT_ID": 0,
+            "VISA": true,
+            "STATUS": 0,
+            "CLUB_NAME": "str",
+            "EVENT_NAME": "str"
         }
     ]
 }
