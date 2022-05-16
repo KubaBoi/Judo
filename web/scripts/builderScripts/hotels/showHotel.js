@@ -1,6 +1,6 @@
 async function showHotelTab(hotelId) {
 
-    var response = await callEndpoint("GET", "/hotels/get?id=" + hotelId);
+    var response = await callEndpoint("GET", "/hotels/get?hotelId=" + hotelId);
     if (!response.ERROR) {
         activeHotel = response.HOTEL;
         var hiddenTab = openHiddenTab();

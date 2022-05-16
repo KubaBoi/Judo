@@ -2,7 +2,7 @@ var activeHotel;
 async function editHotelTab(hotelId) {
     var response = null;
     if (hotelId != null) {
-        response = await callEndpoint("GET", "/hotels/get?id=" + hotelId);
+        response = await callEndpoint("GET", "/hotels/get?hotelId=" + hotelId);
     }
     else {
         response = {
@@ -155,7 +155,7 @@ function deleteHotel(hotelId) {
 }   
 
 async function reallyDeleteHotel(hotelId) {
-    var response = await callEndpoint("GET", "/hotels/remove?id=" + hotelId);
+    var response = await callEndpoint("POST", "/hotels/remove?id=" + hotelId);
     if (!response.ERROR) {
         showTimerAlert("Success :)", "Hotel was deleted", alertTime, "divOkAlert",
             {"name": "okShowAlert", "duration": "0.5s"},

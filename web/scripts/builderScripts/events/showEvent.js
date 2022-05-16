@@ -1,5 +1,5 @@
 async function showEventTab(eventId) {
-    var response = await callEndpoint("GET", "/events/getEvent?id=" + eventId);
+    var response = await callEndpoint("GET", "/events/getEvent?eventId=" + eventId);
     if (!response.ERROR) {
         activeEvent = response.EVENT;
         var hiddenTab = openHiddenTab();

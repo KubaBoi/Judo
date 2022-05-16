@@ -2,7 +2,7 @@ var activeEvent;
 async function editEventTab(eventId) {
     var response = null;
     if (eventId != null) {
-        response = await callEndpoint("GET", "/events/getEvent?id=" + eventId);
+        response = await callEndpoint("GET", "/events/getEvent?eventId=" + eventId);
     }
     else {
         response = {
@@ -149,7 +149,7 @@ function deleteEvent(eventId) {
 }   
 
 async function reallyDeleteEvent(eventId) {
-    var response = await callEndpoint("GET", "/events/remove?id=" + eventId);
+    var response = await callEndpoint("POST", "/events/remove?id=" + eventId);
     if (!response.ERROR) {
         showTimerAlert("Success :)", "Event was deleted", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},

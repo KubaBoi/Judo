@@ -49,7 +49,7 @@ async function buildClubRow(club, owner=false) {
     ]);
     
     var ownerName = "Not loaded";
-    var response = await callEndpoint("POST", "/users/get", {"USER_ID": club.USER_ID});
+    var response = await callEndpoint("GET", `/users/get?userId=${club.USER_ID}`);
     if (!response.ERROR) {
         ownerName = response.USER.FULL_NAME;
     }
