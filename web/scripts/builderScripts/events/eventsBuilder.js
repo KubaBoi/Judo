@@ -47,8 +47,14 @@ function buildEventRow(event) {
     [
         {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
     ]);
+
+    createElement("td", row, "REGISTER",
+    [
+        {"name": "class", "value": "smallCellLast"},
+        {"name": "onclick", "value": "editEventTab(" + event.ID + ")"}
+    ]);
     
-    if (loggedUser.RULE_ID < 2) {
+    if (loggedUser.ROLE_ID < 2) {
         createElement("td", row, "<img src='/images/editIcon48.png'>",
         [
             {"name": "class", "value": "smallCell"},
@@ -68,6 +74,7 @@ function createEventHeaderRow() {
     createElement("th", row, "Name");
     createElement("th", row, "Start");
     createElement("th", row, "Place");
+    createElement("th", row);
     if (loggedUser.RULE_ID < 2) {
         createElement("th", row);
         createElement("th", row);

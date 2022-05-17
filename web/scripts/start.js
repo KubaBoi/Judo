@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 var activeContent;
 var alertTime = 2000;
@@ -6,6 +6,9 @@ var loggedUser = null;
 var userAccountName;
 var userName = getCookie("login");
 var password = getCookie("password");
+
+var loadingDiv = document.getElementById("loaderDiv");
+
 loadPage(["login", "registration", "phoneCodes"], true);
 
 // startArray are divs that are nnecessary for first run

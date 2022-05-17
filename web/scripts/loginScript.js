@@ -27,6 +27,7 @@ async function login(alert=true) {
 }
 
 async function succLogin(response) {
+    showLoader();
     document.getElementById("singInButt").setAttribute("disabled", "");
     document.getElementById("regButt").setAttribute("disabled", "");
     document.getElementById("forgPassButt").setAttribute("disabled", "");
@@ -44,7 +45,6 @@ async function succLogin(response) {
 
         var loggedAs = document.getElementById("loggedAs");
         loggedAs.innerHTML = "admin<br>";
-        console.log(loggedAs);
     }
 
     await getHtml("main", "main/",  "loggedDiv", "contentDiv");
@@ -70,6 +70,8 @@ async function succLogin(response) {
     menu.style.animationDuration = "1s";
     menu.style.animationDelay = "0.1s";
     menu.style.animationFillMode = "both";
+
+    hideLoader();
 }
 
 function logout() {

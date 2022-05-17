@@ -19,7 +19,6 @@ async function showClubTab(clubId) {
         createShowTableRow(tbl, "E-mail: ", activeClub.EMAIL);
         createShowTableRow(tbl, "Phone: ", activeClub.PHONE);
         createShowTableRow(tbl, "Web: ", activeClub.WEB);
-
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
