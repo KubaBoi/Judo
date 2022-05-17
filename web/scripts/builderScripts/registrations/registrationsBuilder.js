@@ -4,10 +4,28 @@ async function buildRegistrationsTable() {
     registrationsTable = document.getElementById("registrationsTable");
 
     let tables = [
-        "PENDING",
-        "CHECKED",
-        "REGISTERED"
-    ]
+        createElement("img", null, "", [
+            {"name": "src", "value": "./images/pendingIcon.png"},
+            {"name": "class", "value": "pendingBadge"},
+            {"name": "title", "value": "Waiting for administrator's confirmation"}
+        ]).outerHTML,
+        createElement("img", null, "", [
+            {"name": "src", "value": "./images/pendingIcon.png"},
+            {"name": "class", "value": "checkedBadge"},
+            {"name": "title", "value": "Waiting for client's confirmation"}
+        ]).outerHTML,
+        createElement("img", null, "", [
+            {"name": "src", "value": "./images/okIcon.png"},
+            {"name": "class", "value": "registeredBadge"},
+            {"name": "title", "value": "Registered"}
+        ]).outerHTML
+    ];
+
+    let needVisa = createElement("img", null, "", [
+        {"name": "src", "value": "./images/needVisa.png"},
+        {"name": "class", "value": "needVisa"},
+        {"name": "title", "value": "Club needs visa"}
+    ]).outerHTML;
 
     newContent("registrationsDiv");
 
@@ -27,8 +45,14 @@ async function buildRegistrationsTable() {
                 addRow(registrationsTable, [
                     {"text": regC.CLUB_NAME},
                     {"text": regC.EVENT_NAME},
-                    {"text": regC.VISA},
-                    {"text": tables[tblI]}
+                    {
+                        "text": (regC.VISA) ? needVisa : "", 
+                        "attributes": [{"name": "class", "value": "smallCellLast"}]
+                    },
+                    {
+                        "text": tables[tblI],
+                        "attributes": [{"name": "class", "value": "smallCellLast"}]
+                    }
                 ]);
             }
         }
@@ -43,5 +67,5 @@ function createRegistrationsHeaderRow() {
     createElement("th", row, "Club");
     createElement("th", row, "Event");
     createElement("th", row, "Visa");
-    createElement("th", row, "Status");
+    createElement("th", row);
 }

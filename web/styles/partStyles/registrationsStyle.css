@@ -1,0 +1,25 @@
+
+.pendingBadge, .checkedBadge, .registeredBadge, .needVisa {
+    border-radius: 5px;
+    border-width: 0;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.pendingBadge {
+    background-color: #db9d47;
+}
+
+.checkedBadge {
+    background-color: #3aafb9;
+}
+
+.registeredBadge {
+    background-color: #1a936f;
+}
+
+.needVisa {
+    background-color: #9e3a3a;
+}
