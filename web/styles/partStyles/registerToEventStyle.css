@@ -1,0 +1,19 @@
+
+.registerToEventDiv {
+    position: absolute;
+    top: 110%;
+    z-index: 150;
+    background-color: var(--main-color);
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes comeRegisterToEvent {
+    0% {top: 110%}
+    100% {top: 0%}
+}
+
+@keyframes closeRegisterToEvent {
+    0% {top: 0%}
+    100% {top: 110%}
+}

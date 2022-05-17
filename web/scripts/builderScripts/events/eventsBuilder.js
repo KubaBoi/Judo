@@ -32,39 +32,43 @@ function createEventFilters() {
 }
 
 function buildEventRow(event) {
-    var row = createElement("tr", eventTable);
-    createElement("td", row, event.NAME, 
-    [
-        {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
-    ]);
-
-    createElement("td", row, event.START, 
-    [
-        {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
-    ]);
-
-    createElement("td", row, event.PLACE, 
-    [
-        {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
-    ]);
-
-    createElement("td", row, "REGISTER",
-    [
-        {"name": "class", "value": "smallCellLast"},
-        {"name": "onclick", "value": "editEventTab(" + event.ID + ")"}
+    let row = addRow(eventTable, [
+        {
+            "text": event.NAME, "attributes": [
+                {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
+            ]
+        },
+        {
+            "text": event.START, "attributes": [
+                {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
+            ]
+        },
+        {
+            "text": event.PLACE, "attributes": [
+                {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
+            ]
+        },
+        {
+            "text": badgeTypes[event.STATUS], "attributes": [
+                {"name": "class", "value": "smallCellLast"},
+                {"name": "onclick", "value": "registerToEventShow(" + event.ID + ")"}
+            ]
+        }
     ]);
     
     if (loggedUser.ROLE_ID < 2) {
         createElement("td", row, "<img src='/images/editIcon48.png'>",
         [
             {"name": "class", "value": "smallCell"},
-            {"name": "onclick", "value": "editEventTab(" + event.ID + ")"}
+            {"name": "onclick", "value": "editEventTab(" + event.ID + ")"},
+            {"name": "title", "value": "Edit event"}
         ]);
 
         createElement("td", row, "<img src='/images/deleteIcon48.png'>",
         [
             {"name": "class", "value": "smallCellLast"},
-            {"name": "onclick", "value": "deleteEvent(" + event.ID + ")"}
+            {"name": "onclick", "value": "deleteEvent(" + event.ID + ")"},
+            {"name": "title", "value": "Delete event"}
         ]);
     }
 }
@@ -75,7 +79,7 @@ function createEventHeaderRow() {
     createElement("th", row, "Start");
     createElement("th", row, "Place");
     createElement("th", row);
-    if (loggedUser.RULE_ID < 2) {
+    if (loggedUser.ROLE_ID < 2) {
         createElement("th", row);
         createElement("th", row);
     }

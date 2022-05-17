@@ -7,5 +7,13 @@ from Cheese.cheeseRepository import CheeseRepository
 #@dbscheme (id, event_id, club_id, visa, status);
 #@dbmodel RegisteredClubs;
 class RegisteredClubsRepository(CheeseRepository):
-	pass
+	
+	#@query "select case when exists 
+	# 	(select * from registered_clubs where event_id=:eventId and club_id=:clubId)
+	# 	then cast (1 as bit)
+	# 	else cast (0 as bit) end;";
+	#@return bool;
+	@staticmethod
+	def isClubRegisteredInEvent(eventId, clubId):
+		CheeseRepository.query(eventId=eventId, clubId=clubId)
 

@@ -3,24 +3,6 @@ var registrationsTable;
 async function buildRegistrationsTable() {
     registrationsTable = document.getElementById("registrationsTable");
 
-    let tables = [
-        createElement("img", null, "", [
-            {"name": "src", "value": "./images/pendingIcon.png"},
-            {"name": "class", "value": "pendingBadge"},
-            {"name": "title", "value": "Waiting for administrator's confirmation"}
-        ]).outerHTML,
-        createElement("img", null, "", [
-            {"name": "src", "value": "./images/pendingIcon.png"},
-            {"name": "class", "value": "checkedBadge"},
-            {"name": "title", "value": "Waiting for client's confirmation"}
-        ]).outerHTML,
-        createElement("img", null, "", [
-            {"name": "src", "value": "./images/okIcon.png"},
-            {"name": "class", "value": "registeredBadge"},
-            {"name": "title", "value": "Registered"}
-        ]).outerHTML
-    ];
-
     let needVisa = createElement("img", null, "", [
         {"name": "src", "value": "./images/needVisa.png"},
         {"name": "class", "value": "needVisa"},
@@ -50,7 +32,7 @@ async function buildRegistrationsTable() {
                         "attributes": [{"name": "class", "value": "smallCellLast"}]
                     },
                     {
-                        "text": tables[tblI],
+                        "text": badgeTypes[tblI],
                         "attributes": [{"name": "class", "value": "smallCellLast"}]
                     }
                 ]);

@@ -1,4 +1,4 @@
-debug = false;
+debug = true;
 
 var activeContent;
 var alertTime = 2000;
@@ -8,6 +8,29 @@ var userName = getCookie("login");
 var password = getCookie("password");
 
 var loadingDiv = document.getElementById("loaderDiv");
+
+var badgeTypes = [
+    createElement("img", null, "", [
+        {"name": "src", "value": "./images/pendingIcon.png"},
+        {"name": "class", "value": "pendingBadge"},
+        {"name": "title", "value": "Waiting for administrator's confirmation"}
+    ]).outerHTML,
+    createElement("img", null, "", [
+        {"name": "src", "value": "./images/pendingIcon.png"},
+        {"name": "class", "value": "checkedBadge"},
+        {"name": "title", "value": "Waiting for client's confirmation"}
+    ]).outerHTML,
+    createElement("img", null, "", [
+        {"name": "src", "value": "./images/okIcon.png"},
+        {"name": "class", "value": "registeredBadge"},
+        {"name": "title", "value": "Registered"}
+    ]).outerHTML,
+    createElement("img", null, "", [
+        {"name": "src", "value": "./images/registerIcon.png"},
+        {"name": "class", "value": "needVisa"},
+        {"name": "title", "value": "Register ot the event"}
+    ]).outerHTML
+];
 
 loadPage(["login", "registration", "phoneCodes"], true);
 

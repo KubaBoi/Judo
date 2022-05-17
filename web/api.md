@@ -12,6 +12,7 @@
     - [/update](#22-update)
     - [/get](#23-get)
     - [/remove](#24-remove)
+    - [/getBy](#25-getby)
  - [/clubs](#3-clubs)
     - [/create](#31-create)
     - [/update](#32-update)
@@ -388,6 +389,53 @@ Remove can do only user who organise event (ORGANISER_ID)
 ```json
 {
     "STATUS": "Event has been removed"
+}
+```
+
+<hr>
+
+## 2.5 /getBy
+
+```GET```
+
+Returns events sorted by
+
+Role = 2
+
+### Accepts path arguments
+
+```json
+{
+    "column": "str"
+}
+```
+
+### Return OK - 200
+
+```json
+{
+    "EVENT": {
+        "ID": 0,
+        "NAME": "str",
+        "CATEGORY": "str",
+        "PLACE": "str",
+        "EVENT_START": "date",
+        "EVENT_END": "date",
+        "ARRIVE": "date",
+        "DEPART": "date",
+        "END_VISA": "date",
+        "END_ROOM": "date",
+        "ORGANISER_ID": 0,
+        "VISA_MAIL": "str",
+        "VISA_PHONE": "str",
+        "EJU_PRICE": 0,
+        "PCR_PRICE": 0,
+        "AG_PRICE": 0,
+        "TRANS_PRICE": 0,
+        "OTHER_PRICE": 0,
+        "SHOW_HOTEL": true,
+        "STATUS": 0
+    }
 }
 ```
 

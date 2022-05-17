@@ -5,6 +5,9 @@ from Cheese.ErrorCodes import Error
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.eventsRepository import EventsRepository
+from src.repositories.usersRepository import UsersRepository
+from src.repositories.clubsRepository import ClubsRepository
+from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 
 #@controller /events;
 class EventsController(cc):
@@ -151,12 +154,29 @@ class EventsController(cc):
 			return
 
 		column = args["column"]
+		userLogin = auth["login"]["login"]
+		users = UsersRepository.findBy("login", userLogin)
+		if (users == None or len(users) == 0):
+			return False # need to beeeeee osetreno
+		
+		user = users[0]
 
-		eventsArray = EventsRepository.findBySorted("columnName-" + column)
+		usersClubs = ClubsRepository.findBy("user_id", user.id)
+
+		eventsArray = EventsRepository.findBySorted(column)
 		jsonResponse = {}
 		jsonResponse["EVENTS"] = []
 		for event in eventsArray:
-			jsonResponse["EVENTS"].append(event.toJson())
+			jsn = event.toJson()
+
+			status = 3
+			for club in usersClubs:
+				if (RegisteredClubsRepository.isClubRegisteredInEvent(event.id, club.id)):
+					status = RegisteredClubsRepository.findBy("club_id", club.id).status
+					break
+
+			jsn["STATUS"] = status
+			jsonResponse["EVENTS"].append(jsn)
 
 		return cc.createResponse(jsonResponse, 200)
 

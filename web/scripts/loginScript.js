@@ -50,6 +50,7 @@ async function succLogin(response) {
     await getHtml("main", "main/",  "loggedDiv", "contentDiv");
     await getHtml("clubs", "main/",  "loggedDiv", "contentDiv");
     await getHtml("account", "main/",  "loggedDiv", "contentDiv");
+    await getHtml("registerToEvent", "main/", "body", "registerToEventDiv");
     newContent("mainDiv");
 
     var loggedAs = document.getElementById("loggedAs");

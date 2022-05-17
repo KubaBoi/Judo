@@ -12,5 +12,5 @@ class EventsRepository(CheeseRepository):
 	#@return array;
 	@staticmethod
 	def findBySorted(columnName):
-		return CheeseRepository.query(columnName=columnName)
+		return CheeseRepository.query(columnName="columnName-"+columnName)
 
