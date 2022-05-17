@@ -16,8 +16,17 @@ function regEvClose() {
 async function registerToEventShow(eventId) {
     showLoader();
 
-    var event = await getEventInfo(`/events/get?eventId=56`);//${eventId}`);
-    
+    var event = await getEventInfo(`/events/get?eventId=${eventId}`);
+    document.getElementById("regEvName").innerHTML = event.EVENT.NAME;
+
+    var clubs = await getEventInfo(`/clubs/getByUser?userId=${loggedUser.ID}`);
+    var club = clubs.CLUBS[0];
+    var tbl = createElement("table", document.getElementById("registerToEventDiv"));
+
+    createShowTableRow(tbl, "Name: ",  club.NAME);
+    createShowTableRow(tbl, "State: ", club.STATE);
+    createShowTableRow(tbl, "Address: ", club.ADDRESS);
+    createShowTableRow(tbl, "EJU: ", club.EJU);
 
     hideLoader();
     regEvShow();
