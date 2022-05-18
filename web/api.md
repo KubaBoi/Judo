@@ -113,6 +113,13 @@ Role = 2
         "PHONE": "str",
         "FULL_NAME": "str",
         "ROLE_ID": 0
+    },
+    "CLUB": {
+        "ID": 0,
+        "STATE": "str",
+        "NAME": "str",
+        "ADDRESS": "str",
+        "USER_ID": 0
     }
 }
 ```

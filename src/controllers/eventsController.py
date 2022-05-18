@@ -149,11 +149,9 @@ class EventsController(cc):
 
 		column = args["column"]
 		userLogin = auth["login"]["login"]
-		users = UsersRepository.findBy("login", userLogin)
-		if (users == None or len(users) == 0):
-			return False # need to beeeeee osetreno
-		
-		user = users[0]
+		user = UsersRepository.findOneBy("login", userLogin)
+		if (user == None):
+			raise NotFound("User was not found")
 
 		usersClubs = ClubsRepository.findBy("user_id", user.id)
 
@@ -184,7 +182,7 @@ class EventsController(cc):
 
 		id = args["id"]
 
-		eventsModel = EventsRepository.findById(id)
+		eventsModel = EventsRepository.findBy(id)
 		EventsRepository.delete(eventsModel)
 
 		return cc.createResponse({'STATUS': 'Event has been removed'}, 200)

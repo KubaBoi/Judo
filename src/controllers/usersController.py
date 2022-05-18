@@ -13,6 +13,7 @@ from Cheese.resourceManager import ResMan
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 
 from src.repositories.usersRepository import UsersRepository
+from src.repositories.clubsRepository import ClubsRepository
 from src.repositories.tokensRepository import TokensRepository
 from src.repositories.passwordsRepository import PasswordsRepository
 from src.repositories.registrationsRepository import RegistrationsRepository
@@ -27,11 +28,12 @@ class UsersController(cc):
 	def login(server, path, auth):
 		login = auth["login"]["login"]
 
-		user = UsersRepository.findBy("login", login)
-		if (len(user) > 0):
-			user = user[0]
+		user = UsersRepository.findOneBy("login", login)
+		club = ClubsRepository.findOneBy("user_id", user.id)
+		if (club != None):
+			club = club.toJson()
 
-		return cc.createResponse({"USER": user.toJson()}, 200)
+		return cc.createResponse({"USER": user.toJson(), "CLUB": club}, 200)
 
 	#@post /register;
 	@staticmethod

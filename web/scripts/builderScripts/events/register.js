@@ -15,14 +15,15 @@ function regEvClose() {
 
 function registerButton(eventId, status) {
     if (status == 3) {
-        registerToEventShow(eventId);
+        registerToEventShowHidden(eventId);
     }
     else if (status == 1) {
         regEvShow();
     }
 }
 
-async function registerToEventShow(eventId) {
+// first part
+async function registerToEventShowHidden(eventId) {
     showLoader();
 
     var hiddenTab = openHiddenTab();
@@ -72,6 +73,11 @@ async function registerToEventShow(eventId) {
     ]);
 
     hideLoader();
+}
+
+//second part
+async function registerToEventShow(eventId) {
+
 }
 
 async function getEventInfo(url) {

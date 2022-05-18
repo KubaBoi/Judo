@@ -12,5 +12,5 @@ class HotelsRepository(CheeseRepository):
 	#@return array;
 	@staticmethod
 	def findBySorted(columnName):
-		return CheeseRepository.query([columnName])
+		return CheeseRepository.query(columnName="columnName-"+columnName)
 

@@ -50,7 +50,7 @@ class ClubsController(cc):
 		eju = args["EJU"]
 		userId = args["USER_ID"]
 
-		clubsModel = ClubsRepository.findById(id)
+		clubsModel = ClubsRepository.findBy(id)
 		clubsModel.state = state
 		clubsModel.name = name
 		clubsModel.address = address
@@ -117,7 +117,7 @@ class ClubsController(cc):
 
 		id = args["ID"]
 
-		clubsModel = ClubsRepository.findById(id)
+		clubsModel = ClubsRepository.find(id)
 		ClubsRepository.delete(clubsModel)
 
 		return cc.createResponse({'STATUS': 'Club has been removed'}, 200)

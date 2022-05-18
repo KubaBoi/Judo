@@ -164,7 +164,7 @@ class HotelsController(cc):
 
 		column = args["column"]
 
-		hotelsArray = HotelsRepository.findBySorted("columnName-" + column)
+		hotelsArray = HotelsRepository.findBySorted(column)
 		jsonResponse = {}
 		jsonResponse["HOTELS"] = []
 		for hotel in hotelsArray:
@@ -182,12 +182,12 @@ class HotelsController(cc):
 			raise BadRequest("Wrong json structure")
 
 		hotelId = args["hotelId"]
-		roomsArray = RoomsRepository.findBy("columnName-hotel_id", hotelId)
+		roomsArray = RoomsRepository.findBy("hotel_id", hotelId)
 
 		jsonResponse = {}
 		jsonResponse["ROOMS"] = []
 		for room in roomsArray:
-			room.beds = BedRepository.findBy("columnName-room_id", room.id)
+			room.beds = BedRepository.findBy("room_id", room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		return cc.createResponse(jsonResponse, 200)

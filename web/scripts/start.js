@@ -2,7 +2,10 @@ debug = true;
 
 var activeContent;
 var alertTime = 2000;
+
 var loggedUser = null;
+var loggedClub = null;
+
 var userAccountName;
 var userName = getCookie("login");
 var password = getCookie("password");
@@ -13,7 +16,7 @@ var badgeTypes = [
     createElement("img", null, "", [
         {"name": "src", "value": "./images/pendingIcon.png"},
         {"name": "class", "value": "pendingBadge"},
-        {"name": "title", "value": "Waiting for administrator's confirmation"}
+        {"name": "title", "value": "Waiting for organiser's confirmation"}
     ]).outerHTML,
     createElement("img", null, "", [
         {"name": "src", "value": "./images/pendingIcon.png"},
@@ -28,7 +31,7 @@ var badgeTypes = [
     createElement("img", null, "", [
         {"name": "src", "value": "./images/registerIcon.png"},
         {"name": "class", "value": "needVisa"},
-        {"name": "title", "value": "Register ot the event"}
+        {"name": "title", "value": "Register for the event"}
     ]).outerHTML
 ];
 
