@@ -21,12 +21,22 @@ async function registerToEventShow(eventId) {
 
     var clubs = await getEventInfo(`/clubs/getByUser?userId=${loggedUser.ID}`);
     var club = clubs.CLUBS[0];
-    var tbl = createElement("table", document.getElementById("registerToEventDiv"));
+    var tbl = document.getElementById("regEvClubTable");
+    clearTable(tbl);
 
     createShowTableRow(tbl, "Name: ",  club.NAME);
     createShowTableRow(tbl, "State: ", club.STATE);
     createShowTableRow(tbl, "Address: ", club.ADDRESS);
     createShowTableRow(tbl, "EJU: ", club.EJU);
+
+    var owner = await getEventInfo(`/users/get?userId=${club.USER_ID}`);
+    owner = owner.USER;
+    var tbl = document.getElementById("regEvOwnerTable");
+    clearTable(tbl);
+
+    createShowTableRow(tbl, "Name: ",  owner.FULL_NAME);
+    createShowTableRow(tbl, "E-mail: ",  owner.LOGIN);
+    createShowTableRow(tbl, "Phone: ",  owner.PHONE);
 
     hideLoader();
     regEvShow();
