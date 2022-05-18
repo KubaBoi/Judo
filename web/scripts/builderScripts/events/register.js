@@ -18,7 +18,7 @@ function registerButton(eventId, status) {
         registerToEventShowHidden(eventId);
     }
     else if (status == 1) {
-        regEvShow();
+        registerToEventShow(eventId);
     }
 }
 
@@ -37,39 +37,11 @@ async function registerToEventShowHidden(eventId) {
     var event = await getEventInfo(`/events/get?eventId=${eventId}`);
     event = event.EVENT;
     var tbl = createElement("table", showDiv);
-
-    createShowTableRowHeader(tbl, "EVENT", "");
-    createShowTableRow(tbl, "Name: ", event.NAME);
-    createShowTableRow(tbl, "Category: ", event.CATEGORY);
-    createShowTableRow(tbl, "Place: ", event.PLACE);
-    createShowTableRow(tbl, "E-mail for visa: ", event.VISA_MAIL);
-    createShowTableRow(tbl, "Phone for visa: ", event.VISA_PHONE);
-    createShowTableRow(tbl, "EJU price: ", event.EJU_PRICE);
-    createShowTableRow(tbl, "PCR tests price: ", event.PCR_PRICE);
-    createShowTableRow(tbl, "Antigen tests price: ", event.AG_PRICE);
-    createShowTableRow(tbl, "Transport price: ", event.TRANS_PRICE);
-    createShowTableRow(tbl, "Other prices: ", event.OTHER_PRICE);
-
-    var clubs = await getEventInfo(`/clubs/getByUser?userId=${loggedUser.ID}`);
-    var club = clubs.CLUBS[0];
-
-    createShowTableRowHeader(tbl, "CLUB", "");
-    createShowTableRow(tbl, "Name: ",  club.NAME);
-    createShowTableRow(tbl, "State: ", club.STATE);
-    createShowTableRow(tbl, "Address: ", club.ADDRESS);
-    createShowTableRow(tbl, "EJU: ", club.EJU);
-
-    var owner = await getEventInfo(`/users/get?userId=${club.USER_ID}`);
-    owner = owner.USER;
-
-    createShowTableRowHeader(tbl, "OWNER", "");
-    createShowTableRow(tbl, "Name: ",  owner.FULL_NAME);
-    createShowTableRow(tbl, "E-mail: ",  owner.LOGIN);
-    createShowTableRow(tbl, "Phone: ",  owner.PHONE);
+    setDataToInfoTable(tbl, event);
 
     createElement("button", hiddenTab, "Register", [
         {"name": "class", "value": "rightButton"},
-        {"name": "onclick", "value": `registerToEvent(${eventId}, ${club.ID})`}
+        {"name": "onclick", "value": `registerToEvent(${eventId})`}
     ]);
 
     hideLoader();
@@ -77,13 +49,25 @@ async function registerToEventShowHidden(eventId) {
 
 //second part
 async function registerToEventShow(eventId) {
+    showLoader();
 
+    chooseRegTab(document.getElementById("regTabB0"));
+
+    var event = await getEventInfo(`/events/get?eventId=${eventId}`);
+    event = event.EVENT;
+    var dv = document.getElementById("regEvInfoDiv");
+    clearTable(dv);
+
+    var tbl = createElement("table", dv);
+    setDataToInfoTable(tbl, event);
+
+    hideLoader();
+    regEvShow();
 }
 
 async function getEventInfo(url) {
     var response = await callEndpoint("GET", url);
     if (response.ERROR != null) {
-        console.log(response.ERROR);
         showErrorAlert(response.ERROR);
     } else {
         return response;
@@ -91,9 +75,9 @@ async function getEventInfo(url) {
     return "ERROR :/";
 }
 
-async function registerToEvent(eventId, clubId) {
+async function registerToEvent(eventId) {
     var req = {
-        "CLUB_ID": clubId,
+        "CLUB_ID": loggedClub.ID,
         "EVENT_ID": eventId,
         "VISA": true
     };
@@ -102,8 +86,42 @@ async function registerToEvent(eventId, clubId) {
     if (response.ERROR == null) {
         closeHiddenTab();
         showOkAlert("DONE :)", "Your team has been registrated to event", alertTime);
+        buildEventTable();
     }
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+}
+
+function setDataToInfoTable(table, event) {
+    createShowTableRowHeader(table, "EVENT", "");
+    createShowTableRow(table, "Name: ", event.NAME);
+    createShowTableRow(table, "Category: ", event.CATEGORY);
+    createShowTableRow(table, "Place: ", event.PLACE);
+    createShowTableRow(table, "E-mail for visa: ", event.VISA_MAIL);
+    createShowTableRow(table, "Phone for visa: ", event.VISA_PHONE);
+    createShowTableRow(table, "EJU price: ", event.EJU_PRICE);
+    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE);
+    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE);
+    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE);
+    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE);
+
+    createShowTableRowHeader(table, "CLUB", "");
+    createShowTableRow(table, "Name: ",  loggedClub.NAME);
+    createShowTableRow(table, "State: ", loggedClub.STATE);
+    createShowTableRow(table, "Address: ", loggedClub.ADDRESS);
+    createShowTableRow(table, "EJU: ", loggedClub.EJU);
+
+    createShowTableRowHeader(table, "OWNER", "");
+    createShowTableRow(table, "Name: ",  loggedUser.FULL_NAME);
+    createShowTableRow(table, "E-mail: ",  loggedUser.LOGIN);
+    createShowTableRow(table, "Phone: ",  loggedUser.PHONE);
+}
+
+function chooseRegTab(button) {
+    var buttons = document.getElementsByClassName("regTabButton");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("regTabButtonChosen");
+    }
+    button.classList.add("regTabButtonChosen");
 }

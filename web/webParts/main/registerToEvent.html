@@ -1,14 +1,23 @@
 <button class="rightButton" onclick="regEvClose()">X</button>
 <h1>Registration</h1>
 <div class="regEvDiv">
-    <div>
-        <h2 id="regEvName"></h2>
-        <br>
-        <h2>Club:</h2>
-        <table id="regEvClubTable"></table>
-        <h2>Club owner:</h2>
-        <table id="regEvOwnerTable"></table>
-    </div>
-    <div>
+    <h2 id="regEvName"></h2>
+    <div id="regEvInfoDiv" class="infoDiv"></div>
+    <div id="regEvFlightsDiv" class="flightDiv">
+        <div id="regEvContentsDiv" class="contents">
+            <button onclick="chooseRegTab(this)" value=0 class="regTabButton" id="regTabB0">People</button>
+            <button onclick="chooseRegTab(this)" value=1 class="regTabButton" id="regTabB1">Accommodations</button>
+            <button onclick="chooseRegTab(this)" value=2 class="regTabButton" id="regTabB2">Visa</button>
+            <button onclick="chooseRegTab(this)" value=3 class="regTabButton" id="regTabB3">Arrival</button>
+            <button onclick="chooseRegTab(this)" value=4 class="regTabButton" id="regTabB4">Billing</button>
+        </div>
+        <table id="regEvFlightTable">
+            <tr>
+                <th>Type</th>
+                <th>Time</th>
+                <th>Flight number</th>
+                <th>Count</th>
+            </tr>
+        </table>
     </div>
 </div>

@@ -1,6 +1,7 @@
-update registered_clubs set status = 0 where id=3;
+update registered_clubs set status = 1 where id=3;
 
 select * from registered_clubs;
+select * from clubs;
 
 /*delete from registered_clubs;*/
 

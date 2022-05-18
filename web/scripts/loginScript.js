@@ -75,7 +75,7 @@ async function succLogin(response) {
 
     hideLoader();
 
-    if (loggedClub =! null) {
+    if (loggedClub == null) {
         showConfirm("No club", "Your club is missing in our database.<br>Do you want to create one?", buildClubTable);
     }
 }

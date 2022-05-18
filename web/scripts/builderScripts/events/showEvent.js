@@ -1,10 +1,11 @@
 async function showEventTab(eventId) {
-    var response = await callEndpoint("GET", "/events/getEvent?eventId=" + eventId);
+    var response = await callEndpoint("GET", "/events/get?eventId=" + eventId);
     if (!response.ERROR) {
         activeEvent = response.EVENT;
+
         var hiddenTab = openHiddenTab();
 
-        var hdr = createElement("h2", hiddenTab, activeEvent.NAME);
+        createElement("h2", hiddenTab, activeEvent.NAME);
         var showDiv = createElement("div", hiddenTab, "",
         [
             {"name": "class", "value": "showTableDiv"}

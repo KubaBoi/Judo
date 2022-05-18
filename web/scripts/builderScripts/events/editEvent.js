@@ -2,7 +2,7 @@ var activeEvent;
 async function editEventTab(eventId) {
     var response = null;
     if (eventId != null) {
-        response = await callEndpoint("GET", "/events/getEvent?eventId=" + eventId);
+        response = await callEndpoint("GET", "/events/get?eventId=" + eventId);
     }
     else {
         response = {
