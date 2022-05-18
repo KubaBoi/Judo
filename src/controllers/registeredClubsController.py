@@ -49,8 +49,7 @@ class RegisteredClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		registeredClub = RegisteredClubsRepository.find(id)
@@ -71,8 +70,7 @@ class RegisteredClubsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['eventId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		eventId = args["eventId"]
 
@@ -91,8 +89,7 @@ class RegisteredClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 

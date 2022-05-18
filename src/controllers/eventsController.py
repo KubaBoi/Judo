@@ -166,7 +166,7 @@ class EventsController(cc):
 			status = 3
 			for club in usersClubs:
 				if (RegisteredClubsRepository.isClubRegisteredInEvent(event.id, club.id)):
-					status = RegisteredClubsRepository.findBy("club_id", club.id).status
+					status = RegisteredClubsRepository.registeredClubInEvent(event.id, club.id).status
 					break
 
 			jsn["STATUS"] = status

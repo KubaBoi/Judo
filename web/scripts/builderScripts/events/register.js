@@ -13,6 +13,15 @@ function regEvClose() {
     registerToEventDiv.style.animationDuration = "0.5s";
 }
 
+function registerButton(eventId, status) {
+    if (status == 3) {
+        registerToEventShow(eventId);
+    }
+    else if (status == 1) {
+        regEvShow();
+    }
+}
+
 async function registerToEventShow(eventId) {
     showLoader();
 
@@ -82,7 +91,7 @@ async function registerToEvent(eventId, clubId) {
         "EVENT_ID": eventId,
         "VISA": true
     };
-    console.log(req);
+    
     var response = await callEndpoint("POST", "/registeredClubs/create", req);
     if (response.ERROR == null) {
         closeHiddenTab();

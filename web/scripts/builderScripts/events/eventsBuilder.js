@@ -51,7 +51,7 @@ function buildEventRow(event) {
         {
             "text": badgeTypes[event.STATUS], "attributes": [
                 {"name": "class", "value": "smallCellLast"},
-                {"name": "onclick", "value": "registerToEventShow(" + event.ID + ")"}
+                {"name": "onclick", "value": `registerButton(${event.ID}, ${event.STATUS})`}
             ]
         }
     ]);

@@ -17,3 +17,9 @@ class RegisteredClubsRepository(CheeseRepository):
 	def isClubRegisteredInEvent(eventId, clubId):
 		return CheeseRepository.query(eventId=eventId, clubId=clubId)
 
+	#@query "select * from registered_clubs where event_id=:eventId and club_id=:clubId;";
+	#@return one;
+	@staticmethod
+	def registeredClubInEvent(eventId, clubId):
+		return CheeseRepository.query(eventId=eventId, clubId=clubId)
+
