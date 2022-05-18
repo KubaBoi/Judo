@@ -90,37 +90,3 @@ button:disabled:hover {
     transition: all;
     transition-duration: 0.5s;
 }
-
-.closeTab {
-    position: fixed;
-    top: 20px;
-    left: -110%;
-    height: auto;
-    width: 100%;
-    border-style: solid;
-    border-color: var(--light-color);
-    border-radius: 10px;
-    pointer-events: none;
-    z-index: 99;
-    transition: all;
-    transition-duration: 0.5s;
-}
-
-.openTab {
-    background-color: var(--main-color);
-    padding: 5px;
-    height: auto;
-    max-height: 90%;
-    border-style: solid;
-    border-color: var(--light-color);
-    border-radius: 10px;
-    position: fixed;
-    z-index: 99;
-    top: 20px;
-    left: 5%;
-    width: 90%;
-    pointer-events: all;
-    transition: all;
-    transition-duration: 0.5s;
-    overflow-y: auto;
-}

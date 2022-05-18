@@ -1,6 +1,7 @@
 var registrationsTable;
 
 async function buildRegistrationsTable() {
+    showLoader();
     registrationsTable = document.getElementById("registrationsTable");
 
     let needVisa = createElement("img", null, "", [
@@ -8,8 +9,6 @@ async function buildRegistrationsTable() {
         {"name": "class", "value": "needVisa"},
         {"name": "title", "value": "Club needs visa"}
     ]).outerHTML;
-
-    newContent("registrationsDiv");
 
     var response = await callEndpoint("GET", "/registeredClubs/getAllData");
     if (!response.ERROR) {
@@ -33,7 +32,10 @@ async function buildRegistrationsTable() {
                     },
                     {
                         "text": badgeTypes[tblI],
-                        "attributes": [{"name": "class", "value": "smallCellLast"}]
+                        "attributes": [
+                            {"name": "class", "value": "smallCellLast"},
+                            {"name": "onclick", "value": `confirmRegisterButton(${regC.ID}, ${tblI})`}
+                        ]
                     }
                 ]);
             }
@@ -42,6 +44,9 @@ async function buildRegistrationsTable() {
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
+    newContent("registrationsDiv");
 }
 
 function createRegistrationsHeaderRow() {

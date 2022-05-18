@@ -1,5 +1,6 @@
 var activeEvent;
 async function editEventTab(eventId) {
+    showLoader();
     var response = null;
     if (eventId != null) {
         response = await callEndpoint("GET", "/events/get?eventId=" + eventId);
@@ -32,7 +33,7 @@ async function editEventTab(eventId) {
 
     if (!response.ERROR) {
         activeEvent = response.EVENT;
-        var hiddenTab = openHiddenTab();
+        var hiddenTab = getHiddenTab();
 
         if (eventId) createElement("h2", hiddenTab, "Edit event");
         else createElement("h2", hiddenTab, "Create new event");
@@ -70,10 +71,13 @@ async function editEventTab(eventId) {
             {"name": "class", "value": "rightButton"},
             {"name": "onclick", "value": "saveEventChanges(" + eventId + ")"}
         ]);
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showAlert("An error occurred :(", response.ERROR);
     }
+
+    hideLoader();
 }
 
 

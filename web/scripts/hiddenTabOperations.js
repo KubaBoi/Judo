@@ -1,4 +1,4 @@
-function openHiddenTab() {
+function getHiddenTab() {
     var hiddenTab = document.getElementById("hiddenTab");
     hiddenTab.innerHTML = "";
 
@@ -6,8 +6,12 @@ function openHiddenTab() {
     [
         {"name": "onclick", "value": "closeHiddenTab()"}
     ]);
-    hiddenTab.setAttribute("class", "openTab");
     return hiddenTab;
+}
+
+function openHiddenTab() {
+    var hiddenTab = document.getElementById("hiddenTab");
+    hiddenTab.setAttribute("class", "openTab");
 }
 
 function closeHiddenTab() {

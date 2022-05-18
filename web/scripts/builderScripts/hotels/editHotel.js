@@ -1,5 +1,6 @@
 var activeHotel;
 async function editHotelTab(hotelId) {
+    showLoader();
     var response = null;
     if (hotelId != null) {
         response = await callEndpoint("GET", "/hotels/get?hotelId=" + hotelId);
@@ -29,7 +30,7 @@ async function editHotelTab(hotelId) {
 
     if (!response.ERROR) {
         activeHotel = response.HOTEL;
-        var hiddenTab = openHiddenTab();
+        var hiddenTab = getHiddenTab();
 
         if (hotelId != null) createElement("h2", hiddenTab, "Edit hotel");
         else createElement("h2", hiddenTab, "Create new hotel");
@@ -82,10 +83,14 @@ async function editHotelTab(hotelId) {
             {"name": "class", "value": "rightButton"},
             {"name": "onclick", "value": "saveHotelChanges(" + hotelId + ")"}
         ]);
+
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }
 
 async function saveHotelChanges(hotelId, hardCreate=false) {

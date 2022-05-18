@@ -22,10 +22,9 @@
     - [/remove](#36-remove)
  - [/jb](#4-jb)
     - [/createFromCvs](#41-createFromCvs)
-    - [/createByCvs](#42-createByCvs)
-    - [/update](#43-update)
-    - [/getByClub](#44-getByClub)
-    - [/remove](#45-remove)
+    - [/update](#42-update)
+    - [/getByClub](#43-getByClub)
+    - [/remove](#44-remove)
  - [/hotels](#5-hotels)
     - [/create](#51-create)
     - [/update](#52-update)
@@ -41,6 +40,7 @@
     - [/remove](#64-remove)
     - [/getAll](#65-getall)
     - [/getAllData](#66-getalldata)
+    - [/get](#67-get)
  - [/registeredHotels](#7-registeredHotels)
     - [/create](#71-create)
     - [/getByEvent](#72-getByEvent)
@@ -653,14 +653,28 @@ Remove can do only user who owns club (USER_ID)
 
 ```POST```
 
-Creates new jb from .cvs file and returns fileName
+Creates new jb from cvs data set
 
 Role = 1
 
-### Accepts bytes
+### Accepts post body
 
 ```json
-.cvs file of jb users
+{
+    "EVENT_ID": 0,
+    "CLUB_ID": 0,
+    "DATA": [
+        {
+            "JB": "str",
+            "SUR_NAME": "str",
+            "NAME": "str",
+            "STATE": "str",
+            "BIRTHDAY": "str",
+            "FUNCTION": "str",
+            "GENDER": "str"
+        }
+    ]
+}
 ```
 
 ### Return OK - 200
@@ -673,34 +687,7 @@ Role = 1
 
 <hr>
 
-## 4.2 /createByCvs
-
-```POST```
-
-Creates new jb from .cvs fileName that has been send by ```/createFromCvs```
-
-Role = 1
-
-### Accepts post body
-
-```json
-{
-    "FILE_NAME": "str",
-    "CLUB_ID": 0
-}
-```
-
-### Return OK - 200
-
-```json
-{
-    "STATUS": "JBs have been created"
-}
-```
-
-<hr>
-
-## 4.3 /update
+## 4.2 /update
 
 ```POST```
 
@@ -738,7 +725,7 @@ Changes can do only user who owns club (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 4.4 /getByClub
+## 4.3 /getByClub
 
 ```GET```
 
@@ -780,7 +767,7 @@ Can only get club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 4.5 /remove
+## 4.4 /remove
 
 ```POST```
 
@@ -1257,6 +1244,40 @@ Role = 1
             "EVENT_NAME": "str"
         }
     ]
+}
+```
+
+<hr>
+
+## 6.7 /get
+
+```GET```
+
+Get registration by id
+
+Role = 1
+
+### Accepts path arguments
+
+```json
+{
+    "id": 0
+}
+```
+
+### Return OK - 200
+
+```json
+{
+    "REGISTERED_CLUB": {
+        "ID": 0,
+        "CLUB_ID": 0,
+        "EVENT_ID": 0,
+        "VISA": true,
+        "STATUS": 0,
+        "CLUB_NAME": "str",
+        "EVENT_NAME": "str"
+    }
 }
 ```
 

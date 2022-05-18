@@ -22,7 +22,7 @@
     display: flex;
 }
 
-.regEvDiv .infoDiv {
+.infoDiv {
     margin: 5px;
     border-radius: 5px;
     padding: 5px;
@@ -30,7 +30,7 @@
     width: 20%;
 }
 
-.regEvDiv .contents {
+.contents {
     position: relative;
     top: 5px;
     left: 5px;
@@ -40,7 +40,7 @@
     background-color: var(--main-color);
 }
 
-.regEvDiv .flightDiv {
+.flightDiv {
     margin: 5px;
     border-radius: 5px;
     padding: 5px;

@@ -1,5 +1,6 @@
 var activeClub;
 async function editClubTab(clubId) {
+    showLoader();
     var response = null;
     if (clubId != null) {
         response = await callEndpoint("GET", "/clubs/get?clubId=" + clubId);
@@ -19,7 +20,7 @@ async function editClubTab(clubId) {
 
     if (!response.ERROR) {
         activeClub = response.CLUB;
-        var hiddenTab = openHiddenTab();
+        var hiddenTab = getHiddenTab();
 
         if (clubId) createElement("h2", hiddenTab, "Edit club");
         else createElement("h2", hiddenTab, "Create new club");
@@ -41,10 +42,13 @@ async function editClubTab(clubId) {
             {"name": "class", "value": "rightButton"},
             {"name": "onclick", "value": "saveClubChanges(" + clubId + ")"}
         ]);
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }
 
 async function saveClubChanges(clubId) {

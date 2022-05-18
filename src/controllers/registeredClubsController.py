@@ -58,6 +58,22 @@ class RegisteredClubsController(cc):
 
 		return cc.createResponse({'STATUS': 'Club has been registered'}, 200)
 
+	#@get /get;
+	@staticmethod
+	def get(server, path, auth):
+		args = cc.getArgs(path)
+
+		if (not cc.validateJson(["id"], args)):
+			raise BadRequest("Wrong json structure")
+		
+		id = args["id"]
+		registeredClub = RegisteredClubsRepository.find(id)
+
+		if (registeredClub == None):
+			raise NotFound("Registration was not found")
+
+		return cc.createResponse({"REGISTERED_CLUB": registeredClub.toJson()}, 200)
+
 	#@get /getAll;
 	@staticmethod
 	def getAll(server, path, auth):

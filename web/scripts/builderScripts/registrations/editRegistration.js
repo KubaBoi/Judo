@@ -1,169 +1,116 @@
-var activeHotel;
-async function editHotelTab(hotelId) {
+var activeRegistration;
+async function editRegistrationTab(registrationId) {
+    showLoader();
     var response = null;
-    if (hotelId != null) {
-        response = await callEndpoint("GET", "/registeredClubs/get?id=" + hotelId);
-    }
-    else {
-        response = {
-            "HOTEL": {
-                "ID": null,
-                "NAME": "",
-                "ADDRESS": "",
-                "MAIL": "",
-                "WEB": "",
-                "PHONE": "",
-                "PACKAGE": false,
-                "P_NIGHTS": "",
-                "ONE_ROOM": 0,
-                "ONE_ROOM_PRICE": 0,
-                "TWO_ROOM": 0,
-                "TWO_ROOM_PRICE": 0,
-                "THREE_ROOM": 0,
-                "THREE_ROOM_PRICE": 0,
-                "APARTMAN_ROOM": 0,
-                "APARTMAN_ROOM_PRICE": 0
-            }
-        }
-    }
+    response = await callEndpoint("GET", "/registeredClubs/get?id=" + registrationId);
 
     if (!response.ERROR) {
-        activeHotel = response.HOTEL;
-        var hiddenTab = openHiddenTab();
+        activeRegistration = response.REGISTERED_CLUB;
+        var hiddenTab = getHiddenTab();
 
-        if (hotelId != null) createElement("h2", hiddenTab, "Edit hotel");
-        else createElement("h2", hiddenTab, "Create new hotel");
+        createElement("h2", hiddenTab, "Confirm registration");
 
-        var editDiv = createElement("div", hiddenTab, "",
-        [
-            {"name": "class", "value": "editTableDiv"}
+        var mainDiv = createElement("div", hiddenTab, "", [
+            {"name": "class", "value": "regEvDiv"}
         ]);
 
-        var tbl = createElement("table", editDiv);
-
-        createEditTableRow(tbl, "Name: ", "nameInpEdit", activeHotel.NAME);
-        createEditTableRow(tbl, "Address: ", "addressInpEdit", activeHotel.ADDRESS);
-        createEditTableRow(tbl, "E-mail: ", "mailInpEdit", activeHotel.MAIL);
-        createEditTableRow(tbl, "Web: ", "webInpEdit", activeHotel.WEB);
-        createEditTableRow(tbl, "Phone: ", "phoneInpEdit", activeHotel.PHONE);
-        createEditTableRow(tbl, "Min. nights: ", "pnightsInpEdit", activeHotel.P_NIGHTS);
-        createEditTableRow(tbl, "Package: ", "packageInpEdit", activeHotel.PACKAGE, "checkbox");
-
-        var tblRooms = createElement("table", editDiv);
-
-        var roomHeader = createElement("tr", tblRooms);
-        createElement("th", roomHeader, "");
-        createElement("th", roomHeader, "Count of rooms");
-        createElement("th", roomHeader, "Price (€)");
-
+        var infoDiv = createElement("div", mainDiv, "", [
+            {"name": "class", "value": "infoDiv"}
+        ]);
+        var tbl = createElement("table", infoDiv);
         
-        createEditTableRowMulti(tblRooms, "Single", [
-            {"id": "oneRoomCountInp", "defValue": activeHotel.ONE_ROOM, "type": "number"},
-            {"id": "oneRoomPriceInp", "defValue": activeHotel.ONE_ROOM_PRICE, "type": "number"}
+        var event = await getEventInfo(`/events/get?eventId=${activeRegistration.EVENT_ID}`);
+        event = event.EVENT;
+        var club = await getEventInfo(`/clubs/get?clubId=${activeRegistration.CLUB_ID}`);
+        club = club.CLUB;
+        var owner = await getEventInfo(`/users/get?userId=${club.USER_ID}`);
+        owner = owner.USER;
+
+        setDataToInfoTable(tbl, event, club, owner);
+
+        var flightDiv = createElement("div", mainDiv, "", [
+            {"name": "class", "value": "flightDiv"}
         ]);
 
-        createEditTableRowMulti(tblRooms, "Double", [
-            {"id": "twoRoomCountInp", "defValue": activeHotel.TWO_ROOM, "type": "number"},
-            {"id": "twoRoomPriceInp", "defValue": activeHotel.TWO_ROOM_PRICE, "type": "number"}
+        createElement("button", flightDiv, "Open File", [
+            {"name": "onclick", "value": "openFile()"}
         ]);
 
-        createEditTableRowMulti(tblRooms, "Triple", [
-            {"id": "threeRoomCountInp", "defValue": activeHotel.THREE_ROOM, "type": "number"},
-            {"id": "threeRoomPriceInp", "defValue": activeHotel.THREE_ROOM_PRICE, "type": "number"}
+        createElement("label", flightDiv, "", [
+            {"name": "id", "value": "countLabel"}
+        ])
+
+        var jbsTable = createElement("table", flightDiv, "", [
+            {"name": "id", "value": "jbsTable"}
         ]);
 
-        createEditTableRowMulti(tblRooms, "Apartman", [
-            {"id": "apartmanRoomCountInp", "defValue": activeHotel.APARTMAN_ROOM, "type": "number"},
-            {"id": "apartmanRoomPriceInp", "defValue": activeHotel.APARTMAN_ROOM_PRICE, "type": "number"}
+        clearTable(jbsTable);
+        addHeader(jbsTable, [
+            {"text": "JB id"},
+            {"text": "Last name"},
+            {"text": "First name"},
+            {"text": "State"},
+            {"text": "Birthday"},
+            {"text": "Function"},
+            {"text": "Gender"}
         ]);
 
-        createElement("button", hiddenTab, "Save changes", 
+        createElement("p", flightDiv, "Upload file with JudoBase data", [
+            {"name": "id", "value": "uploadLabel"}
+        ]);
+
+        createElement("button", hiddenTab, "Upload data", 
         [
             {"name": "class", "value": "rightButton"},
-            {"name": "onclick", "value": "saveHotelChanges(" + hotelId + ")"}
+            {"name": "onclick", "value": `sendRegData(${event.ID}, ${club.ID})`}
         ]);
+
+        cvsContents = [];
+
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }
 
-async function saveHotelChanges(hotelId, hardCreate=false) {
-    var response = null;
-    var request = prepareHotelChangedData(hardCreate);
-    if (hotelId != null) {
-        response = await callEndpoint("POST", "/hotels/update", request);
+function confirmRegisterButton(regId, status) {
+    if (status == 0) {
+        editRegistrationTab(regId);
     }
-    else {
-        response = await callEndpoint("POST", "/hotels/create", request);
+    else if (status == 1) {
+        showWrongAlert("Confirmed", "Registration has been confirmed.<br>Wait until client's confirmation.", alertTime);
     }
-
-    if (!response.ERROR) {
-        if (hotelId != null) {
-            buildHotelTable();
-            showTimerAlert("Success :)", "Hotel was updated", alertTime, "divOkAlert",
-                {"name": "okShowAlert", "duration": "0.5s"},
-                {"name": "okHideAlert", "duration": "0.5s"}
-            );
-        }
-        else {
-            buildHotelTable();
-            showTimerAlert("Success :)", "Hotel was created", alertTime, "divOkAlert",
-                {"name": "okShowAlert", "duration": "0.5s"},
-                {"name": "okHideAlert", "duration": "0.5s"}
-            );
-            closeHiddenTab();
-        }
-    }
-    else if (response.ERROR == "Hotel already exists") {
-        showConfirm("Existing hotel",
-            "Hotel with this name already exists. Do you still wanna create a new one?",
-            function() {saveHotelChanges(null, true)});
-    }
-    else {
-        showErrorAlert(response.ERROR, alertTime);
+    else if (status == 2) {
+        showOkAlert("Registrated", "Team is already registrated", alertTime);
     }
 }
 
-function prepareHotelChangedData(hardCreate) {
-    var newHotel = {
-        "HARD_CREATE": hardCreate,
-        "ID": activeHotel.ID,
-        "NAME": getValueOf("nameInpEdit"),
-        "ADDRESS": getValueOf("addressInpEdit"),
-        "MAIL": getValueOf("mailInpEdit"),
-        "WEB": getValueOf("webInpEdit"),
-        "PHONE": getValueOf("phoneInpEdit"),
-        "PACKAGE": getValueOf("packageInpEdit"),
-        "P_NIGHTS": getValueOf("pnightsInpEdit"),
-        "ONE_ROOM": getValueOf("oneRoomCountInp"),
-        "ONE_ROOM_PRICE": getValueOf("oneRoomPriceInp"),
-        "TWO_ROOM": getValueOf("twoRoomCountInp"),
-        "TWO_ROOM_PRICE": getValueOf("twoRoomPriceInp"),
-        "THREE_ROOM": getValueOf("threeRoomCountInp"),
-        "THREE_ROOM_PRICE": getValueOf("threeRoomPriceInp"),
-        "APARTMAN_ROOM": getValueOf("apartmanRoomCountInp"),
-        "APARTMAN_ROOM_PRICE": getValueOf("apartmanRoomPriceInp")
+async function sendRegData(eventId, clubId) {
+    if (cvsContents.length == 0) {
+        showWrongAlert("No data", "You need to open file with data first", alertTime);
+        return;
     }
-    return newHotel;
-}
 
-function deleteHotel(hotelId) {
-    showConfirm("Really?", 
-        "Do you really want to delete this hotel?<br>Action is irreversible.",
-        function() {reallyDeleteHotel(hotelId);});
-}   
+    showLoader();
+    
+    let req = {
+        "EVENT_ID": eventId,
+        "CLUB_ID": clubId,
+        "DATA": cvsContents
+    };
 
-async function reallyDeleteHotel(hotelId) {
-    var response = await callEndpoint("GET", "/hotels/remove?id=" + hotelId);
-    if (!response.ERROR) {
-        showTimerAlert("Success :)", "Hotel was deleted", alertTime, "divOkAlert",
-            {"name": "okShowAlert", "duration": "0.5s"},
-            {"name": "okHideAlert", "duration": "0.5s"}
-        );
-        buildHotelTable();
+    var response = await callEndpoint("POST", "/jb/createFromCvs", req);
+    if (response.ERROR == null) {
+        closeHiddenTab();
+        showOkAlert("Done", "Data has been uploaded to server.", alertTime);
+        buildRegistrationsTable();
     }
     else {
-        showErrorAlert(response.ERROR, alertTime);
+        showErrorAlert(response.ERROR);
     }
+
+    hideLoader();
 }

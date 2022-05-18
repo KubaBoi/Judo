@@ -1,9 +1,8 @@
 var eventTable;
 
 async function buildEventTable() {
+    showLoader();
     eventTable = document.getElementById("eventTable");
-
-    newContent("eventsDiv");
 
     var response = await callEndpoint("GET", "/events/getBy" + createEventFilters());
     if (!response.ERROR) {
@@ -16,6 +15,9 @@ async function buildEventTable() {
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
+    newContent("eventsDiv");
 }
 
 function createEventFilters() {

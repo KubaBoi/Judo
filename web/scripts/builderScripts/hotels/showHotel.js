@@ -1,9 +1,9 @@
 async function showHotelTab(hotelId) {
-
+    showLoader();
     var response = await callEndpoint("GET", "/hotels/get?hotelId=" + hotelId);
     if (!response.ERROR) {
         activeHotel = response.HOTEL;
-        var hiddenTab = openHiddenTab();
+        var hiddenTab = getHiddenTab();
 
         createElement("h2", hiddenTab, activeHotel.NAME);
         var showDiv = createElement("div", hiddenTab, "",
@@ -28,8 +28,11 @@ async function showHotelTab(hotelId) {
         createShowTableRowMulti(tblRooms, "Triple", [activeHotel.THREE_ROOM, activeHotel.THREE_ROOM_PRICE]);
         createShowTableRowMulti(tblRooms, "Apartman", [activeHotel.APARTMAN_ROOM, activeHotel.APARTMAN_ROOM_PRICE]);
 
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }

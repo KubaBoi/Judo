@@ -14,11 +14,22 @@ function regEvClose() {
 }
 
 function registerButton(eventId, status) {
+    if (loggedClub == null) {
+        showConfirm("No club", "You can't register for event when you have not any club.<br>Do you want to create one?", buildClubTable);
+        return
+    }
+
     if (status == 3) {
         registerToEventShowHidden(eventId);
     }
+    else if (status == 0) {
+        showWrongAlert("Patience please", "Request for registration has been sent.<br>Wait until organiser's confirmation.", alertTime);
+    }
     else if (status == 1) {
         registerToEventShow(eventId);
+    }
+    else if (status == 2) {
+        showOkAlert("Registrated", "Your team is already registrated :)", alertTime);
     }
 }
 
@@ -93,7 +104,7 @@ async function registerToEvent(eventId) {
     }
 }
 
-function setDataToInfoTable(table, event) {
+function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
     createShowTableRowHeader(table, "EVENT", "");
     createShowTableRow(table, "Name: ", event.NAME);
     createShowTableRow(table, "Category: ", event.CATEGORY);
@@ -107,15 +118,15 @@ function setDataToInfoTable(table, event) {
     createShowTableRow(table, "Other prices: ", event.OTHER_PRICE);
 
     createShowTableRowHeader(table, "CLUB", "");
-    createShowTableRow(table, "Name: ",  loggedClub.NAME);
-    createShowTableRow(table, "State: ", loggedClub.STATE);
-    createShowTableRow(table, "Address: ", loggedClub.ADDRESS);
-    createShowTableRow(table, "EJU: ", loggedClub.EJU);
+    createShowTableRow(table, "Name: ",  club.NAME);
+    createShowTableRow(table, "State: ", club.STATE);
+    createShowTableRow(table, "Address: ", club.ADDRESS);
+    createShowTableRow(table, "EJU: ", club.EJU);
 
     createShowTableRowHeader(table, "OWNER", "");
-    createShowTableRow(table, "Name: ",  loggedUser.FULL_NAME);
-    createShowTableRow(table, "E-mail: ",  loggedUser.LOGIN);
-    createShowTableRow(table, "Phone: ",  loggedUser.PHONE);
+    createShowTableRow(table, "Name: ",  user.FULL_NAME);
+    createShowTableRow(table, "E-mail: ",  user.LOGIN);
+    createShowTableRow(table, "Phone: ",  user.PHONE);
 }
 
 function chooseRegTab(button) {

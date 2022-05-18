@@ -1,4 +1,8 @@
 function newContent(id) {
+    setTimeout(function(){switchContent(id)}, switchTime);
+}
+
+function switchContent(id) {
     var newCont = document.getElementById(id);
     if (newCont == activeContent) return;
 

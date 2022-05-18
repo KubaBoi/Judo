@@ -1,7 +1,8 @@
 debug = true;
 
 var activeContent;
-var alertTime = 2000;
+var alertTime = 3000;
+var switchTime = 300;
 
 var loggedUser = null;
 var loggedClub = null;

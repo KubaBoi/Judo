@@ -1,9 +1,8 @@
 var clubTable;
 
 async function buildClubAllTable() {
+    showLoader();
     clubTable = document.getElementById("clubAllTable");
-
-    newContent("allClubsDiv");
 
     var response = await callEndpoint("GET", "/clubs/getAll");
     if (!response.ERROR) {
@@ -16,12 +15,14 @@ async function buildClubAllTable() {
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
+    newContent("allClubsDiv");
 }
 
 async function buildClubTable() {
+    showLoader();
     clubTable = document.getElementById("clubTable");
-
-    newContent("clubsDiv");
 
     var response = await callEndpoint("GET", "/clubs/getByUser?userId=" + loggedUser.ID);
     if (!response.ERROR) {
@@ -34,6 +35,9 @@ async function buildClubTable() {
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
+    newContent("clubsDiv");
 }
 
 async function buildClubRow(club, owner=false) {

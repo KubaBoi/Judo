@@ -1,9 +1,10 @@
 async function showEventTab(eventId) {
+    showLoader();
     var response = await callEndpoint("GET", "/events/get?eventId=" + eventId);
     if (!response.ERROR) {
         activeEvent = response.EVENT;
 
-        var hiddenTab = openHiddenTab();
+        var hiddenTab = getHiddenTab();
 
         createElement("h2", hiddenTab, activeEvent.NAME);
         var showDiv = createElement("div", hiddenTab, "",
@@ -33,8 +34,11 @@ async function showEventTab(eventId) {
         createShowTableRow(dateTbl, "Visa deadline: ", activeEvent.END_VISA);
         createShowTableRow(dateTbl, "Room deadline: ", activeEvent.END_ROOM);
 
+        openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }

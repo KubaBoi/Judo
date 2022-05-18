@@ -1,9 +1,8 @@
 var hotelTable;
 
 async function buildHotelTable() {
+    showLoader();
     hotelTable = document.getElementById("hotelTable");
-
-    newContent("hotelsDiv");
 
     var response = await callEndpoint("GET", "/hotels/getAll");
     if (!response.ERROR) {
@@ -16,6 +15,9 @@ async function buildHotelTable() {
     else if (response.ERROR != "No cookies") {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
+    newContent("hotelsDiv");
 }
 
 function buildHotelRow(hotel) {

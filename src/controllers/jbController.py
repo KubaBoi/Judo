@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
+from datetime import datetime
 
 from Cheese.resourceManager import ResMan
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.jbRepository import JbRepository
+from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 
 from src.cvsParser import CVSparser
 
@@ -22,28 +23,8 @@ class JbController(cc):
 		if (not cc.validateJson(['CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
 			raise BadRequest("Wrong json structure")
 
-		clubId = args["CLUB_ID"]
-		jb = args["JB"]
-		name = args["NAME"]
-		surName = args["SUR_NAME"]
-		function = args["FUNCTION"]
-		birthday = args["BIRTHDAY"]
-		gender = args["GENDER"]
-		passId = args["PASS_ID"]
-		passRelease = args["PASS_RELEASE"]
-		passExpiration = args["PASS_EXPIRATION"]
-
 		jbModel = JbRepository.model()
-		jbModel.club_id = clubId
-		jbModel.jb = jb
-		jbModel.name = name
-		jbModel.sur_name = surName
-		jbModel.function = function
-		jbModel.birthday = birthday
-		jbModel.gender = gender
-		jbModel.pass_id = passId
-		jbModel.pass_release = passRelease
-		jbModel.pass_expiration = passExpiration
+		jbModel.toModel(args)
 		JbRepository.save(jbModel)
 
 		return cc.createResponse({"ID": jbModel.id}, 200)
@@ -52,50 +33,30 @@ class JbController(cc):
 	#@post /createFromCvs;
 	@staticmethod
 	def createFromCvs(server, path, auth):
-		args = cc.readBytes(server)
-
-		if (not args):
-			raise BadRequest("Wrong json structure")
-
-		name = "cvs"
-		fileName = name
-		i = 0
-		while (os.path.exists(os.path.join(ResMan.resources(), fileName + ".txt"))):
-			i += 1
-			fileName = name + str(i)
-
-		with open(f"{ResMan.resources()}/{fileName}.txt", "wb") as f:
-			f.write(args)
-
-		return cc.createResponse({"FILE_NAME": fileName + ".txt"}, 200)
-
-
-	#@post /createByCvs;
-	@staticmethod
-	def createFromCvs(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(["FILE_NAME", "CLUB_ID"], args)):
+		if (not cc.validateJson(["EVENT_ID", "CLUB_ID", "DATA"], args)):
 			raise BadRequest("Wrong json structure")
 
+		eventId = args["EVENT_ID"]
 		clubId = args["CLUB_ID"]
-		fileName = args["FILE_NAME"]
-		jbsArray = CVSparser.parse(fileName)
+		data = args["DATA"]
 
-		for jb in jbsArray:
-			jbModel = JbRepository.model()
-			jbModel.club_id = clubId
-			jbModel.birthday = jb["BIRTHDAY"]
-			jbModel.name = jb["NAME"]
-			jbModel.sur_name = jb["SUR_NAME"]
-			jbModel.function = jb["FUNCTION"]
-			jbModel.gender = jb["GENDER"]
-			jbModel.jb = jb["JB"]
-			JbRepository.save(jbModel)
+		for oneJB in data:
+			model = JbRepository.model()
+			model.toModel(oneJB)
+			model.setAttrs(
+				club_id=clubId,
+				pass_release=datetime.now(),
+				pass_expiration=datetime.now()
+			)
+			JbRepository.save(model)
 
-		return cc.createResponse({"STATUS": "JBs have been created"}, 200)
+		regClub = RegisteredClubsRepository.registeredClubInEvent(eventId, clubId)
+		regClub.status = 1
+		RegisteredClubsRepository.update(regClub)
 
-
+		return cc.createResponse({"STATUS": "OK"}, 200)
 
 	#@post /update;
 	@staticmethod
@@ -106,28 +67,9 @@ class JbController(cc):
 			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
-		clubId = args["CLUB_ID"]
-		jb = args["JB"]
-		name = args["NAME"]
-		surName = args["SUR_NAME"]
-		function = args["FUNCTION"]
-		birthday = args["BIRTHDAY"]
-		gender = args["GENDER"]
-		passId = args["PASS_ID"]
-		passRelease = args["PASS_RELEASE"]
-		passExpiration = args["PASS_EXPIRATION"]
 
-		jbModel = JbRepository.findById(id)
-		jbModel.club_id = clubId
-		jbModel.jb = jb
-		jbModel.name = name
-		jbModel.sur_name = surName
-		jbModel.function = function
-		jbModel.birthday = birthday
-		jbModel.gender = gender
-		jbModel.pass_id = passId
-		jbModel.pass_release = passRelease
-		jbModel.pass_expiration = passExpiration
+		jbModel = JbRepository.find(id)
+		jbModel.toModel(args)
 		JbRepository.update(jbModel)
 
 		return cc.createResponse({'STATUS': 'Jb has been updated'}, 200)
