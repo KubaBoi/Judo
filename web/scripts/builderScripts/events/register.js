@@ -59,7 +59,7 @@ async function registerToEventShow(eventId) {
 
     createElement("button", hiddenTab, "Register", [
         {"name": "class", "value": "rightButton"},
-        {"name": "onclick", "value": `registerToEvent(${eventId}, ${club.ID}, ${club.VISA})`}
+        {"name": "onclick", "value": `registerToEvent(${eventId}, ${club.ID})`}
     ]);
 
     hideLoader();
@@ -76,19 +76,19 @@ async function getEventInfo(url) {
     return "ERROR :/";
 }
 
-async function registerToEvent(eventId, clubId, visa) {
+async function registerToEvent(eventId, clubId) {
     var req = {
         "CLUB_ID": clubId,
         "EVENT_ID": eventId,
-        "VISA": visa
+        "VISA": true
     };
-
+    console.log(req);
     var response = await callEndpoint("POST", "/registeredClubs/create", req);
     if (response.ERROR == null) {
         closeHiddenTab();
-        showOkAlert("DONE :)", "Your team has been registrated to event");
+        showOkAlert("DONE :)", "Your team has been registrated to event", alertTime);
     }
     else {
-        showErrorAlert(response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }

@@ -15,5 +15,5 @@ class RegisteredClubsRepository(CheeseRepository):
 	#@return bool;
 	@staticmethod
 	def isClubRegisteredInEvent(eventId, clubId):
-		CheeseRepository.query(eventId=eventId, clubId=clubId)
+		return CheeseRepository.query(eventId=eventId, clubId=clubId)
 

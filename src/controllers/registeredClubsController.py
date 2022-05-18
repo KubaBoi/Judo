@@ -30,6 +30,9 @@ class RegisteredClubsController(cc):
 		eventId = args["EVENT_ID"]
 		visa = args["VISA"]
 
+		if (RegisteredClubsRepository.isClubRegisteredInEvent(eventId, clubId)):
+			raise Conflict("Club is already registered in this event")
+
 		registeredclubsModel = RegisteredClubsRepository.model()
 		registeredclubsModel.club_id = clubId
 		registeredclubsModel.event_id = eventId
