@@ -11,6 +11,7 @@ async function login(alert=true) {
     if (!response.ERROR) {
         setCookie("token", response.TOKEN, 5);
         loggedUser = response.USER;
+        loggedClub = response.CLUB;
         succLogin(response);
     } 
     else if (response.ERROR != "No cookies") {
@@ -73,6 +74,10 @@ async function succLogin(response) {
     menu.style.animationFillMode = "both";
 
     hideLoader();
+
+    if (loggedClub =! null) {
+        showConfirm("No club", "Your club is missing in our database.<br>Do you want to create one?", buildClubTable);
+    }
 }
 
 function logout() {
