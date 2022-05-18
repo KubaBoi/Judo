@@ -14,7 +14,7 @@ async function buildClubAllTable() {
         }
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 
@@ -32,7 +32,7 @@ async function buildClubTable() {
         }
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 

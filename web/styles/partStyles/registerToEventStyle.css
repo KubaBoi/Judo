@@ -17,3 +17,7 @@
     0% {top: 0%}
     100% {top: 110%}
 }
+
+.regEvDiv {
+    display: flex;
+}

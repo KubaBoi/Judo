@@ -21,7 +21,7 @@ async function login(alert=true) {
             );
         }
         else if (alert) {
-            showAlert("An error occurred :(", response.ERROR);
+            showErrorAlert(response.ERROR, alertTime);
         }
     }
 }

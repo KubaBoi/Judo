@@ -4,7 +4,7 @@
 import os
 
 from Cheese.resourceManager import ResMan
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.jbRepository import JbRepository
@@ -20,8 +20,7 @@ class JbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		clubId = args["CLUB_ID"]
 		jb = args["JB"]
@@ -56,8 +55,7 @@ class JbController(cc):
 		args = cc.readBytes(server)
 
 		if (not args):
-			Error.sendCustomError(server, "There are no bytes in request", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		name = "cvs"
 		fileName = name
@@ -78,8 +76,7 @@ class JbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(["FILE_NAME", "CLUB_ID"], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		clubId = args["CLUB_ID"]
 		fileName = args["FILE_NAME"]
@@ -106,8 +103,7 @@ class JbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		clubId = args["CLUB_ID"]
@@ -143,8 +139,7 @@ class JbController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['clubId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		clubId = args["clubId"]
 
@@ -163,8 +158,7 @@ class JbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 

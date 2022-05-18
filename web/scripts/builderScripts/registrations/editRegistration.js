@@ -84,7 +84,7 @@ async function editHotelTab(hotelId) {
         ]);
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 
@@ -121,7 +121,7 @@ async function saveHotelChanges(hotelId, hardCreate=false) {
             function() {saveHotelChanges(null, true)});
     }
     else {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 
@@ -164,6 +164,6 @@ async function reallyDeleteHotel(hotelId) {
         buildHotelTable();
     }
     else {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }

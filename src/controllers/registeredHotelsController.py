@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.registeredHotelsRepository import RegisteredHotelsRepository
@@ -15,8 +15,7 @@ class RegisteredHotelsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HOTEL_ID', 'EVENT_ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		hotelId = args["HOTEL_ID"]
 		eventId = args["EVENT_ID"]
@@ -35,8 +34,7 @@ class RegisteredHotelsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['eventId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		eventId = args["eventId"]
 
@@ -55,8 +53,7 @@ class RegisteredHotelsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 

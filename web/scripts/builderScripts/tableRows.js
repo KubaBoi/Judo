@@ -35,6 +35,12 @@ function createShowTableRow(tbl, label, defValue) {
     createElement("td", row, defValue);
 }
 
+function createShowTableRowHeader(tbl, label, defValue) {
+    var row = createElement("tr", tbl);
+    createElement("th", row, label);
+    createElement("th", row, defValue);
+}
+
 function createShowTableRowMulti(tbl, label, cells=[]) {
     var row = createElement("tr", tbl);
     createElement("td", row, label);

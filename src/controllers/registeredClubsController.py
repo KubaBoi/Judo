@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
@@ -24,8 +24,7 @@ class RegisteredClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['CLUB_ID', 'EVENT_ID', 'VISA'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		clubId = args["CLUB_ID"]
 		eventId = args["EVENT_ID"]

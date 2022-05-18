@@ -110,6 +110,7 @@ button:disabled:hover {
     background-color: var(--main-color);
     padding: 5px;
     height: auto;
+    max-height: 90%;
     border-style: solid;
     border-color: var(--light-color);
     border-radius: 10px;
@@ -121,4 +122,5 @@ button:disabled:hover {
     pointer-events: all;
     transition: all;
     transition-duration: 0.5s;
+    overflow-y: auto;
 }

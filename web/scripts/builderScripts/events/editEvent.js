@@ -158,6 +158,6 @@ async function reallyDeleteEvent(eventId) {
         buildEventTable();
     }
     else {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.clubsRepository import ClubsRepository
@@ -15,8 +15,7 @@ class ClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['STATE', 'NAME', 'ADDRESS', 'EJU', 'USER_ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		state = args["STATE"]
 		name = args["NAME"]
@@ -42,8 +41,7 @@ class ClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'STATE', 'NAME', 'ADDRESS', 'EJU', 'USER_ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		state = args["STATE"]
@@ -68,15 +66,13 @@ class ClubsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["clubId"], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["clubId"]
 
 		club = ClubsRepository.find(id)
 		if (club == None):
-			Error.sendCustomError(server, "Club was not found", 404)
-			return
+			raise NotFound("Club was not found")
 
 		jsonResponse = club.toJson()
 
@@ -99,8 +95,7 @@ class ClubsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['userId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		userId = int(args["userId"])
 
@@ -118,8 +113,7 @@ class ClubsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 

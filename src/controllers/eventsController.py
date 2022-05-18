@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.eventsRepository import EventsRepository
@@ -18,8 +18,7 @@ class EventsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		hardCreate = args["HARD_CREATE"]
 		name = args["NAME"]
@@ -45,8 +44,7 @@ class EventsController(cc):
 		if (exists == None):
 			return
 		if (len(exists) > 0 and not hardCreate):
-			Error.sendCustomError(server, "Event already exists", 409)
-			return
+			raise Conflict("Event already exists")
 
 		eventsModel = EventsRepository.model()
 		eventsModel.name = name
@@ -77,8 +75,7 @@ class EventsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		name = args["NAME"]
@@ -129,15 +126,13 @@ class EventsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['eventId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["eventId"]
 
 		event = EventsRepository.find(id)
 		if (event == None):
-			Error.sendCustomError(server, "Event was not found", 404)
-			return
+			raise NotFound("Event was not found")
 
 		jsonResponse = {}
 		jsonResponse["EVENT"] = event.toJson()
@@ -150,8 +145,7 @@ class EventsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["column"], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		column = args["column"]
 		userLogin = auth["login"]["login"]
@@ -186,8 +180,7 @@ class EventsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['id'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["id"]
 

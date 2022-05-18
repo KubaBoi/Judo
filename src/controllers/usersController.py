@@ -6,7 +6,7 @@ import string
 import os
 import json
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 from Cheese.resourceManager import ResMan
 
@@ -39,8 +39,7 @@ class UsersController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['LOGIN', 'PASSWORD', 'PHONE', 'FULL_NAME'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		login = args["LOGIN"]
 		password = args["PASSWORD"]
@@ -49,8 +48,7 @@ class UsersController(cc):
 
 		users = UsersRepository.findBy("login", login)
 		if (len(users) > 0):
-			Error.sendCustomError(server, "User with this login already exists", 409)
-			return
+			raise Conflict("User with this login already exists")
 
 		randomCode = UsersController.randomString(20)
 
@@ -76,25 +74,18 @@ class UsersController(cc):
 	#@get /create;
 	@staticmethod
 	def create(server, path, auth):
-		if (auth["role"] > 2):
-			Error.sendCustomError(server, "Unauthorized access", 401)
-			return
-
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['code'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		code = args["code"]
 		registration = RegistrationsRepository.findBy("registration_code", code)
 		if (registration == None):
-			Error.sendCustomError(server, "Registration is invalid", 401)
-			return
+			raise Unauthorized("Registration is invalid")
 
 		if (code != registration.registration_code):
-			Error.sendCustomError(server, "Registration is invalid", 401)
-			return
+			raise Unauthorized("Registration is invalid")
 
 		login = registration.login
 		password = registration.password
@@ -124,8 +115,7 @@ class UsersController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['userId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		userId = args["userId"]
 

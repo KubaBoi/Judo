@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.registeredJbRepository import RegisteredJbRepository
@@ -15,8 +15,7 @@ class RegisteredJbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['REG_CLUB_ID', 'JB_ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		regClubId = args["REG_CLUB_ID"]
 		jbId = args["JB_ID"]
@@ -34,8 +33,7 @@ class RegisteredJbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'ARRIVE', 'DEPARTURE', 'TRANSPORT'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		arrive = args["ARRIVE"]
@@ -56,8 +54,7 @@ class RegisteredJbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['regClubId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		regClubId = args["regClubId"]
 
@@ -75,8 +72,7 @@ class RegisteredJbController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 

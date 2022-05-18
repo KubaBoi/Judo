@@ -30,6 +30,6 @@ async function showRegistrationTab(hotelId) {
 
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }

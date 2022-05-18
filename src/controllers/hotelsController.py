@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from Cheese.ErrorCodes import Error
+from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.hotelsRepository import HotelsRepository
@@ -17,8 +17,7 @@ class HotelsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		name = args["NAME"]
 		address = args["ADDRESS"]
@@ -41,8 +40,7 @@ class HotelsController(cc):
 			if (existingHotel == None):
 				return
 			if (len(existingHotel) > 0):
-				Error.sendCustomError(server, "Hotel already exists", 409)
-				return
+				raise Conflict("Hotel already exists")
 
 		hotelsModel = HotelsRepository.model()
 		hotelsModel.name = name
@@ -69,8 +67,7 @@ class HotelsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['ID', 'NAME', 'ADDRESS', 'MAIL', 'WEB', 'PHONE', 'PACKAGE', 'P_NIGHTS', 'ONE_ROOM', 'ONE_ROOM_PRICE', 'TWO_ROOM', 'TWO_ROOM_PRICE', 'THREE_ROOM', 'THREE_ROOM_PRICE', 'APARTMAN_ROOM', 'APARTMAN_ROOM_PRICE'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
 		name = args["NAME"]
@@ -130,15 +127,13 @@ class HotelsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["hotelId"], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["hotelId"]
 
 		hotel = HotelsRepository.find(id)
 		if (hotel == None):
-			Error.sendCustomError(server, "Hotel was not found", 404)
-			return
+			raise NotFound("Hotel was not found")
 
 		jsonResponse = hotel.toJson()
 
@@ -165,8 +160,7 @@ class HotelsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(["column"], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		column = args["column"]
 
@@ -185,8 +179,7 @@ class HotelsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['hotelId'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		hotelId = args["hotelId"]
 		roomsArray = RoomsRepository.findBy("columnName-hotel_id", hotelId)
@@ -206,8 +199,7 @@ class HotelsController(cc):
 		args = cc.readArgs(server)
 
 		if (not cc.validateJson(['HOTEL_ID', 'ROOM_ID', 'JBS'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		hotelId = args["HOTEL_ID"]
 		roomId = args["ROOM_ID"]
@@ -216,14 +208,12 @@ class HotelsController(cc):
 		room = RoomsRepository.find(roomId)
 
 		if (not room.available):
-			Error.sendCustomError("Room is already occupied")
-			return
+			raise Conflict("Room is already occupied")
 
 		beds = BedRepository.findBy("room_id", roomId)
 
 		if (len(beds) < len(jbs)):
-			Error.sendCustomError(server, "Room does not have such a capacity", 103)
-			return
+			raise Forbidden("Room does not have such a capacity")
 
 		for bed in beds:
 			if (bed.jb_id == -1):
@@ -242,8 +232,7 @@ class HotelsController(cc):
 		args = cc.getArgs(path)
 
 		if (not cc.validateJson(['id'], args)):
-			Error.sendCustomError(server, "Wrong json structure", 400)
-			return
+			raise BadRequest("Wrong json structure")
 
 		id = args["id"]
 

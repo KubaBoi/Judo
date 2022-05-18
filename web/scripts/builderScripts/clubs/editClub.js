@@ -43,7 +43,7 @@ async function editClubTab(clubId) {
         ]);
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 
@@ -68,7 +68,7 @@ async function saveClubChanges(clubId) {
         }
     }
     else {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }
 
@@ -97,6 +97,6 @@ async function reallyDeleteClub(clubId) {
         buildClubTable();
     }
     else {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 }

@@ -38,7 +38,7 @@ async function register() {
         );
     } 
     else if (response.ERROR != "User with this login already exists") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
     else {
         showTimerAlert("Error", "This email is already registered", alertTime, "divWrongAlert",
