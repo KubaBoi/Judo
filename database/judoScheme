@@ -3,12 +3,31 @@
 BEGIN;
 
 
+CREATE TABLE IF NOT EXISTS public.bed
+(
+    id bigint NOT NULL,
+    room_id bigint NOT NULL,
+    jb_id bigint NOT NULL,
+    CONSTRAINT bed_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.clubs
+(
+    id bigint NOT NULL,
+    state text COLLATE pg_catalog."default" NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    address text COLLATE pg_catalog."default" NOT NULL,
+    eju boolean NOT NULL,
+    user_id bigint NOT NULL,
+    CONSTRAINT clubs_pkey PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS public.events
 (
     id bigint NOT NULL,
-    name text NOT NULL,
-    category text NOT NULL,
-    place text NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    category text COLLATE pg_catalog."default" NOT NULL,
+    place text COLLATE pg_catalog."default" NOT NULL,
     event_start date NOT NULL,
     event_end date NOT NULL,
     arrive timestamp with time zone NOT NULL,
@@ -16,110 +35,54 @@ CREATE TABLE IF NOT EXISTS public.events
     end_visa date NOT NULL,
     end_room date NOT NULL,
     organiser_id bigint NOT NULL,
-    visa_mail text NOT NULL,
-    visa_phone text NOT NULL,
+    visa_mail text COLLATE pg_catalog."default" NOT NULL,
+    visa_phone text COLLATE pg_catalog."default" NOT NULL,
     eju_price bigint NOT NULL,
     pcr_price bigint NOT NULL,
     ag_price bigint NOT NULL,
     trans_price bigint NOT NULL,
     other_price bigint NOT NULL,
     show_hotel boolean NOT NULL,
-    PRIMARY KEY (id)
+    hotels text NOT NULL,
+    CONSTRAINT events_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.clubs
+CREATE TABLE IF NOT EXISTS public.hotels
 (
     id bigint NOT NULL,
-    state text NOT NULL,
-    name text NOT NULL,
-    address text NOT NULL,
-    eju boolean NOT NULL,
-    user_id bigint NOT NULL,
-    PRIMARY KEY (id)
+    name text COLLATE pg_catalog."default" NOT NULL,
+    address text COLLATE pg_catalog."default" NOT NULL,
+    mail text COLLATE pg_catalog."default" NOT NULL,
+    web text COLLATE pg_catalog."default" NOT NULL,
+    phone text COLLATE pg_catalog."default" NOT NULL,
+    "package" boolean NOT NULL,
+    p_nights bigint NOT NULL,
+    CONSTRAINT hotels_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.jb
 (
     id bigint NOT NULL,
     club_id bigint NOT NULL,
-    jb text NOT NULL,
-    name text NOT NULL,
-    sur_name text NOT NULL,
-    function text NOT NULL,
+    jb text COLLATE pg_catalog."default" NOT NULL,
+    name text COLLATE pg_catalog."default" NOT NULL,
+    sur_name text COLLATE pg_catalog."default" NOT NULL,
+    function text COLLATE pg_catalog."default" NOT NULL,
     birthday date NOT NULL,
-    gender text NOT NULL,
-    pass_id text NOT NULL,
+    gender text COLLATE pg_catalog."default" NOT NULL,
+    pass_id text COLLATE pg_catalog."default" NOT NULL,
     pass_release date NOT NULL,
     pass_expiration date NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.users
-(
-    id bigint NOT NULL,
-    login text NOT NULL,
-    phone text NOT NULL,
-    full_name text NOT NULL,
-    rule_id bigint NOT NULL,
-    PRIMARY KEY (id)
+    state text NOT NULL,
+    CONSTRAINT jb_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.passwords
 (
     id bigint NOT NULL,
-    password text NOT NULL,
-    login text NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.tokens
-(
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    token text NOT NULL,
-    ip text NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.roles
-(
-    id bigint NOT NULL,
-    "desc" text NOT NULL,
-    PRIMARY KEY (id)
-);
-
-COMMENT ON TABLE public.roles
-    IS 'rule 0 = admin, rule 1 = organiser, rule 2 = client';
-
-CREATE TABLE IF NOT EXISTS public.hotels
-(
-    id bigint NOT NULL,
-    name text NOT NULL,
-    address text NOT NULL,
-    mail text NOT NULL,
-    web text NOT NULL,
-    phone text NOT NULL,
-    "package" boolean NOT NULL,
-    p_nights bigint NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.rooms
-(
-    id bigint NOT NULL,
-    bed bigint NOT NULL,
-    price bigint NOT NULL,
-    hotel_id bigint NOT NULL,
-    available boolean NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.bed
-(
-    id bigint NOT NULL,
-    room_id bigint NOT NULL,
-    jb_id bigint NOT NULL,
-    PRIMARY KEY (id)
+    password text COLLATE pg_catalog."default" NOT NULL,
+    login text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT passwords_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.registered_clubs
@@ -129,22 +92,11 @@ CREATE TABLE IF NOT EXISTS public.registered_clubs
     club_id bigint NOT NULL,
     visa boolean NOT NULL,
     status bigint NOT NULL,
-    PRIMARY KEY (id)
+    CONSTRAINT registered_clubs_pkey PRIMARY KEY (id)
 );
 
 COMMENT ON TABLE public.registered_clubs
     IS 'clubs registered in event';
-
-CREATE TABLE IF NOT EXISTS public.registered_hotels
-(
-    id bigint NOT NULL,
-    event_id bigint NOT NULL,
-    hotel_id bigint NOT NULL,
-    PRIMARY KEY (id)
-);
-
-COMMENT ON TABLE public.registered_hotels
-    IS 'hotel choosed for event';
 
 CREATE TABLE IF NOT EXISTS public.registered_jb
 (
@@ -154,8 +106,8 @@ CREATE TABLE IF NOT EXISTS public.registered_jb
     arrive timestamp with time zone NOT NULL,
     departure timestamp with time zone NOT NULL,
     transport boolean NOT NULL,
-    flight_number text NOT NULL,
-    PRIMARY KEY (id)
+    flight_number text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT registered_jb_pkey PRIMARY KEY (id)
 );
 
 COMMENT ON TABLE public.registered_jb
@@ -167,7 +119,7 @@ CREATE TABLE IF NOT EXISTS public.registered_tests
     reg_jb_id bigint NOT NULL,
     pcr boolean NOT NULL,
     date timestamp with time zone NOT NULL,
-    PRIMARY KEY (id)
+    CONSTRAINT registered_tests_pkey PRIMARY KEY (id)
 );
 
 COMMENT ON TABLE public.registered_tests
@@ -179,11 +131,47 @@ COMMENT ON COLUMN public.registered_tests.pcr
 CREATE TABLE IF NOT EXISTS public.registrations
 (
     id bigint NOT NULL,
-    login text NOT NULL,
-    password text NOT NULL,
-    phone text NOT NULL,
-    full_name text NOT NULL,
-    registration_code text NOT NULL,
-    PRIMARY KEY (id)
+    login text COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default" NOT NULL,
+    phone text COLLATE pg_catalog."default" NOT NULL,
+    full_name text COLLATE pg_catalog."default" NOT NULL,
+    registration_code text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT registrations_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.roles
+(
+    id bigint NOT NULL,
+    "desc" text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT roles_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.rooms
+(
+    id bigint NOT NULL,
+    bed bigint NOT NULL,
+    price bigint NOT NULL,
+    hotel_id bigint NOT NULL,
+    available boolean NOT NULL,
+    CONSTRAINT rooms_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.tokens
+(
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    token text COLLATE pg_catalog."default" NOT NULL,
+    ip text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT tokens_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id bigint NOT NULL,
+    login text COLLATE pg_catalog."default" NOT NULL,
+    phone text COLLATE pg_catalog."default" NOT NULL,
+    full_name text COLLATE pg_catalog."default" NOT NULL,
+    role_id bigint NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
 );
 END;

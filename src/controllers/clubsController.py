@@ -17,20 +17,8 @@ class ClubsController(cc):
 		if (not cc.validateJson(['STATE', 'NAME', 'ADDRESS', 'EJU', 'USER_ID'], args)):
 			raise BadRequest("Wrong json structure")
 
-		state = args["STATE"]
-		name = args["NAME"]
-		address = args["ADDRESS"]
-		eju = args["EJU"]
-		userId = args["USER_ID"]
-
 		clubsModel = ClubsRepository.model()
-		clubsModel.setAttrs(
-			state=state,
-			name=name,
-			address=address,
-			eju=eju,
-			user_id=userId
-		)
+		clubsModel.toModel(args)
 		ClubsRepository.save(clubsModel)
 
 		return cc.createResponse({"ID": clubsModel.id}, 200)
@@ -44,18 +32,9 @@ class ClubsController(cc):
 			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
-		state = args["STATE"]
-		name = args["NAME"]
-		address = args["ADDRESS"]
-		eju = args["EJU"]
-		userId = args["USER_ID"]
 
 		clubsModel = ClubsRepository.findBy(id)
-		clubsModel.state = state
-		clubsModel.name = name
-		clubsModel.address = address
-		clubsModel.eju = eju
-		clubsModel.user_id = userId
+		clubsModel.toModel(args)
 		ClubsRepository.update(clubsModel)
 
 		return cc.createResponse({'STATUS': 'Club has been updated'}, 200)

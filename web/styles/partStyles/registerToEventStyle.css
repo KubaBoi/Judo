@@ -20,6 +20,8 @@
 
 .regEvDiv {
     display: flex;
+    height: 90%;
+    max-height: 90%;
 }
 
 .infoDiv {
@@ -34,6 +36,7 @@
     position: relative;
     top: 5px;
     left: 5px;
+    margin-bottom: 10px;
 }
 
 .contents .regTabButtonChosen {

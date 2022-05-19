@@ -37,7 +37,7 @@ function registerButton(eventId, status) {
 async function registerToEventShowHidden(eventId) {
     showLoader();
 
-    var hiddenTab = openHiddenTab();
+    var hiddenTab = getHiddenTab();
 
     createElement("h2", hiddenTab, "Registration");
 
@@ -55,6 +55,7 @@ async function registerToEventShowHidden(eventId) {
         {"name": "onclick", "value": `registerToEvent(${eventId})`}
     ]);
 
+    openHiddenTab();
     hideLoader();
 }
 
@@ -71,6 +72,8 @@ async function registerToEventShow(eventId) {
 
     var tbl = createElement("table", dv);
     setDataToInfoTable(tbl, event);
+
+    await buildRegEvTables();
 
     hideLoader();
     regEvShow();
@@ -129,10 +132,14 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
     createShowTableRow(table, "Phone: ",  user.PHONE);
 }
 
-function chooseRegTab(button) {
+function chooseRegTab(button, divId="peopleDiv") {
     var buttons = document.getElementsByClassName("regTabButton");
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove("regTabButtonChosen");
     }
     button.classList.add("regTabButtonChosen");
+
+    let div = document.getElementById(divId);
+    div.scrollIntoView();
+    document.body.scrollTo(0, 0);
 }

@@ -1,4 +1,9 @@
 var activeEvent;
+
+var hotelsEventEd = [];
+var allHotelsTableEventEd = null;
+var chosenHotelsTableEventEd = null;
+
 async function editEventTab(eventId) {
     showLoader();
     var response = null;
@@ -59,12 +64,43 @@ async function editEventTab(eventId) {
 
         var dateTbl = createElement("table", editDiv);
 
-        createEditTableRow(dateTbl, "Start: ", "startInpEdit", activeEvent.START, "datetime-local");
-        createEditTableRow(dateTbl, "End: ", "endInpEdit", activeEvent.END, "datetime-local");
+        createEditTableRow(dateTbl, "Start: ", "startInpEdit", activeEvent.EVENT_START, "datetime-local");
+        createEditTableRow(dateTbl, "End: ", "endInpEdit", activeEvent.EVENT_END, "datetime-local");
         createEditTableRow(dateTbl, "Arrive: ", "arriveInpEdit", activeEvent.ARRIVE, "datetime-local");
         createEditTableRow(dateTbl, "Departure: ", "departInpEdit", activeEvent.DEPART, "datetime-local");
         createEditTableRow(dateTbl, "Visa deadline: ", "visaEndInpEdit", activeEvent.END_VISA, "datetime-local");
         createEditTableRow(dateTbl, "Room deadline: ", "roomEndInpEdit", activeEvent.END_ROOM, "datetime-local");
+
+        if (allHotelsTableEventEd != null) allHotelsTableEventEd.remove();
+        allHotelsTableEventEd = createElement("table", editDiv);
+
+        if (chosenHotelsTableEventEd != null) chosenHotelsTableEventEd.remove();
+        chosenHotelsTableEventEd = createElement("table", editDiv);
+
+        let chosenHotels = activeEvent.HOTELS.split(",");
+
+        hotelsEventEd = [];
+
+        var resp = await callEndpoint("GET", "/hotels/getAll");
+        if (resp.ERROR == null) {
+            let hotels = resp.HOTELS;
+            for (let i = 0; i < hotels.length; i++) {
+                let hotel = hotels[i];
+                if (chosenHotels.includes(String(hotel.ID))) {
+                    hotel.CHOSEN = true;
+                    hotelsEventEd.push(hotel);
+                }
+                else {
+                    hotel.CHOSEN = false;
+                    hotelsEventEd.push(hotel);
+                }
+            }
+        }
+        else {
+            showErrorAlert(resp.ERROR);
+        }
+
+        buildHotels();
 
         createElement("button", hiddenTab, "Save changes", 
         [
@@ -74,12 +110,42 @@ async function editEventTab(eventId) {
         openHiddenTab();
     } 
     else if (response.ERROR != "No cookies") {
-        showAlert("An error occurred :(", response.ERROR);
+        showErrorAlert(response.ERROR);
     }
 
     hideLoader();
 }
 
+function buildHotels() {
+    clearTable(chosenHotelsTableEventEd);
+    clearTable(allHotelsTableEventEd);
+
+    addHeader(chosenHotelsTableEventEd, [{"text": "Chosen hotels"}]);
+    addHeader(allHotelsTableEventEd, [{"text": "All hotels"}]);
+
+    for (let i = 0; i < hotelsEventEd.length; i++) {
+        let hotel = hotelsEventEd[i];
+        if (hotel.CHOSEN) {
+            addRow(chosenHotelsTableEventEd, [
+                {"text": hotel.NAME, "attributes": 
+                    [{"name": "ondblclick", "value": `chooseHotel(${i}, false)`}]
+                }
+            ]);
+        }
+        else {
+            addRow(allHotelsTableEventEd, [
+                {"text": hotel.NAME, "attributes": 
+                    [{"name": "ondblclick", "value": `chooseHotel(${i}, true)`}]
+                }
+            ]);
+        }
+    }
+}
+
+function chooseHotel(index, value) {
+    hotelsEventEd[index].CHOSEN = value;
+    buildHotels();
+}   
 
 async function saveEventChanges(eventId, hardCreate=false) {
     var response = null;
@@ -94,14 +160,14 @@ async function saveEventChanges(eventId, hardCreate=false) {
     if (!response.ERROR) {
         if (eventId) {
             buildEventTable();
-            showTimerAlert("Success :)", "Event was updated", alertTime, "divOkAlert",
+            showTimerAlert("Success :)", "Event has been updated", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );
         }
         else {
             buildEventTable();
-            showTimerAlert("Success :)", "Event was created", alertTime, "divOkAlert",
+            showTimerAlert("Success :)", "Event has been created", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );
@@ -115,12 +181,23 @@ async function saveEventChanges(eventId, hardCreate=false) {
                 function() {saveEventChanges(null, true)});
         }
         else {
-            showAlert("An error occurred :(", response.ERROR);
+            showErrorAlert(response.ERROR);
         }
     }
 }
 
 function prepareEventChangedData(hardCreate) {
+    let hotelsArr = "";
+    for (let i = 0; i < hotelsEventEd.length; i++) {
+        let hotel = hotelsEventEd[i];
+        if (hotel.CHOSEN) {
+            hotelsArr += String(hotel.ID);
+            if (i < hotelsEventEd.length-1) {
+                hotelsArr += ",";
+            }
+        }
+    }
+
     var newEvent = {
         "HARD_CREATE": hardCreate,
         "ID": activeEvent.ID,
@@ -141,7 +218,8 @@ function prepareEventChangedData(hardCreate) {
         "AG_PRICE": getValueOf("agPriceInpEdit"),
         "TRANS_PRICE": getValueOf("transPriceInpEdit"),
         "OTHER_PRICE": getValueOf("otherPriceInpEdit"),
-        "SHOW_HOTEL": getValueOf("showHotelInpEdit")
+        "SHOW_HOTEL": getValueOf("showHotelInpEdit"),
+        "HOTELS": hotelsArr
     }
     return newEvent;
 }
@@ -155,7 +233,7 @@ function deleteEvent(eventId) {
 async function reallyDeleteEvent(eventId) {
     var response = await callEndpoint("POST", "/events/remove?id=" + eventId);
     if (!response.ERROR) {
-        showTimerAlert("Success :)", "Event was deleted", alertTime, "divOkAlert",
+        showTimerAlert("Success :)", "Event has been deleted", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );

@@ -70,6 +70,7 @@ async function getHtml(name, path, parentId, attributeClass) {
 function after() {
     document.getElementById("nameInp").value = userName;
     document.getElementById("passInp").value = password;
+    document.body.scrollTo(0, 0);
 
     if (userName && password) {
         login(false);

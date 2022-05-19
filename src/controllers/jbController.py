@@ -42,6 +42,16 @@ class JbController(cc):
 		clubId = args["CLUB_ID"]
 		data = args["DATA"]
 
+		orFilter = ""
+		dataLen = len(data)-1
+		for i, oneJb in enumerate(data):
+			orFilter += f"jb='{oneJb['JB']}'"
+			if (i < dataLen):
+				orFilter += " or "
+
+		if (JbRepository.existsAny(orFilter)):
+			raise Conflict("Some id from JudoBase already exists")
+
 		for oneJB in data:
 			model = JbRepository.model()
 			model.toModel(oneJB)

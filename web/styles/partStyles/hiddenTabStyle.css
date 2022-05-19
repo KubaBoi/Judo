@@ -35,11 +35,12 @@
 
 .editTableDiv {
     width: auto;
-    display: inline-flex;
+    display: flex;
 }
 
 .editTableDiv table {
     margin: 10px;
+    height: max-content;
 }
 
 .showTableDiv {

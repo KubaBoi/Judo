@@ -1,0 +1,61 @@
+	cont_cup_cad_cze2022	b392e359	NOVOBILSKY	Vaclav	CZE			07.12.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	7de3d351	SOPINEC	David	CZE			20.04.2005	Competitor	m	-55 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	3a9a9b27	ZITA	Ondrej	CZE			25.12.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	7878bac4	RESUTIK	Adam	CZE			27.03.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	2f9bf953	TOMSU	Jakub	CZE			05.05.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	e8dcceb4	ZACHA	Viktor	CZE			30.09.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	81d19b42	PISTOVCAK	Viktor	CZE			04.08.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	37b79a91	FISER	Stepan	CZE			26.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d5d7ec89	MARTINKA	Josef	CZE			20.02.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	83ed4967	HOMOLKA	Josef	CZE			09.09.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	73196e33	CESKY	Michal	CZE			26.09.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	133ad692	PACUTA	Ladislav	CZE			04.09.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d68ba87a	MAROUSEK	Alex	CZE			06.07.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	b52356f1	OTEVREL	Filip	CZE			14.05.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	8ca2b3c1	VOSTREL	Vit	CZE			11.06.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	36727a73	DEDEK	Dominink	CZE			13.04.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	87396374	VARMUZKA	Matej	CZE			27.12.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	af6fbedf	KRYL	Jan	CZE			09.07.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	331764ba	BAYER	Daniel	CZE			16.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e3e7c7ed	BORECKY	Daniel	CZE			04.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4b1ada1e	JAVUREK	Patrik	CZE			10.07.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	ab73ff81	JAKS	Adam	CZE			18.02.2007	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	145c9726	SARBOCH	Vit	CZE			17.01.2007	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	3cd5d337	BOROVICKA	Tomas	CZE			06.02.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	e1dccdb6	POTUCEK	Tomas	CZE			09.02.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	e7842374	LUPAC	Vojtech	CZE			02.03.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	56f89b61	FULNECEK	Simon	CZE			13.04.2005	Competitor	m	-90 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	df495e79	CECH	Vaclav	CZE			05.11.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	611557e5	SEDLAK	Martin	CZE			16.08.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	dc338ef1	SCHOR	Adam	CZE			23.02.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	ac4486c8	MORAVEK	Martin	CZE			16.07.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	ccf75279	CERCHLA	Michal	CZE			18.02.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	461396a2	KORCAKOVA	Marketa	CZE			04.06.2006	Competitor	w	-44 kg				Zagreb Cadet European Cup 2022: 2. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	4e263873	KABELKOVA	Karolina	CZE			27.10.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	3a11f877	KALETOVA	Magdalena	CZE			07.08.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	feaf32eb	ZEDNIKOVA	Eliska	CZE			15.03.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	193b99dc	CECHOVA	Veronika	CZE			18.11.2007	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	ded46e83	SCERBOVA	Leona	CZE			19.08.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	9841839e	KUZELOVA	Dominika	CZE			27.03.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	8f71ad6b	SIMUNKOVA	Adela	CZE			23.04.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a651bfd8	DRDOVA	Silvie	CZE			27.05.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a81c158a	HOJDAROVA	Stepanka	CZE			11.09.2006	Competitor	w	-70 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	c8253e4a	KROUZKOVA	Anna	CZE			12.07.2007	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	a48e3535	BEDNAROVA	Bronislava	CZE			11.05.1957	Referee	w					 0
+	cont_cup_cad_cze2022	f3bdf6c4	DVORAK	Karel	CZE			15.06.1964	Referee	m					 0
+	cont_cup_cad_cze2022	48d114e5	HORENI	Robert	CZE			26.10.1972	Referee	m					 0
+	cont_cup_cad_cze2022	3182b2c2	LUKS	Rostislav	CZE			13.06.1986	Referee	m					 0
+	cont_cup_cad_cze2022	39b8232c	NEUZILOVA	Pavlina	CZE			03.09.1984	Referee	w					 0
+	cont_cup_cad_cze2022	9784edb6	SKALKA	Tomas	CZE			26.03.1971	Referee	m					 0
+	cont_cup_cad_cze2022	f7ba8fdb	STEFANIKOVA	Klara	CZE			17.06.1981	Referee	w					 0
+	cont_cup_cad_cze2022	b5fb2356	SVEC	Jaroslav	CZE	Covid-Manager		05.02.1977	Coach	m					 0
+	cont_cup_cad_cze2022	64b1bc37	POKORNA	Andrea	CZE			06.01.1979	Coach	w					 0
+	cont_cup_cad_cze2022	ff72f28a	CERVIN	Vaclav	CZE			10.04.1970	Coach	m					 0
+	cont_cup_cad_cze2022	ca9ae229	ZITA	Ondrej	CZE			05.04.1977	Coach	m					 0
+	cont_cup_cad_cze2022	f526db58	KOZA	Dusan	CZE			08.04.1975	Coach	m					 0
+	cont_cup_cad_cze2022	9a64f6c5	KYTYR	Pavel	CZE			26.05.1989	Coach	m					 0
+	cont_cup_cad_cze2022	8d846326	LORENC	David	CZE			12.12.1979	Coach	m					 0
+	cont_cup_cad_cze2022	8cc7eac2	MUSIL	Jaromir	CZE			28.05.1988	Coach	m					National Champion seniors 0
+	cont_cup_cad_cze2022	ac81e67c	SIMCAK	Marek	CZE			05.09.1971	Referee	m					 0
+	cont_cup_cad_cze2022	26ef71b4	KADLCAK	Richard	CZE			30.04.1975	Referee	m					 0
+	cont_cup_cad_cze2022	9ca9b7e8	SVEC	Libor	CZE			03.11.1977	Coach	m					 0

@@ -17,28 +17,11 @@ class EventsController(cc):
 	def create(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
+		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
 			raise BadRequest("Wrong json structure")
 
 		hardCreate = args["HARD_CREATE"]
 		name = args["NAME"]
-		category = args["CATEGORY"]
-		place = args["PLACE"]
-		start = args["START"]
-		end = args["END"]
-		arrive = args["ARRIVE"]
-		depart = args["DEPART"]
-		endVisa = args["END_VISA"]
-		endRoom = args["END_ROOM"]
-		organiserId = args["ORGANISER_ID"]
-		visaMail = args["VISA_MAIL"]
-		visaPhone = args["VISA_PHONE"]
-		ejuPrice = args["EJU_PRICE"]
-		pcrPrice = args["PCR_PRICE"]
-		agPrice = args["AG_PRICE"]
-		transPrice = args["TRANS_PRICE"]
-		otherPrice = args["OTHER_PRICE"]
-		showHotel = args["SHOW_HOTEL"]
 
 		exists = EventsRepository.findBy("name", name)
 		if (exists == None):
@@ -47,24 +30,7 @@ class EventsController(cc):
 			raise Conflict("Event already exists")
 
 		eventsModel = EventsRepository.model()
-		eventsModel.name = name
-		eventsModel.category = category
-		eventsModel.place = place
-		eventsModel.event_start = start
-		eventsModel.event_end = end
-		eventsModel.arrive = arrive
-		eventsModel.depart = depart
-		eventsModel.end_visa = endVisa
-		eventsModel.end_room = endRoom
-		eventsModel.organiser_id = organiserId
-		eventsModel.visa_mail = visaMail
-		eventsModel.visa_phone = visaPhone
-		eventsModel.eju_price = ejuPrice
-		eventsModel.pcr_price = pcrPrice
-		eventsModel.ag_price = agPrice
-		eventsModel.trans_price = transPrice
-		eventsModel.other_price = otherPrice
-		eventsModel.show_hotel = showHotel
+		eventsModel.toModel(args)
 		EventsRepository.save(eventsModel)
 
 		return cc.createResponse({"ID": eventsModel.id}, 200)
@@ -74,48 +40,13 @@ class EventsController(cc):
 	def update(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL'], args)):
+		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
 			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]
-		name = args["NAME"]
-		category = args["CATEGORY"]
-		place = args["PLACE"]
-		start = args["START"]
-		end = args["END"]
-		arrive = args["ARRIVE"]
-		depart = args["DEPART"]
-		endVisa = args["END_VISA"]
-		endRoom = args["END_ROOM"]
-		organiserId = args["ORGANISER_ID"]
-		visaMail = args["VISA_MAIL"]
-		visaPhone = args["VISA_PHONE"]
-		ejuPrice = args["EJU_PRICE"]
-		pcrPrice = args["PCR_PRICE"]
-		agPrice = args["AG_PRICE"]
-		transPrice = args["TRANS_PRICE"]
-		otherPrice = args["OTHER_PRICE"]
-		showHotel = args["SHOW_HOTEL"]
-
+		
 		eventsModel = EventsRepository.find(id)
-		eventsModel.name = name
-		eventsModel.category = category
-		eventsModel.place = place
-		eventsModel.event_start = start
-		eventsModel.event_end = end
-		eventsModel.arrive = arrive
-		eventsModel.depart = depart
-		eventsModel.end_visa = endVisa
-		eventsModel.end_room = endRoom
-		eventsModel.organiser_id = organiserId
-		eventsModel.visa_mail = visaMail
-		eventsModel.visa_phone = visaPhone
-		eventsModel.eju_price = ejuPrice
-		eventsModel.pcr_price = pcrPrice
-		eventsModel.ag_price = agPrice
-		eventsModel.trans_price = transPrice
-		eventsModel.other_price = otherPrice
-		eventsModel.show_hotel = showHotel
+		eventsModel.toModel(args)
 		EventsRepository.update(eventsModel)
 
 		return cc.createResponse({'STATUS': 'Event has been changed'}, 200)

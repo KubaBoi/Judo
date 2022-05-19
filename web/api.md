@@ -41,20 +41,16 @@
     - [/getAll](#65-getall)
     - [/getAllData](#66-getalldata)
     - [/get](#67-get)
- - [/registeredHotels](#7-registeredHotels)
+ - [/registeredJb](#7-registeredJb)
     - [/create](#71-create)
-    - [/getByEvent](#72-getByEvent)
-    - [/remove](#73-remove)
- - [/registeredJb](#8-registeredJb)
+    - [/update](#72-update)
+    - [/getByRegisteredClub](#73-getByRegisteredClub)
+    - [/remove](#74-remove)
+ - [/registeredTests](#8-registeredTests)
     - [/create](#81-create)
     - [/update](#82-update)
-    - [/getByRegisteredClub](#83-getByRegisteredClub)
+    - [/getByRegisteredJb](#83-getByRegisteredJb)
     - [/remove](#84-remove)
- - [/registeredTests](#9-registeredTests)
-    - [/create](#91-create)
-    - [/update](#92-update)
-    - [/getByRegisteredJb](#93-getByRegisteredJb)
-    - [/remove](#94-remove)
 
 ## RestApi
 
@@ -253,7 +249,8 @@ Role = 1
     "AG_PRICE": 0,
     "TRANS_PRICE": 0,
     "OTHER_PRICE": 0,
-    "SHOW_HOTEL": true
+    "SHOW_HOTEL": true,
+    "HOTELS": "str" // ids of hotels splited by ","
 }
 ```
 
@@ -305,7 +302,8 @@ Role = 1
     "AG_PRICE": 0,
     "TRANS_PRICE": 0,
     "OTHER_PRICE": 0,
-    "SHOW_HOTEL": true
+    "SHOW_HOTEL": true,
+    "HOTELS": "str" // ids of hotels splited by ","
 }
 ```
 
@@ -358,7 +356,8 @@ Role = 2
         "AG_PRICE": 0,
         "TRANS_PRICE": 0,
         "OTHER_PRICE": 0,
-        "SHOW_HOTEL": true
+        "SHOW_HOTEL": true,
+        "HOTELS": "str" // ids of hotels splited by ","
     }
 }
 ```
@@ -441,7 +440,8 @@ Role = 2
         "TRANS_PRICE": 0,
         "OTHER_PRICE": 0,
         "SHOW_HOTEL": true,
-        "STATUS": 0
+        "STATUS": 0,
+        "HOTELS": "str" // ids of hotels splited by ","
     }
 }
 ```
@@ -1284,97 +1284,9 @@ Role = 1
 <hr>
 <hr>
 
-# 7 /registeredHotels
+# 7 /registeredJb
 
 ## 7.1 /create
-
-```POST```
-
-Register hotel into event
-
-Role = 1
-
-### Accepts post body
-
-```json
-{
-    "HOTEL_ID": 0,
-    "EVENT_ID": 0
-}
-```
-
-### Return OK - 200
-
-```json
-{
-    "ID": 0
-}
-```
-
-<hr>
-
-## 7.2 /getByEvent
-
-```GET```
-
-Return all clubs registered in event
-
-Role = 1
-
-### Accepts path arguments
-
-```json
-{
-    "eventId": 0
-}
-```
-
-### Return OK - 200
-
-```json
-{
-    "REGISTERED_HOTELS": [
-        {
-            "ID": 0,
-            "EVENT_ID": 0,
-            "HOTEL_ID": 0
-        }
-    ]
-}
-```
-
-<hr>
-
-## 7.3 /remove
-
-```POST```
-
-Remove hotel and from registration
-
-Role = 1
-
-### Accepts post body
-
-```json
-{
-    "ID": 0
-}
-```
-
-### Return OK - 200
-
-```json
-{
-    "STATUS": "Hotel has been removed from registration"
-}
-```
-
-<hr>
-<hr>
-
-# 8 /registeredJb
-
-## 8.1 /create
 
 ```POST```
 
@@ -1403,7 +1315,7 @@ Register club can only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.2 /update
+## 7.2 /update
 
 ```POST```
 
@@ -1434,7 +1346,7 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.3 /getByRegisteredClub
+## 7.3 /getByRegisteredClub
 
 ```GET```
 
@@ -1471,7 +1383,7 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 
 <hr>
 
-## 8.4 /remove
+## 7.4 /remove
 
 ```POST```
 
@@ -1500,27 +1412,27 @@ Changes can do only club owner (CLUB_ID -> USER_ID)
 <hr>
 <hr>
 
-# 9 /registeredTests
+# 8 /registeredTests
 
-## 9.1 /create
-
-WIP
-
-<hr>
-
-## 9.2 /update
+## 8.1 /create
 
 WIP
 
 <hr>
 
-## 9.3 /getByRegisteredJb
+## 8.2 /update
 
 WIP
 
 <hr>
 
-## 9.4 /remove
+## 8.3 /getByRegisteredJb
+
+WIP
+
+<hr>
+
+## 8.4 /remove
 
 WIP
 

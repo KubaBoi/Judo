@@ -1,0 +1,24 @@
+.regEvTablesDiv {
+    position: relative;
+    overflow-y: auto;
+    height: 90%;
+    scroll-behavior: smooth;
+}
+
+.accDiv {
+    display: flex;
+    height: 99%;
+}
+
+.accPeopleDiv {
+    width: 20%;
+    height: inherit;
+    overflow-y: auto;
+}
+
+.accRoomDiv {
+    display: grid;
+    width: 80%;
+    height: inherit;
+    overflow-y: auto;
+}

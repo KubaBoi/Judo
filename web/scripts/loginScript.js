@@ -52,7 +52,9 @@ async function succLogin(response) {
     await getHtml("clubs", "main/",  "loggedDiv", "contentDiv");
     await getHtml("account", "main/",  "loggedDiv", "contentDiv");
     await getHtml("registerToEvent", "main/", "body", "registerToEventDiv");
-    newContent("mainDiv");
+    
+    //newContent("mainDiv");
+    buildEventTable();
 
     var loggedAs = document.getElementById("loggedAs");
     loggedAs.innerHTML += response.USER.FULL_NAME;
@@ -78,6 +80,8 @@ async function succLogin(response) {
     if (loggedClub == null) {
         showConfirm("No club", "Your club is missing in our database.<br>Do you want to create one?", buildClubTable);
     }
+
+    document.body.scrollTo(0, 0);
 }
 
 function logout() {

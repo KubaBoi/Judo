@@ -5,19 +5,39 @@
     <div id="regEvInfoDiv" class="infoDiv"></div>
     <div id="regEvFlightsDiv" class="flightDiv">
         <div id="regEvContentsDiv" class="contents">
-            <button onclick="chooseRegTab(this)" value=0 class="regTabButton" id="regTabB0">People</button>
-            <button onclick="chooseRegTab(this)" value=1 class="regTabButton" id="regTabB1">Accommodations</button>
-            <button onclick="chooseRegTab(this)" value=2 class="regTabButton" id="regTabB2">Visa</button>
-            <button onclick="chooseRegTab(this)" value=3 class="regTabButton" id="regTabB3">Arrival</button>
-            <button onclick="chooseRegTab(this)" value=4 class="regTabButton" id="regTabB4">Billing</button>
+            <button onclick="chooseRegTab(this, 'peopleDiv')" class="regTabButton" id="regTabB0">People</button>
+            <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Accommodations</button>
+            <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa</button>
+            <button onclick="chooseRegTab(this, 'flightDiv')" class="regTabButton" id="regTabB3">Arrival</button>
+            <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB4">Billing</button>
         </div>
-        <table id="regEvFlightTable">
-            <tr>
-                <th>Type</th>
-                <th>Time</th>
-                <th>Flight number</th>
-                <th>Count</th>
-            </tr>
-        </table>
+        <div id="regEvTablesDiv" class="regEvTablesDiv">
+            <div id="peopleDiv">
+                <button onclick="allChangeJbArray(true)">Check all</button>
+                <button onclick="allChangeJbArray()">Uncheck all</button>
+                <table id="regEvPeopleTable">
+                </table>
+            </div>
+            <h2>Accommodations</h2>
+            <div id="accDiv" class="accDiv">
+                <div class="accPeopleDiv">
+                    <table id="accPeopleTable"></table>
+                </div>
+                <div class="accRoomDiv">
+                </div>
+            </div>
+            <div id="visaDiv">
+                <table id="regEvVisaTable">
+                </table>
+            </div>
+            <div id="flightDiv"> <!-- THIS IS GOING TO BE CONFUSING -->
+                <table id="regEvFlightTable">
+                </table>
+            </div>
+            <div id="billingDiv">
+                <table id="regEvBillingTable">
+                </table>
+            </div>
+        </div>
     </div>
 </div>

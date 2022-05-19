@@ -1,0 +1,807 @@
+	cont_cup_cad_cze2022	cbba9b2b	MALETS	Nikita	UKR			27.05.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	dc84544f	LENAERTS	Nathan	BEL			10.10.2005	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	b392e359	NOVOBILSKY	Vaclav	CZE			07.12.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	e3ce8f85	NITU	Antonio	ROU			30.08.2006	Competitor	m	-50 kg				Zagreb Cadet European Cup 2022: 2. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	e39218f5	TSJKADOEA	Luca	NED			15.08.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	d9c7e551	STSEKOTIN	Filipp	EST			14.09.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	a12f413e	DECLERCQ	Andreas	BEL			18.08.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	b2738b8b	KOLLAR	Sebestyen	HUN			28.06.2006	Competitor	m	-50 kg				Zagreb Cadet European Cup 2022: 1. place, Cadet European Championships (individual): 3. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	9d824f7e	GALO	Bence	HUN			26.01.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	b5fa1e8f	RAFFAY	Barnabas	HUN			31.03.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	21ab34fe	ADORJANI	Andras	HUN			27.09.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	94db2593	MAISURADZE	Luka	GEO			30.10.2005	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	d4dc444c	BERISHVILI	Saba	GEO			21.02.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	519bfd3a	ROUIBET	Abdeldjebbar Ilyes	ALG			12.11.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	2a4331e1	NAKAR	Ido	ISR			31.01.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	363cfff7	REICHER	Omer	ISR			01.12.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	fd4a4951	TAMARY	Ben	ISR			10.08.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	794dfb6a	HOCHMAN	Itay	ISR			20.09.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	57dcfbb7	LATTANZI	Emiliano	ITA			23.12.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	4d2cadac	AVERSA	Samuele	ITA			21.11.2007	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	46146684	RICHTER	Arjan	GER			15.05.2005	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	e5f23163	THEN	Carl	GER			06.05.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	86e4c696	ZVULUN	Liad	ISR			04.12.2006	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	58ff8b77	VIEGAS	Daniel	POR			19.11.2005	Competitor	m	-50 kg				
+	cont_cup_cad_cze2022	621ab19f	ORPHANOU	Daniel	FIN			16.04.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	d4ce4276	KALNYTSKYI	Oleksii	UKR			24.03.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	932587f2	GUENFOUD	Hichem	BEL			02.01.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	8ad97616	DZHAMALDINOV	Amsar	BEL			09.08.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	7de3d351	SOPINEC	David	CZE			20.04.2005	Competitor	m	-55 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	3a9a9b27	ZITA	Ondrej	CZE			25.12.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	7878bac4	RESUTIK	Adam	CZE			27.03.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	2f9bf953	TOMSU	Jakub	CZE			05.05.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	63eefc12	JEKABSONS	Jekabs	LAT			01.08.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	369854e3	PIECHOTA	Stanislaw	POL			16.01.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	d43f91ab	RUS	Iustin	ROU			13.08.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	374b359e	MILANOVIC	Veljko	SRB			30.06.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	3945b9b9	VAN BUEL	Jesse	NED			18.11.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	48432c4f	VREELING	Tristan	NED			30.07.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	6a3f91c1	JAKIMOV	Robert	EST			24.07.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	84c77f1f	JAKIMOV	Edward	EST			24.07.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	f5d69ea7	LAMPREIA	Goncalo	POR			10.05.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	1519dc67	JACOBS	Warre	BEL			02.10.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	8377d351	JACOBS	Ilias	BEL			24.11.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	14d7cea6	KOLLAR	Agoston	HUN			28.06.2006	Competitor	m	-55 kg				Bucharest Cadet European Cup 2021: 1. place, Cadet European Championships (individual): 5. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	9675b7f3	MAROTI	Patrik	HUN			23.11.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	88b9c199	RAFFAY	Levente	HUN			31.03.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	366dbe75	SCHALK	Niclas	AUT			09.05.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	8d8dbee2	JUGELI	Gaga	GEO			20.10.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	64c8bd23	SABASHVILI	Saba	GEO			16.05.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	11bae7f2	VELSTRA	Sil	NED			13.11.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	6e112511	WALINGA	Ruben	NED			23.12.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	53247d56	TOMANEK	Jozef	SVK			25.10.2005	Competitor	m	-55 kg				Porec Cadet European Cup 2021: 2. place, Zagreb Cadet European Cup 2022: 3. place, Teplice Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	8f6b198b	BUZINKAY	Filip	SVK			23.04.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	fadf2d76	NUNN	Benjamin	GBR			12.05.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	b9d127c5	CHAMBERS-EDUTIE	Kyras	GBR			30.01.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	5cdccf68	SABONIS	Rokas	LTU			15.08.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	b9ce3aa3	RUBINSTEIN	Roy	ISR			12.02.2005	Competitor	m	-55 kg				Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	d369983e	ASHPIZ	Izhak	ISR			12.11.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	5b7f82aa	ABUHAZIRA	Idan	ISR			18.11.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	a1d29e88	REICHER	Ben	ISR			15.01.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	cac388eb	COHEN	Shalev	ISR			15.03.2007	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	ea6e8f62	FUSCO	Luca	ITA			14.02.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	6758f66e	TRIPEPI	Alberto	ITA			14.06.2005	Competitor	m	-55 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	b5da9ebf	MUZZI	Giulio	ITA			16.09.2005	Competitor	m	-55 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	32989f9e	SCHLEER	Joris	GER			16.05.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	c9e65a68	DRESE	Leonas	GER			12.12.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	429269ac	CABECANA	Luke	GER			24.05.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	f28f222a	GOERSCH	Florian	GER			31.05.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	e5e33a9b	RICHTER	Kalle	GER			13.08.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	e8dcceb4	ZACHA	Viktor	CZE			30.09.2006	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	81d19b42	PISTOVCAK	Viktor	CZE			04.08.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	5b2df1fb	JEREMIC	Matija	SRB			05.12.2005	Competitor	m	-55 kg				Teplice Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	4c41882d	AYDIN	Berkay	TUR			05.12.2005	Competitor	m	-55 kg				
+	cont_cup_cad_cze2022	fc5bb696	TRAPP	Lucas	LUX			18.10.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	879d978f	CONRAD	Hector	DEN			13.11.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	12779bfb	VISKOV	Nazar	UKR			31.05.2005	Competitor	m	-60 kg				Cadet European Championships (individual): 3. place
+	cont_cup_cad_cze2022	7c22fd87	JEAN	Peter	FRA			20.12.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	642bba52	ISSMAILOV	Emir	FRA			05.02.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	37b79a91	FISER	Stepan	CZE			26.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d5d7ec89	MARTINKA	Josef	CZE			20.02.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	83ed4967	HOMOLKA	Josef	CZE			09.09.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	73196e33	CESKY	Michal	CZE			26.09.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	c11a3a1f	MOSOI	Tudor	ROU			19.07.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	e81aab8e	MAITIN	Stevan	SUI			05.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d26bfb2b	HERMSEN	Dani	NED			04.05.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	8e7a49fd	DE CORT	Ben	NED			16.02.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	5eac58a8	POT	Daan	NED			12.12.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	84d2547d	VAN DEN BERG	Mateo	NED			27.01.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	e7ebaebd	CLARK	Peter	EST			09.10.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	1c759694	BADICEANU	Bebe	ROU			13.10.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	a23d69c3	ANJOS	Rui	POR			15.06.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	59aedb5c	WELLENS	Mattias	BEL			21.02.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	dbfd1bdd	EISCHEN	Xzeno	BEL			23.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	3f556f5c	UVEGES	Attila	HUN			24.11.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	e327c172	MAJOR	Adam	HUN			20.06.2005	Competitor	m	-60 kg				Teplice Cadet European Cup 2021: 2. place, Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	dbbb198b	KEVLISHVILI	Davit	GEO			09.08.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d9e867b3	KARELI	Davit	GEO			16.03.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	2125995b	BLUHME	Alexander	AUT			20.07.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	5eda3636	HARMS	Jin	NED			19.03.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	f1afb6a6	OJANNE	Justus	FIN			14.11.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	2599b2a9	SORSA	Rasmus	FIN			23.05.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	4aac13ec	BAJTOS	Jakub	SVK			02.03.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	cf83d6e8	DEKAN	Roman	SVK			14.01.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	ee7cbcd7	MASLAC	Rajko	SVK			25.04.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	f86223f9	KLOBUCNIK	Matej	SVK			29.08.2005	Competitor	m	-60 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	7f9619ca	YEMCHENKO	Tymur	UKR			24.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	a4ea888b	AYRE	Charlie	GBR			01.12.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	42fef486	KING	Bobby	GBR			15.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	6a99a58b	ER	Altay	DEN			12.03.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	2d36159a	AHARON	Oren	ISR			17.08.2005	Competitor	m	-60 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	f59d1cf1	ROSU	Yarin	ISR			15.08.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	3cfc834d	FRIDMAN ZILBERSTEIN	Reem	ISR			30.08.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	1e7e41fc	SHAI	Ori Gal	ISR			02.08.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	a31ac6b9	POLIKEVICIUS	Simas	LTU			06.01.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	7ba8673c	MICHNA	Kamil	POL			31.05.2005	Competitor	m	-60 kg				Fuengirola Cadet European Cup 2022: 3. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	c88cdc4e	PALILLO	Thomas	ITA			14.02.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	69241ff9	ESPOSITO	Antonio	ITA			11.02.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	e8a2e5e9	MARTINELLI	Giovanni Giuseppe	ITA			09.12.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d2faf7f6	AUDISIO	Gabriele	ITA			24.03.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	b4ee3541	SAMPINO	Francesco	ITA			20.10.2005	Competitor	m	-60 kg				Lignano Cadet European Cup 2022: 3. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	56e33e4e	FRONTAUREA	Antonino	ITA			13.09.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	83e93d38	BAECHLE	Felix	GER			19.11.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	9aadf42c	FELDE	Maximilian	GER			03.04.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	3c2ae9ec	BARSKE	Rufus	GER			02.03.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	6c4196b7	AKOTO	Raphael	GER			14.11.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	33b6664f	SACHSE	Bent	GER			06.04.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	c25d1e1f	SZEKELY	Botond	ROU			21.01.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	85568d63	MACAR	Uros	BIH			21.06.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	1c6129e9	KOZLIK	Franciszek	POL			20.12.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	177defc7	BIEDRZYCKI	Hubert	POL			10.01.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	133ad692	PACUTA	Ladislav	CZE			04.09.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	d68ba87a	MAROUSEK	Alex	CZE			06.07.2007	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	fc4476dc	SIMIC	Veljko	SRB			30.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	c32d1c9d	MUCIK	Hilmi	TUR			15.06.2006	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	688ed3f8	PURSCHKE	Jonas Emil	GER			31.08.2005	Competitor	m	-60 kg				
+	cont_cup_cad_cze2022	adef9bb2	BIRLUND	Aksel	DEN			23.06.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	89c1216a	JENSEN	Malthe	DEN			29.06.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	2c5dce21	NOERSKOV	Oliver	DEN			05.07.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	49d1d73b	VAUHKONEN	Rasmus	FIN			14.04.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	a6fb3cdd	TEGIPKO	Anatolii	UKR			06.03.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	7b29bc15	SOSLANGIREEV	Mosa	NOR			26.08.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	b52356f1	OTEVREL	Filip	CZE			14.05.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	8ca2b3c1	VOSTREL	Vit	CZE			11.06.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	36727a73	DEDEK	Dominink	CZE			13.04.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	87396374	VARMUZKA	Matej	CZE			27.12.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	af6fbedf	KRYL	Jan	CZE			09.07.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	a1339f38	STECKI	Pawel	POL			09.12.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	d37a69ed	NADJ	Ivan	SRB			19.04.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	f2e24fa7	OANCEA	Claudiu	ROU			17.01.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	513f6263	BUGA	Andrei	ROU			19.01.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	3b67d12e	IONESCU	Darius	ROU			25.07.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	78a15fee	NOVIKOV	Jegor	EST			25.07.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	ae7fca67	BOSVELD	Yannick	NED			05.09.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	a9789973	HULSHOF	Quinn	NED			17.03.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	d835cb59	SHAHBERDIAN	Gianni	BEL			25.06.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	9827a776	HASSOUN	Alhamzah	BEL			03.02.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	44928d58	DE GRAAF	Jesney	BEL			27.02.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	e439611a	MATEFFY	Gabor	HUN			26.01.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	5be4b2b3	SZULE	Peter	HUN			05.12.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	afb3ac33	PROKOP	Andreas	AUT			24.02.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	78b66d84	PICHLER	Clemens	AUT			10.02.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	61f2b436	DULARIDZE	Giorgi	GEO			15.04.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	399f3fa7	MORBEDADZE	Nika	GEO			06.03.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	3bda26ca	KOELZER	Florian	AUT			08.01.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	c8af1bde	RASMUSSEN	Niklas	AUT			16.06.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	252277fe	POMASKOVS	Markuss	LAT			09.12.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	21a284a5	BOLZAN	Nikita	LTU			23.10.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	9bef6923	JAGIELSKI	Aleksander	POL			22.09.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	7252575c	KAZIMIERCZAK	Adam	POL			17.08.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	46e2f97e	TAAVITSAINEN	Jesper	FIN			13.03.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	b5dc6747	JOVANOVIC	Stefan	SRB			08.11.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	b9d6c734	ODKLADAL	Juraj	SVK			26.09.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	413dc641	HAGER	Samuel	SVK			20.07.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	6a9be52e	DURDEVIC	Adrian	BIH			25.11.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	53691466	HEINISCH	Leon	AUT			04.09.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	3f279df8	KUSTRZYCKI	Kamil	POL			22.02.2005	Competitor	m	-66 kg				Fuengirola Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	6bfcba7f	SKORKA	Filip	POL			06.02.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	8211e8ce	BAAZIZ	Mounir	GBR			07.06.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	fdacba34	GOGINASHVILI	Irakli	GBR			21.09.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	539e9c44	MARCZAK	Derek	GBR			03.12.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	df65e998	KLODA	Gal	ISR			10.11.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	c83d68ce	LAVI	Ori	ISR			07.04.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	2fff9e39	STARCENCO	Timofei	ISR			16.03.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	97c8bceb	ATLAS	Jonathan	ISR			26.01.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	9b32da52	SCHULLER	Amit	ISR			03.01.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	d4a5b762	BERCU	Omer	ISR			17.05.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	5724d39b	JOVSA	Deividas	LTU			05.07.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	badd12e2	LOURENCO	Goncalo	POR			25.08.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	31b13e2e	BOSIS	Federico	ITA			17.01.2005	Competitor	m	-66 kg				Lignano Cadet European Cup 2022: 1. place, Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	ff97b13e	CAPASSO	Rocco	ITA			14.02.2005	Competitor	m	-66 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	7b5429c9	NINFO	Federico	ITA			19.06.2005	Competitor	m	-66 kg				Zagreb Cadet European Cup 2022: 3. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	5a54869a	ZEISS	Mark	GER			10.04.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	ca162c27	HUEPENBECKER	Louis	GER			26.09.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	5c5573fb	TOSZEGI	Adam	GER			14.12.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	a48b9335	BIERENDT	Anton	GER			25.09.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	9f2175d4	IVTCHENKO	Josef	GER			06.03.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	1754b6d8	WOLSFELD	Benedict	GER			08.05.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	85c5742e	TSAMOURLIDIS	Christos	GER			12.06.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	e96656a2	LIBLICH	Yoav	ISR			21.02.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	52e89e9b	SZULIK	Szymon	POL			07.10.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	efbd8513	DOVICIC	Tomas	SVK			23.07.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	eeab832b	PETROVIC	Pavle	SRB			07.08.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	cd5c1633	SEYMEN	Bekir Taha	TUR			29.05.2006	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	82772a92	YOKOYAMA	Yuichi	GER			06.02.2007	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	e138b6ed	FERREIRA	Henrique Maria	POR			15.11.2005	Competitor	m	-66 kg				
+	cont_cup_cad_cze2022	8261597c	KRYVYTSKYI	Tigran	UKR			28.02.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	6a824bb6	KHAMMO	Viacheslav	UKR			22.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e4a1e979	TOKHTAMYSH	Oleksandr	UKR			02.07.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4eefae1a	KHAITAEV	Rassoul	FRA			04.11.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	cb738eba	HOROBETS	NIKITA	UKR			15.02.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	331764ba	BAYER	Daniel	CZE			16.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e3e7c7ed	BORECKY	Daniel	CZE			04.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4b1ada1e	JAVUREK	Patrik	CZE			10.07.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	849b764c	KACZOREK	Mikolaj	POL			18.03.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	79bfb9ec	SIMIN	Mihajlo	SRB			24.01.2005	Competitor	m	-73 kg				Bucharest Cadet European Cup 2021: 1. place, Teplice Cadet European Cup 2021: 1. place
+	cont_cup_cad_cze2022	6d5749ef	MURESAN	Simon	ROU			11.09.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	337eb4f6	OULEVEY	Thien	SUI			12.06.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	6f232432	DE LANGE	Joshua	NED			06.07.2005	Competitor	m	-73 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	4382e978	FISH	Michael	NED			27.05.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	d4bfef13	JOLKIN	Nikita	EST			03.05.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	74414928	NEEME	Uku	EST			06.02.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	ebc898e3	EICHMULLER	Gergo	HUN			04.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	a5d74994	CSANYI	Tamas	HUN			14.12.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	615f6a32	PROELL	Michael	AUT			26.07.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4f812186	WITTMANN	Philipp	AUT			22.02.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	8889b6d3	KAMPF	Tobias	AUT			10.08.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	27eedc6a	PFEIFENBERGER	Eric	AUT			06.06.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	7d425419	EDLBAUER	Julius	AUT			26.06.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e6df95ad	FUEREDER	Emil	AUT			03.04.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	6e473a33	MIESENBERGER	Martin	AUT			23.11.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	de498f5c	MAGOMERZUJEV	Abdullah	AUT			22.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	33ddd651	AMBRUS	Zoltan	AUT			18.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	da2f6f79	AKHLOURI	Sandro	GEO			07.04.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	d661de98	TURAZASHVILI	Luka	GEO			09.02.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	fd43d557	KAMENSKIS	Deniss	LAT			17.08.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	fe62d7a4	GRENDYS	Mateusz	POL			14.08.2005	Competitor	m	-73 kg				Fuengirola Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	d3aebe35	VAN DER VEEN	Quinten	NED			03.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	95551b9a	KIVELAE	Ville	FIN			26.08.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	a8e9a776	VUCKOVIC	Andrej	SRB			13.12.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	d3584948	SZORAD	Michal	SVK			19.12.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	34f497b9	BUDGINAS	Enrikas	LTU			29.12.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	bb651942	VAISVILA	Julius	LTU			27.03.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e6e57c18	NARKUS	Vygirdas	LTU			26.01.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	8ac56dbf	SUHADOLNIK	Lev	SLO			19.07.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	a1cc8418	ROT	Blaz	SLO			17.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	49cc4463	LEVY	Benjamin	GBR			20.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	d138f56f	NEUMANN	Eryk	GBR			13.04.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	45d38287	DAVIES	Luke	GBR			21.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	54de4741	LAMBERT	Owen	GBR			14.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	ec9f5589	MORITZ	Ohad	ISR			24.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	d14ffef2	RAAB	Rom	ISR			13.04.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	66a47e63	WINEAPPLE	Yahli	ISR			06.07.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	bba19e56	KOCZINSKI	Arel	ISR			22.02.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	a84c7934	MADOVSKY	Max	ISR			14.07.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	a5951bc8	TAVOLETTA	Lucio	ITA			03.11.2006	Competitor	m	-73 kg				Zagreb Cadet European Cup 2022: 3. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	c8b964ef	MAZZOLA	Salvatore	ITA			14.12.2006	Competitor	m	-73 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	aaedccf8	POPP	Anton	GER			23.03.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	b45eaadd	FRIEDRICHS	Paul	GER			19.11.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	2213e87a	MAERKT	Elija Ruben	GER			30.09.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	13c812c7	BUECH	Sebastian	GER			28.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	b4a3639c	AKOPJAN	Arthur	GER			15.03.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	8bacc247	GOEBEL	Matti	GER			01.02.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4cf387e2	MIHALY	Hunor	ROU			02.02.2006	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	6a16364a	BOUATIA	Kamil	POL			09.06.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	e1b61eee	ARBIJEW	Jakub	AUT			05.10.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	ab73ff81	JAKS	Adam	CZE			18.02.2007	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	12e7c796	IVOVIC	Filip	SRB			02.02.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	c19193e7	DURBAK	Ismail	TUR			04.01.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	54b2fb7c	GURGEN	Erman	TUR			24.02.2005	Competitor	m	-73 kg				Cadet European Championships (individual): 3. place, Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	168c8a35	GUENTHER	Nouri	GER			15.07.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	4a98336c	MANDEL	Julian	GER			26.11.2005	Competitor	m	-73 kg				
+	cont_cup_cad_cze2022	5b54cace	WELTER	Micha	LUX			27.06.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	7c386824	TSURKAN	Igor	UKR			20.02.2005	Competitor	m	-81 kg				Zagreb Cadet European Cup 2022: 1. place, Follonica Cadet European Cup 2020: 2. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	28d6b45b	PONS	Bastien	FRA			09.05.2005	Competitor	m	-81 kg				Zagreb Cadet European Cup 2022: 2. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	145c9726	SARBOCH	Vit	CZE			17.01.2007	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	3cd5d337	BOROVICKA	Tomas	CZE			06.02.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	e6f66b49	GRAHOVAC	Dusan	SRB			23.01.2006	Competitor	m	-81 kg				Cadet European Championships (individual): 2. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	ee45cd6b	MEDRE	Sebastian	ROU			03.03.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	12f34d58	ORG	Andris	EST			31.05.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	393fa5cd	IORGA	Fabian	ROU			04.05.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	55f15871	KLOOVER	Ijsbrand	NED			18.02.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	f11f3ab1	MAJOR	Adam	HUN			01.03.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	3df272d8	PROELL	Ronald	AUT			04.08.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	3f37a84f	HAIM	Matthias	AUT			29.01.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	1bdea8d8	EKVTIMISHVILI	Luka	GEO			25.03.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	ccc39afd	CHAPURISHVILI	Mate	GEO			30.01.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	7c45c51f	VANAGS	Andrejs	LAT			28.02.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	33beee4d	PLOSTNIEKS	Ronalds	LAT			22.07.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	9a7bff34	LAUFMANIS	Ernests	LAT			02.09.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	fec611fc	TARKOWSKI	Fabrycjusz	POL			23.08.2005	Competitor	m	-81 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	4d1a7b58	SCHEFFEL	Oliver	SVK			29.11.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	29dd2a14	MITTER	Simon	SVK			15.07.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	6ddaeefb	KOS	Timotej	SLO			24.09.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	2c7c6a34	SWIMIR	Ori	ISR			12.09.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	9c6fe295	VOLOVIK	Michael	ISR			17.10.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	7753986a	LEWANDOWSKI	Franciszek	POL			05.03.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	2d656933	D'URBANO	Alessandro Bruno	ITA			29.05.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	6549253c	MINCINESI	Cristiano	ITA			23.07.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	35ac439c	PERFETTI	Tommaso	ITA			17.03.2005	Competitor	m	-81 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	4c9baf2b	VELISPAHIC	Anes	GER			08.04.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	1a39e711	HODZIC	Ali	GER			04.06.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	5c4e8a1d	BUCHMEYER	Bela	GER			11.01.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	8b5dfd37	ZDRALE	Lazar	BIH			06.06.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	b1344d33	MALJEVIC	Vidak	BIH			31.03.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	741b2445	HOF	Yehonatan	ISR			14.05.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	2fc3f9dd	GRZESKOWIAK	Adam	POL			21.06.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	e1dccdb6	POTUCEK	Tomas	CZE			09.02.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	e7842374	LUPAC	Vojtech	CZE			02.03.2006	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	76329275	JOVANOVIC	Marko	SRB			18.03.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	249c94c7	KRSTAJIC	Luka	SRB			07.08.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	ac28a26b	KOMPE	Mertcan	TUR			25.01.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	bdbeb63e	PACARIZ	Armin	GER			02.11.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	6bc75e38	NISTOR	Stefan	ROU			04.05.2005	Competitor	m	-81 kg				
+	cont_cup_cad_cze2022	2971cbb4	BOLDYRIEV	Oleksii	UKR			11.02.2005	Competitor	m	-90 kg				Zagreb Cadet European Cup 2022: 3. place, Teplice Cadet European Cup 2021: 3. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	375f8afd	YUDANOV	Nikita	UKR			05.03.2007	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	56f89b61	FULNECEK	Simon	CZE			13.04.2005	Competitor	m	-90 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	df495e79	CECH	Vaclav	CZE			05.11.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	75e93361	KUBIAK	Damian	POL			21.05.2005	Competitor	m	-90 kg				Fuengirola Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	c4f78e7d	DINCA	Alexandru	ROU			26.01.2007	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	558ea5e5	VARES	Jakob	EST			12.12.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	c667c169	KENDERESI	Peter	HUN			07.01.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	5ae7eed3	BOTOS	Noel	HUN			19.05.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	3d3ada4f	LAMM	Samuel	AUT			18.03.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	c2eace3d	TUGULASHVILI	Giorgi	GEO			06.01.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	7a2f58be	TSINTSALASHVILI	Islam	GEO			28.07.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	26f556d7	WEITZBAUER	Niklas	AUT			14.11.2005	Competitor	m	-90 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	dbe25973	BAALMANS	Nils	NED			02.09.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	f9cd2fea	STEFANIK	Timotej	SVK			19.01.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	fd1c24cc	CUPALOV	Jegor	LTU			12.09.2006	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	b9b9efee	BRAZANI	Gal	ISR			26.07.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	d99373a5	OLEKSY	Mateusz	POL			25.05.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	6b314418	BASSO	Valentino	ITA			02.07.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	45386832	GALASSO	Simone	ITA			08.04.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	c18167fc	SZYMAINSKI	Paul	GER			24.10.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	2dac3426	DUKOW	Erik	GER			16.08.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	a478226b	OZTAS	Mevlut	TUR			11.02.2005	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	d14daf39	DURSUN	Fatih	TUR			06.04.2007	Competitor	m	-90 kg				
+	cont_cup_cad_cze2022	e24d494e	KHOKHLOV	Christian	UKR			23.02.2005	Competitor	m	+90 kg				Teplice Cadet European Cup 2021: 2. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	51f2b287	BELARCHI	Abdelkader	FRA			15.03.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	d75e8ee5	KHAZRI	Fedy	FRA			13.09.2005	Competitor	m	+90 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	611557e5	SEDLAK	Martin	CZE			16.08.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	dc338ef1	SCHOR	Adam	CZE			23.02.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	ac4486c8	MORAVEK	Martin	CZE			16.07.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	e2b6a98c	STRAZDINS	Janis	LAT			10.01.2005	Competitor	m	+90 kg				Zagreb Cadet European Cup 2022: 3. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	a3d29e56	PETRE	Bogdan	ROU			06.03.2005	Competitor	m	+90 kg				Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	2fc3ebf4	GEORGESCU	Darius	ROU			19.08.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	4da54fd5	KIRNA	Kabriel	EST			22.05.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	c3947933	ANTONIOU	Giannis	CYP			08.03.2005	Competitor	m	+90 kg				Lignano Cadet European Cup 2022: 1. place, Porec Cadet European Cup 2021: 2. place, Cadet European Championships (individual): 5. place
+	cont_cup_cad_cze2022	75e8b543	BALOGH	Janos	HUN			31.03.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	26f3ccfb	DOBOS	Levente	HUN			19.10.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	847f2ebb	GOCHIASHVILI	Shotiko	GEO			10.09.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	88b1c3d9	TCHIKADZE	Davit	GEO			09.02.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	8ca212ae	OMELCHENKO	Yaroslav	UKR			08.02.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	84ef5828	HAIMOV	Ohad	ISR			31.03.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	6d5a5a33	BETTAN	Eliran Hay Vitorio	ISR			07.04.2006	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	6afe2ba4	URSAKI	Ruslan	EST			04.05.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	f4973275	HECKEL	Arthur	GER			01.04.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	2982cf1c	SUHA	Mortaza	GER			11.03.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	c4479eca	NIKITENKO	Nikita	GER			13.01.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	16914c27	LOUREIRO	Goncalo	POR			27.04.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	ccf75279	CERCHLA	Michal	CZE			18.02.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	957c494b	TATAROGLU	Ibrahim	TUR			01.01.2006	Competitor	m	+90 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	495a4437	ERGIN	Recep	TUR			01.01.2005	Competitor	m	+90 kg				
+	cont_cup_cad_cze2022	f715d13e	PROLIC	Natalija	SRB			31.01.2007	Competitor	w	-40 kg				
+	cont_cup_cad_cze2022	92fe2176	VAN BENEDEN	Celia	BEL			26.01.2007	Competitor	w	-40 kg				
+	cont_cup_cad_cze2022	175e78ae	AUER	Nina	AUT			28.06.2007	Competitor	w	-40 kg				Lignano Cadet European Cup 2022: 2. place, Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	f8b5ccb7	TOMANKOVA	Patricia	SVK			07.08.2007	Competitor	w	-40 kg				Fuengirola Cadet European Cup 2022: 1. place, Lignano Cadet European Cup 2022: 1. place, Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	2ed5da92	ERTEM	Zilan	TUR			28.10.2005	Competitor	w	-40 kg				Cadet European Championships (individual): 2. place, Zagreb Cadet European Cup 2022: 1. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	d813e57d	DOGRUYOL	Begumnaz	TUR			30.06.2006	Competitor	w	-40 kg				Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	bedf6a99	SUPERSON	Anastasiia	UKR			23.12.2005	Competitor	w	-44 kg				Teplice Cadet European Cup 2021: 2. place, Cadet European Championships (individual): 5. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	34e7b425	POPESCU	Maia	ROU			12.01.2006	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	68d936e2	SCHOONEN	Liv	NED			04.06.2007	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	9aa89941	STOFBERG	Lara	NED			04.10.2006	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	c88cb165	GONCALVES	Matilde	POR			16.05.2005	Competitor	w	-44 kg				Fuengirola Cadet European Cup 2020: 3. place
+	cont_cup_cad_cze2022	9cf35878	WANDEL	Vera	NED			26.09.2005	Competitor	w	-44 kg				Lignano Cadet European Cup 2022: 1. place, Follonica Cadet European Cup 2020: 3. place
+	cont_cup_cad_cze2022	461396a2	KORCAKOVA	Marketa	CZE			04.06.2006	Competitor	w	-44 kg				Zagreb Cadet European Cup 2022: 2. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	9eb2eed3	SZELECZKI	Szabina	HUN			19.09.2005	Competitor	w	-44 kg				Teplice Cadet European Cup 2021: 1. place, Porec Cadet European Cup 2021: 1. place, Cadet European Championships (individual): 3. place
+	cont_cup_cad_cze2022	f9a5c71b	COBANOVIC	Ana	SRB			09.06.2005	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	26e2a4ac	LEIBOVITZ	Noa	ISR			06.12.2007	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	8bda6a3d	KOZUCH	Oliwia	POL			23.08.2005	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	7bed5eea	AMALFITANO	Giusy	ITA			05.02.2005	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	c645a5f1	VALERIANI	Rebecca	ITA			04.12.2005	Competitor	w	-44 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	4f8533b8	REISZ	Frida	GER			22.03.2007	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	c9e71526	POTELIDZE	Marika	GEO			31.08.2005	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	b9842739	UYKUN	Buse	TUR			03.03.2005	Competitor	w	-44 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	57e1de8f	KRUTSCH	Laura	GER			27.10.2007	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	2ba2e9aa	STARZMANN	Barbara	GER			18.08.2006	Competitor	w	-44 kg				
+	cont_cup_cad_cze2022	dea195b3	BROVOLD	Selma	NOR			17.02.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	c86ee276	VODIANNA	Melaniia	UKR			10.10.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	ca1f1efb	STERNON	Camille	BEL			23.12.2006	Competitor	w	-48 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	92196be5	BOGDAN	Laura	ROU			15.12.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	f2c22212	DROBOTA	Rebecca	ROU			08.10.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	5b9f14fa	COMBY	Romane	SUI			12.06.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	8fb34af3	BROEDERS	Jinte	NED			08.03.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	2aedf423	MEDEMA	Maira	NED			20.03.2005	Competitor	w	-48 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	a279a764	NOUFAL	Noor	NED			22.12.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	fe5e4479	MERCEA	Cristiana	ROU			06.10.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	4e263873	KABELKOVA	Karolina	CZE			27.10.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	5c1eb8e1	VEG	Luca	HUN			17.08.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	8f9acf99	JUTTNER	Janka	HUN			08.03.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	89442d81	HARRER	Ronja	AUT			29.04.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	e66acff1	KOCHAUF	Maya	AUT			23.09.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	4c936945	HENDRIKS	Milou	NED			07.07.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	c83cb752	SEKOVA	Martina	SVK			16.01.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	959c6d8a	MARKOVICSOVA	Ella	SVK			22.02.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	c6ff79a3	KLEIN	Ronja	GER			24.03.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	86117ec7	NUNN	Jessica	GBR			08.08.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	dc548667	BIBE	Lian	ISR			05.11.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	a621619e	HADAR	Noa	ISR			06.07.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	9b417652	FARIA	Ines	POR			09.05.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	c4d1f5cc	STORIONE	Elena	ITA			03.12.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	37ec8e4e	MAZZOLA	Sofia	ITA			01.07.2005	Competitor	w	-48 kg				Porec Cadet European Cup 2021: 1. place, Lignano Cadet European Cup 2022: 2. place, Cadet European Championships (individual): 5. place
+	cont_cup_cad_cze2022	7a4feaa5	ROCCO	Alessandra	ITA			12.09.2005	Competitor	w	-48 kg				Fuengirola Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	57b1a623	FINESTRONE	Ilaria	ITA			20.06.2005	Competitor	w	-48 kg				Lignano Cadet European Cup 2022: 3. place, Teplice Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	bb1726c9	MECKLENBURG	Tabea Nika	GER			10.02.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	4b4bb416	ERTEN	Klara	GER			18.04.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	7817e71d	URBAN	Pia	GER			19.06.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	d8a4c866	GIGOLAEVI	Tamar	GEO			29.08.2006	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	4f7b3b45	SAVIC	Bojana	SRB			01.02.2007	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	f5c26628	PLATANIA	Aurora	ITA			27.12.2005	Competitor	w	-48 kg				Cadet European Championships (individual): 5. place, Bucharest Cadet European Cup 2021: 3. place, Teplice Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	7cb716dc	ALKIS	Merve Nur	TUR			03.03.2005	Competitor	w	-48 kg				
+	cont_cup_cad_cze2022	121a329e	GALEK	Martyna	POL			27.01.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	755ae3c6	TOLEA	Vanessa	ROU			25.05.2006	Competitor	w	-52 kg				Cadet European Championships (individual): 2. place, Zagreb Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	d4cab44e	ANDREI	Sabina	ROU			01.05.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	35fc11f6	KOTOVA	Anna	EST			24.08.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	671be8b8	CINAGROSSI	Emma	SUI			08.05.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	3a11f877	KALETOVA	Magdalena	CZE			07.08.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	4697618a	IGAZ	Laura	HUN			09.01.2005	Competitor	w	-52 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	86812f49	SZABO	Reka	HUN			27.04.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	b7a3eeaf	KLAUS-STERNWIESER	Carina	AUT			07.03.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	6a291b14	RIEDER	Emma	AUT			19.08.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	15d247a9	SEIZ	Amelie	AUT			06.12.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	cb45cf85	HEISS	Chiara	AUT			10.02.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	4b472ab1	ADEMA	Ciska	NED			19.05.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	1258f8ce	RUSTIGE	Elise	NED			01.04.2007	Competitor	w	-52 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	a92bf96f	KOCIMSKA	Julia	POL			09.04.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	5f9fb6b4	SEIKKULA	Pihla-Maria	FIN			17.11.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	e2ec87b8	KOKKONEN	Emma	FIN			31.05.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	1564f648	GAZIOVA	Natalia	SVK			18.06.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	aba977a9	MARKOVICSOVA	Emma	SVK			22.06.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	ced55763	SANTIAGO-SANTANA	Odalis	GER			16.11.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	18ffcd28	KRAUSE	Kathrin	GER			29.09.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	7d74dc14	JENMAN	Charlotte	GBR			27.01.2005	Competitor	w	-52 kg				Zagreb Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	5f621493	BIRRI	Madeleine	GBR			05.12.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	4d61881c	ZAKROISKY	Hili	ISR			20.02.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	a68c69e6	GEV	Shira	ISR			02.02.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	b79bf562	SHMUEL	Zohar	ISR			30.01.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	753c286c	MAROZAITE	Rugile	LTU			06.03.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	f6e14532	SIENNICKA	Karolina	POL			11.02.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	16ab2a59	TERRANOVA	Michela	ITA			30.01.2005	Competitor	w	-52 kg				Lignano Cadet European Cup 2022: 1. place, Cadet European Championships (individual): 3. place, Bucharest Cadet European Cup 2021: 2. place
+	cont_cup_cad_cze2022	659c4769	MASSIMETTI	Gaia	ITA			01.04.2005	Competitor	w	-52 kg				Lignano Cadet European Cup 2022: 2. place, Teplice Cadet European Cup 2021: 2. place
+	cont_cup_cad_cze2022	7aa7d671	REVELLI	Ginevra	ITA			23.12.2005	Competitor	w	-52 kg				Fuengirola Cadet European Cup 2020: 1. place, Fuengirola Cadet European Cup 2022: 2. place, Porec Cadet European Cup 2021: 2. place
+	cont_cup_cad_cze2022	553ed16c	GERETZKI	Vanessa	GER			03.03.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	68b9b181	KNEILLING	Nadja	GER			19.11.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	7afdd979	RICHTER	Miu	GER			07.03.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	cd1fcb36	SCHINWALD	Marlene	AUT			16.03.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	ac677e34	ZMUDA	Maja	POL			13.02.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	cd313529	DOUIDI	Lina	FRA			07.10.2006	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	e4e293cc	MORGOSHIA	Anano	GEO			05.04.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	feaf32eb	ZEDNIKOVA	Eliska	CZE			15.03.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	b214e35b	MENDES	Maria	POR			14.10.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	fce848ff	ĆOPIĆ	Anastasija	SRB			30.08.2007	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	26a9d6c9	YILDIRIM	Seyma	TUR			27.03.2005	Competitor	w	-52 kg				Cadet European Championships (individual): 3. place, Antalya Cadet European Cup 2020: 2. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	8bb5f77b	HARDENBERG	Janine	GER			08.02.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	289edc8a	RIEGERT	Helene	GER			01.09.2005	Competitor	w	-52 kg				
+	cont_cup_cad_cze2022	75729fa6	TIELIEGINA	Anna	UKR			30.10.2005	Competitor	w	-52 kg				Fuengirola Cadet European Cup 2020: 3. place
+	cont_cup_cad_cze2022	978aa2af	NOERSKOV	Mai	DEN			14.09.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	4f9c5d99	MUZICA	Antra	LAT			14.02.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	f9cbd47a	VOZNIUK	Liudmyla	UKR			11.01.2007	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	c48cdab9	BULANDA	Julia	POL			29.07.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	3815f5d8	SUCIU	Anamaria	ROU			25.07.2007	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	da93e577	LAIN-NAU	Solene	SUI			23.10.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	45bc4f44	VAN DEN DRIESSCHE	Romy	NED			05.03.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	1c7512b9	SINNEMA	Fleur	NED			13.06.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	cace956d	LAJOS	Orsolya	ROU			12.07.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	53a63fd1	VOICA	Andrada	ROU			22.04.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	c4ecfe44	SILVEIRA	Maria	POR			22.09.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	37569bf2	CHRISTIAENS	Roos	BEL			22.03.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	193b99dc	CECHOVA	Veronika	CZE			18.11.2007	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	ded46e83	SCERBOVA	Leona	CZE			19.08.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	3a8efd59	SZASZ	Hanna	HUN			08.11.2005	Competitor	w	-57 kg				Cadet European Championships (individual): 5. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	eb9eb786	BOGNAR	Inez	HUN			27.08.2005	Competitor	w	-57 kg				Cadet European Championships (individual): 5. place
+	cont_cup_cad_cze2022	6449e815	LIPPERT	Sarah	AUT			12.01.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	481e747d	MAYRHOFER	Magdalena	AUT			11.11.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	346e1151	BUCHAS	Leonie	AUT			10.12.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	29aebdd2	BETZ	Lisa	AUT			01.07.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	d45e2439	PONOMARJOVA	Sofija	LAT			03.03.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	a3ea92ad	ENDRIEKUTE	Barbora	LTU			18.02.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	47c52565	SLAVINEC	Masa	SLO			10.09.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	fcc775bb	SEDGBEER	Eliza	GBR			31.10.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	e88bbd91	LINK	Chloe	GBR			24.02.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	5a643ac5	RAINE	Kenady	GBR			22.09.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	ec49ecb8	BRUZHANITSKY	Noa	ISR			22.06.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	5ff84dff	MEDALJE	Frida	ISR			02.08.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	5fd1d1f7	SAAD	Emma	ISR			02.02.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	3e1d2886	GOTTO	Dovile	LTU			20.12.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	b4127187	CHMIELEWSKA	Kinga	POL			28.10.2005	Competitor	w	-57 kg				Fuengirola Cadet European Cup 2022: 3. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	7649886b	RUSSO	Savita	ITA			18.05.2005	Competitor	w	-57 kg				Lignano Cadet European Cup 2022: 1. place, Porec Cadet European Cup 2021: 1. place
+	cont_cup_cad_cze2022	7882d67b	STELLA	Gaia	ITA			15.01.2005	Competitor	w	-57 kg				Zagreb Cadet European Cup 2022: 2. place, Lignano Cadet European Cup 2022: 2. place, Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	ada18955	VENDITTO	Aurelia	ITA			24.10.2005	Competitor	w	-57 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	476c8466	GERETZKI	Sarah	GER			18.01.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	81829a24	LISTL	Emma	GER			16.07.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	b62c9827	WALLENHORST	Lea-Marie	GER			04.02.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	a528fbcd	PAEFGEN	Janne	GER			15.12.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	e2e931f8	AUMANN	Felizitas	GER			23.08.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	61e9d9ba	ROTTENHOFER	Helena	AUT			13.11.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	87861262	VUKICEVIC	Dunja	SRB			05.01.2007	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	34b34d2b	DARCHIA	Nino	GEO			10.11.2006	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	9ead7c96	SCHARNBERG	Sophie	GER			14.06.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	29d3459e	BAUER	Sara-Joy	GER			22.11.2005	Competitor	w	-57 kg				
+	cont_cup_cad_cze2022	8a6252df	HANSEN	Josefine	DEN			09.03.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	2b85e167	KUZMENKO	Yuliia	UKR			05.07.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a3dbfdb2	GRAMBO	Anna	NOR			07.02.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	cd521a8e	BRATAAS	Tora	NOR			15.05.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	e858f1a2	BEKVALAC	Duska	SRB			15.01.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	dd69d932	STARCZYNSKA	Zuzanna	POL			25.05.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	c4496c23	USANOVA	Valeria	EST			17.11.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	25b2ba62	PODEA	Ariana	ROU			01.01.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	dd7dd9ff	BOTT	Olivia Alba	SUI			03.08.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	91848121	VAN MAREN	Isabel	NED			18.05.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	9ab92dba	DE KOCK	Luna	NED			02.02.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	4f218ee9	JACOBS	Kiki	NED			18.01.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	1c9fad92	TORRES	Adriana	POR			05.03.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	9841839e	KUZELOVA	Dominika	CZE			27.03.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	8f71ad6b	SIMUNKOVA	Adela	CZE			23.04.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	d731175a	KRUPL	Georgina	HUN			04.04.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	3256b295	BOTZHEIM	Bodza	HUN			15.11.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	82aa6f5e	SZENTANDRASZKI	Greta	HUN			30.06.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	6e543f35	STARZER	Emily	AUT			01.08.2005	Competitor	w	-63 kg				Cadet European Championships (individual): 5. place
+	cont_cup_cad_cze2022	fa31d7d7	BAYR	Leonie	AUT			06.07.2006	Competitor	w	-63 kg				Zagreb Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	a5e4ff8c	SCHLOEGL	Franziska	AUT			14.10.2005	Competitor	w	-63 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	c4d29743	ERTL	Luisa	AUT			08.08.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a8d66d46	KRENN	Sarah	AUT			27.11.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	579df3ba	SPINDER	Faye	NED			14.06.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	2867e5f7	KUOSMANEN	Jenna	FIN			09.08.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	79b63b92	ZELENAKOVA	Zuzana	SVK			03.10.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	3ac4d69e	TOMANKOVA	Lenka	SVK			12.01.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	2f47e31f	JURKUTAT	Laura	GER			01.03.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a17147ed	SORE	Noemie	GER			23.06.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	758a5648	DELAHUNTY	Olivia	GBR			06.06.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	f4416cac	TANCOCK	Queenie	GBR			20.08.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	754a688b	BAGDASARYAN	Diana	ISR			24.07.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	bd3d932d	BOARON	Lihi	ISR			25.01.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	44a343d1	SHATZKY	Shira	ISR			07.11.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	9725ab7e	KUCHAR	Varvara	LTU			06.11.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	29feb888	GLUBIAK	Magda	POL			15.02.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	49221421	CASTIELLO	Chiara	ITA			27.01.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	fee4bd6e	SIBILLA	Giorgia	ITA			20.09.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	731da9d6	MADDALONI	Serena	ITA			29.11.2005	Competitor	w	-63 kg				Bucharest Cadet European Cup 2021: 2. place, Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	6d5ec549	PEDE	Stefania	ITA			08.05.2005	Competitor	w	-63 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	2c22eee1	THIELE	Alica	GER			20.01.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	5b3ea14b	BUESSEMEYER	Lilly Marie	GER			07.01.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	c769e6bb	BAUMBACH	Anika	GER			02.02.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	d9ec6ad6	SZAFRANSKA	Oliwia	POL			31.01.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	dd2ef728	MICIC	Una	BIH			21.07.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	ebdf8f8a	DOLIASHVILI	Nona	GEO			29.04.2006	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a651bfd8	DRDOVA	Silvie	CZE			27.05.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	edec2484	ORUC	Sinem	TUR			02.05.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a94c9aae	GULENAY	Tuana	TUR			14.07.2007	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	a11ee5a6	MUHAMMED	Saraphina	GER			25.11.2005	Competitor	w	-63 kg				
+	cont_cup_cad_cze2022	9e39f616	DARBES-TAKAM	Teophila	FRA			22.02.2005	Competitor	w	-70 kg				Zagreb Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	23acce49	BALOGH	Hanna	ROU			11.05.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	edb4ebef	USURELU	Alexia	ROU			02.03.2007	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	3a987338	FOHOUO	April Lynn	SUI			24.09.2005	Competitor	w	-70 kg				Bucharest Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	4498493c	MOLLINK	Mirthe	NED			03.03.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	268d1f73	MEIJN	Marissa	NED			02.09.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	4b727665	VAN LIJF	Xanne	NED			05.09.2007	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	fda11bba	DE BOCK	Daphne	BEL			20.07.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	a81c158a	HOJDAROVA	Stepanka	CZE			11.09.2006	Competitor	w	-70 kg				Lignano Cadet European Cup 2022: 2. place
+	cont_cup_cad_cze2022	c8253e4a	KROUZKOVA	Anna	CZE			12.07.2007	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	ab9c421a	WALDHOER	Jessica	AUT			28.09.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	6a8c25b5	VANDERHEYDEN	Lieve	NED			14.03.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	435b5211	SKVARENINOVA	Natalia	SVK			17.01.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	c687944e	NAGYOVA	Nina	SVK			20.12.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	22b84a8c	PAJIC	Sofija	BIH			19.04.2005	Competitor	w	-70 kg				Lignano Cadet European Cup 2022: 3. place
+	cont_cup_cad_cze2022	776aaca8	ABBOUD HERBERT	Luna	GER			06.04.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	5145c187	HUTZELMANN	Alexandra	GER			23.02.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	f6f11eef	WOOD	Nicole	GBR			06.04.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	41a22d6d	MARCZAK	Julia	GBR			05.11.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	a8558417	SHERBAKOV	Eva	ISR			19.10.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	bc21f4da	RAKALOVICIUTE	Ieva	LTU			21.11.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	15ed3b86	DEL DUCA	Elisa	ITA			24.01.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	656424ad	MENGIA	Aurora	ITA			17.07.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	8f69dfac	ONDEI	Serena	ITA			06.06.2005	Competitor	w	-70 kg				Lignano Cadet European Cup 2022: 1. place
+	cont_cup_cad_cze2022	ac27efcf	TCHUMAMO	Emeraude	FRA			05.05.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	ba8fc827	KVARTSKHAVA	Lizi	GEO			17.02.2006	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	e92639c6	GIUSTI	Eleonora	ITA			27.02.2005	Competitor	w	-70 kg				Porec Cadet European Cup 2021: 2. place
+	cont_cup_cad_cze2022	fe71e6d3	KOCYIGIT	Hatice	TUR			02.03.2005	Competitor	w	-70 kg				Antalya Cadet European Cup 2020: 3. place
+	cont_cup_cad_cze2022	987235e8	BAUR	Coco-Mia	GER			31.01.2007	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	6dd4fbb8	HANSCHMANN	Tanja	GER			12.05.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	5d24e3ff	COMAN	Raisa	ROU			19.04.2005	Competitor	w	-70 kg				
+	cont_cup_cad_cze2022	f2b74467	NUNWEILER	Mia	GER			18.06.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	e3e56523	SEMCHENKO	Diana	UKR			22.07.2005	Competitor	w	+70 kg				Bucharest Cadet European Cup 2021: 1. place, Cadet European Championships (individual): 5. place, Porec Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	968e6a48	MINKADA-CAQUINEAU	Leonie	FRA			25.11.2007	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	25952a38	STJEPANOVIC	Jovana	SRB			25.08.2005	Competitor	w	+70 kg				Porec Cadet European Cup 2021: 1. place, Cadet European Championships (individual): 3. place
+	cont_cup_cad_cze2022	baaad255	AKTAS	Emma-Melis	EST			18.12.2007	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	b1976691	ODOR	Veronika	HUN			16.04.2006	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	b9b4e4ce	PERLAKI	Hanna	HUN			13.06.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	722d11d4	SCHRATTENHOLZER	Helene	AUT			20.12.2006	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	d1c5958b	HASSAN	Anya	GBR			22.04.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	c978777f	LINKUTE	Laura	LTU			24.05.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	3c8b3a5a	STASIULYTE	Rugile	LTU			16.09.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	599d3224	NIEWELER	Malin	GER			24.10.2006	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	6d5e3437	PLOEHNERT	Peppa	GER			12.08.2006	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	ce239595	HERIC	Vanessa Asja	SLO			21.05.2005	Competitor	w	+70 kg				Bucharest Cadet European Cup 2021: 2. place, Lignano Cadet European Cup 2022: 3. place, Teplice Cadet European Cup 2021: 3. place
+	cont_cup_cad_cze2022	7412cc8c	LUBURA	Lana	BIH			24.03.2005	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	68f582c4	SOKCEVIC	Christina	AUT			23.01.2007	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	e6b79719	PAPIDZE	Nino	GEO			05.03.2006	Competitor	w	+70 kg				
+	cont_cup_cad_cze2022	eb65fce8	SCHMIDT	Martin	GER			25.05.1984	Referee	m					 0
+	cont_cup_cad_cze2022	28cd6bb6	FREESE	Christian	GER			14.06.2012	Referee	m					 0
+	cont_cup_cad_cze2022	f9eafff4	LAAMANEN	Eetu	FIN	Covid-Manager		17.09.1988	Coach	m					other 2012
+	cont_cup_cad_cze2022	ad71d2eb	CZYZ	Adam	POL			18.01.1990	Referee	m					 0
+	cont_cup_cad_cze2022	d72c7839	MASIUKIEWICZ	Paweł	POL			14.01.1991	Referee	m					 0
+	cont_cup_cad_cze2022	1d64d911	HERKENRATH-WIEMAR	Sascha	LUX	Covid-Manager		17.06.1992	Coach	m					 0
+	cont_cup_cad_cze2022	cc48c92f	KASHTANOVA	Ganna	UKR	Covid-Manager		10.07.1974	Coach	w					 0
+	cont_cup_cad_cze2022	9adbf9a7	YUDANOVA	Olena	UKR			09.02.1984	Coach	w					 0
+	cont_cup_cad_cze2022	183bd7b7	YUDANOV	Valerii	UKR			15.05.1967	Coach	m					 0
+	cont_cup_cad_cze2022	3a3d36d5	VALTONEN	Tommi	FIN			18.02.1992	Coach	m					 0
+	cont_cup_cad_cze2022	dc5553c9	TSURKAN	Igor	UKR			09.11.1964	Coach	m					 0
+	cont_cup_cad_cze2022	ec86379b	HELM	Matthias	GER			08.08.1962	Coach	m					 0
+	cont_cup_cad_cze2022	3566ba1b	HERMANSEN	Herman	NOR			09.03.1996	Coach	m					National Champion seniors 2013
+	cont_cup_cad_cze2022	9662243b	BROVOLD	Filippa	NOR	Covid-Manager		18.03.2000	Coach	w					 0
+	cont_cup_cad_cze2022	de11f4ea	TEGIPKO	Mykola	UKR			01.08.2003	Coach	m					 0
+	cont_cup_cad_cze2022	dbd6765e	BEN ZVI	Ofer	ISR			11.11.1972	Referee	m					 0
+	cont_cup_cad_cze2022	1bc4e76e	BORDAT	Alexandre	FRA	Covid-Manager		17.04.1993	Coach	m					 0
+	cont_cup_cad_cze2022	dd62ef8e	MORTINI	Anthony	FRA			13.04.1980	Coach	m					 0
+	cont_cup_cad_cze2022	76be18d8	POULSEN	Mathias	DEN	Covid-Manager		19.01.1996	Coach	m					National Champion cadets 2014
+	cont_cup_cad_cze2022	7839458b	MORINA	Sefki	SRB			25.01.1963	Coach	m					 0
+	cont_cup_cad_cze2022	9b95fe11	TIELIEGIN	Oleksandr	UKR			26.03.1976	Coach	m					 0
+	cont_cup_cad_cze2022	f82eaa2b	MENDOLIA	Angelo	BEL			17.05.1959	Coach	m					 0
+	cont_cup_cad_cze2022	a48e3535	BEDNAROVA	Bronislava	CZE			11.05.1957	Referee	w					 0
+	cont_cup_cad_cze2022	f3bdf6c4	DVORAK	Karel	CZE			15.06.1964	Referee	m					 0
+	cont_cup_cad_cze2022	48d114e5	HORENI	Robert	CZE			26.10.1972	Referee	m					 0
+	cont_cup_cad_cze2022	3182b2c2	LUKS	Rostislav	CZE			13.06.1986	Referee	m					 0
+	cont_cup_cad_cze2022	39b8232c	NEUZILOVA	Pavlina	CZE			03.09.1984	Referee	w					 0
+	cont_cup_cad_cze2022	9784edb6	SKALKA	Tomas	CZE			26.03.1971	Referee	m					 0
+	cont_cup_cad_cze2022	f7ba8fdb	STEFANIKOVA	Klara	CZE			17.06.1981	Referee	w					 0
+	cont_cup_cad_cze2022	5abb5d7f	PISAROVA	Judita	SVK			15.04.1980	Referee	w					 0
+	cont_cup_cad_cze2022	f9ba4813	MILENBERGS	Gatis	LAT	Covid-Manager		09.08.1986	Coach	m					 0
+	cont_cup_cad_cze2022	1e3873a2	BAUMANIS	Gatis	LAT			21.04.1982	Coach	m					 0
+	cont_cup_cad_cze2022	968615cf	DRAGOVIC	Svetislav	SRB			01.10.1956	Coach	m					 0
+	cont_cup_cad_cze2022	e2f4947c	KLINGER	Sandra	GER	Covid-Manager		10.03.1974	Coach	w					 0
+	cont_cup_cad_cze2022	ee4cbf52	GADACZ	Krzysztof	POL	Covid-Manager		11.03.1985	Coach	m					 0
+	cont_cup_cad_cze2022	61e28766	SERGEJEV	Sergei	EST			27.01.1970	Coach	m					 0
+	cont_cup_cad_cze2022	fe6ec3c2	PRODANOV	Nikola	SRB			19.12.1990	Coach	m					 0
+	cont_cup_cad_cze2022	4a498925	IONITA	Valerica	ROU			02.11.1980	Coach	m					 0
+	cont_cup_cad_cze2022	4d38d544	BOLBOSE	Dragos	ROU			09.07.1967	Coach	m					 0
+	cont_cup_cad_cze2022	6ec6c622	OHAI	Loredana	ROU			17.07.1992	Coach	w					3rd Continentals juniors 0
+	cont_cup_cad_cze2022	f89b9eb5	TOMA	Stefan	ROU			13.05.1977	Physiotherapist	m					 0
+	cont_cup_cad_cze2022	967df731	EHARI	Egert	EST	Covid-Manager		03.06.1990	Coach	m					 0
+	cont_cup_cad_cze2022	64887c9c	BUDOLIN	Dmitri	EST			01.03.1974	Coach	m					 0
+	cont_cup_cad_cze2022	7a463395	WELLENREITER	Markus	SUI	Covid-Manager		05.01.1983	Coach	m					 0
+	cont_cup_cad_cze2022	a32585ef	ANTONIOU	Antonis	CYP	Covid-Manager		04.12.1977	Coach	m					 0
+	cont_cup_cad_cze2022	c6e84428	LICHTENBERG	Bram	NED			11.04.1995	Coach	m					 0
+	cont_cup_cad_cze2022	a8f15acc	VAN BUEL	Bjorno	NED			12.07.1980	Coach	m					 0
+	cont_cup_cad_cze2022	3e2c72cb	VAN BUREN	Jan	NED			16.11.1966	Coach	m					 0
+	cont_cup_cad_cze2022	ab1e8cfc	VAN DEN BERG	Ed	NED			08.05.1965	Coach	m					 0
+	cont_cup_cad_cze2022	f852a83e	MOERMAN	Cor	NED			01.12.1956	Coach	m					 0
+	cont_cup_cad_cze2022	d19b369f	MUILWIJK	Akkie	NED	Covid-Manager		06.12.1975	Coach	m					 0
+	cont_cup_cad_cze2022	c4f2d9a7	PIROLI	Barry	NED			24.06.1972	Coach	m					 0
+	cont_cup_cad_cze2022	199552cb	ROOS	Pieter	NED			28.08.1984	Coach	m					 0
+	cont_cup_cad_cze2022	1b26fa1f	BRINKKEMPER	Tijmen	NED			10.09.1996	Coach	m					 0
+	cont_cup_cad_cze2022	711196fb	ANDRIC	Milenko	SRB			04.03.1977	Coach	m					 0
+	cont_cup_cad_cze2022	6e7f319e	LEPP	Dmitri	EST			29.02.1992	Coach	m					National Champion juniors 2011
+	cont_cup_cad_cze2022	cb741394	RUS	Sebastian	ROU			12.02.1982	Coach	m					 0
+	cont_cup_cad_cze2022	6213c2a5	JATSKEVITCH	Alexander	EJU			25.03.1958	Staff	m					 0
+	cont_cup_cad_cze2022	36657854	HNIDKA	Vladimir	EJU			15.02.1962	Staff	m					 0
+	cont_cup_cad_cze2022	4bd68711	GMEINER	Albert	EJU			05.04.1956	Staff	m					 0
+	cont_cup_cad_cze2022	e46afb48	STUCKLER	Thomas	EJU			15.02.2019	Staff	m					 0
+	cont_cup_cad_cze2022	a9433872	BRONS	Arnold	EJU			25.05.1958	Staff	m					 0
+	cont_cup_cad_cze2022	942b37f4	SARAIVA	Antonio	POR			09.04.1954	Coach	m					 0
+	cont_cup_cad_cze2022	d9df44b5	RAMOS	Joana	POR			16.01.1982	Coach	w					other 0
+	cont_cup_cad_cze2022	8a89d91a	GEVERS	Jo	NED			03.01.1962	Coach	m					 0
+	cont_cup_cad_cze2022	d3ea74e3	KIELBASINSKI	Lukasz	POL			02.01.1992	Coach	m					 0
+	cont_cup_cad_cze2022	c21a24bf	PEREIRA REYES	Franklin	BEL	Covid-Manager		05.02.1975	Coach	m					 0
+	cont_cup_cad_cze2022	12b423af	LINDEKENS	Tijl	BEL			14.02.1983	Coach	m					 0
+	cont_cup_cad_cze2022	24b4fb4a	JAMMALI	Mohamed	FRA			24.08.1986	Coach	m					 0
+	cont_cup_cad_cze2022	9f5f1e53	HATOS	Zsuzsanna	HUN			21.12.1982	Coach	w					 0
+	cont_cup_cad_cze2022	16fd184e	BIRO	Norbert	HUN	Covid-Manager		05.03.1974	Coach	m					 0
+	cont_cup_cad_cze2022	1aeb7cc4	KUBO	Hitoshi	AUT			25.07.1987	Coach	m					 0
+	cont_cup_cad_cze2022	e58e9d32	SZIGETVARI	Antal	HUN			21.07.1963	Coach	m					 0
+	cont_cup_cad_cze2022	6e3ffdab	WEISSSTEINER	Bernhard	AUT			02.07.1988	Coach	m					 0
+	cont_cup_cad_cze2022	624fef9d	GRAFL	Martin	AUT	Covid-Manager		11.03.1988	Coach	m					 0
+	cont_cup_cad_cze2022	f915cb97	LEDENYI	Levente	HUN			28.08.1979	Coach	m					 0
+	cont_cup_cad_cze2022	2d1ddd5c	BERNHOFER	Andreas	AUT			05.08.1981	Referee	m					 0
+	cont_cup_cad_cze2022	5d27568b	KOVACS	Szabolcs	HUN			09.05.1970	Coach	m					 0
+	cont_cup_cad_cze2022	a4b1f114	RUTHNER	Harald	AUT			08.06.1961	Referee	m					 0
+	cont_cup_cad_cze2022	2db28df1	MEINEL	Julius	AUT			23.10.1990	Coach	m					 0
+	cont_cup_cad_cze2022	d5b28f31	DOPPELHAMMER	Florian	AUT			28.11.1989	Coach	m					 0
+	cont_cup_cad_cze2022	a73a1731	FULOP	Daniel	HUN			16.09.1996	Referee	m					 0
+	cont_cup_cad_cze2022	483718e8	WINKLER	Michael	AUT			20.12.1994	Coach	m					other 2013
+	cont_cup_cad_cze2022	d421c843	VARI	Tibor	HUN			24.01.1979	Referee	m					 0
+	cont_cup_cad_cze2022	114e5fbd	VRSIC	Kristina	AUT			28.06.1991	Coach	w					 0
+	cont_cup_cad_cze2022	c69ad1a2	STUMPF	Norbert	AUT			31.12.1980	Coach	m					 0
+	cont_cup_cad_cze2022	2ec6d676	KIZILASHVILI	George	GEO			14.03.1982	Coach	m					 0
+	cont_cup_cad_cze2022	72722c15	REVAZISHVILI	George	GEO			16.11.1974	Coach	m					 0
+	cont_cup_cad_cze2022	e1c42f7a	MAMRIKISHVILI	Lasha	GEO			12.08.1997	Doctor	m					 0
+	cont_cup_cad_cze2022	92689dd4	SCHLOEGL	Andreas	AUT			19.08.1969	Coach	m					 0
+	cont_cup_cad_cze2022	dc467d5a	OTTER	Erwin	AUT			11.12.1966	Coach	m					 0
+	cont_cup_cad_cze2022	234dd3b5	KARNIK	Matthias	AUT			04.12.1977	Coach	m					 0
+	cont_cup_cad_cze2022	3517da7a	ROUIBET	Abdelkrim	ALG			16.02.1976	Coach	m					 0
+	cont_cup_cad_cze2022	c17fb76e	GEIER	Gabor	AUT			28.03.1992	Coach	m					National Champion juniors 0
+	cont_cup_cad_cze2022	717aa1d2	SCHWAM	Henrik	AUT			03.11.1972	Coach	m					 0
+	cont_cup_cad_cze2022	2bf71656	STANESCU	Danut	ROU			03.06.1987	Referee	m					 0
+	cont_cup_cad_cze2022	1d3cd6c4	NORTAN	Benji	NED			01.11.1989	Coach	m					other 2011
+	cont_cup_cad_cze2022	296fb824	DE JONG	Wytze	NED			17.11.1989	Coach	m					other 0
+	cont_cup_cad_cze2022	9ba39768	ROKIC	Salko	NED			17.03.1973	Coach	m					 0
+	cont_cup_cad_cze2022	c1a17a3f	VUCKOVIC	Vladimir	SRB	Covid-Manager		10.10.1976	Coach	m					 0
+	cont_cup_cad_cze2022	29a375de	COPAK	Gabriel	SVK			23.12.1970	Coach	m					 0
+	cont_cup_cad_cze2022	f8e3e8d4	TOMANEK	Jozef	SVK			31.07.1975	Coach	m					 0
+	cont_cup_cad_cze2022	ec9fcb93	SATO	Rikuo	SVK			30.03.1999	Coach	m					 0
+	cont_cup_cad_cze2022	a3cdb589	TOMANKOVA	Silvia	SVK			20.10.2002	Coach	w					 0
+	cont_cup_cad_cze2022	9ad8f431	SATO	Ginga	SVK			19.09.1996	Coach	m					 0
+	cont_cup_cad_cze2022	9f5877cc	SLANY	Branislav	SVK	Covid-Manager		16.08.1968	Coach	m					 0
+	cont_cup_cad_cze2022	192ac6ba	KOMLOSIOVA	Ivana	SVK			31.07.1989	Coach	w					other 2009
+	cont_cup_cad_cze2022	68d7441b	STUMP	Andrea	AUT			27.02.1982	Physiotherapist	w					 0
+	cont_cup_cad_cze2022	29536284	DELIC	Jasenko	BIH	Covid-Manager		28.10.1983	Coach	m					 0
+	cont_cup_cad_cze2022	bcb73751	BABIC	Branislav	SVK			24.09.1979	Coach	m					 0
+	cont_cup_cad_cze2022	9bec5459	STASKIEWICZ	Tomasz	POL			22.11.1988	Coach	m					 0
+	cont_cup_cad_cze2022	4ede95fa	PARSONS	Jason	GBR	Covid-Manager		10.06.1985	Coach	m					 0
+	cont_cup_cad_cze2022	a99c1d44	NUNN	Nicole	GBR			24.06.1975	Coach	w					 0
+	cont_cup_cad_cze2022	1376e479	VOJSK	Patrik	SLO	Covid-Manager		17.09.1994	Coach	m					National Champion juniors 2014
+	cont_cup_cad_cze2022	5a1afc18	NUNN	Joseph	GBR			13.05.1973	Coach	m					 0
+	cont_cup_cad_cze2022	536bcaf5	HARRIS	Nicola	GBR			23.04.1967	Coach	w					 0
+	cont_cup_cad_cze2022	95ed2b6b	KULIKAUSKAS	Stanislovas	LTU			28.05.1957	Coach	m					 0
+	cont_cup_cad_cze2022	da8d35c9	KLESZCZ	Szymon	POL			08.07.1994	Referee	m					 0
+	cont_cup_cad_cze2022	c899566c	WOZNIAK	Marcin	POL			01.04.1979	Referee	m					 0
+	cont_cup_cad_cze2022	afc31b38	ROSSENEU	Amelie	ISR	Covid-Manager		18.01.1988	Coach	w					other 2014
+	cont_cup_cad_cze2022	6158659d	GROSSMAN	Adi	ISR			22.04.1995	Coach	w					other 0
+	cont_cup_cad_cze2022	e994da8e	ARSHANSKI	Artiom	ISR			26.09.1991	Coach	m					other 0
+	cont_cup_cad_cze2022	a499dad1	SHAPIRO	Maxim	ISR			19.10.1986	Physiotherapist	m					 0
+	cont_cup_cad_cze2022	ed55b3df	VETROVA	Svetlana	LTU	Covid-Manager		04.04.1981	Coach	w					 0
+	cont_cup_cad_cze2022	353c5f64	ZEMAITAITIS	Ramunas	LTU			03.08.1970	Coach	m					 0
+	cont_cup_cad_cze2022	d7a4a418	RAVANETTI	Luca	ITA	Covid-Manager		03.05.1988	Coach	m					other 2014
+	cont_cup_cad_cze2022	b8a18e7d	COMI	Alessandro	ITA			28.02.1983	Team-Official	m					 0
+	cont_cup_cad_cze2022	b3e27ecd	MARCZAK	Przemyslaw	GBR			10.05.1979	Coach	m					 0
+	cont_cup_cad_cze2022	77145ccf	ZIMKUS	Robertas	LTU			15.10.1986	Coach	m					 0
+	cont_cup_cad_cze2022	345fd799	CAMPANINI	Francesca	ITA			19.09.1970	Coach	w					 0
+	cont_cup_cad_cze2022	eedde9af	PASCA	Massimiliano	ITA			18.04.1980	Coach	m					 0
+	cont_cup_cad_cze2022	149dcc2f	SILVERI	Danilo	ITA			08.12.1968	Coach	m					 0
+	cont_cup_cad_cze2022	3ca2b415	TORCASIO	Vincenzo	ITA			21.10.1980	Coach	m					 0
+	cont_cup_cad_cze2022	c695a7df	TERRANOVA	Rosario	ITA			13.02.1975	Coach	m					 0
+	cont_cup_cad_cze2022	ec4c4a46	D'ABBENE	Maria Luigia	ITA			07.09.1979	Team-Official	w					 0
+	cont_cup_cad_cze2022	ee9e6573	TAVOLETTA	Silvio	ITA			09.01.1973	Coach	m					 0
+	cont_cup_cad_cze2022	f6d7239e	MADDALONI	Giovanni	ITA			13.09.1956	Coach	m					 0
+	cont_cup_cad_cze2022	6bbae554	LATTANZI	Alessandro	ITA			20.08.1978	Coach	m					 0
+	cont_cup_cad_cze2022	dbd67b72	RIPANDELLI	Nicola	ITA			24.01.1954	Coach	m					 0
+	cont_cup_cad_cze2022	955584cf	CANAVESE	Sara	ITA			05.09.1974	Coach	w					 0
+	cont_cup_cad_cze2022	618a8995	PALILLO	Salvatore	ITA			29.10.1967	Coach	m					 0
+	cont_cup_cad_cze2022	7b71f128	DINK	Efkan	GER			24.10.1968	Referee	m					 0
+	cont_cup_cad_cze2022	8c5e88c3	STRAUB	Claudia	GER			15.03.1977	Coach	w					 0
+	cont_cup_cad_cze2022	17421c4d	KIRCHNER	Axel	GER			28.11.1962	Coach	m					 0
+	cont_cup_cad_cze2022	a6ed53d7	SCHWARZER	Christopher	GER			26.05.1995	Coach	m					other 0
+	cont_cup_cad_cze2022	2f3c7c76	TEKIC	Slavko	GER			05.01.1970	Coach	m					 0
+	cont_cup_cad_cze2022	8d71219e	BALLASCHK	Henry	GER			22.03.1979	Coach	m					 0
+	cont_cup_cad_cze2022	9c6cb597	BLOEDORN	Marc	GER			05.03.1980	Coach	m					 0
+	cont_cup_cad_cze2022	855ec713	URBAN	Frank	GER			24.01.1970	Coach	m					 0
+	cont_cup_cad_cze2022	bf53dc76	TEFETT	Jan	GER			24.03.1994	Coach	m					 0
+	cont_cup_cad_cze2022	38117f85	FROEHLICH	Stephan	GER			12.08.1985	Coach	m					 0
+	cont_cup_cad_cze2022	da265f9b	STEINER	Jan	GER			11.01.1963	Coach	m					 0
+	cont_cup_cad_cze2022	4f8167c2	KOSIR	Rok	GER			03.08.1975	Coach	m					 0
+	cont_cup_cad_cze2022	85d1d6b2	KAESTLE	Beatrix	GER			15.05.1968	Coach	w					 0
+	cont_cup_cad_cze2022	2d87df95	HERIC	Kolja	SLO			03.07.1972	Coach	m					 0
+	cont_cup_cad_cze2022	aba2e877	BOGDANOV	Aleksandar	SLO			19.03.1963	Coach	m					 0
+	cont_cup_cad_cze2022	6da29128	ALBU	Botond Bela	ROU			26.02.1975	Coach	m					 0
+	cont_cup_cad_cze2022	acfbedfc	KOVACS	Bence	HUN			11.03.1997	Coach	m					other 2014
+	cont_cup_cad_cze2022	e4fd9d6c	NEU	Gabor	HUN			19.05.1981	Coach	m					 0
+	cont_cup_cad_cze2022	b5fb2356	SVEC	Jaroslav	CZE	Covid-Manager		05.02.1977	Coach	m					 0
+	cont_cup_cad_cze2022	64b1bc37	POKORNA	Andrea	CZE			06.01.1979	Coach	w					 0
+	cont_cup_cad_cze2022	ff72f28a	CERVIN	Vaclav	CZE			10.04.1970	Coach	m					 0
+	cont_cup_cad_cze2022	233696ad	BENABDELI	Kader	FRA			06.11.1979	Coach	m					 0
+	cont_cup_cad_cze2022	ca9ae229	ZITA	Ondrej	CZE			05.04.1977	Coach	m					 0
+	cont_cup_cad_cze2022	f526db58	KOZA	Dusan	CZE			08.04.1975	Coach	m					 0
+	cont_cup_cad_cze2022	9a64f6c5	KYTYR	Pavel	CZE			26.05.1989	Coach	m					 0
+	cont_cup_cad_cze2022	8d846326	LORENC	David	CZE			12.12.1979	Coach	m					 0
+	cont_cup_cad_cze2022	8cc7eac2	MUSIL	Jaromir	CZE			28.05.1988	Coach	m					National Champion seniors 0
+	cont_cup_cad_cze2022	a15c3a26	PRILLER	Cornelia	AUT			07.02.1990	Referee	m					 0
+	cont_cup_cad_cze2022	9554614c	KORFANTY	Magdalena	POL			17.02.1989	Coach	w					 0
+	cont_cup_cad_cze2022	752c6da4	KLIMASAUSKIENE	Ieva	LTU			27.06.1972	Coach	w					 0
+	cont_cup_cad_cze2022	c173113e	MIKENAS	Andrius	LTU			08.05.1982	Coach	m					 0
+	cont_cup_cad_cze2022	3a82ed7c	NOZADZE	Levan	GEO			31.01.1985	Coach	m					 0
+	cont_cup_cad_cze2022	ac81e67c	SIMCAK	Marek	CZE			05.09.1971	Referee	m					 0
+	cont_cup_cad_cze2022	26ef71b4	KADLCAK	Richard	CZE			30.04.1975	Referee	m					 0
+	cont_cup_cad_cze2022	9ca9b7e8	SVEC	Libor	CZE			03.11.1977	Coach	m					 0
+	cont_cup_cad_cze2022	4713be31	OLAH	Szilard	HUN			27.01.1981	Referee	m					 0
+	cont_cup_cad_cze2022	38dcce2f	VIEGAS	Hugo	POR			06.02.1973	Coach	m					 0
+	cont_cup_cad_cze2022	df6ec582	PATI	Renata	POR			16.11.1990	Coach	w					 0
+	cont_cup_cad_cze2022	bd5f5342	POT	Daniel	NED			21.01.1970	Coach	m					 0
+	cont_cup_cad_cze2022	4bba9761	DRENT	Danny	NED			19.04.1995	Coach	m					 0
+	cont_cup_cad_cze2022	424a16e9	GROOT	Christopher	NED			21.07.2001	Coach	m					 0
+	cont_cup_cad_cze2022	38739f38	COVIC	Ivan	CRO	Covid-Manager		19.04.1992	Coach	m					other 0
+	cont_cup_cad_cze2022	5ac5ff23	PETROVIC	Nemanja	SRB			17.07.1990	Coach	m					National Champion seniors 0
+	cont_cup_cad_cze2022	56a756f4	KHALMATOV	Shukhrat	UKR			11.02.1993	Coach	m					 0
+	cont_cup_cad_cze2022	577a2fc4	CASALE	Giovanni	ITA			20.01.1980	Coach	m					 0
+	cont_cup_cad_cze2022	5751578f	ALMOG	Tal	ISR			19.06.1992	Coach	m					other 0
+	cont_cup_cad_cze2022	7a63c286	SAHIN	Erkut	TUR	Covid-Manager		15.12.1982	Coach	m					 0
+	cont_cup_cad_cze2022	236c52a4	DOGAN	Yasin	TUR			02.03.1981	Coach	m					 0
+	cont_cup_cad_cze2022	b1b5df9e	ALIYEV	Dilgam	TUR			09.05.1992	Coach	m					other 0
+	cont_cup_cad_cze2022	c5347b1b	DOGAN	Erdal	TUR			27.05.1976	Coach	m					 0
+	cont_cup_cad_cze2022	f6f16fe1	SAYLAN	Tunahan	TUR			02.01.1993	Physiotherapist	m					 0
+	cont_cup_cad_cze2022	867f3283	HOELPERL	Frank	GER			07.10.1959	Coach	m					 0
+	cont_cup_cad_cze2022	9eb75544	CUNEO	Juan Ignacio	GER			01.10.1989	Coach	m					 0
+	cont_cup_cad_cze2022	45687616	LABAHN	Karsten	GER			12.11.1967	Referee	m					 0
+	cont_cup_cad_cze2022	487253c2	MARGOSHVILI	Vasil	GEO			30.07.1978	Coach	m					 0
+	cont_cup_cad_cze2022	956a7f75	ROSU	Calin	ROU			16.04.1968	Coach	m					 0
+	cont_cup_cad_cze2022	1589136f	SALDANHA	Paula	POR			06.03.1972	Referee	w					 0
+	cont_cup_cad_cze2022	7eaf85f3	MURESAN	Gheorghita	ROU			01.04.1976	Coach	m					 0

@@ -1,9 +1,16 @@
-update registered_clubs set status = 2 where id=3;
+update registered_clubs set status = 0 where id=1;
 
 select * from registered_clubs;
+select * from registered_hotels;
 select * from clubs;
+select * from events;
 
 /*delete from registered_clubs;*/
 
+select * from jb where jb = 'cbba9b2b';
+
+/*delete from jb;*/
 select * from jb;
+
+alter table jb add column state text;
 

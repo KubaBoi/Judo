@@ -1,8 +1,14 @@
 function createEditTableRow(tbl, label, id, defValue, type="text") {
     var row = createElement("tr", tbl);
     createElement("td", row, label);
-    var value = createElement("td", row);
-    createEditTableInput(value, id, defValue, type);
+    var vl = createElement("td", row);
+
+    if (type == "datetime-local") {
+        defValue = new Date(defValue).toISOString().slice(0,16);
+    }
+
+    var element = createEditTableInput(vl, id, defValue, type);
+    return element;
 }
 
 function createEditTableRowMulti(tbl, label, cells=[{"id": "id", "defValue": "defValue", "type": "text"}]) {
@@ -16,6 +22,8 @@ function createEditTableRowMulti(tbl, label, cells=[{"id": "id", "defValue": "de
 
 function createEditTableInput(parent, id, defValue, type) {
     cls = "textBox";
+
+    console.log(defValue);
 
     var input = createElement("input", parent, "", 
     [
