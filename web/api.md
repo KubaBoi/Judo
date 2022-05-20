@@ -33,6 +33,7 @@
     - [/getRooms](#55-getRooms)
     - [/reserveBed](#56-reserveBed)
     - [/remove](#57-remove)
+    - [/getAvailableRooms](#58-getavailablerooms)
  - [/registeredClubs](#6-registeredClubs)
     - [/create](#61-create)
     - [/register](#62-register)
@@ -1071,6 +1072,45 @@ Role = 1
 ```json
 {
     "STATUS": "Hotel has been removed"
+}
+```
+
+## 5.8 /getAvailableRooms
+
+```GET```
+
+Returns array of rooms by HOTEL_ID and if they are available
+
+Role = 2
+
+### Accepts path arguments
+
+```json
+{
+    "hotelId": 0
+}
+```
+
+### Return OK - 200
+
+```json
+{
+    "ROOMS": [
+        {
+            "ID": 0,
+            "BED": 0, // count of beds
+            "PRICE": 0,
+            "HOTEL_ID": 0,
+            "AVAILABLE": true,
+            "BEDS": [
+                {
+                    "ID": 0,
+                    "ROOM_ID": 0,
+                    "JB_ID": 0
+                }
+            ]
+        }
+    ]
 }
 ```
 

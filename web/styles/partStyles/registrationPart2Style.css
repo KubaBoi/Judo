@@ -18,7 +18,43 @@
 
 .accRoomDiv {
     display: grid;
+    border: solid;
+    border-color: var(--main-color);
     width: 80%;
     height: inherit;
-    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.accRoomRoomDiv {
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+    background-color: var(--main-color);
+}
+
+.accRoomRoomDivDragOver {
+    border: dotted;
+    border-radius: 5px;
+}
+
+.accRoomRoomDiv table {
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    margin: 0;
+    font-size: smaller;
+}
+
+.accRoomRoomDiv .removeFromBed {
+    position: absolute;
+    right: 1px;
+}
+
+.accRoomRoomDiv td, tr {
+    padding: 0;
+    margin: 0;
+}
+
+.accRoomRoomDiv .missing {
+    color: var(--wrong-light-color);
 }

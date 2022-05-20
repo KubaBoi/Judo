@@ -191,11 +191,12 @@ function prepareEventChangedData(hardCreate) {
     for (let i = 0; i < hotelsEventEd.length; i++) {
         let hotel = hotelsEventEd[i];
         if (hotel.CHOSEN) {
-            hotelsArr += String(hotel.ID);
-            if (i < hotelsEventEd.length-1) {
-                hotelsArr += ",";
-            }
+            hotelsArr += String(hotel.ID) + ",";
         }
+    }
+
+    if (hotelsArr.endsWith(",")) {
+        hotelsArr = hotelsArr.substring(0, hotelsArr.length - 1);
     }
 
     var newEvent = {

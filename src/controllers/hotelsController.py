@@ -191,6 +191,25 @@ class HotelsController(cc):
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		return cc.createResponse(jsonResponse, 200)
+
+	#@get /getAvailableRooms;
+	@staticmethod
+	def getAvailableRooms(server, path, auth):
+		args = cc.getArgs(path)
+
+		if (not cc.validateJson(['hotelId'], args)):
+			raise BadRequest("Wrong json structure")
+
+		hotelId = args["hotelId"]
+		roomsArray = RoomsRepository.findAvailableRooms(hotelId)
+
+		jsonResponse = {}
+		jsonResponse["ROOMS"] = []
+		for room in roomsArray:
+			room.beds = BedRepository.findBy("room_id", room.id)
+			jsonResponse["ROOMS"].append(room.toJson())
+
+		return cc.createResponse(jsonResponse, 200)
 		
 
 	#@post /reserveBed;

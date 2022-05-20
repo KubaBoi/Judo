@@ -14,3 +14,9 @@ class RoomsRepository(CheeseRepository):
 	def findByHotelAndBeds(hotelId, bedCount):
 		return CheeseRepository.query(hotelId=hotelId, bedCount=bedCount)
 
+	#@query "select * from rooms where hotel_id=:hotelId and available=true;";
+	#@return array;
+	@staticmethod
+	def findAvailableRooms(hotelId):
+		return CheeseRepository.query(hotelId=hotelId)
+

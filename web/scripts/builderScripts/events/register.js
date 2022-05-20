@@ -73,7 +73,7 @@ async function registerToEventShow(eventId) {
     var tbl = createElement("table", dv);
     setDataToInfoTable(tbl, event);
 
-    await buildRegEvTables();
+    await buildRegEvTables(event);
 
     hideLoader();
     regEvShow();
