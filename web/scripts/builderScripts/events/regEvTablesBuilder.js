@@ -129,7 +129,7 @@ function buildRoomDiv() {
     let roomDiv = document.getElementById("accRoomDiv");
     clearTable(roomDiv);
     
-    let width = "110px ";
+    let width = "160px ";
     let rowCount = 5;
     let rowSize = Math.floor(100/rowCount);
 
