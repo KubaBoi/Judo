@@ -2,6 +2,7 @@ var jbs = []; // all jbs
 var rooms = [];
 var regEvTablesDiv = null;
 
+// scroll events
 function onscrollDiv() {
     var pos = regEvTablesDiv.scrollTop;
 
@@ -46,12 +47,15 @@ function chooseRegTab(button, divId="peopleDiv") {
     document.body.scrollTo(0, 0);
 }
 
+
+
+
 async function buildRegEvTables(event) {
     regEvTablesDiv = document.getElementById("regEvTablesDiv");
     regEvTablesDiv.onscroll = onscrollDiv;
 
     showLoader();
-    // PEOPLE
+    
     await buildPeopleTable(
         ["", "Name", "State", "Birthday", "Function"],
         ["checkbox", "SUR_NAME,NAME", "STATE", "BIRTHDAY", "FUNCTION"]
@@ -282,25 +286,25 @@ function buildVisaTable() {
         passExpInp.value = new Date(jb.PASS_EXPIRATION).toISOString().slice(0,16);
 
 
-        chb.addEventListener("change", function(){needVisa(chb,passNumInp, passRelInp, passExpInp, i)});
+        chb.addEventListener("change", function(){needVisa(i)});
+        passNumInp.addEventListener("change", function(){needVisa(i)});
+        passRelInp.addEventListener("change", function(){needVisa(i)});
+        passExpInp.addEventListener("change", function(){needVisa(i)});
     }
 }
 
 function allNeedVisa(need=false) {
     for (let i = 0; i < jbs.length; i++) {
         let checkbox = document.getElementById(`visacheck${i}`);
-        let passNumInp = document.getElementById(`passNumInp${i}`);
-        let passRelInp = document.getElementById(`passRelInp${i}`);
-        let passExpInp = document.getElementById(`passExpInp${i}`);
 
         checkbox.checked = need;
-        needVisa(checkbox, passNumInp, passRelInp, passExpInp, i);
+        needVisa(i);
     }
 }
 
-function needVisa(check, passId, passRel, passExp, index) {
-    jbs[index].NEED_VISA = check.checked;
-    jbs[index].PASS_ID = passId.value;
-    jbs[index].PASS_RELEASE = passRel.value;
-    jbs[index].PASS_EXPIRATION = passExp.value;
+function needVisa(index) {
+    jbs[index].NEED_VISA = document.getElementById(`visacheck${index}`).checked;
+    jbs[index].PASS_ID = document.getElementById(`passNumInp${index}`).value;
+    jbs[index].PASS_RELEASE = document.getElementById(`passRelInp${index}`).value;
+    jbs[index].PASS_EXPIRATION = document.getElementById(`passExpInp${index}`).value;
 }
