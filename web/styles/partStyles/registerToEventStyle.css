@@ -47,7 +47,7 @@
     margin: 5px;
     border-radius: 5px;
     padding: 5px;
-    background-color: var(--light-color);
+    background-color: var(--lighter-color);
     width: 75%;
     height: 100%;
 }

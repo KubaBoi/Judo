@@ -5,6 +5,10 @@
     scroll-behavior: smooth;
 }
 
+.regEvTablesDiv table {
+    height: max-content;
+}
+
 .accDiv {
     display: flex;
     height: 99%;

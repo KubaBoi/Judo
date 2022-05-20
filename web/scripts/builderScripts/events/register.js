@@ -131,15 +131,3 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
     createShowTableRow(table, "E-mail: ",  user.LOGIN);
     createShowTableRow(table, "Phone: ",  user.PHONE);
 }
-
-function chooseRegTab(button, divId="peopleDiv") {
-    var buttons = document.getElementsByClassName("regTabButton");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("regTabButtonChosen");
-    }
-    button.classList.add("regTabButtonChosen");
-
-    let div = document.getElementById(divId);
-    div.scrollIntoView();
-    document.body.scrollTo(0, 0);
-}

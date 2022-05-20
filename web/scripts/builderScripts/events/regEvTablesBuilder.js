@@ -1,12 +1,60 @@
 var jbs = []; // all jbs
 var rooms = [];
+var regEvTablesDiv = null;
+
+function onscrollDiv() {
+    var pos = regEvTablesDiv.scrollTop;
+
+    let peoplePos = document.getElementById("peopleDiv").scrollHeight;
+    let accoPos = document.getElementById("accDiv").scrollHeight;
+    let visaPos = document.getElementById("visaDiv").scrollHeight;
+    let flightPos = document.getElementById("flightDiv").scrollHeight;
+    let billPos = document.getElementById("billingDiv").scrollHeight;
+
+    let btn = document.getElementById("regTabB0");
+
+    if (peoplePos >= pos) {
+        btn = document.getElementById("regTabB0");
+    }
+    else if (peoplePos + accoPos >= pos) {
+        btn = document.getElementById("regTabB1");
+    }
+    else if (peoplePos + accoPos + visaPos >= pos) {
+        btn = document.getElementById("regTabB2");
+    }
+    else if (peoplePos + accoPos + visaPos + flightPos >= pos) {
+        btn = document.getElementById("regTabB3");
+    }
+    else if (peoplePos + accoPos + visaPos + flightPos + billPos >= pos) {
+        btn = document.getElementById("regTabB4");
+    }
+    changeButton(btn);
+}
+
+function changeButton(button) {
+    var buttons = document.getElementsByClassName("regTabButton");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("regTabButtonChosen");
+    }
+    button.classList.add("regTabButtonChosen");
+}
+
+function chooseRegTab(button, divId="peopleDiv") {
+    changeButton(button, divId);
+    let div = document.getElementById(divId);
+    div.scrollIntoView();
+    document.body.scrollTo(0, 0);
+}
 
 async function buildRegEvTables(event) {
+    regEvTablesDiv = document.getElementById("regEvTablesDiv");
+    regEvTablesDiv.onscroll = onscrollDiv;
+
     showLoader();
     // PEOPLE
     await buildPeopleTable(
-        ["", "Name", "State", "Birthday", "Function", "Gender", "Passport number", "Passport release", "Passport expiration"],
-        ["-checkbox", "SUR_NAME,NAME", "STATE", "BIRTHDAY", "FUNCTION", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"]
+        ["", "Name", "State", "Birthday", "Function"],
+        ["checkbox", "SUR_NAME,NAME", "STATE", "BIRTHDAY", "FUNCTION"]
     );
 
     rooms = [];
@@ -21,11 +69,15 @@ async function buildRegEvTables(event) {
         }
     }
 
-    // ACCOMMODATIONS
-    buildAccTable();
-    buildRoomDiv();
+    rebuildRegEvTables();
 
     hideLoader();
+}
+
+function rebuildRegEvTables() {
+    buildAccTable();
+    buildRoomDiv();
+    buildVisaTable();
 }
 
 async function buildPeopleTable(header, attrs) {
@@ -52,6 +104,7 @@ async function buildPeopleTable(header, attrs) {
         
             jbs[i].ISIN = true;
             jbs[i].ROOM_ID = -1;
+            jbs[i].NEED_VISA = false;
         
             let checkbox = document.getElementById(`checkbox${i}`);
             checkbox.addEventListener("change", function(){changeJbArray(checkbox, i)});
@@ -64,8 +117,7 @@ function preparePeople(item, attrs, i) {
     for (let o = 0; o < attrs.length; o++) {
         let attr = attrs[o];
         let itm = "";
-        if (attr.startsWith("-")) {
-            attr = attr.replace("-", "");
+        if (attr == "checkbox") {
             let checkbox = createElement("input", null, "", [
                 {"name": "type", "value": attr},
                 {"name": "id", "value": `${attr}${i}`},
@@ -82,6 +134,14 @@ function preparePeople(item, attrs, i) {
                     itm += " ";
                 }
             }
+
+            if (attr == "SUR_NAME,NAME") {
+                let img = createElement("img", null, "", [
+                    {"name": "src", "value": `./images/${item['GENDER']}Icon.png`}
+                ]);
+    
+                itm += " " + img.outerHTML;
+            }
         }
         prepItem.push({"text": itm});
     } 
@@ -95,15 +155,13 @@ function allChangeJbArray(check=false) {
         checkbox.checked = check;
         changeJbArray(checkbox, i, false);
     }
-    buildAccTable();
-    buildRoomDiv();
+    rebuildRegEvTables();
 }
 
 function changeJbArray(e, index, rewriteTables=true) {
     jbs[index].ISIN = e.checked;
     if (rewriteTables) {
-        buildAccTable();
-        buildRoomDiv();
+        rebuildRegEvTables();
     }
 } 
 
@@ -183,6 +241,66 @@ function buildRoomDiv() {
 
 function removeFromBed(id) {
     jbs[id].ROOM_ID = -1;
-    buildAccTable();
-    buildRoomDiv();
+    rebuildRegEvTables();
+}
+
+function buildVisaTable() {
+    let visaTable = document.getElementById("regEvVisaTable");
+    clearTable(visaTable);
+
+    addHeader(visaTable, [
+        {"text": "Needs visa"},
+        {"text": "Name"},
+        {"text": "Passport number"},
+        {"text": "Passport release"},
+        {"text": "Passport expiration"}
+    ]);
+
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        
+        if (!jb.ISIN) continue;
+
+        addRow(visaTable, [
+            {"text": `<input type="checkbox" id="visacheck${i}">`},
+            {"text": jb.SUR_NAME + " " + jb.NAME},
+            {"text": `<input type="text" class="textBox" id="passNumInp${i}">`},
+            {"text": `<input type="datetime-local" class="textBox" id="passRelInp${i}">`},
+            {"text": `<input type="datetime-local" class="textBox" id="passExpInp${i}">`}
+        ]);
+
+        let chb = document.getElementById(`visacheck${i}`);
+        chb.checked = jb.NEED_VISA;
+
+        let passNumInp = document.getElementById(`passNumInp${i}`);
+        passNumInp.value = jb.PASS_ID;
+
+        let passRelInp = document.getElementById(`passRelInp${i}`);
+        passRelInp.value = new Date(jb.PASS_RELEASE).toISOString().slice(0,16);
+
+        let passExpInp = document.getElementById(`passExpInp${i}`);
+        passExpInp.value = new Date(jb.PASS_EXPIRATION).toISOString().slice(0,16);
+
+
+        chb.addEventListener("change", function(){needVisa(chb,passNumInp, passRelInp, passExpInp, i)});
+    }
+}
+
+function allNeedVisa(need=false) {
+    for (let i = 0; i < jbs.length; i++) {
+        let checkbox = document.getElementById(`visacheck${i}`);
+        let passNumInp = document.getElementById(`passNumInp${i}`);
+        let passRelInp = document.getElementById(`passRelInp${i}`);
+        let passExpInp = document.getElementById(`passExpInp${i}`);
+
+        checkbox.checked = need;
+        needVisa(checkbox, passNumInp, passRelInp, passExpInp, i);
+    }
+}
+
+function needVisa(check, passId, passRel, passExp, index) {
+    jbs[index].NEED_VISA = check.checked;
+    jbs[index].PASS_ID = passId.value;
+    jbs[index].PASS_RELEASE = passRel.value;
+    jbs[index].PASS_EXPIRATION = passExp.value;
 }
