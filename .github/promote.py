@@ -4,16 +4,20 @@ import json
 
 settPath = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "appSettings.json"))
 
-with open(settPath, "r") as f:
-    data = json.loads(f.read())
+try:
 
-v = data["version"]
-v = v.split(".")
-v = v[0] + "." + v[1] + "." + str(int(v[2])+1)
+    with open(settPath, "r") as f:
+        data = json.loads(f.read())
 
-data["version"] = v
+    v = data["version"]
+    v = v.split(".")
+    v = v[0] + "." + v[1] + "." + str(int(v[2])+1)
 
-with open(settPath, "w") as f:
-    f.write(json.dumps(data))
+    data["version"] = v
 
-print("Promoted to version " + v)
+    with open(settPath, "w") as f:
+        f.write(json.dumps(data))
+
+    print("Promoted to version " + v)
+except:
+    print("Promotion failed")
