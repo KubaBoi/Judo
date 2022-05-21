@@ -77,7 +77,10 @@ async function editEventTab(eventId) {
         if (chosenHotelsTableEventEd != null) chosenHotelsTableEventEd.remove();
         chosenHotelsTableEventEd = createElement("table", editDiv);
 
-        let chosenHotels = activeEvent.HOTELS.split(",");
+        let chosenHotels = [];
+        if (activeEvent.HOTELS != null) { 
+            chosenHotels = activeEvent.HOTELS.split(",");
+        }
 
         hotelsEventEd = [];
 
@@ -205,8 +208,8 @@ function prepareEventChangedData(hardCreate) {
         "NAME": getValueOf("nameInpEdit"),
         "CATEGORY": getValueOf("categInpEdit"),
         "PLACE": getValueOf("placeInpEdit"),
-        "START": getValueOf("startInpEdit"),
-        "END": getValueOf("endInpEdit"),
+        "EVENT_START": getValueOf("startInpEdit"),
+        "EVENT_END": getValueOf("endInpEdit"),
         "ARRIVE": getValueOf("arriveInpEdit"),
         "DEPART": getValueOf("departInpEdit"),
         "END_VISA": getValueOf("visaEndInpEdit"),
@@ -232,7 +235,7 @@ function deleteEvent(eventId) {
 }   
 
 async function reallyDeleteEvent(eventId) {
-    var response = await callEndpoint("POST", "/events/remove?id=" + eventId);
+    var response = await callEndpoint("POST", "/events/remove", {"EVENT_ID": eventId});
     if (!response.ERROR) {
         showTimerAlert("Success :)", "Event has been deleted", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},

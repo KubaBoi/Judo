@@ -17,7 +17,7 @@ class EventsController(cc):
 	def create(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
+		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'EVENT_START', 'EVENT_END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
 			raise BadRequest("Wrong json structure")
 
 		hardCreate = args["HARD_CREATE"]
@@ -103,17 +103,17 @@ class EventsController(cc):
 
 		return cc.createResponse(jsonResponse, 200)
 
-	#@get /remove;
+	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
-		args = cc.getArgs(path)
+		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['id'], args)):
+		if (not cc.validateJson(['EVENT_ID'], args)):
 			raise BadRequest("Wrong json structure")
 
-		id = args["id"]
+		id = args["EVENT_ID"]
 
-		eventsModel = EventsRepository.findBy(id)
+		eventsModel = EventsRepository.find(id)
 		EventsRepository.delete(eventsModel)
 
 		return cc.createResponse({'STATUS': 'Event has been removed'}, 200)

@@ -23,8 +23,6 @@ function createEditTableRowMulti(tbl, label, cells=[{"id": "id", "defValue": "de
 function createEditTableInput(parent, id, defValue, type) {
     cls = "textBox";
 
-    console.log(defValue);
-
     var input = createElement("input", parent, "", 
     [
         {"name": "id", "value": id},
