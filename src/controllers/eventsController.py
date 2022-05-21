@@ -40,7 +40,7 @@ class EventsController(cc):
 	def update(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'START', 'END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
+		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'EVENT_START', 'EVENT_END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
 			raise BadRequest("Wrong json structure")
 
 		id = args["ID"]

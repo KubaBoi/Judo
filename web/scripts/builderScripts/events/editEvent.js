@@ -160,7 +160,7 @@ async function saveEventChanges(eventId, hardCreate=false) {
         var request = prepareEventChangedData(hardCreate)
         response = await callEndpoint("POST", "/events/create", request);
     }
-    if (!response.ERROR) {
+    if (response.ERROR == null) {
         if (eventId) {
             buildEventTable();
             showTimerAlert("Success :)", "Event has been updated", alertTime, "divOkAlert",
