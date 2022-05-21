@@ -82,7 +82,7 @@ class UsersController(cc):
 			raise BadRequest("Wrong json structure")
 
 		code = args["code"]
-		registration = RegistrationsRepository.findBy("registration_code", code)
+		registration = RegistrationsRepository.findOneBy("registration_code", code)
 		if (registration == None):
 			raise Unauthorized("Registration is invalid")
 
@@ -98,7 +98,7 @@ class UsersController(cc):
 		usersModel.login = login
 		usersModel.phone = phone
 		usersModel.full_name = fullName
-		usersModel.rule_id = 2
+		usersModel.role_id = 2
 		UsersRepository.save(usersModel)
 
 		passwordsModel = PasswordsRepository.model()
@@ -107,7 +107,7 @@ class UsersController(cc):
 		PasswordsRepository.save(passwordsModel)
 
 		RegistrationsRepository.delete(registration)
-		os.remove(os.path.join(ResMan.web(), "registrations", "reg" + code + ".html"))
+		os.remove(ResMan.web("registrations", "reg" + code + ".html"))
 
 		return cc.createResponse({"STATUS": "User has been created"}, 200)
 
