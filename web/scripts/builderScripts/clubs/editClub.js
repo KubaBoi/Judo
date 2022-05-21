@@ -70,11 +70,12 @@ async function saveClubChanges(clubId) {
         else {
             buildClubTable();
             showAlert("Success :)", "Club was created");
-            response = await callEndpoint("GET", `/clubs/get?clubId=${response.CLUB_ID}`);
+            response = await callEndpoint("GET", `/clubs/get?clubId=${response.ID}`);
         }
 
         if (response.ERROR == null) {
             loggedClub = response.CLUB;
+            activeClub = loggedClub;
         }
         else {
             showErrorAlert(response.ERROR, alertTime);
@@ -104,8 +105,8 @@ function deleteClub(clubId) {
 }   
 
 async function reallyDeleteClub(clubId) {
-    var response = await callEndpoint("GET", "/clubs/deleteClub?clubId=" + clubId);
-    if (!response.ERROR) {
+    var response = await callEndpoint("POST", "/clubs/remove", {"CLUB_ID": clubId});
+    if (response.ERROR == null) {
         showAlert("Success :)", "Club was deleted");
         loggedClub = null;
         buildClubTable();
