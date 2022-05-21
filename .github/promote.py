@@ -9,7 +9,7 @@ with open(settPath, "r") as f:
 
 v = data["version"]
 v.split(".")
-v = ".".join([v[0], v[1], str(int(v[2])+1)])
+v = v[0] + "." + v[1] + "." + str(int(v[2])+1)
 
 data["version"] = v
 
