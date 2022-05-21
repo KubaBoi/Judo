@@ -20,7 +20,7 @@ class EmailSender:
         msg["From"] = smtp_user
         msg["To"] = email
 
-        with open(os.path.join(ResMan.resources(), "emails", "registrationConfirmation.html"), "r") as f:
+        with open(ResMan.resources("emails", "registrationConfirmation.html"), "r") as f:
             html = f.read().replace("$CODE$", code + ".html")
 
         part2 = MIMEText(html, "html")
