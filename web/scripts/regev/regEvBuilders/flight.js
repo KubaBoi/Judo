@@ -28,6 +28,7 @@ function addArrival() {
         "NEED_TRANS": false
     });
     createArrivals();
+    console.log("oujeee")
 }
 
 function createArrivals() {
