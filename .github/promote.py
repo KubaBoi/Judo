@@ -16,7 +16,7 @@ try:
     data["version"] = v
 
     with open(settPath, "w") as f:
-        f.write(json.dumps(data))
+        f.write(json.dumps(data, indent=4, sort_keys=True))
 
     print("Promoted to version " + v)
 except:
