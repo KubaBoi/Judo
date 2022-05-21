@@ -54,8 +54,7 @@ class UsersController(cc):
 
 		randomCode = UsersController.randomString(20)
 
-		registration = RegisteredClubsRepository.model()
-		print(registration.toJson())
+		registration = RegistrationsRepository.model()
 		registration.login = login
 		registration.password = password
 		registration.phone = phone
