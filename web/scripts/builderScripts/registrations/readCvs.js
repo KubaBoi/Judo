@@ -37,13 +37,16 @@ function readCvsFromFile(contents) {
         let line = lines[i].trim();
         if (line == "") continue;
 
+        let brth = groups[7].split(".");
+        brth = `${brht[2]}-${brht[1]}-${brht[2]}`;
+
         groups = line.split("\t");
         let row = {
             "JB": groups[1],
             "SUR_NAME": groups[2],
             "NAME": groups[3],
             "STATE": groups[4],
-            "BIRTHDAY": groups[7].replaceAll(".", "-"),
+            "BIRTHDAY": brth,
             "FUNCTION": groups[8],
             "GENDER": groups[9]
         };
