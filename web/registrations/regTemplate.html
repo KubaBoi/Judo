@@ -3,8 +3,8 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/color2.css">
     <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/alertStyle.css">
-    <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/public/styles/autocompleteStyle.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Český svaz juda</title>
 </head>
@@ -12,6 +12,7 @@
     <h1 id="h">Validating...</h1>
     <p id="p"></p>
 
+    <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/time.js"></script>
     <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/communication.js"></script>
     <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/alerts.js"></script>
     <script src="https://kubaboi.github.io/CheeseFramework/public/scripts/elementManager.js"></script>
@@ -31,7 +32,7 @@
             else {
                 showAlert("An error occurred :(",
                     "We are very sorry. Please contact administrator." +
-                    "<br><br>Error message:<br>" + response.ERROR);
+                    "<br><br>Error message:<br>" + response.ERROR.DESCRIPTION);
             }
         }
     </script>
