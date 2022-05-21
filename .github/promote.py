@@ -8,7 +8,7 @@ with open(settPath, "r") as f:
     data = json.loads(f.read())
 
 v = data["version"]
-v.split(".")
+v = v.split(".")
 v = v[0] + "." + v[1] + "." + str(int(v[2])+1)
 
 data["version"] = v
