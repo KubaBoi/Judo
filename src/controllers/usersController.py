@@ -48,13 +48,14 @@ class UsersController(cc):
 		phone = args["PHONE"]
 		fullName = args["FULL_NAME"]
 
-		users = UsersRepository.findBy("login", login)
-		if (len(users) > 0):
+		user = UsersRepository.findOneBy("login", login)
+		if (user != None):
 			raise Conflict("User with this login already exists")
 
 		randomCode = UsersController.randomString(20)
 
 		registration = RegisteredClubsRepository.model()
+		print(registration.toJson())
 		registration.login = login
 		registration.password = password
 		registration.phone = phone
