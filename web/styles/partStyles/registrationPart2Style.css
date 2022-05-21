@@ -36,11 +36,6 @@
     background-color: var(--main-color);
 }
 
-.accRoomRoomDivDragOver {
-    border: dotted;
-    border-radius: 5px;
-}
-
 .accRoomRoomDiv table {
     width: 100%;
     height: max-content;
@@ -61,4 +56,12 @@
 
 .accRoomRoomDiv .missing {
     color: var(--wrong-light-color);
+}
+
+.arrDiv {
+    border: solid;
+    border-color: var(--main-color);
+    width: 80%;
+    height: inherit;
+    overflow-y: auto;
 }

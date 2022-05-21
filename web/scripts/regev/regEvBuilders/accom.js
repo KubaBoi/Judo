@@ -3,6 +3,10 @@ function buildAccTable() {
     let tbl = document.getElementById("accPeopleTable");
     clearTable(tbl);
 
+    createElement("button", tbl, "Auto classification", [
+        {"name": "onclick", "value": "autoClass()"}
+    ]);
+
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ROOM_ID == -1) {
@@ -46,7 +50,8 @@ function buildRoomDiv() {
 
         var oneRoomDiv = createElement("div", roomDiv, bedString, [
             {"name": "class", "value": "accRoomRoomDiv"},
-            {"name": "id", "value": `room${room.ID}-${room.BED}`}
+            {"name": "id", "value": `room${room.ID}`},
+            {"name": "value", "value": room.BED}
         ]);
 
         createElement("hr", oneRoomDiv);
@@ -64,7 +69,10 @@ function buildRoomDiv() {
         let rw = addRow(oneRoomTable, [
             {"text": `${jb.SUR_NAME} ${jb.NAME.substring(0, 1)}. 
             <img src='./images/removeFromBedIcon.png' class='removeFromBed' title='Remove person from room'
-            onclick='removeFromBed(${i})'>`}
+            onclick='removeFromBed(${i})'>`, "attributes": [
+                {"name": "draggable", "value": true},
+                {"name": "id", "value": `personForBed${i}`}
+            ]}
         ]);
 
         if (!jb.ISIN) {
@@ -73,7 +81,35 @@ function buildRoomDiv() {
     }
 }
 
+function isRoomFull(room) {
+    let roomId = room.id.replace("room", "");
+    let roomMaxBed = room.querySelectorAll("img").length;
+
+    let roomTable = document.getElementById(`roomTable${roomId}`);
+    let rows = roomTable.querySelectorAll("td").length;
+
+    return (rows >= roomMaxBed - rows);
+}
+
 function removeFromBed(id) {
     jbs[id].ROOM_ID = -1;
     rebuildRegEvTables();
+}
+
+function autoClass() {
+    let roomId = 0;
+    for (let i = 0; i < jbs.length; i++) {
+
+        let room = document.getElementById(`room${roomId}`);
+
+        let roomTable = document.getElementById(`roomTable${roomId}`);
+        let rows = roomTable.querySelectorAll("td");
+        
+        if (rows.length >= roomData[1]) {
+            showWrongAlert("No space", "This room is full", alertTime);
+            return;
+        }
+
+        jbs[dragged].ROOM_ID = roomId;
+    }
 }

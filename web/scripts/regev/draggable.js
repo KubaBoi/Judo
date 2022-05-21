@@ -8,40 +8,50 @@ function dragStart(e) {
 
 function dragEnter(e) {
     e.preventDefault();
-    if (!e.target.classList.contains("accRoomRoomDiv")) return;
-    e.target.classList.add("accRoomRoomDivDragOver");
+    // ACCOMMODATIONS
+    if (e.target.classList.contains("accRoomRoomDiv")) {
+        if (!isRoomFull(e.target)) {
+            e.target.classList.add("dragover");
+        }
+        else {
+            e.target.classList.add("dragoverfull");
+        }
+    }
 }
 
 function dragOver(e) {
     e.preventDefault();
-    if (!e.target.classList.contains("accRoomRoomDiv")) return;
-    e.target.classList.add("accRoomRoomDivDragOver");
+    // ACCOMMODATIONS
+    if (e.target.classList.contains("accRoomRoomDiv")) {
+        if (!isRoomFull(e.target)) {
+            e.target.classList.add("dragover");
+        }
+        else {
+            e.target.classList.add("dragoverfull");
+        }
+    }
 }
 
 function dragLeave(e) {
-    if (!e.target.classList.contains("accRoomRoomDiv")) return;
-    e.target.classList.remove("accRoomRoomDivDragOver");
+    e.target.classList.remove("dragover");
+    e.target.classList.remove("dragoverfull");
 }
 
 function drop(e) {
     if (!e.target.classList.contains("accRoomRoomDiv")) return;
-    e.target.classList.remove("accRoomRoomDivDragOver");
+    e.target.classList.remove("dragover");
+    e.target.classList.remove("dragoverfull");
     
-    let roomData = e.target.id.replace("room", "").split("-");
-    let roomId = roomData[0];
+    let roomId = e.target.id.replace("room", "");
 
-    let roomTable = document.getElementById(`roomTable${roomId}`);
-    let rows = roomTable.querySelectorAll("td");
-    
-    if (rows.length >= roomData[1]) {
+    if (isRoomFull(e.target)) {
         showWrongAlert("No space", "This room is full", alertTime);
         return;
     }
 
     jbs[dragged].ROOM_ID = roomId;
 
-    buildAccTable();
-    buildRoomDiv();
+    rebuildRegEvTables();
 }
 
 

@@ -1,0 +1,11 @@
+
+.dragover {
+    border: dotted;
+    border-radius: 5px;
+}
+
+.dragoverFull {
+    border: dotted;
+    border-color: var(--wrong-light-color);
+    border-radius: 5px;
+}

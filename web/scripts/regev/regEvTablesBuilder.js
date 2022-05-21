@@ -9,7 +9,8 @@ function onscrollDiv() {
     let peoplePos = document.getElementById("peopleDiv").scrollHeight;
     let accoPos = document.getElementById("accDiv").scrollHeight;
     let visaPos = document.getElementById("visaDiv").scrollHeight;
-    let flightPos = document.getElementById("flightDiv").scrollHeight;
+    let arrivalPos = document.getElementById("arrivalDiv").scrollHeight;
+    let departurePos = document.getElementById("departureDiv").scrollHeight;
     let billPos = document.getElementById("billingDiv").scrollHeight;
 
     let btn = document.getElementById("regTabB0");
@@ -23,11 +24,14 @@ function onscrollDiv() {
     else if (peoplePos + accoPos + visaPos >= pos) {
         btn = document.getElementById("regTabB2");
     }
-    else if (peoplePos + accoPos + visaPos + flightPos >= pos) {
+    else if (peoplePos + accoPos + visaPos + arrivalPos >= pos) {
         btn = document.getElementById("regTabB3");
     }
-    else if (peoplePos + accoPos + visaPos + flightPos + billPos >= pos) {
+    else if (peoplePos + accoPos + visaPos + arrivalPos + departurePos >= pos) {
         btn = document.getElementById("regTabB4");
+    }
+    else if (peoplePos + accoPos + visaPos + arrivalPos + departurePos + billPos >= pos) {
+        btn = document.getElementById("regTabB5");
     }
     changeButton(btn);
 }
@@ -81,6 +85,9 @@ async function buildRegEvTables(event) {
 function rebuildRegEvTables() {
     buildAccTable();
     buildRoomDiv();
+
     buildVisaTable();
+    
+    buildFlightTable();
 }
 

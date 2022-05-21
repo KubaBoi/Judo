@@ -8,8 +8,9 @@
             <button onclick="chooseRegTab(this, 'peopleDiv')" class="regTabButton" id="regTabB0">People</button>
             <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Accommodations</button>
             <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa</button>
-            <button onclick="chooseRegTab(this, 'flightDiv')" class="regTabButton" id="regTabB3">Arrival</button>
-            <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB4">Billing</button>
+            <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
+            <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
+            <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB5">Billing</button>
         </div>
         <div id="regEvTablesDiv" class="regEvTablesDiv">
             <div id="peopleDiv">
@@ -36,9 +37,20 @@
                 </table>
             </div>
             <hr>
-            <h2>Flights</h2>
-            <div id="flightDiv"> <!-- THIS IS GOING TO BE CONFUSING -->
-                <table id="regEvFlightTable">
+            <h2>Arrival</h2>
+            <div id="arrivalDiv" class="accDiv"> 
+                <div class="accPeopleDiv">
+                    <table id="arrPeopleTable"></table>
+                </div>
+                <div id="arrRoomDiv" class="arrDiv">
+                    <button onclick="addArrival()">Add flight</button>
+                    <table id="arrFlightsTable"></table>
+                </div>
+            </div>
+            <hr>
+            <h2>Departure</h2>
+            <div id="departureDiv">
+                <table id="regEvDepartureTable">
                 </table>
             </div>
             <hr>
