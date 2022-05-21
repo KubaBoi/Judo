@@ -37,10 +37,11 @@ function readCvsFromFile(contents) {
         let line = lines[i].trim();
         if (line == "") continue;
 
+        groups = line.split("\t");
+
         let brth = groups[7].split(".");
         brth = `${brht[2]}-${brht[1]}-${brht[2]}`;
 
-        groups = line.split("\t");
         let row = {
             "JB": groups[1],
             "SUR_NAME": groups[2],
