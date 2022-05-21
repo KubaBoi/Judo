@@ -40,7 +40,7 @@ function readCvsFromFile(contents) {
         groups = line.split("\t");
 
         let brth = groups[7].split(".");
-        brth = `${brht[2]}-${brht[1]}-${brht[2]}`;
+        brth = `${brth[2]}-${brth[1]}-${brth[2]}`;
 
         let row = {
             "JB": groups[1],
