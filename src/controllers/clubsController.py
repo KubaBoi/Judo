@@ -91,10 +91,10 @@ class ClubsController(cc):
 	def remove(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['ID'], args)):
+		if (not cc.validateJson(['CLUB_ID'], args)):
 			raise BadRequest("Wrong json structure")
 
-		id = args["ID"]
+		id = args["CLUB_ID"]
 
 		clubsModel = ClubsRepository.find(id)
 		ClubsRepository.delete(clubsModel)
