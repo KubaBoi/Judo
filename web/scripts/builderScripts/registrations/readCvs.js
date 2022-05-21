@@ -43,7 +43,7 @@ function readCvsFromFile(contents) {
             "SUR_NAME": groups[2],
             "NAME": groups[3],
             "STATE": groups[4],
-            "BIRTHDAY": groups[7],
+            "BIRTHDAY": groups[7].replaceAll(".", "-"),
             "FUNCTION": groups[8],
             "GENDER": groups[9]
         };
