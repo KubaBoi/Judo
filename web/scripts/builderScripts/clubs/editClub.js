@@ -70,7 +70,7 @@ async function saveClubChanges(clubId) {
         else {
             buildClubTable();
             showAlert("Success :)", "Club was created");
-            response = await callEndpoint("GET", `/clubs/get?clubId=${response.CLUB_ID}`);
+            response = await callEndpoint("GET", `/clubs/get?clubId=${response.ID}`);
         }
 
         if (response.ERROR == null) {
