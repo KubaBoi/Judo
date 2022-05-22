@@ -3,10 +3,6 @@ function buildAccTable() {
     let tbl = document.getElementById("accPeopleTable");
     clearTable(tbl);
 
-    createElement("button", tbl, "Auto classification", [
-        {"name": "onclick", "value": "autoClass()"}
-    ]);
-
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ROOM_ID == -1) {
@@ -98,7 +94,6 @@ function removeFromBed(id) {
 function autoClass() {
     let roomId = autoClassGender();
     roomId = autoClassGender(roomId, "w");
-
     rebuildRegEvTables();
 }
 
@@ -119,7 +114,14 @@ function autoClassGender(roomId=0, gender="m") {
         }
 
         jbs[i].ROOM_ID = roomId;
-        rebuildRegEvTables();
+        buildRoomDiv();
     }
     return ++roomId;
+}
+
+function resetBeds() {
+    for (let i = 0; i < jbs.length; i++) {
+        jbs[i].ROOM_ID = -1;
+    }
+    rebuildRegEvTables();
 }
