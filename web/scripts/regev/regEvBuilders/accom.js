@@ -50,8 +50,7 @@ function buildRoomDiv() {
 
         var oneRoomDiv = createElement("div", roomDiv, bedString, [
             {"name": "class", "value": "accRoomRoomDiv"},
-            {"name": "id", "value": `room${room.ID}`},
-            {"name": "value", "value": room.BED}
+            {"name": "id", "value": `room${room.ID}`}
         ]);
 
         createElement("hr", oneRoomDiv);
@@ -97,19 +96,30 @@ function removeFromBed(id) {
 }
 
 function autoClass() {
-    let roomId = 0;
+    let roomId = autoClassGender();
+    roomId = autoClassGender(roomId, "w");
+
+    rebuildRegEvTables();
+}
+
+function autoClassGender(roomId=0, gender="m") {
     for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].GENDER != gender) continue;
 
         let room = document.getElementById(`room${roomId}`);
-
-        let roomTable = document.getElementById(`roomTable${roomId}`);
-        let rows = roomTable.querySelectorAll("td");
-        
-        if (rows.length >= roomData[1]) {
-            showWrongAlert("No space", "This room is full", alertTime);
+        if (room == null) {
             return;
         }
 
-        jbs[dragged].ROOM_ID = roomId;
+        while (isRoomFull(room)) {
+            room = document.getElementById(`room${++roomId}`);
+            if (room == null) {
+                return;
+            }
+        }
+
+        jbs[i].ROOM_ID = roomId;
+        rebuildRegEvTables();
     }
+    return ++roomId;
 }
