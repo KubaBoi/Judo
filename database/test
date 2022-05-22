@@ -4,6 +4,18 @@ select * from registered_clubs;
 select * from registered_hotels;
 select * from clubs;
 select * from events;
+select * from rooms;
+select * from users;
+select * from passwords;
+
+/*delete from passwords where id >= 4*/
+
+select * from registrations
+
+/*delete from users where id=4*/
+
+select * from rooms where hotel_id=1 and available=true;
+update rooms set available = true where id=6;
 
 /*delete from registered_clubs;*/
 
@@ -13,4 +25,10 @@ select * from jb where jb = 'cbba9b2b';
 select * from jb;
 
 alter table jb add column state text;
+
+update events set (id, show_hotel, hotels, pcr_price, ag_price, 
+				   trans_price, other_price, event_start, event_end, arrive, depart, end_visa, 
+				   end_room, organiser_id, eju_price, name, category, place, visa_phone, visa_mail) = 
+(1,False,'',10,10,10,10,'14-04-2022','18-03-2022','','','','',2,10,'plop','fgd','hjgf','kjl','kjhg') where id=1;
+
 

@@ -33,7 +33,7 @@ class ClubsController(cc):
 
 		id = args["ID"]
 
-		clubsModel = ClubsRepository.findBy(id)
+		clubsModel = ClubsRepository.find(id)
 		clubsModel.toModel(args)
 		ClubsRepository.update(clubsModel)
 
