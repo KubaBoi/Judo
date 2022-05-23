@@ -88,28 +88,35 @@ function isRoomFull(room) {
 
 function removeFromBed(id) {
     jbs[id].ROOM_ID = -1;
-    rebuildRegEvTables();
+    buildAccTable();
+    buildRoomDiv();
 }
 
 function autoClass() {
     let roomId = autoClassGender();
     roomId = autoClassGender(roomId, "w");
-    rebuildRegEvTables();
+    buildAccTable();
+    buildRoomDiv();
 }
 
 function autoClassGender(roomId=0, gender="m") {
+    if (roomId == -1) return;
     for (let i = 0; i < jbs.length; i++) {
         if (jbs[i].GENDER != gender) continue;
 
         let room = document.getElementById(`room${roomId}`);
         if (room == null) {
-            return;
+            showAlert("Not enought space", `There is not enought rooms for your team
+            .<br>Contact organiser please`);
+            return -1;
         }
 
         while (isRoomFull(room)) {
             room = document.getElementById(`room${++roomId}`);
             if (room == null) {
-                return;
+                showAlert("Not enought space", `There is not enought rooms for your team
+                .<br>Contact organiser please`);
+                return -1;
             }
         }
 
@@ -123,5 +130,38 @@ function resetBeds() {
     for (let i = 0; i < jbs.length; i++) {
         jbs[i].ROOM_ID = -1;
     }
-    rebuildRegEvTables();
+    buildAccTable();
+    buildRoomDiv();
+}
+
+function startAcc(e) {
+    if (!e.target.id.startsWith("personForBed")) return;
+
+    dragged = e.target.id.replace("personForBed", "");
+}
+
+function dragAcc(e) {
+    if (!e.target.classList.contains("accRoomRoomDiv")) return;
+    if (!isRoomFull(e.target)) {
+        e.target.classList.add("dragover");
+    }
+    else {
+        e.target.classList.add("dragoverfull");
+    }
+}
+
+function dropAcc(e) {
+    if (!e.target.classList.contains("accRoomRoomDiv")) return;
+
+    let roomId = e.target.id.replace("room", "");
+
+    if (isRoomFull(e.target)) {
+        showWrongAlert("No space", "This room is full", alertTime);
+        return;
+    }
+    
+    jbs[dragged].ROOM_ID = roomId;
+
+    buildAccTable();
+    buildRoomDiv();
 }

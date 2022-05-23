@@ -24,6 +24,8 @@ async function buildPeopleTable(header, attrs) {
             jbs[i].ISIN = true;
             jbs[i].ROOM_ID = -1;
             jbs[i].NEED_VISA = false;
+            jbs[i].ARR_FLIGHT = -1;
+            jbs[i].DEP_FLIGHT = -1;
         
             let checkbox = document.getElementById(`checkbox${i}`);
             checkbox.addEventListener("change", function(){changeJbArray(checkbox, i)});

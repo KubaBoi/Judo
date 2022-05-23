@@ -65,3 +65,14 @@
     height: inherit;
     overflow-y: auto;
 }
+
+.arrDivCls, .depDivCls {
+    min-height: 50px;
+    width: 95%;
+}
+
+.arrDivCls, .depDivCls div {
+    margin-left: 5px;
+    margin-top: 3px;
+    width: max-content;
+}
