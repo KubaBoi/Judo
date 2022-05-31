@@ -68,7 +68,7 @@
 
 .arrDivCls, .depDivCls {
     min-height: 50px;
-    width: 95%;
+    min-width: 95%;
 }
 
 .arrDivCls, .depDivCls div {
