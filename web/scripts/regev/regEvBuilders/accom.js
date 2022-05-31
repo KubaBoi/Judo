@@ -3,10 +3,6 @@ function buildAccTable() {
     let tbl = document.getElementById("accPeopleTable");
     clearTable(tbl);
 
-    createElement("button", tbl, "Auto classification", [
-        {"name": "onclick", "value": "autoClass()"}
-    ]);
-
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ROOM_ID == -1) {
@@ -50,8 +46,7 @@ function buildRoomDiv() {
 
         var oneRoomDiv = createElement("div", roomDiv, bedString, [
             {"name": "class", "value": "accRoomRoomDiv"},
-            {"name": "id", "value": `room${room.ID}`},
-            {"name": "value", "value": room.BED}
+            {"name": "id", "value": `room${room.ID}`}
         ]);
 
         createElement("hr", oneRoomDiv);
@@ -93,23 +88,80 @@ function isRoomFull(room) {
 
 function removeFromBed(id) {
     jbs[id].ROOM_ID = -1;
-    rebuildRegEvTables();
+    buildAccTable();
+    buildRoomDiv();
 }
 
 function autoClass() {
-    let roomId = 0;
+    let roomId = autoClassGender();
+    roomId = autoClassGender(roomId, "w");
+    buildAccTable();
+    buildRoomDiv();
+}
+
+function autoClassGender(roomId=0, gender="m") {
+    if (roomId == -1) return;
     for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].GENDER != gender) continue;
 
         let room = document.getElementById(`room${roomId}`);
-
-        let roomTable = document.getElementById(`roomTable${roomId}`);
-        let rows = roomTable.querySelectorAll("td");
-        
-        if (rows.length >= roomData[1]) {
-            showWrongAlert("No space", "This room is full", alertTime);
-            return;
+        if (room == null) {
+            showAlert("Not enought space", `There is not enought rooms for your team
+            .<br>Contact organiser please`);
+            return -1;
         }
 
-        jbs[dragged].ROOM_ID = roomId;
+        while (isRoomFull(room)) {
+            room = document.getElementById(`room${++roomId}`);
+            if (room == null) {
+                showAlert("Not enought space", `There is not enought rooms for your team
+                .<br>Contact organiser please`);
+                return -1;
+            }
+        }
+
+        jbs[i].ROOM_ID = roomId;
+        buildRoomDiv();
     }
+    return ++roomId;
+}
+
+function resetBeds() {
+    for (let i = 0; i < jbs.length; i++) {
+        jbs[i].ROOM_ID = -1;
+    }
+    buildAccTable();
+    buildRoomDiv();
+}
+
+function startAcc(e) {
+    if (!e.target.id.startsWith("personForBed")) return;
+
+    dragged = e.target.id.replace("personForBed", "");
+}
+
+function dragAcc(e) {
+    if (!e.target.classList.contains("accRoomRoomDiv")) return;
+    if (!isRoomFull(e.target)) {
+        e.target.classList.add("dragover");
+    }
+    else {
+        e.target.classList.add("dragoverfull");
+    }
+}
+
+function dropAcc(e) {
+    if (!e.target.classList.contains("accRoomRoomDiv")) return;
+
+    let roomId = e.target.id.replace("room", "");
+
+    if (isRoomFull(e.target)) {
+        showWrongAlert("No space", "This room is full", alertTime);
+        return;
+    }
+    
+    jbs[dragged].ROOM_ID = roomId;
+
+    buildAccTable();
+    buildRoomDiv();
 }

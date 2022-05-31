@@ -88,6 +88,7 @@ function rebuildRegEvTables() {
 
     buildVisaTable();
     
-    buildFlightTable();
+    buildArrTable();
+    buildDepTable();
 }
 

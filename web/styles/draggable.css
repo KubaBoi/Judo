@@ -1,6 +1,7 @@
 
 .dragover {
     border: dotted;
+    border-color: var(--main-text-color);
     border-radius: 5px;
 }
 

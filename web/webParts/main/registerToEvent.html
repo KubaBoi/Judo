@@ -23,6 +23,8 @@
             <h2>Accommodations</h2>
             <div id="accDiv" class="accDiv">
                 <div class="accPeopleDiv">
+                    <button onclick="autoClass()">Auto</button>
+                    <button onclick="resetBeds()">Reset</button>
                     <table id="accPeopleTable"></table>
                 </div>
                 <div id="accRoomDiv" class="accRoomDiv">
@@ -44,14 +46,19 @@
                 </div>
                 <div id="arrRoomDiv" class="arrDiv">
                     <button onclick="addArrival()">Add flight</button>
-                    <table id="arrFlightsTable"></table>
+                    <div id="arrFlightsDiv"></div>
                 </div>
             </div>
             <hr>
             <h2>Departure</h2>
-            <div id="departureDiv">
-                <table id="regEvDepartureTable">
-                </table>
+            <div id="departureDiv" class="accDiv">
+                <div class="accPeopleDiv">
+                    <table id="depPeopleTable"></table>
+                </div>
+                <div id="depRoomDiv" class="arrDiv">
+                    <button onclick="addDeparture()">Add flight</button>
+                    <div id="depFlightsDiv"></div>
+                </div>
             </div>
             <hr>
             <h2>Billing</h2>
