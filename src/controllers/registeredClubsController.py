@@ -121,9 +121,18 @@ class RegisteredClubsController(cc):
 		jsonArr = cc.modulesToJsonArray(regClubs)
 
 		for item in jsonArr:
-			item["CLUB_NAME"] = ClubsRepository.find(item["CLUB_ID"]).name
-			item["EVENT_NAME"] = EventsRepository.find(item["EVENT_ID"]).name
+			club = ClubsRepository.find(item["CLUB_ID"])
+			event = EventsRepository.find(item["EVENT_ID"])
 
+			if (club == None):
+				item["CLUB_NAME"] = "Not found"
+			else:
+				item["CLUB_NAME"] = club.name
+
+			if (event == None):
+				item["EVENT_NAME"] = "Not found"
+			else:
+				item["EVENT_NAME"] = event.name
 
 		return cc.createResponse({"REGISTERED_CLUBS": jsonArr}, 200)
 

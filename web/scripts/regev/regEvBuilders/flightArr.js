@@ -74,14 +74,26 @@ function startArr(e) {
 }
 
 function dragArr(e) {
-    if (!e.target.classList.contains("arrDivCls")) return;
-    e.target.classList.add("dragover");
+    if (e.target.classList.contains("arrDivCls"))
+        e.target.classList.add("dragover");
+    else if (e.target.parentNode.classList.contains("arrDivCls"))
+        e.target.parentNode.classList.add("dragover");
 }
 
 function dropArr(e) {
-    if (!e.target.classList.contains("arrDivCls")) return;
+    if (e.target.classList.contains("arrDivCls") &&
+        e.target.parentNode.classList.contains("arrDivCls"))
+        return;
+
+    let target = e.target;
+
+    if (e.target.parentNode.classList.contains("arrDivCls")) {
+        target = e.target.parentNode;
+        target.classList.remove("dragover");
+        target.classList.remove("dragoverfull");
+    }
     
-    let flightId = e.target.id.replace("arrDiv", "");
+    let flightId = target.id.replace("arrDiv", "");
 
     jbs[dragged].ARR_FLIGHT = flightId;
 
