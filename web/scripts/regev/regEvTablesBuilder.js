@@ -61,7 +61,7 @@ async function buildRegEvTables(event) {
     showLoader();
     
     await buildPeopleTable(
-        ["", "Name", "State", "Birthday", "Function"],
+        ["", "Name", "Country", "Birthday", "Function"],
         ["checkbox", "SUR_NAME,NAME", "STATE", "BIRTHDAY", "FUNCTION"]
     );
 

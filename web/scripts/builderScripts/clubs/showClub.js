@@ -14,7 +14,7 @@ async function showClubTab(clubId) {
         var tbl = createElement("table", showDiv);
 
         createShowTableRow(tbl, "Name: ",  activeClub.NAME);
-        createShowTableRow(tbl, "State: ", activeClub.STATE);
+        createShowTableRow(tbl, "Country: ", activeClub.STATE);
         createShowTableRow(tbl, "Address: ", activeClub.ADDRESS);
         createShowTableRow(tbl, "EJU: ", activeClub.EJU);
 

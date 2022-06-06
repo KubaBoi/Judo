@@ -86,7 +86,7 @@ async function buildClubRow(club, owner=false) {
 function createClubHeaderRow(owner) {
     var row = createElement("tr", clubTable);
     createElement("th", row, "Name");
-    createElement("th", row, "Nationality");
+    createElement("th", row, "Country");
     createElement("th", row, "Owner");
     createElement("th", row, "Address");
     if (loggedUser.RULE_ID < 2 || owner) {

@@ -49,7 +49,7 @@ async function editRegistrationTab(registrationId) {
             {"text": "JB id"},
             {"text": "Last name"},
             {"text": "First name"},
-            {"text": "State"},
+            {"text": "Country"},
             {"text": "Birthday"},
             {"text": "Function"},
             {"text": "Gender"}

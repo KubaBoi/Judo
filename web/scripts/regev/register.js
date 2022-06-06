@@ -122,7 +122,7 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
 
     createShowTableRowHeader(table, "CLUB", "");
     createShowTableRow(table, "Name: ",  club.NAME);
-    createShowTableRow(table, "State: ", club.STATE);
+    createShowTableRow(table, "Country: ", club.STATE);
     createShowTableRow(table, "Address: ", club.ADDRESS);
     createShowTableRow(table, "EJU: ", club.EJU);
 
