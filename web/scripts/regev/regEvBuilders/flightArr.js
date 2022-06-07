@@ -76,14 +76,24 @@ function startArr(e) {
 function dragArr(e) {
     if (e.target.classList.contains("arrDivCls"))
         e.target.classList.add("dragover");
-    else if (e.target.parentNode.classList.contains("arrDivCls"))
-        e.target.parentNode.classList.add("dragover");
+    else if (e.target.parentNode != null) {
+        if (e.target.parentNode.classList.contains("arrDivCls")) {
+            e.target.parentNode.classList.add("dragover");
+        }
+    }
 }
 
 function dropArr(e) {
-    if (e.target.classList.contains("arrDivCls") &&
-        e.target.parentNode.classList.contains("arrDivCls"))
-        return;
+    if (!e.target.classList.contains("arrDivCls")) {
+        if (e.target.parentNode != null) {
+            if (!e.target.parentNode.classList.contains("arrDivCls")) {
+                return;
+            }
+        }
+        else {
+            return;
+        }
+    }
 
     let target = e.target;
 

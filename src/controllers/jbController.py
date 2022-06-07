@@ -42,7 +42,7 @@ class JbController(cc):
 		clubId = args["CLUB_ID"]
 		data = args["DATA"]
 
-		orFilter = ""
+		"""orFilter = ""
 		dataLen = len(data)-1
 		for i, oneJb in enumerate(data):
 			orFilter += f"jb='{oneJb['JB']}'"
@@ -50,7 +50,7 @@ class JbController(cc):
 				orFilter += " or "
 
 		if (JbRepository.existsAny(orFilter)):
-			raise Conflict("Some id from JudoBase already exists")
+			raise Conflict("Some id from JudoBase already exists")"""
 
 		for oneJB in data:
 			model = JbRepository.model()
