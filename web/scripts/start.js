@@ -1,5 +1,7 @@
 debug = true;
 
+const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
 var activeContent;
 var alertTime = 3000;
 var switchTime = 300;
