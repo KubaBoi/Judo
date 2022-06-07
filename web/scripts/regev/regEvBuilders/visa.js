@@ -7,7 +7,9 @@ function buildVisaTable() {
         {"text": "Name"},
         {"text": "Passport number"},
         {"text": "Passport release"},
-        {"text": "Passport expiration"}
+        {"text": "Passport expiration"},
+        {"text": "Roomming"},
+        {"text": "Packages"}
     ]);
 
     for (let i = 0; i < jbs.length; i++) {
@@ -18,9 +20,9 @@ function buildVisaTable() {
         addRow(visaTable, [
             {"text": `<input type="checkbox" id="visacheck${i}">`},
             {"text": jb.SUR_NAME + " " + jb.NAME},
-            {"text": `<input type="text" class="textBox" id="passNumInp${i}">`},
-            {"text": `<input type="datetime-local" class="textBox" id="passRelInp${i}">`},
-            {"text": `<input type="datetime-local" class="textBox" id="passExpInp${i}">`}
+            {"text": `<input type="text" class="textBoxLight" id="passNumInp${i}">`},
+            {"text": `<input type="date" class="textBoxLight" id="passRelInp${i}">`},
+            {"text": `<input type="date" class="textBoxLight" id="passExpInp${i}">`}
         ]);
 
         let chb = document.getElementById(`visacheck${i}`);

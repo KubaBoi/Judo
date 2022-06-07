@@ -90,3 +90,22 @@ button:disabled:hover {
     transition: all;
     transition-duration: 0.5s;
 }
+
+.textBoxLight {
+    padding: 0.3em;
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    color: var(--main-color);
+    border-color: var(--lighter-color);
+    background-color: var(--main-text-color);
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+.textBoxLight:focus {
+    border-color: var(--main-text-color);
+    outline: none;
+    transition: all;
+    transition-duration: 0.5s;
+}

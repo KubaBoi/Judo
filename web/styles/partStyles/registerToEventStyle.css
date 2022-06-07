@@ -30,6 +30,9 @@
     padding: 5px;
     background-color: var(--light-color);
     width: 20%;
+
+    transition: all;
+    transition-duration: 0.5s;
 }
 
 .contents {
@@ -50,6 +53,9 @@
     background-color: var(--lighter-color);
     width: 75%;
     height: 100%;
+
+    transition: all;
+    transition-duration: 0.5s;
 }
 
 .flightDiv table {
@@ -87,4 +93,10 @@
     background-color: var(--secondary-light-color);
     transition: all;
     transition-duration: 0.5s;
+}
+
+.hideLabel {
+    position: absolute;
+    left: 18%;
+    top: 50%;
 }
