@@ -46,6 +46,8 @@ async function register() {
             {"name": "okHideAlert", "duration": "0.5s"}
         );
     }
+
+    document.body.scrollTo(0, 0);
 }
 
 function backToLogin() {
@@ -58,9 +60,12 @@ function backToLogin() {
     regDiv.style.animationName = "registrationOut";
     regDiv.style.animationDuration = "0.5s";
     regDiv.style.animationFillMode = "both";
+
+    document.body.scrollTo(0, 0);
 }
 
 function comeRegistration() {
+    document.body.scrollTo(0, 0);
     var loginDiv = document.getElementById("loginDiv");
     loginDiv.style.animationName = "loginDone";
     loginDiv.style.animationDuration = "0.5s";
@@ -70,6 +75,8 @@ function comeRegistration() {
     regDiv.style.animationName = "registrationCome";
     regDiv.style.animationDuration = "0.5s";
     regDiv.style.animationFillMode = "both";
+
+    document.body.scrollTo(0, 0);
 }
 
 function logout() {

@@ -53,6 +53,8 @@ async function loadPage(startArray, doAfter=false) {
     }
     if (doAfter)
         after();
+    
+    document.body.scrollTo(0, 0);
 }
 
 async function getHtml(name, path, parentId, attributeClass) {
