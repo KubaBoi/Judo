@@ -50,8 +50,16 @@ function buildVisaTable() {
 
         let roomingCheck = document.getElementById(`roomingCheck${i}`);
         for (let o = 0; o < weekdayArray.length; o++) {
-            createElement("button", roomingCheck, weekdayArray[o]);
+            createElement("button", roomingCheck, weekdayArray[o], [
+                {"name": "class", "value": "smlChecked"}
+            ]);
         }
+
+        let packageCheck = document.getElementById(`packageCheck${i}`);
+        createElement("button", packageCheck, "BB");
+        createElement("button", packageCheck, "HB");
+        createElement("button", packageCheck, "FB");
+        createElement("button", packageCheck, "LIV");
 
 
         chb.addEventListener("change", function(){needVisa(i)});
