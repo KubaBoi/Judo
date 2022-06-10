@@ -60,10 +60,10 @@ function buildVisaTable() {
         passNumInp.value = jb.PASS_ID;
 
         let passRelInp = document.getElementById(`passRelInp${i}`);
-        passRelInp.value = getDate(jb.PASS_RELEASE);
+        passRelInp.value = getDate(jb.PASS_RELEASE, false);
 
         let passExpInp = document.getElementById(`passExpInp${i}`);
-        passExpInp.value = getDate(jb.PASS_EXPIRATION);
+        passExpInp.value = getDate(jb.PASS_EXPIRATION, false);
 
         let roomingCheck = document.getElementById(`roomingCheck${i}`);
         for (let o = 0; o < weekdayArray.length; o++) {
@@ -99,13 +99,9 @@ function buildVisaTable() {
         passExpInp.addEventListener("change", function(){needVisa(i)});
     }
 
-    let lbl = document.getElementById("notAssignedLabel");
-    clearTable(lbl);
     if (notAssigned > 0) {
-        lbl.innerHTML = `<img src="./images/warningIcon.png" class="needVisa"><br>
-        There are some participants which are not assigned to any room.<br>
-        Total count ${notAssigned}.`;
-        changeNotification(2, "notifErr", "Someone has not assigned room");
+        changeNotification(2, "notifErr", `There are some participants which are not assigned to any room. 
+        Total count ${notAssigned}.`);
     }
     else {
         changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");

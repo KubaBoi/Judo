@@ -102,6 +102,7 @@ function removeFromBed(id) {
 }
 
 function autoClass() {
+    resetBeds();
     let roomId = autoClassGender();
     roomId = autoClassGender(roomId, "w");
     buildAccTable();

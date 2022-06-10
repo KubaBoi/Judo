@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS public.jb
     function text COLLATE pg_catalog."default" NOT NULL,
     birthday date NOT NULL,
     gender text COLLATE pg_catalog."default" NOT NULL,
-    pass_id text COLLATE pg_catalog."default" NOT NULL,
-    pass_release date NOT NULL,
-    pass_expiration date NOT NULL,
+    pass_id text COLLATE pg_catalog."default",
+    pass_release date,
+    pass_expiration date,
     state text NOT NULL,
     CONSTRAINT jb_pkey PRIMARY KEY (id)
 );

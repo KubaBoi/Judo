@@ -44,10 +44,10 @@ function createArrivals() {
         let arrival = arrivals[i];
         tbl = createElement("table", dv);
         addHeader(tbl, [
-            {"text": `<input type="datetime-local" value="${arrival.TIME}">`},
-            {"text": `<input type="text" value="${arrival.NUMBER}">`},
-            {"text": `<input type="checkbox" checked="${arrival.NEED_TRANS}">`},
-            {"text": `<img src="./images/deleteIcon48.png">`}
+            {"text": `<label>Arrival time: </label><input type="datetime-local" value="${arrival.TIME}">`},
+            {"text": `<label>Flight number: </label><input type="text" value="${arrival.NUMBER}">`},
+            {"text": `<label>Need transport: </label><input type="checkbox" checked="${arrival.NEED_TRANS}">`},
+            {"text": `<img src="./images/deleteIcon48.png" title="Remove flight">`}
         ]);
         createElement("div", dv, welStr, [
             {"name": "class", "value": "arrDivCls"},

@@ -57,8 +57,8 @@ class JbController(cc):
 			model.toModel(oneJB)
 			model.setAttrs(
 				club_id=clubId,
-				pass_release=datetime.now(),
-				pass_expiration=datetime.now()
+				pass_release=None,
+				pass_expiration=None
 			)
 			JbRepository.save(model)
 
