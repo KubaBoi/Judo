@@ -46,9 +46,15 @@
             <hr>
             <h2>Visa</h2>
             <div id="visaDiv" class="lDiv">
+                <label id="errorLabel2"></label><br>
+                <div id="visaSwitchDiv" class="switchDiv" onclick="confirmVisa()">
+                    <label id="switchLabel">Confirmed</label>
+                    <div class="switchBorder">
+                        <div class="switchButton"></div>
+                    </div>
+                </div><br>
                 <button onclick="allNeedVisa(true)">Everyone needs visa</button>
                 <button onclick="allNeedVisa()">No one needs visa</button><br>
-                <label id="errorLabel2"></label>
                 <table id="regEvVisaTable">
                 </table>
             </div>

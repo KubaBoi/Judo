@@ -143,7 +143,7 @@ function dropDep(e) {
         target.classList.remove("dragoverfull");
     }
     
-    let flightId = target.id.replace("arrDiv", "");
+    let flightId = target.id.replace("depDiv", "");
 
     jbs[dragged].DEP_FLIGHT = flightId;
 

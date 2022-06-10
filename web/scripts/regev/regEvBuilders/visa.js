@@ -114,6 +114,10 @@ function needVisa(index) {
     jbs[index].ROOMING_LIST = "";
     jbs[index].PACKAGE = "";
 
+    if (confirmedVisa) {
+        confirmVisa();
+    }
+
     checkIfDoneVisa();
 }
 
@@ -143,7 +147,7 @@ function checkIfDoneVisa() {
         if (!jbs[i].ISIN) continue;
         if (jbs[i].ROOM_ID == -1) {
             changeNotification(2, "notifPend", `There are some participants which are not assigned to any room.`);
-            return;
+            return false;
         }
 
         let visaCheck = document.getElementById(`visacheck${i}`);
@@ -156,10 +160,51 @@ function checkIfDoneVisa() {
                 passRel.value == "" ||
                 passExp.value == "") {
                     changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
-                    return;
+                    return false;
             }
         }
     }
 
-    changeNotification(2, "notifDone", "Done");
+    changeNotification(2, "notifPend", "Confirm, so we know you are sure");
+    return true;
+}
+
+let confirmedVisa = false;
+function confirmVisa() {
+    let div = document.getElementById("visaSwitchDiv");
+    let border = div.getElementsByClassName("switchBorder")[0];
+    let button = div.getElementsByClassName("switchButton")[0];
+
+    if (confirmedVisa) {
+        button.style.animationName = "switchUnlock";
+        button.style.animationDuration = "0.2s";
+        button.style.animationFillMode = "forwards";
+
+        border.style.animationName = "switchUnlockBorder";
+        border.style.animationDuration = "0.2s";
+        border.style.animationFillMode = "forwards";
+        
+        changeNotification(2, "notifPend");
+        confirmedVisa = false;
+    }
+    else {
+        button.style.animationName = "switchLock";
+        button.style.animationDuration = "0.2s";
+        button.style.animationFillMode = "forwards";
+
+        border.style.animationName = "switchLockBorder";
+        border.style.animationDuration = "0.2s";
+        border.style.animationFillMode = "forwards";
+
+        confirmedVisa = true;
+
+        if (!checkIfDoneVisa()) {
+            showNotifError(2);
+            chooseRegTab(document.getElementById("regTabB2"), "visaDiv");
+            setTimeout(confirmVisa, 500);
+        }
+        else {
+            changeNotification(2, "notifDone", "Done");
+        }
+    }
 }

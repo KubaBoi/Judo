@@ -4,7 +4,7 @@ function createEditTableRow(tbl, label, id, defValue, type="text") {
     var vl = createElement("td", row);
 
     if (type == "datetime-local") {
-        defValue = getTime(defValue);
+        defValue = getTimestamp(defValue);
     }
 
     var element = createEditTableInput(vl, id, defValue, type);

@@ -1,0 +1,66 @@
+.switchDiv {
+    position: relative;
+    display: inline-flex;
+    width: 150px;
+    height: 30px;
+    background-color: var(--light-color);
+    border: solid;
+    margin: center;
+    border-color: var(--light-color);
+    border-radius: 15px;
+    padding-left: 5px;
+} 
+
+.switchDiv .switchBorder {
+    position: relative;
+    border: solid;
+    border-width: 1px;
+    border-color: var(--lighter-color);
+    background-color: var(--wrong-color);
+    border-radius: 15px;
+    width: 50px;
+    height: 100%;
+
+    transition: all;
+    transition-duration: 0.5;
+}
+
+.switchDiv .switchButton {
+    position: relative;
+    border: none;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    top: 5px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+
+    transition: all;
+    transition-duration: 0.5;
+}
+
+.switchDiv label {
+    position: relative;
+    top: 5px;
+    padding-right: 4px;
+}
+
+@keyframes switchLock {
+    0% { left: 2px; }
+    100% { left: 26px; }
+}
+
+@keyframes switchLockBorder {
+    0% { background-color: var(--wrong-color); }
+    100% { background-color: var(--ok-color);  }
+}
+
+@keyframes switchUnlock {
+    0% { left: 26px; }
+    100% { left: 2px; }
+}
+
+@keyframes switchUnlockBorder {
+    0% { background-color: var(--ok-color); }
+    100% { background-color: var(--wrong-color);  }
+}
