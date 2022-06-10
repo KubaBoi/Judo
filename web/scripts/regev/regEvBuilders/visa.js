@@ -116,6 +116,7 @@ function buildVisaTable() {
 
 function allNeedVisa(need=false) {
     for (let i = 0; i < jbs.length; i++) {
+        if (!jbs[i].ISIN) continue;
         let checkbox = document.getElementById(`visacheck${i}`);
 
         checkbox.checked = need;
@@ -159,6 +160,8 @@ function checkIfDoneVisa() {
     if (notif.classList.contains("notifErr")) return;
 
     for (let i = 0; i < jbs.length; i++) {
+        if (!jbs[i].ISIN) continue;
+
         let visaCheck = document.getElementById(`visacheck${i}`);
         let passNum = document.getElementById(`passNumInp${i}`);
         let passRel = document.getElementById(`passRelInp${i}`);

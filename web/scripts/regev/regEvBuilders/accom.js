@@ -105,6 +105,7 @@ function autoClassGender(roomId=0, gender="m") {
     if (roomId == -1) return;
     for (let i = 0; i < jbs.length; i++) {
         if (jbs[i].GENDER != gender) continue;
+        if (!jbs[i].ISIN) continue;
 
         let room = document.getElementById(`room${roomId}`);
         if (room == null) {
