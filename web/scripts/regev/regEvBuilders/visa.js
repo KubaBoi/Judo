@@ -210,7 +210,10 @@ function confirmVisa() {
 }
 
 function lock() {
+    let div = document.getElementById("visaSwitchDiv");
+    let border = div.getElementsByClassName("switchBorder")[0];
     let button = div.getElementsByClassName("switchButton")[0];
+
     button.style.animationName = "switchUnlock";
     button.style.animationDuration = "0.2s";
     button.style.animationFillMode = "forwards";
@@ -218,4 +221,6 @@ function lock() {
     border.style.animationName = "switchUnlockBorder";
     border.style.animationDuration = "0.2s";
     border.style.animationFillMode = "forwards";
+
+    confirmedVisa = false;
 }
