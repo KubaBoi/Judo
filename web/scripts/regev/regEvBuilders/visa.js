@@ -60,10 +60,10 @@ function buildVisaTable() {
         passNumInp.value = jb.PASS_ID;
 
         let passRelInp = document.getElementById(`passRelInp${i}`);
-        passRelInp.value = getTime(jb.PASS_RELEASE);
+        passRelInp.value = getDate(jb.PASS_RELEASE);
 
         let passExpInp = document.getElementById(`passExpInp${i}`);
-        passExpInp.value = getTime(jb.PASS_EXPIRATION);
+        passExpInp.value = getDate(jb.PASS_EXPIRATION);
 
         let roomingCheck = document.getElementById(`roomingCheck${i}`);
         for (let o = 0; o < weekdayArray.length; o++) {
@@ -105,10 +105,10 @@ function buildVisaTable() {
         lbl.innerHTML = `<img src="./images/warningIcon.png" class="needVisa"><br>
         There are some participants which are not assigned to any room.<br>
         Total count ${notAssigned}.`;
-        changeNotification(2, "notifErr");
+        changeNotification(2, "notifErr", "Someone has not assigned room");
     }
     else {
-        changeNotification(2, "notifPend");
+        changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
     }
 
     checkIfDoneVisa();
@@ -171,11 +171,11 @@ function checkIfDoneVisa() {
             if (passNum.value == "" ||
                 passRel.value == "" ||
                 passExp.value == "") {
-                    changeNotification(2, "notifPend");
+                    changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
                     return;
             }
         }
     }
 
-    changeNotification(2, "notifDone");
+    changeNotification(2, "notifDone", "Done");
 }

@@ -3,6 +3,8 @@ function buildAccTable() {
     let tbl = document.getElementById("accPeopleTable");
     clearTable(tbl);
 
+    let isDone = true;
+
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ROOM_ID == -1) {
@@ -13,8 +15,12 @@ function buildAccTable() {
                     {"name": "id", "value": `personForBed${i}`}
                 ]}
             ]);
+            isDone = false;
         }
     }
+
+    if (isDone) changeNotification(1, "notifDone", "Done");
+    else changeNotification(1, "notifPend", "Someone has not assigned room");
 
     buildVisaTable();
 }
@@ -74,6 +80,7 @@ function buildRoomDiv() {
 
         if (!jb.ISIN) {
             rw.classList.add("missing");
+            changeNotification(1, "notifErr", "Someone has assigned room but is not included in event");
         }
     }
 }
