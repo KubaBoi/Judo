@@ -1,4 +1,3 @@
-var isDoneVisa = false;
 
 function buildVisaTable() {
     let visaTable = document.getElementById("regEvVisaTable");
@@ -23,16 +22,11 @@ function buildVisaTable() {
         {"text": "Packages"}
     ]);
 
-    let notAssigned = 0;
-
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         
         if (!jb.ISIN) continue;
-        if (jb.ROOM_ID == -1) {
-            notAssigned++;
-            continue;
-        }
+        if (jb.ROOM_ID == -1) continue;
 
         hdrRow = document.getElementById(`headerRow${jb.ROOM_ID}`);
         if (hdrRow == null) {
@@ -99,14 +93,6 @@ function buildVisaTable() {
         passExpInp.addEventListener("change", function(){needVisa(i)});
     }
 
-    if (notAssigned > 0) {
-        changeNotification(2, "notifErr", `There are some participants which are not assigned to any room. 
-        Total count ${notAssigned}.`);
-    }
-    else {
-        changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
-    }
-
     checkIfDoneVisa();
 }
 
@@ -152,11 +138,13 @@ function changePackage(button) {
 }
 
 function checkIfDoneVisa() {
-    let notif = document.getElementById("regTabC2");
-    if (notif.classList.contains("notifErr")) return;
 
     for (let i = 0; i < jbs.length; i++) {
         if (!jbs[i].ISIN) continue;
+        if (jbs[i].ROOM_ID == -1) {
+            changeNotification(2, "notifPend", `There are some participants which are not assigned to any room.`);
+            return;
+        }
 
         let visaCheck = document.getElementById(`visacheck${i}`);
         let passNum = document.getElementById(`passNumInp${i}`);

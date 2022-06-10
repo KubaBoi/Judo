@@ -2,6 +2,8 @@ function buildDepTable() {
     let tbl = document.getElementById("depPeopleTable");
     clearTable(tbl);
 
+    changeNotification(4, "notifDone", "Done");
+
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.DEP_FLIGHT == -1) {
@@ -12,6 +14,8 @@ function buildDepTable() {
                     {"name": "id", "value": `personForDep${i}`}
                 ]}
             ]);
+
+            changeNotification(4, "notifPend", "Someone does not have been assigned to any flight");
         }
     }
 
@@ -22,7 +26,7 @@ var departs = [];
 
 function addDeparture() {
     departs.push({
-        "TIME": getTime(),
+        "TIME": null,
         "NUMBER": "",
         "NEED_TRANS": false
     });
@@ -44,11 +48,20 @@ function createDepartures() {
         let depart = departs[i];
         tbl = createElement("table", dv);
         addHeader(tbl, [
-            {"text": `<input type="datetime-local" value="${depart.TIME}">`},
-            {"text": `<input type="text" value="${depart.NUMBER}">`},
-            {"text": `<input type="checkbox" checked="${depart.NEED_TRANS}">`},
+            {"text": `<label>Departure time: </label><input type="datetime-local" value="${getTimestamp(depart.TIME, false)}">`},
+            {"text": `<label>Flight number: </label><input type="text" value="${depart.NUMBER}">`},
+            {"text": `<label>Need transport: </label><input type="checkbox" checked="${depart.NEED_TRANS}">`},
             {"text": `<img src="./images/deleteIcon48.png">`}
         ]);
+
+        let buttDiv = createElement("div", dv);
+        createElement("button", buttDiv, "Add all", [
+            {"name": "onclick", "value": `addAllToDep(${i})`}
+        ]);
+        createElement("button", buttDiv, "Remove all", [
+            {"name": "onclick", "value": `removeAllFromDep(${i})`}
+        ]);
+
         createElement("div", dv, welStr, [
             {"name": "class", "value": "depDivCls"},
             {"name": "id", "value": `depDiv${i}`}
@@ -64,6 +77,11 @@ function createDepartures() {
 
         createElement("div", flight, `${jb.SUR_NAME} ${jb.NAME}
         <img src="./images/removeFromBedIcon.png" onclick="removeFromDep(${i})">`);
+
+        if (!jb.ISIN) {
+            dv.classList.add("missing");
+            changeNotification(4, "notifErr", "Someone is assigned into flight but is not included in event");
+        }
     }
 }
 
@@ -107,5 +125,22 @@ function dropDep(e) {
 
     jbs[dragged].DEP_FLIGHT = flightId;
 
+    buildDepTable();
+}
+
+function addAllToDep(index) {
+    for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].DEP_FLIGHT != -1) continue;
+        jbs[i].DEP_FLIGHT = index;
+    }
+    buildDepTable();
+}
+
+function removeAllFromDep(index) {
+    for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].DEP_FLIGHT == index) {
+            jbs[i].DEP_FLIGHT = -1;
+        }
+    }
     buildDepTable();
 }

@@ -54,7 +54,7 @@
     margin: 0;
 }
 
-.accRoomRoomDiv .missing {
+.missing {
     color: var(--wrong-light-color);
 }
 
