@@ -184,7 +184,7 @@ function confirmVisa() {
         border.style.animationDuration = "0.2s";
         border.style.animationFillMode = "forwards";
         
-        changeNotification(2, "notifPend");
+        checkIfDoneVisa();
         confirmedVisa = false;
     }
     else {
@@ -201,10 +201,21 @@ function confirmVisa() {
         if (!checkIfDoneVisa()) {
             showNotifError(2);
             chooseRegTab(document.getElementById("regTabB2"), "visaDiv");
-            setTimeout(confirmVisa, 500);
+            setTimeout(lock, 500);
         }
         else {
             changeNotification(2, "notifDone", "Done");
         }
     }
+}
+
+function lock() {
+    let button = div.getElementsByClassName("switchButton")[0];
+    button.style.animationName = "switchUnlock";
+    button.style.animationDuration = "0.2s";
+    button.style.animationFillMode = "forwards";
+
+    border.style.animationName = "switchUnlockBorder";
+    border.style.animationDuration = "0.2s";
+    border.style.animationFillMode = "forwards";
 }
