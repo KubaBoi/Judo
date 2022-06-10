@@ -2,6 +2,8 @@ function buildArrTable() {
     let tbl = document.getElementById("arrPeopleTable");
     clearTable(tbl);
 
+    changeNotification(3, "notifDone", "Done");
+
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ARR_FLIGHT == -1) {
@@ -16,17 +18,23 @@ function buildArrTable() {
     }
 
     createArrivals();
+    checkIfDoneArr();
 }
 
 var arrivals = [];
 
 function addArrival() {
     arrivals.push({
-        "TIME": getTime(),
+        "TIME": null,
         "NUMBER": "",
         "NEED_TRANS": false
     });
     createArrivals();
+    checkIfDoneArr();
+}
+
+function removeArrival(index) {
+    
 }
 
 function removeFromArr(index) {
@@ -38,21 +46,38 @@ function createArrivals() {
     let dv = document.getElementById("arrFlightsDiv");
     clearTable(dv);
 
-    let welStr = "<div>Drag and drop people here</div>";
+    let welStr = `Drag and drop people here`;
 
     for (let i = 0; i < arrivals.length; i++) {
         let arrival = arrivals[i];
         tbl = createElement("table", dv);
         addHeader(tbl, [
-            {"text": `<input type="datetime-local" value="${arrival.TIME}">`},
-            {"text": `<input type="text" value="${arrival.NUMBER}">`},
-            {"text": `<input type="checkbox" checked="${arrival.NEED_TRANS}">`},
-            {"text": `<img src="./images/deleteIcon48.png">`}
+            {"text": `<label>Arrival time: </label><input type="datetime-local" id="arrTmInp${i}" value="${getTimestamp(arrival.TIME, false)}">`},
+            {"text": `<label>Flight number: </label><input type="text" id="arrNumInp${i}" value="${arrival.NUMBER}">`},
+            {"text": `<label>Need transport: </label><input type="checkbox" id="arrTranInp${i}" checked="${arrival.NEED_TRANS}">`},
+            {"text": `<img src="./images/deleteIcon48.png" title="Remove flight">`}
         ]);
+
+        let buttDiv = createElement("div", dv);
+        createElement("button", buttDiv, "Add all", [
+            {"name": "onclick", "value": `addAllToArr(${i})`}
+        ]);
+        createElement("button", buttDiv, "Remove all", [
+            {"name": "onclick", "value": `removeAllFromArr(${i})`}
+        ]);
+
         createElement("div", dv, welStr, [
             {"name": "class", "value": "arrDivCls"},
             {"name": "id", "value": `arrDiv${i}`}
         ]);
+
+        let arrTmInp = document.getElementById(`arrTmInp${i}`);
+        let arrNumInp = document.getElementById(`arrNumInp${i}`);
+        let arrTranInp = document.getElementById(`arrTranInp${i}`);
+
+        arrTmInp.addEventListener("change", function(){arrChange(i)});
+        arrNumInp.addEventListener("change", function(){arrChange(i)});
+        arrTranInp.addEventListener("change", function(){arrChange(i)});
     }
 
     for (let i = 0; i < jbs.length; i++) {
@@ -62,9 +87,23 @@ function createArrivals() {
         let flight = document.getElementById(`arrDiv${jb.ARR_FLIGHT}`);
         if (flight.innerHTML == welStr) clearTable(flight);
 
-        createElement("div", flight, `${jb.SUR_NAME} ${jb.NAME}
+        let dv = createElement("div", flight, `${jb.SUR_NAME} ${jb.NAME}
         <img src="./images/removeFromBedIcon.png" onclick="removeFromArr(${i})">`);
+
+        if (!jb.ISIN) {
+            dv.classList.add("missing");
+            changeNotification(3, "notifErr", "Someone is assigned into flight but is not included in event");
+        }
     }
+}
+
+function arrChange(index) {
+    let arrival = arrivals[index];
+    arrival.TIME = document.getElementById(`arrTmInp${index}`).value;
+    arrival.NUMBER = document.getElementById(`arrNumInp${index}`).value;
+    arrival.NEED_TRANS = document.getElementById(`arrTranInp${index}`).checked;
+
+    checkIfDoneArr();
 }
 
 function startArr(e) {
@@ -76,14 +115,24 @@ function startArr(e) {
 function dragArr(e) {
     if (e.target.classList.contains("arrDivCls"))
         e.target.classList.add("dragover");
-    else if (e.target.parentNode.classList.contains("arrDivCls"))
-        e.target.parentNode.classList.add("dragover");
+    else if (e.target.parentNode != null) {
+        if (e.target.parentNode.classList.contains("arrDivCls")) {
+            e.target.parentNode.classList.add("dragover");
+        }
+    }
 }
 
 function dropArr(e) {
-    if (e.target.classList.contains("arrDivCls") &&
-        e.target.parentNode.classList.contains("arrDivCls"))
-        return;
+    if (!e.target.classList.contains("arrDivCls")) {
+        if (e.target.parentNode != null) {
+            if (!e.target.parentNode.classList.contains("arrDivCls")) {
+                return;
+            }
+        }
+        else {
+            return;
+        }
+    }
 
     let target = e.target;
 
@@ -98,4 +147,48 @@ function dropArr(e) {
     jbs[dragged].ARR_FLIGHT = flightId;
 
     buildArrTable();
+}
+
+function addAllToArr(index) {
+    for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].ARR_FLIGHT != -1) continue;
+        jbs[i].ARR_FLIGHT = index;
+    }
+    buildArrTable();
+}
+
+function removeAllFromArr(index) {
+    for (let i = 0; i < jbs.length; i++) {
+        if (jbs[i].ARR_FLIGHT == index) {
+            jbs[i].ARR_FLIGHT = -1;
+        }
+    }
+    buildArrTable();
+}
+
+function checkIfDoneArr() {    
+    for (let i = 0; i < arrivals.length; i++) {
+        let tm = document.getElementById(`arrTmInp${i}`);
+        let num = document.getElementById(`arrNumInp${i}`);
+
+        if (tm.value == "" ||
+            num.value == "") {
+            changeNotification(3, "notifPend", "Some flight is missing time or number.");
+            return;
+        }
+    }
+
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (!jb.ISIN) continue;
+        if (jb.ARR_FLIGHT == -1) {
+            changeNotification(3, "notifPend", "Someone does not have been assigned to any flight");
+            return;
+        }
+    }
+
+    // check if there is not an error
+    if (getNotifStatus(3) != 2) {
+        changeNotification(3, "notifDone", "Done");
+    }
 }

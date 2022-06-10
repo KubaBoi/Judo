@@ -6,25 +6,38 @@
     <div id="regEvFlightsDiv" class="flightDiv">
         <div id="regEvContentsDiv" class="contents">
             <button onclick="chooseRegTab(this, 'peopleDiv')" class="regTabButton" id="regTabB0">People</button>
-            <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Accommodations</button>
-            <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa</button>
-            <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
-            <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Hotel form</button>
+                <img id="regTabC1" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa/Rooming list</button>
+                <img id="regTabC2" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
+                <img id="regTabC3" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan"> 
+                <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
+                <img id="regTabC4" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
             <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB5">Billing</button>
         </div>
         <div id="regEvTablesDiv" class="regEvTablesDiv">
-            <div id="peopleDiv">
+            <div id="peopleDiv" class="lDiv">
                 <button onclick="allChangeJbArray(true)">Check all</button>
                 <button onclick="allChangeJbArray()">Uncheck all</button>
                 <table id="regEvPeopleTable">
                 </table>
             </div>
             <hr>
-            <h2>Accommodations</h2>
-            <div id="accDiv" class="accDiv">
+            <h2>Hotel form</h2>
+            <div id="accDiv" class="accDiv lDiv">
                 <div class="accPeopleDiv">
                     <button onclick="autoClass()">Auto</button>
-                    <button onclick="resetBeds()">Reset</button>
+                    <button onclick="resetBeds()">Reset</button><br>
+                    <label id="errorLabel1"></label>
                     <table id="accPeopleTable"></table>
                 </div>
                 <div id="accRoomDiv" class="accRoomDiv">
@@ -32,16 +45,24 @@
             </div>
             <hr>
             <h2>Visa</h2>
-            <div id="visaDiv">
+            <div id="visaDiv" class="lDiv">
+                <label id="errorLabel2"></label><br>
+                <div id="visaSwitchDiv" class="switchDiv" onclick="confirmVisa()">
+                    <label id="switchLabel">Confirmed</label>
+                    <div class="switchBorder">
+                        <div class="switchButton"></div>
+                    </div>
+                </div><br>
                 <button onclick="allNeedVisa(true)">Everyone needs visa</button>
-                <button onclick="allNeedVisa()">No one needs visa</button>
+                <button onclick="allNeedVisa()">No one needs visa</button><br>
                 <table id="regEvVisaTable">
                 </table>
             </div>
             <hr>
             <h2>Arrival</h2>
-            <div id="arrivalDiv" class="accDiv"> 
+            <div id="arrivalDiv" class="accDiv lDiv"> 
                 <div class="accPeopleDiv">
+                    <label id="errorLabel3"></label>
                     <table id="arrPeopleTable"></table>
                 </div>
                 <div id="arrRoomDiv" class="arrDiv">
@@ -51,8 +72,9 @@
             </div>
             <hr>
             <h2>Departure</h2>
-            <div id="departureDiv" class="accDiv">
+            <div id="departureDiv" class="accDiv lDiv">
                 <div class="accPeopleDiv">
+                    <label id="errorLabel4"></label>
                     <table id="depPeopleTable"></table>
                 </div>
                 <div id="depRoomDiv" class="arrDiv">
@@ -62,7 +84,8 @@
             </div>
             <hr>
             <h2>Billing</h2>
-            <div id="billingDiv">
+            <div id="billingDiv" class="lDiv">
+                <label id="errorLabel5"></label>
                 <table id="regEvBillingTable">
                 </table>
             </div>

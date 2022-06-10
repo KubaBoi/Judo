@@ -1,4 +1,6 @@
-debug = true;
+debug = false;
+
+const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 var activeContent;
 var alertTime = 3000;
@@ -51,6 +53,8 @@ async function loadPage(startArray, doAfter=false) {
     }
     if (doAfter)
         after();
+    
+    document.body.scrollTo(0, 0);
 }
 
 async function getHtml(name, path, parentId, attributeClass) {

@@ -33,7 +33,7 @@ async function editClubTab(clubId) {
         var tbl = createElement("table", editDiv);
 
         createEditTableRow(tbl, "Name: ", "nameInpEdit", activeClub.NAME);
-        createEditTableRow(tbl, "State: ", "stateInpEdit", activeClub.STATE);
+        createEditTableRow(tbl, "Country: ", "stateInpEdit", activeClub.STATE);
         createEditTableRow(tbl, "Address: ", "addressInpEdit", activeClub.ADDRESS);
         createEditTableRow(tbl, "EJU: ", "ejuInpEdit", activeClub.EJU, "checkbox");
 

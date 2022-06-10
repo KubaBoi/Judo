@@ -77,6 +77,16 @@ async function registerToEventShow(eventId) {
 
     hideLoader();
     regEvShow();
+
+    let hideLabel = document.getElementById("hideLabel");
+    if (hideLabel == null) {
+        let div = document.getElementById("registerToEventDiv");
+        createElement("button", div, "<b><<</b>", [
+            {"name": "class", "value": "hideLabel"},
+            {"name": "id", "value": "hideLabel"},
+            {"name": "onclick", "value": "hideInfoDiv()"}
+        ]);
+    }
 }
 
 async function getEventInfo(url) {
@@ -122,7 +132,7 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
 
     createShowTableRowHeader(table, "CLUB", "");
     createShowTableRow(table, "Name: ",  club.NAME);
-    createShowTableRow(table, "State: ", club.STATE);
+    createShowTableRow(table, "Country: ", club.STATE);
     createShowTableRow(table, "Address: ", club.ADDRESS);
     createShowTableRow(table, "EJU: ", club.EJU);
 
@@ -130,4 +140,25 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
     createShowTableRow(table, "Name: ",  user.FULL_NAME);
     createShowTableRow(table, "E-mail: ",  user.LOGIN);
     createShowTableRow(table, "Phone: ",  user.PHONE);
+}
+
+function hideInfoDiv() {
+    let hideLabel = document.getElementById("hideLabel");
+    let flightDiv = document.getElementById("regEvFlightsDiv");
+    let infoDiv = document.getElementById("regEvInfoDiv");
+
+    if (hideLabel.innerHTML == "<b>&lt;&lt;</b>") { //close
+        hideLabel.innerHTML = "<b>>></b>";
+        hideLabel.style.left = "-25px";
+        flightDiv.style.width = "95%";
+        infoDiv.style.opacity = "0%";
+        infoDiv.style.width = "0";
+    }
+    else { // open
+        hideLabel.innerHTML = "<b><<</b>";
+        hideLabel.style.left = "18%";
+        flightDiv.style.width = "75%";
+        infoDiv.style.opacity = "100%";
+        infoDiv.style.width = "20%";
+    }
 }

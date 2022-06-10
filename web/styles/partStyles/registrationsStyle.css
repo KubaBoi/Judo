@@ -9,17 +9,17 @@
 }
 
 .pendingBadge {
-    background-color: #db9d47;
+    background-color: var(--pending);
 }
 
 .checkedBadge {
-    background-color: #3aafb9;
+    background-color: var(--checked);
 }
 
 .registeredBadge {
-    background-color: #1a936f;
+    background-color: var(--registered);
 }
 
 .needVisa {
-    background-color: #9e3a3a;
+    background-color: var(--need-visa);
 }

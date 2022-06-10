@@ -3,6 +3,8 @@ function buildAccTable() {
     let tbl = document.getElementById("accPeopleTable");
     clearTable(tbl);
 
+    let isDone = true;
+
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (jb.ISIN && jb.ROOM_ID == -1) {
@@ -13,8 +15,14 @@ function buildAccTable() {
                     {"name": "id", "value": `personForBed${i}`}
                 ]}
             ]);
+            isDone = false;
         }
     }
+
+    if (isDone) changeNotification(1, "notifDone", "Done");
+    else changeNotification(1, "notifPend", "Someone has not assigned room");
+
+    buildVisaTable();
 }
 
 function buildRoomDiv() {
@@ -72,6 +80,7 @@ function buildRoomDiv() {
 
         if (!jb.ISIN) {
             rw.classList.add("missing");
+            changeNotification(1, "notifErr", "Someone has assigned room but is not included in event");
         }
     }
 }
@@ -93,6 +102,7 @@ function removeFromBed(id) {
 }
 
 function autoClass() {
+    resetBeds();
     let roomId = autoClassGender();
     roomId = autoClassGender(roomId, "w");
     buildAccTable();
@@ -103,6 +113,7 @@ function autoClassGender(roomId=0, gender="m") {
     if (roomId == -1) return;
     for (let i = 0; i < jbs.length; i++) {
         if (jbs[i].GENDER != gender) continue;
+        if (!jbs[i].ISIN) continue;
 
         let room = document.getElementById(`room${roomId}`);
         if (room == null) {

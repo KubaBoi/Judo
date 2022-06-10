@@ -1,6 +1,7 @@
 var jbs = []; // all jbs
 var rooms = [];
 var regEvTablesDiv = null;
+var activeEvent = null;
 
 // scroll events
 function onscrollDiv() {
@@ -55,13 +56,15 @@ function chooseRegTab(button, divId="peopleDiv") {
 
 
 async function buildRegEvTables(event) {
+    activeEvent = event;
+
     regEvTablesDiv = document.getElementById("regEvTablesDiv");
     regEvTablesDiv.onscroll = onscrollDiv;
 
     showLoader();
     
     await buildPeopleTable(
-        ["", "Name", "State", "Birthday", "Function"],
+        ["", "Name", "Country", "Birthday", "Function"],
         ["checkbox", "SUR_NAME,NAME", "STATE", "BIRTHDAY", "FUNCTION"]
     );
 
