@@ -6,10 +6,22 @@
     <div id="regEvFlightsDiv" class="flightDiv">
         <div id="regEvContentsDiv" class="contents">
             <button onclick="chooseRegTab(this, 'peopleDiv')" class="regTabButton" id="regTabB0">People</button>
-            <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Hotel form</button>
-            <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa/Rooming list</button>
-            <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
-            <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Hotel form</button>
+                <img id="regTabC1" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa/Rooming list</button>
+                <img id="regTabC2" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
+                <img id="regTabC3" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan"> 
+                <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
+                <img id="regTabC4" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
             <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB5">Billing</button>
         </div>
         <div id="regEvTablesDiv" class="regEvTablesDiv">
@@ -34,7 +46,8 @@
             <h2>Visa</h2>
             <div id="visaDiv" class="lDiv">
                 <button onclick="allNeedVisa(true)">Everyone needs visa</button>
-                <button onclick="allNeedVisa()">No one needs visa</button>
+                <button onclick="allNeedVisa()">No one needs visa</button><br>
+                <label id="notAssignedLabel"></label>
                 <table id="regEvVisaTable">
                 </table>
             </div>

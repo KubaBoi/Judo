@@ -105,14 +105,15 @@
     min-width: 200px;
     padding: 0;
     margin: 0;
+    display: flex;
 }
 
-.sml {
-    background-color: var(--wrong-color);
-}
-
-.smlChecked {
+.smlChecked, .smlChecked:hover {
     background-color: var(--ok-color);
+}
+
+.sml, .sml:hover {
+    background-color: var(--wrong-color);
 }
 
 .sml, .smlChecked {
@@ -126,7 +127,41 @@
 
 .sml:hover, .smlChecked:hover {
     padding: 6;
+    opacity: 0.5;
+    border-radius: 0;
 
     transition: all;
     transition-duration: 0.5s;
+}
+
+.checkedPackage {
+    background-color: var(--ok-color);
+}
+
+.buttSpan {
+    position: relative;
+}
+
+.notification {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    border-style: hidden;
+    width: 15px;
+    height: 15px;
+
+    position: absolute;
+    top: -1em;
+    right: 0.1em;
+}
+
+.notifPend {
+    background-color: var(--pending);
+}
+
+.notifErr {
+    background-color: var(--need-visa);
+}
+
+.notifDone {
+    background-color: var(--registered);
 }

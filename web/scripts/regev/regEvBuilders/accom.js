@@ -15,6 +15,8 @@ function buildAccTable() {
             ]);
         }
     }
+
+    buildVisaTable();
 }
 
 function buildRoomDiv() {
