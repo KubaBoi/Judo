@@ -1,5 +1,5 @@
 
-function changeNotification(index, newClass, comment=null) {
+function changeNotification(index, newClass, comment=null, check=true) {
     let not = document.getElementById(`regTabC${index}`);
     if (not != null) {
         not.className = "notification";
@@ -8,6 +8,8 @@ function changeNotification(index, newClass, comment=null) {
     }
 
     if (comment != null) showNotifError(index, comment, newClass);
+
+    if (check == true) calculateBill();
 }
 
 function getNotifStatus(index) {

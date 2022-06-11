@@ -2,7 +2,7 @@ function buildDepTable() {
     let tbl = document.getElementById("depPeopleTable");
     clearTable(tbl);
 
-    changeNotification(4, "notifDone", "Done");
+    changeNotification(4, "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];

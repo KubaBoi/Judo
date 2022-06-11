@@ -2,6 +2,7 @@
 function buildVisaTable() {
     let visaTable = document.getElementById("regEvVisaTable");
     clearTable(visaTable);
+    lock();
 
     let startDate = new Date(activeEvent.EVENT_START);
     let endDate = new Date(activeEvent.EVENT_END);

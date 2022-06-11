@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from datetime import datetime
-
-from Cheese.resourceManager import ResMan
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
 from src.repositories.jbRepository import JbRepository
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
-
-from src.cvsParser import CVSparser
 
 #@controller /jb;
 class JbController(cc):

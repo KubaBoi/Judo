@@ -2,7 +2,7 @@ function buildArrTable() {
     let tbl = document.getElementById("arrPeopleTable");
     clearTable(tbl);
 
-    changeNotification(3, "notifDone", "Done");
+    changeNotification(3, "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
