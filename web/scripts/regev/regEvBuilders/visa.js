@@ -139,8 +139,6 @@ function needVisa(index) {
     jbs[index].PASS_ID = document.getElementById(`passNumInp${index}`).value;
     jbs[index].PASS_RELEASE = document.getElementById(`passRelInp${index}`).value;
     jbs[index].PASS_EXPIRATION = document.getElementById(`passExpInp${index}`).value;
-    jbs[index].ROOMING_LIST = "";
-    jbs[index].PACKAGE = "";
 
     if (confirmedVisa) {
         confirmVisa();
