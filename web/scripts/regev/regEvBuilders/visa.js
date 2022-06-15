@@ -29,8 +29,18 @@ function buildVisaTable() {
             ]);
         }
         hdrRowIndex = hdrRow.rowIndex+1;
+
+        // CHECKBOX
+        let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
+        createElement("input", checkDiv, "", [
+            {"name": "type", "value": "checkbox"},
+            {"name": "id", "value": `visacheck${i}`},
+            {"name": "checked", "value": true}
+        ]);
+        createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
+
         insertRow(visaTable, hdrRowIndex, [
-            {"text": `<input type="checkbox" id="visacheck${i}">`},
+            {"text": checkDiv.outerHTML},
             {"text": jb.SUR_NAME + " " + jb.NAME},
             {"text": `<input type="text" class="textBoxLight" id="passNumInp${i}">`},
             {"text": `<input type="date" class="textBoxLight" id="passRelInp${i}">`},

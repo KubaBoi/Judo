@@ -46,13 +46,15 @@ function preparePeople(item, attrs, i) {
         let attr = attrs[o];
         let itm = "";
         if (attr == "checkbox") {
-            let checkbox = createElement("input", null, "", [
+            let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
+            createElement("input", checkDiv, "", [
                 {"name": "type", "value": attr},
                 {"name": "id", "value": `${attr}${i}`},
                 {"name": "checked", "value": true}
             ]);
+            createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
-            itm = checkbox.outerHTML;
+            itm = checkDiv.outerHTML;
         }
         else {
             parts = attr.split(",");
