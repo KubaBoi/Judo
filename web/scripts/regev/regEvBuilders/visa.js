@@ -4,15 +4,6 @@ function buildVisaTable() {
     clearTable(visaTable);
     lock();
 
-    let startDate = new Date(activeEvent.EVENT_START);
-    let endDate = new Date(activeEvent.EVENT_END);
-    let weekdayArray = [];
-
-    while (startDate.getTime() <= endDate.getTime()) {
-        weekdayArray.push(weekday[startDate.getDay()]);
-        startDate.setDate(startDate.getDate() + 1);
-    }
-
     addHeader(visaTable, [
         {"text": "Needs visa"},
         {"text": "Name"},
@@ -62,29 +53,55 @@ function buildVisaTable() {
 
         let roomingCheck = document.getElementById(`roomingCheck${i}`);
         for (let o = 0; o < weekdayArray.length; o++) {
+            let cls = "smlChecked";
+            if (!jb.ROOMING_LIST.includes(o)) cls += " sml";
+
             createElement("button", roomingCheck, weekdayArray[o], [
-                {"name": "class", "value": "smlChecked"},
-                {"name": "onclick", "value": `addDay(this)`}
+                {"name": "class", "value": cls},
+                {"name": "onclick", "value": `addDay(this, ${i}, ${o})`}
             ]);
+        }
+
+        bbCls = "";
+        hbCls = "";
+        fbCls = "";
+        livCls = "";
+        pcg = jb.PACKAGE;
+        switch (pcg) {
+            case "BB":
+                bbCls = "checkedPackage";
+                break;
+            case "HB":
+                hbCls = "checkedPackage";
+                break;
+            case "FB":
+                fbCls = "checkedPackage";
+                break;
+            case "LIV":
+                livCls = "checkedPackage";
+                break;
         }
 
         let packageCheck = document.getElementById(`packageCheck${i}`);
         createElement("button", packageCheck, "BB", [
-            {"name": "onclick", "value": "changePackage(this)"},
+            {"name": "onclick", "value": `changePackage(this, ${i})`},
             {"name": "title", "value": "Bed and Breakfast"},
-            {"name": "class", "value": "checkedPackage"}
+            {"name": "class", "value": bbCls}
         ]);
         createElement("button", packageCheck, "HB", [
-            {"name": "onclick", "value": "changePackage(this)"},
-            {"name": "title", "value": "Half Board"}
+            {"name": "onclick", "value": `changePackage(this, ${i})`},
+            {"name": "title", "value": "Half Board"},
+            {"name": "class", "value": hbCls}
         ]);
         createElement("button", packageCheck, "FB", [
-            {"name": "onclick", "value": "changePackage(this)"},
-            {"name": "title", "value": "Full Board"}
+            {"name": "onclick", "value": `changePackage(this, ${i})`},
+            {"name": "title", "value": "Full Board"},
+            {"name": "class", "value": fbCls}
         ]);
         createElement("button", packageCheck, "LIV", [
-            {"name": "onclick", "value": "changePackage(this)"},
-            {"name": "title", "value": "Lunch In Venue"}
+            {"name": "onclick", "value": `changePackage(this, ${i})`},
+            {"name": "title", "value": "Lunch In Venue"},
+            {"name": "class", "value": livCls}
         ]);
 
 
@@ -122,16 +139,23 @@ function needVisa(index) {
     checkIfDoneVisa();
 }
 
-function addDay(button) {
+function addDay(button, jbIndex, dayIndex) {
     if (button.classList.contains("sml")) {
-        button.classList.remove("sml");  
+        button.classList.remove("sml");
+        jbs[jbIndex].ROOMING_LIST.push(dayIndex);  
     }
     else {
         button.classList.add("sml");
+        const index = jbs[jbIndex].ROOMING_LIST.indexOf(dayIndex);
+        if (index > -1) {
+            jbs[jbIndex].ROOMING_LIST.splice(index, 1);
+        }
     }
+    lock();
+    checkIfDoneVisa();
 }
 
-function changePackage(button) {
+function changePackage(button, jbIndex) {
     let parent = button.parentNode;
     let buttons = parent.getElementsByTagName("button");
 
@@ -140,6 +164,8 @@ function changePackage(button) {
     }
 
     button.classList.add("checkedPackage");
+    jbs[jbIndex].PACKAGE = button.innerHTML;
+    console.log(jbs[jbIndex].PACKAGE);
 }
 
 function checkIfDoneVisa() {

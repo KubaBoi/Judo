@@ -2,6 +2,7 @@ var jbs = []; // all jbs
 var rooms = [];
 var regEvTablesDiv = null;
 var activeEvent = null;
+var weekdayArray = [];
 
 // scroll events
 function onscrollDiv() {
@@ -62,6 +63,15 @@ async function buildRegEvTables(event) {
     regEvTablesDiv.onscroll = onscrollDiv;
 
     showLoader();
+
+    let startDate = new Date(activeEvent.EVENT_START);
+    let endDate = new Date(activeEvent.EVENT_END);
+    weekdayArray = [];
+
+    while (startDate.getTime() <= endDate.getTime()) {
+        weekdayArray.push(weekday[startDate.getDay()]);
+        startDate.setDate(startDate.getDate() + 1);
+    }
     
     await buildPeopleTable(
         ["", "Name", "Country", "Birthday", "Function"],

@@ -153,6 +153,10 @@ CREATE TABLE IF NOT EXISTS public.rooms
     price bigint NOT NULL,
     hotel_id bigint NOT NULL,
     available boolean NOT NULL,
+    bb bigint,
+    hb bigint,
+    fb bigint,
+    liv bigint,
     CONSTRAINT rooms_pkey PRIMARY KEY (id)
 );
 

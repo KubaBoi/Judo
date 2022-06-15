@@ -28,12 +28,28 @@ class HotelsController(cc):
 		pNights = args["P_NIGHTS"]
 		oneRoom = args["ONE_ROOM"]
 		oneRoomPrice = args["ONE_ROOM_PRICE"]
+		oneRoomBB = args["ONE_ROOM_BB"]
+		oneRoomHB = args["ONE_ROOM_HB"]
+		oneRoomFB = args["ONE_ROOM_FB"]
+		oneRoomLIV = args["ONE_ROOM_LIV"]
 		twoRoom = args["TWO_ROOM"]
 		twoRoomPrice = args["TWO_ROOM_PRICE"]
+		twoRoomBB = args["TWO_ROOM_BB"]
+		twoRoomHB = args["TWO_ROOM_HB"]
+		twoRoomFB = args["TWO_ROOM_FB"]
+		twoRoomLIV = args["TWO_ROOM_LIV"]
 		threeRoom = args["THREE_ROOM"]
 		threeRoomPrice = args["THREE_ROOM_PRICE"]
+		threeRoomBB = args["THREE_ROOM_BB"]
+		threeRoomHB = args["THREE_ROOM_HB"]
+		threeRoomFB = args["THREE_ROOM_FB"]
+		threeRoomLIV = args["THREE_ROOM_LIV"]
 		apartmanRoom = args["APARTMAN_ROOM"]
 		apartmanRoomPrice = args["APARTMAN_ROOM_PRICE"]
+		apartmanRoomBB = args["APARTMAN_ROOM_BB"]
+		apartmanRoomHB = args["APARTMAN_ROOM_HB"]
+		apartmanRoomFB = args["APARTMAN_ROOM_FB"]
+		apartmanRoomLIV = args["APARTMAN_ROOM_LIV"]
 
 		if (not args["HARD_CREATE"]):
 			existingHotel = HotelsRepository.findBy("name", name)
@@ -51,10 +67,10 @@ class HotelsController(cc):
 		hotelsModel.package = package
 		hotelsModel.p_nights = pNights
 
-		HotelsController.createRooms(1, oneRoom, hotelsModel.id, oneRoomPrice)
-		HotelsController.createRooms(2, twoRoom, hotelsModel.id, twoRoomPrice)
-		HotelsController.createRooms(3, threeRoom, hotelsModel.id, threeRoomPrice)
-		HotelsController.createRooms(4, apartmanRoom, hotelsModel.id, apartmanRoomPrice)
+		HotelsController.createRooms(1, oneRoom, hotelsModel.id, oneRoomPrice, oneRoomBB, oneRoomHB, oneRoomFB, oneRoomLIV)
+		HotelsController.createRooms(2, twoRoom, hotelsModel.id, twoRoomPrice, twoRoomBB, twoRoomHB, twoRoomFB, twoRoomLIV)
+		HotelsController.createRooms(3, threeRoom, hotelsModel.id, threeRoomPrice, threeRoomBB, threeRoomHB, threeRoomFB, threeRoomLIV)
+		HotelsController.createRooms(4, apartmanRoom, hotelsModel.id, apartmanRoomPrice, apartmanRoomBB, apartmanRoomHB, apartmanRoomFB, apartmanRoomLIV)
 
 		HotelsRepository.save(hotelsModel)
 
@@ -79,12 +95,28 @@ class HotelsController(cc):
 		pNights = args["P_NIGHTS"]
 		oneRoom = args["ONE_ROOM"]
 		oneRoomPrice = args["ONE_ROOM_PRICE"]
+		oneRoomBB = args["ONE_ROOM_BB"]
+		oneRoomHB = args["ONE_ROOM_HB"]
+		oneRoomFB = args["ONE_ROOM_FB"]
+		oneRoomLIV = args["ONE_ROOM_LIV"]
 		twoRoom = args["TWO_ROOM"]
 		twoRoomPrice = args["TWO_ROOM_PRICE"]
+		twoRoomBB = args["TWO_ROOM_BB"]
+		twoRoomHB = args["TWO_ROOM_HB"]
+		twoRoomFB = args["TWO_ROOM_FB"]
+		twoRoomLIV = args["TWO_ROOM_LIV"]
 		threeRoom = args["THREE_ROOM"]
 		threeRoomPrice = args["THREE_ROOM_PRICE"]
+		threeRoomBB = args["THREE_ROOM_BB"]
+		threeRoomHB = args["THREE_ROOM_HB"]
+		threeRoomFB = args["THREE_ROOM_FB"]
+		threeRoomLIV = args["THREE_ROOM_LIV"]
 		apartmanRoom = args["APARTMAN_ROOM"]
 		apartmanRoomPrice = args["APARTMAN_ROOM_PRICE"]
+		apartmanRoomBB = args["APARTMAN_ROOM_BB"]
+		apartmanRoomHB = args["APARTMAN_ROOM_HB"]
+		apartmanRoomFB = args["APARTMAN_ROOM_FB"]
+		apartmanRoomLIV = args["APARTMAN_ROOM_LIV"]
 
 		hotelsModel = HotelsRepository.find(id)
 		hotelsModel.name = name
@@ -101,10 +133,10 @@ class HotelsController(cc):
 		threeRooms = RoomsRepository.findByHotelAndBeds(id, 3)
 		apartmanRooms = RoomsRepository.findByHotelAndBeds(id, 4)
 
-		HotelsController.updateRoom(oneRooms, oneRoom, oneRoomPrice, id, 1)
-		HotelsController.updateRoom(twoRooms, twoRoom, twoRoomPrice, id, 2)
-		HotelsController.updateRoom(threeRooms, threeRoom, threeRoomPrice, id, 3)
-		HotelsController.updateRoom(apartmanRooms, apartmanRoom, apartmanRoomPrice, id, 4)
+		HotelsController.updateRoom(oneRooms, oneRoom, 1, id, oneRoomPrice, oneRoomBB, oneRoomHB, oneRoomFB, oneRoomLIV)
+		HotelsController.updateRoom(twoRooms, twoRoom, 2, id, twoRoomPrice, twoRoomBB, twoRoomHB, twoRoomFB, twoRoomLIV)
+		HotelsController.updateRoom(threeRooms, threeRoom, 3, id, threeRoomPrice, threeRoomBB, threeRoomHB, threeRoomFB, threeRoomLIV)
+		HotelsController.updateRoom(apartmanRooms, apartmanRoom, 4, id, apartmanRoomPrice, apartmanRoomBB, apartmanRoomHB, apartmanRoomFB, apartmanRoomLIV)
 
 		return cc.createResponse({'STATUS': 'Hotel has been updated'}, 200)
 		
@@ -144,12 +176,28 @@ class HotelsController(cc):
 
 		jsonResponse["ONE_ROOM"] = len(oneRooms)
 		jsonResponse["ONE_ROOM_PRICE"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].price
+		jsonResponse["ONE_ROOM_BB"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].bb
+		jsonResponse["ONE_ROOM_HB"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].hb
+		jsonResponse["ONE_ROOM_FB"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].fb
+		jsonResponse["ONE_ROOM_LIV"] = 0 if (len(oneRooms) <= 0) else oneRooms[0].liv
 		jsonResponse["TWO_ROOM"] = len(twoRooms)
 		jsonResponse["TWO_ROOM_PRICE"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].price
+		jsonResponse["TWO_ROOM_BB"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].bb
+		jsonResponse["TWO_ROOM_HB"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].hb
+		jsonResponse["TWO_ROOM_FB"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].fb
+		jsonResponse["TWO_ROOM_LIV"] = 0 if (len(twoRooms) <= 0) else twoRooms[0].liv
 		jsonResponse["THREE_ROOM"] = len(threeRooms)
 		jsonResponse["THREE_ROOM_PRICE"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].price
+		jsonResponse["THREE_ROOM_BB"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].bb
+		jsonResponse["THREE_ROOM_HB"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].hb
+		jsonResponse["THREE_ROOM_FB"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].fb
+		jsonResponse["THREE_ROOM_LIV"] = 0 if (len(threeRooms) <= 0) else threeRooms[0].liv
 		jsonResponse["APARTMAN_ROOM"] = len(apartmanRooms)
 		jsonResponse["APARTMAN_ROOM_PRICE"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].price
+		jsonResponse["APARTMAN_ROOM_BB"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].bb
+		jsonResponse["APARTMAN_ROOM_HB"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].hb
+		jsonResponse["APARTMAN_ROOM_FB"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].fb
+		jsonResponse["APARTMAN_ROOM_LIV"] = 0 if (len(apartmanRooms) <= 0) else apartmanRooms[0].liv
 
 		return cc.createResponse({"HOTEL": jsonResponse}, 200)
 		
@@ -274,12 +322,16 @@ class HotelsController(cc):
 	# METHODS
 
 	@staticmethod
-	def createRooms(countOfBeds, countOfRooms, hotelId, price):
+	def createRooms(countOfBeds, countOfRooms, hotelId, price, bb, hb, fb, liv):
 		for i in range(countOfRooms):
 			newRoom = RoomsRepository.model()
 			newRoom.bed = countOfBeds
 			newRoom.hotel_id = hotelId
 			newRoom.price = price
+			newRoom.bb = bb
+			newRoom.hb = hb
+			newRoom.fb = fb
+			newRoom.liv = liv
 			newRoom.available = True
 			RoomsRepository.save(newRoom)
 
@@ -290,7 +342,7 @@ class HotelsController(cc):
 				BedRepository.save(newBed)
 
 	@staticmethod
-	def updateRoom(rooms, roomCount, roomPrice, hotelId, bed):
+	def updateRoom(rooms, roomCount, bed, hotelId, roomPrice, bb, hb, fb, liv):
 		if (len(rooms) > roomCount):
 			more = len(rooms) - roomCount
 			for i in range(more):
@@ -306,5 +358,9 @@ class HotelsController(cc):
 
 		for room in rooms:
 			room.price = roomPrice
+			room.bb = bb
+			room.hb = hb
+			room.fb = fb
+			room.liv = liv
 			RoomsRepository.update(room)
 

@@ -6,13 +6,20 @@ function isAllDone() {
     return true;
 }
 
-function calculateBill() {
+async function calculateBill() {
     if (!isAllDone()) {
-        changeNotification(5, "notifPend", "Calculation can be done when everything is not set up properly", false);
+        changeNotification(5, "notifPend", "Calculation can be done when everything is set up properly", false);
         showNotifError(5);
         return;
     }
     changeNotification(5, "notifDone", "Done", false);
 
-    console.log(rooms);    
+    let req = {
+        "JBS": jbs,
+        "ARRIVALS": arrivals,
+        "DEPARTS": departs,
+        "EVENT_ID": activeEvent.ID
+    }
+
+    var response = await callEndpoint("POST", "/registeredClubs/calculateBill", req);
 }
