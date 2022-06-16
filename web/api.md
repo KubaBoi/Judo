@@ -42,6 +42,8 @@
     - [/getAll](#65-getall)
     - [/getAllData](#66-getalldata)
     - [/get](#67-get)
+    - [/calculateBill](#68-calculatebill)
+    - [/confirmReg](#69-confirmreg)
  - [/registeredJb](#7-registeredJb)
     - [/create](#71-create)
     - [/update](#72-update)
@@ -822,12 +824,28 @@ Role = 1
     "P_NIGHTS": 0,
     "ONE_ROOM": 0,
     "ONE_ROOM_PRICE": 0,
+    "ONE_ROOM_BB": 0,
+    "ONE_ROOM_HB": 0,
+    "ONE_ROOM_FB": 0,
+    "ONE_ROOM_LIV": 0,
     "TWO_ROOM": 0,
     "TWO_ROOM_PRICE": 0,
+    "TWO_ROOM_BB": 0,
+    "TWO_ROOM_HB": 0,
+    "TWO_ROOM_FB": 0,
+    "TWO_ROOM_LIV": 0,
     "THREE_ROOM": 0,
     "THREE_ROOM_PRICE": 0,
+    "THREE_ROOM_BB": 0,
+    "THREE_ROOM_HB": 0,
+    "THREE_ROOM_FB": 0,
+    "THREE_ROOM_LIV": 0,
     "APARTMAN_ROOM": 0,
-    "APARTMAN_ROOM_PRICE": 0
+    "APARTMAN_ROOM_PRICE": 0,
+    "APARTMAN_ROOM_BB": 0,
+    "APARTMAN_ROOM_HB": 0,
+    "APARTMAN_ROOM_FB": 0,
+    "APARTMAN_ROOM_LIV": 0
 }
 ```
 
@@ -863,12 +881,28 @@ Role = 1
     "P_NIGHTS": 0,
     "ONE_ROOM": 0,
     "ONE_ROOM_PRICE": 0,
+    "ONE_ROOM_BB": 0,
+    "ONE_ROOM_HB": 0,
+    "ONE_ROOM_FB": 0,
+    "ONE_ROOM_LIV": 0,
     "TWO_ROOM": 0,
     "TWO_ROOM_PRICE": 0,
+    "TWO_ROOM_BB": 0,
+    "TWO_ROOM_HB": 0,
+    "TWO_ROOM_FB": 0,
+    "TWO_ROOM_LIV": 0,
     "THREE_ROOM": 0,
     "THREE_ROOM_PRICE": 0,
+    "THREE_ROOM_BB": 0,
+    "THREE_ROOM_HB": 0,
+    "THREE_ROOM_FB": 0,
+    "THREE_ROOM_LIV": 0,
     "APARTMAN_ROOM": 0,
-    "APARTMAN_ROOM_PRICE": 0
+    "APARTMAN_ROOM_PRICE": 0,
+    "APARTMAN_ROOM_BB": 0,
+    "APARTMAN_ROOM_HB": 0,
+    "APARTMAN_ROOM_FB": 0,
+    "APARTMAN_ROOM_LIV": 0
 }
 ```
 
@@ -903,15 +937,7 @@ Role = 2
             "WEB": "str",
             "PHONE": "str",
             "PACKAGE": true,
-            "P_NIGHTS": 0,
-            "ONE_ROOM": 0,
-            "ONE_ROOM_PRICE": 0,
-            "TWO_ROOM": 0,
-            "TWO_ROOM_PRICE": 0,
-            "THREE_ROOM": 0,
-            "THREE_ROOM_PRICE": 0,
-            "APARTMAN_ROOM": 0,
-            "APARTMAN_ROOM_PRICE": 0
+            "P_NIGHTS": 0
         }
     ]
 }
@@ -950,12 +976,28 @@ Role = 2
         "P_NIGHTS": 0,
         "ONE_ROOM": 0,
         "ONE_ROOM_PRICE": 0,
+        "ONE_ROOM_BB": 0,
+        "ONE_ROOM_HB": 0,
+        "ONE_ROOM_FB": 0,
+        "ONE_ROOM_LIV": 0,
         "TWO_ROOM": 0,
         "TWO_ROOM_PRICE": 0,
+        "TWO_ROOM_BB": 0,
+        "TWO_ROOM_HB": 0,
+        "TWO_ROOM_FB": 0,
+        "TWO_ROOM_LIV": 0,
         "THREE_ROOM": 0,
         "THREE_ROOM_PRICE": 0,
+        "THREE_ROOM_BB": 0,
+        "THREE_ROOM_HB": 0,
+        "THREE_ROOM_FB": 0,
+        "THREE_ROOM_LIV": 0,
         "APARTMAN_ROOM": 0,
-        "APARTMAN_ROOM_PRICE": 0
+        "APARTMAN_ROOM_PRICE": 0,
+        "APARTMAN_ROOM_BB": 0,
+        "APARTMAN_ROOM_HB": 0,
+        "APARTMAN_ROOM_FB": 0,
+        "APARTMAN_ROOM_LIV": 0
     }
 }
 ```
@@ -1318,6 +1360,116 @@ Role = 1
         "CLUB_NAME": "str",
         "EVENT_NAME": "str"
     }
+}
+```
+
+<hr>
+
+## 6.8 /calculateBill
+
+```POST```
+
+Calculates bill
+
+Role = 2
+
+### Accepts post body
+
+```json
+{
+    "JBS": [
+        {
+            "ISIN": true, // is JB in event
+            "ID": 0,
+            "CLUB_ID": 0,
+            "ARR_FLIGHT": 0, // index of arrival from ARRIVALS array
+            "DEP_FLIGHT": 0, // index of departure from DEPARTS array
+            "ROOM_ID": 0,
+            "ROOMING_LIST": ["int"], 
+            "PACKAGE": "str" // BB, HB, FB, LIV
+        }
+    ]
+}
+```
+
+### Return OK - 200
+
+```json
+{
+    "TOTAL": 0,
+    "HOTELS": [
+        {
+            "HOTEL_ID": 0,
+            "ROOMS": [
+                {
+                    "NAME": "str", //Double, Triple...
+                    "ARR_DATE": "date",
+                    "DEP_DATE": "date",
+                    "NUMBER": 0,
+                    "PEOPLE": 0,
+                    "NIGHTS": 0,
+                    "NIGHT": 0,
+                    "TOTAL": 0
+                }
+            ]
+        }
+    ]
+}
+```
+
+<hr>
+
+## 6.9 /confirmReg
+
+```POST```
+
+Confirms registration by client
+
+Role = 2
+
+### Accepts post body
+
+```json
+{
+    "JBS": [
+        {
+            "ID": 0,
+            "CLUB_ID": 0,
+            "ARR_FLIGHT": 0, // index of arrival from ARRIVALS array
+            "DEP_FLIGHT": 0, // index of departure from DEPARTS array
+            "NEED_VISA": true,
+            "PASS_ID": "str",
+            "PASS_RELEASE": "date",
+            "PASS_EXPIRATION": "date",
+            "ROOM_ID": 0,
+            "ISIN": true, // is JB in event
+            "ROOMING_LIST": ["int"], 
+            "PACKAGE": "str" // BB, HB, FB, LIV
+        }
+    ],
+    "ARRIVALS": [
+        {
+            "TIME": "date",
+            "NUMBER": "str",
+            "NEED_TRANS": true
+        }
+    ],
+    "DEPARTS": [
+        {
+            "TIME": "date",
+            "NUMBER": "str",
+            "NEED_TRANS": true
+        }
+    ],
+    "EVENT_ID": 0
+}
+```
+
+### Return OK - 200
+
+```json
+{
+    "STATUS": "Club has been registered"
 }
 ```
 

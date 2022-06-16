@@ -52,7 +52,7 @@ function buildRoomDiv() {
         let bedString = "";
         for (let o = 0; o < room.BED; o++) bedString += img;
 
-        var oneRoomDiv = createElement("div", roomDiv, bedString, [
+        var oneRoomDiv = createElement("div", roomDiv, bedString + `${room.HOTEL_ID}`, [
             {"name": "class", "value": "accRoomRoomDiv"},
             {"name": "id", "value": `room${room.ID}`}
         ]);
@@ -88,11 +88,12 @@ function buildRoomDiv() {
 function isRoomFull(room) {
     let roomId = room.id.replace("room", "");
     let roomMaxBed = room.querySelectorAll("img").length;
+    roomMaxBed -= room.querySelectorAll("img.removefrombed").length;
 
     let roomTable = document.getElementById(`roomTable${roomId}`);
     let rows = roomTable.querySelectorAll("td").length;
 
-    return (rows >= roomMaxBed - rows);
+    return (rows >= roomMaxBed);
 }
 
 function removeFromBed(id) {
@@ -109,32 +110,35 @@ function autoClass() {
     buildRoomDiv();
 }
 
-function autoClassGender(roomId=0, gender="m") {
-    if (roomId == -1) return;
+function autoClassGender(roomIndex=0, gender="m") {
+    if (roomIndex == -1) return;
     for (let i = 0; i < jbs.length; i++) {
         if (jbs[i].GENDER != gender) continue;
         if (!jbs[i].ISIN) continue;
 
-        let room = document.getElementById(`room${roomId}`);
-        if (room == null) {
-            showAlert("Not enought space", `There is not enought rooms for your team
-            .<br>Contact organiser please`);
+        if (roomIndex >= rooms.length) {
+            showAlert("Not enought space", `There is not enought rooms for your team.
+            <br>Contact organiser please`);
             return -1;
         }
+        let room = rooms[roomIndex];
+        let roomElem = document.getElementById(`room${room.ID}`);
 
-        while (isRoomFull(room)) {
-            room = document.getElementById(`room${++roomId}`);
-            if (room == null) {
-                showAlert("Not enought space", `There is not enought rooms for your team
-                .<br>Contact organiser please`);
+        while (isRoomFull(roomElem)) {
+            if (++roomIndex >= rooms.length) {
+                showAlert("Not enought space", `There is not enought rooms for your team.
+                <br>Contact organiser please`);
                 return -1;
             }
+
+            room = rooms[roomIndex];
+            roomElem = document.getElementById(`room${room.ID}`);
         }
 
-        jbs[i].ROOM_ID = roomId;
+        jbs[i].ROOM_ID = room.ID;
         buildRoomDiv();
     }
-    return ++roomId;
+    return roomIndex + 1;
 }
 
 function resetBeds() {

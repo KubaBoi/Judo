@@ -2,7 +2,7 @@ function buildDepTable() {
     let tbl = document.getElementById("depPeopleTable");
     clearTable(tbl);
 
-    changeNotification(4, "notifDone", "Done");
+    changeNotification(4, "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
@@ -152,7 +152,7 @@ function dropDep(e) {
 
 function addAllToDep(index) {
     for (let i = 0; i < jbs.length; i++) {
-        if (jbs[i].DEP_FLIGHT != -1) continue;
+        if (jbs[i].DEP_FLIGHT != -1 || !jbs[i].ISIN) continue;
         jbs[i].DEP_FLIGHT = index;
     }
     buildDepTable();

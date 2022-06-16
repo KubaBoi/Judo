@@ -4,7 +4,7 @@
 from Cheese.cheeseRepository import CheeseRepository
 
 #@repository rooms;
-#@dbscheme (id, bed, price, hotel_id, available);
+#@dbscheme (id, bed, price, bb, hb, fb, liv, hotel_id, available);
 #@dbmodel Rooms;
 class RoomsRepository(CheeseRepository):
 

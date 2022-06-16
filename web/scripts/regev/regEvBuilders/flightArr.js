@@ -2,7 +2,7 @@ function buildArrTable() {
     let tbl = document.getElementById("arrPeopleTable");
     clearTable(tbl);
 
-    changeNotification(3, "notifDone", "Done");
+    changeNotification(3, "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
@@ -151,7 +151,7 @@ function dropArr(e) {
 
 function addAllToArr(index) {
     for (let i = 0; i < jbs.length; i++) {
-        if (jbs[i].ARR_FLIGHT != -1) continue;
+        if (jbs[i].ARR_FLIGHT != -1 || !jbs[i].ISIN) continue;
         jbs[i].ARR_FLIGHT = index;
     }
     buildArrTable();

@@ -147,7 +147,7 @@ function hideInfoDiv() {
     let flightDiv = document.getElementById("regEvFlightsDiv");
     let infoDiv = document.getElementById("regEvInfoDiv");
 
-    if (hideLabel.innerHTML == "<b>&lt;&lt;</b>") { //close
+    if (hideLabel.innerHTML == "<b>&lt;&lt;</b>") { // close
         hideLabel.innerHTML = "<b>>></b>";
         hideLabel.style.left = "-25px";
         flightDiv.style.width = "95%";

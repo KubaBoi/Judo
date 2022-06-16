@@ -18,12 +18,28 @@ async function editHotelTab(hotelId) {
                 "P_NIGHTS": "",
                 "ONE_ROOM": 0,
                 "ONE_ROOM_PRICE": 0,
+                "ONE_ROOM_BB": 0,
+                "ONE_ROOM_HB": 0,
+                "ONE_ROOM_FB": 0,
+                "ONE_ROOM_LIV": 0,
                 "TWO_ROOM": 0,
                 "TWO_ROOM_PRICE": 0,
+                "TWO_ROOM_BB": 0,
+                "TWO_ROOM_HB": 0,
+                "TWO_ROOM_FB": 0,
+                "TWO_ROOM_LIV": 0,
                 "THREE_ROOM": 0,
                 "THREE_ROOM_PRICE": 0,
+                "THREE_ROOM_BB": 0,
+                "THREE_ROOM_HB": 0,
+                "THREE_ROOM_FB": 0,
+                "THREE_ROOM_LIV": 0,
                 "APARTMAN_ROOM": 0,
-                "APARTMAN_ROOM_PRICE": 0
+                "APARTMAN_ROOM_PRICE": 0,
+                "APARTMAN_ROOM_BB": 0,
+                "APARTMAN_ROOM_HB": 0,
+                "APARTMAN_ROOM_FB": 0,
+                "APARTMAN_ROOM_LIV": 0
             }
         }
     }
@@ -56,26 +72,46 @@ async function editHotelTab(hotelId) {
         createElement("th", roomHeader, "");
         createElement("th", roomHeader, "Count of rooms");
         createElement("th", roomHeader, "Price (€)");
+        createElement("th", roomHeader, "BB (€)", [{"name": "title", "value": "Bed and Breakfast"}]);
+        createElement("th", roomHeader, "HB (€)", [{"name": "title", "value": "Half Board"}]);
+        createElement("th", roomHeader, "FB (€)", [{"name": "title", "value": "Full Board"}]);
+        createElement("th", roomHeader, "LIV (€)", [{"name": "title", "value": "Lunch In Venue"}]);
 
         
         createEditTableRowMulti(tblRooms, "Single", [
             {"id": "oneRoomCountInp", "defValue": activeHotel.ONE_ROOM, "type": "number"},
-            {"id": "oneRoomPriceInp", "defValue": activeHotel.ONE_ROOM_PRICE, "type": "number"}
+            {"id": "oneRoomPriceInp", "defValue": activeHotel.ONE_ROOM_PRICE, "type": "number"},
+            {"id": "oneRoomBBInp", "defValue": activeHotel.ONE_ROOM_BB, "type": "number"},
+            {"id": "oneRoomHBInp", "defValue": activeHotel.ONE_ROOM_HB, "type": "number"},
+            {"id": "oneRoomFBInp", "defValue": activeHotel.ONE_ROOM_FB, "type": "number"},
+            {"id": "oneRoomLIVInp", "defValue": activeHotel.ONE_ROOM_LIV, "type": "number"}
         ]);
 
         createEditTableRowMulti(tblRooms, "Double", [
             {"id": "twoRoomCountInp", "defValue": activeHotel.TWO_ROOM, "type": "number"},
-            {"id": "twoRoomPriceInp", "defValue": activeHotel.TWO_ROOM_PRICE, "type": "number"}
+            {"id": "twoRoomPriceInp", "defValue": activeHotel.TWO_ROOM_PRICE, "type": "number"},
+            {"id": "twoRoomBBInp", "defValue": activeHotel.TWO_ROOM_BB, "type": "number"},
+            {"id": "twoRoomHBInp", "defValue": activeHotel.TWO_ROOM_HB, "type": "number"},
+            {"id": "twoRoomFBInp", "defValue": activeHotel.TWO_ROOM_FB, "type": "number"},
+            {"id": "twoRoomLIVInp", "defValue": activeHotel.TWO_ROOM_LIV, "type": "number"}
         ]);
 
         createEditTableRowMulti(tblRooms, "Triple", [
             {"id": "threeRoomCountInp", "defValue": activeHotel.THREE_ROOM, "type": "number"},
-            {"id": "threeRoomPriceInp", "defValue": activeHotel.THREE_ROOM_PRICE, "type": "number"}
+            {"id": "threeRoomPriceInp", "defValue": activeHotel.THREE_ROOM_PRICE, "type": "number"},
+            {"id": "threeRoomBBInp", "defValue": activeHotel.THREE_ROOM_BB, "type": "number"},
+            {"id": "threeRoomHBInp", "defValue": activeHotel.THREE_ROOM_HB, "type": "number"},
+            {"id": "threeRoomFBInp", "defValue": activeHotel.THREE_ROOM_FB, "type": "number"},
+            {"id": "threeRoomLIVInp", "defValue": activeHotel.THREE_ROOM_LIV, "type": "number"}
         ]);
 
         createEditTableRowMulti(tblRooms, "Apartman", [
             {"id": "apartmanRoomCountInp", "defValue": activeHotel.APARTMAN_ROOM, "type": "number"},
-            {"id": "apartmanRoomPriceInp", "defValue": activeHotel.APARTMAN_ROOM_PRICE, "type": "number"}
+            {"id": "apartmanRoomPriceInp", "defValue": activeHotel.APARTMAN_ROOM_PRICE, "type": "number"},
+            {"id": "apartmanRoomBBInp", "defValue": activeHotel.APARTMAN_ROOM_BB, "type": "number"},
+            {"id": "apartmanRoomHBInp", "defValue": activeHotel.APARTMAN_ROOM_HB, "type": "number"},
+            {"id": "apartmanRoomFBInp", "defValue": activeHotel.APARTMAN_ROOM_FB, "type": "number"},
+            {"id": "apartmanRoomLIVInp", "defValue": activeHotel.APARTMAN_ROOM_LIV, "type": "number"}
         ]);
 
         createElement("button", hiddenTab, "Save changes", 
@@ -143,12 +179,28 @@ function prepareHotelChangedData(hardCreate) {
         "P_NIGHTS": getValueOf("pnightsInpEdit"),
         "ONE_ROOM": getValueOf("oneRoomCountInp"),
         "ONE_ROOM_PRICE": getValueOf("oneRoomPriceInp"),
+        "ONE_ROOM_BB": getValueOf("oneRoomBBInp"),
+        "ONE_ROOM_HB": getValueOf("oneRoomHBInp"),
+        "ONE_ROOM_FB": getValueOf("oneRoomFBInp"),
+        "ONE_ROOM_LIV": getValueOf("oneRoomLIVInp"),
         "TWO_ROOM": getValueOf("twoRoomCountInp"),
         "TWO_ROOM_PRICE": getValueOf("twoRoomPriceInp"),
+        "TWO_ROOM_BB": getValueOf("twoRoomBBInp"),
+        "TWO_ROOM_HB": getValueOf("twoRoomHBInp"),
+        "TWO_ROOM_FB": getValueOf("twoRoomFBInp"),
+        "TWO_ROOM_LIV": getValueOf("twoRoomLIVInp"),
         "THREE_ROOM": getValueOf("threeRoomCountInp"),
         "THREE_ROOM_PRICE": getValueOf("threeRoomPriceInp"),
+        "THREE_ROOM_BB": getValueOf("threeRoomBBInp"),
+        "THREE_ROOM_HB": getValueOf("threeRoomHBInp"),
+        "THREE_ROOM_FB": getValueOf("threeRoomFBInp"),
+        "THREE_ROOM_LIV": getValueOf("threeRoomLIVInp"),
         "APARTMAN_ROOM": getValueOf("apartmanRoomCountInp"),
-        "APARTMAN_ROOM_PRICE": getValueOf("apartmanRoomPriceInp")
+        "APARTMAN_ROOM_PRICE": getValueOf("apartmanRoomPriceInp"),
+        "APARTMAN_ROOM_BB": getValueOf("apartmanRoomBBInp"),
+        "APARTMAN_ROOM_HB": getValueOf("apartmanRoomHBInp"),
+        "APARTMAN_ROOM_FB": getValueOf("apartmanRoomFBInp"),
+        "APARTMAN_ROOM_LIV": getValueOf("apartmanRoomLIVInp")
     }
     return newHotel;
 }

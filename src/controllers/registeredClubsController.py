@@ -7,6 +7,7 @@ from Cheese.cheeseController import CheeseController as cc
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 from src.repositories.clubsRepository import ClubsRepository
 from src.repositories.eventsRepository import EventsRepository
+from src.repositories.registeredJbRepository import RegisteredJbRepository
 
 #@controller /registeredClubs;
 class RegisteredClubsController(cc):
@@ -23,8 +24,7 @@ class RegisteredClubsController(cc):
 	def create(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['CLUB_ID', 'EVENT_ID', 'VISA'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(['CLUB_ID', 'EVENT_ID', 'VISA'], args)
 
 		clubId = args["CLUB_ID"]
 		eventId = args["EVENT_ID"]
@@ -48,8 +48,7 @@ class RegisteredClubsController(cc):
 	def register(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['ID'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(['ID'], args)
 
 		id = args["ID"]
 		registeredClub = RegisteredClubsRepository.find(id)
@@ -63,8 +62,7 @@ class RegisteredClubsController(cc):
 	def get(server, path, auth):
 		args = cc.getArgs(path)
 
-		if (not cc.validateJson(["id"], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["id"], args)
 		
 		id = args["id"]
 		registeredClub = RegisteredClubsRepository.find(id)
@@ -85,8 +83,7 @@ class RegisteredClubsController(cc):
 	def getByEvent(server, path, auth):
 		args = cc.getArgs(path)
 
-		if (not cc.validateJson(['eventId'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(['eventId'], args)
 
 		eventId = args["eventId"]
 
@@ -104,8 +101,7 @@ class RegisteredClubsController(cc):
 	def remove(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['ID'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(['ID'], args)
 
 		id = args["ID"]
 
@@ -135,5 +131,30 @@ class RegisteredClubsController(cc):
 				item["EVENT_NAME"] = event.name
 
 		return cc.createResponse({"REGISTERED_CLUBS": jsonArr}, 200)
+
+	#@post /calculateBill;
+	@staticmethod
+	def calculateBill(server, path, auth):
+		args = cc.readArgs(server)
+
+		cc.checkJson(["JBS"], args)
+
+		jbs = []
+		for jb in args["JBS"]:
+			if (not jb["ISIN"]): continue
+			jbs.append(jb)
+			print(jb)
+
+		
+
+	#@post /confirmReg;
+	@staticmethod
+	def confirmReg(server, path, auth):
+		args = cc.readArgs(server)
+
+		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
+
+
+		return cc.createResponse({"STATUS": "Club has been registered"}, 200)
 
 
