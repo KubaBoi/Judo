@@ -39,13 +39,18 @@ function buildVisaTable() {
         ]);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
+        let nightsLabel = createElement("label", null, "", [
+            {"name": "id", "value": `nightsLabel${i}`},
+            {"name": "class", "value": "nightsLabel"}
+        ]);
+
         insertRow(visaTable, hdrRowIndex, [
             {"text": checkDiv.outerHTML},
             {"text": jb.SUR_NAME + " " + jb.NAME},
             {"text": `<input type="text" class="textBoxLight" id="passNumInp${i}">`},
             {"text": `<input type="date" class="textBoxLight" id="passRelInp${i}">`},
             {"text": `<input type="date" class="textBoxLight" id="passExpInp${i}">`},
-            {"text": `<div id=roomingCheck${i} class=roomingDivCls></div>`},
+            {"text": `${nightsLabel.outerHTML}<div id=roomingCheck${i} class=roomingDivCls></div>`},
             {"text": `<div id=packageCheck${i} class=packageDivCls></div>`}
         ]);
 
@@ -71,6 +76,8 @@ function buildVisaTable() {
                 {"name": "onclick", "value": `addDay(this, ${i})`}
             ]);
         }
+
+        changeNightsLabel(i);
 
         bbCls = "";
         hbCls = "";
@@ -170,6 +177,19 @@ function addDay(button, jbIndex, needsRepair=true) {
         lock();
         checkIfDoneVisa();
     }
+
+    changeNightsLabel(jbIndex);
+}
+
+function changeNightsLabel(jbIndex) {
+    let label = document.getElementById(`nightsLabel${jbIndex}`);
+    let nights = jbs[jbIndex].ROOMING_LIST.length-1;
+    if (nights > 0) {
+        label.innerHTML = `${nights} nights`;
+    }
+    else {
+        label.innerHTML = "";
+    }
 }
 
 function repairDays(button, jbIndex) {
@@ -196,7 +216,9 @@ function changePackage(button, jbIndex) {
 
     button.classList.add("checkedPackage");
     jbs[jbIndex].PACKAGE = button.innerHTML;
-    console.log(jbs[jbIndex].PACKAGE);
+    
+    lock();
+    checkIfDoneVisa();
 }
 
 function checkIfDoneVisa() {

@@ -134,6 +134,10 @@
     transition-duration: 0.5s;
 }
 
+.nightsLabel {
+    margin-bottom: 2px;
+}
+
 .checkedPackage {
     background-color: var(--ok-color);
 }

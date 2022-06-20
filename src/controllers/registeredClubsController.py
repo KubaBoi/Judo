@@ -170,8 +170,20 @@ class RegisteredClubsController(cc):
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
 
+		billAccData, billPackData = RegisteredClubsController.getCalculatedBillData(args["JBS"])
+
+		return cc.createResponse(
+			{
+				"BILL_ACC_DATA": billAccData,
+				"BILL_PACK_DATA": billPackData
+			}, 200)
+
+	# METHODS
+
+	@staticmethod
+	def getCalculatedBillData(jbs):
 		jbs = []
-		for jb in args["JBS"]:
+		for jb in jbs:
 			if (not jb["ISIN"]): continue
 			jbs.append(jb)
 
@@ -183,18 +195,7 @@ class RegisteredClubsController(cc):
 		billAccData = RegisteredClubsController.getBillAccData(jbs, days)
 		billPackData = RegisteredClubsController.getBillPackData(jbs, days)
 
-		print({
-			"BILL_ACC_DATA": billAccData,
-			"BILL_PACK_DATA": billPackData
-		})
-
-		return cc.createResponse(
-			{
-				"BILL_ACC_DATA": billAccData,
-				"BILL_PACK_DATA": billPackData
-			}, 200)
-
-	# METHODS
+		return (billAccData, billPackData)
 
 	@staticmethod
 	def getBillPackData(jbs, days):
