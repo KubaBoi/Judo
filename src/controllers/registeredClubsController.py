@@ -167,10 +167,12 @@ class RegisteredClubsController(cc):
 
 		cc.checkJson(["JBS", "EVENT_ID"], args)
 
+		event = EventsRepository.find(args["EVENT_ID"])
+
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
 
-		billAccData, billPackData = RegisteredClubsController.getCalculatedBillData(args["JBS"])
+		billAccData, billPackData = RegisteredClubsController.getCalculatedBillData(args["JBS"], event)
 
 		return cc.createResponse(
 			{
@@ -181,13 +183,12 @@ class RegisteredClubsController(cc):
 	# METHODS
 
 	@staticmethod
-	def getCalculatedBillData(jbs):
+	def getCalculatedBillData(jbsAll, event):
 		jbs = []
-		for jb in jbs:
+		for jb in jbsAll:
 			if (not jb["ISIN"]): continue
 			jbs.append(jb)
 
-		event = EventsRepository.find(args["EVENT_ID"])
 		days = RegisteredClubsController.prepareDays(event)
 
 		#int(args["EVENT_ID"]), int(args["JBS"][0]["CLUB_ID"])
@@ -229,7 +230,7 @@ class RegisteredClubsController(cc):
 				{
 					"room_name": RegisteredClubsController.roomNames[beds],
 					"package_name": RegisteredClubsController.packageNames[packageShort],
-					"price_ro": price,
+					"price": price,
 					"start_date": startDate.strftime("%d.%m"),
 					"end_date": endDate.strftime("%d.%m"),
 					"nights": len(daysArr)-1,
