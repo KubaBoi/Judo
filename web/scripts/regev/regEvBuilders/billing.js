@@ -62,12 +62,12 @@ function buildBillAccTable(billAccData) {
     }
 
     addHeader(tbl, [
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
         {"text": "ACCOMODATION TOTAL"},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
         {"text": ""},
         {"text": billAccData.total}
     ]);
@@ -106,13 +106,13 @@ function buildBillPackTable(billPackData) {
     }
 
     addHeader(tbl, [
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
-        {"text": ""},
         {"text": "PACKAGES TOTAL"},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
+        {"text": ""},
         {"text": ""},
         {"text": billPackData.total}
     ]);
