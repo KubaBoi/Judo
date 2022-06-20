@@ -150,14 +150,24 @@ function needVisa(index) {
 function addDay(button, jbIndex, dayIndex) {
     if (button.classList.contains("sml")) {
         button.classList.remove("sml");
-        jbs[jbIndex].ROOMING_LIST.push(dayIndex);  
     }
     else {
         button.classList.add("sml");
-        const index = jbs[jbIndex].ROOMING_LIST.indexOf(dayIndex);
-        if (index > -1) {
-            jbs[jbIndex].ROOMING_LIST.splice(index, 1);
-        }
+    }
+
+    console.log(jbs[jbIndex]);
+    let parent = button.parentNode;
+    let buttons = parent.getElementsByTagName("button");
+
+    jbs[jbIndex].ROOMING_LIST = [];
+    for (let i = 0; i < buttons.length; i++) {
+        let btn = buttons[i];
+        if (btn.classList.contains("sml")) continue;
+        jbs[jbIndex].ROOMING_LIST.push(i);
+    }
+
+    for (let i = 0; i < jbs.length; i++) {
+        console.log(jbs[i].ROOMING_LIST);
     }
     lock();
     checkIfDoneVisa();

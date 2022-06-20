@@ -8,6 +8,7 @@ from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 from src.repositories.clubsRepository import ClubsRepository
 from src.repositories.eventsRepository import EventsRepository
 from src.repositories.registeredJbRepository import RegisteredJbRepository
+from src.repositories.roomsRepository import RoomsRepository
 
 #@controller /registeredClubs;
 class RegisteredClubsController(cc):
@@ -139,11 +140,27 @@ class RegisteredClubsController(cc):
 
 		cc.checkJson(["JBS"], args)
 
-		jbs = []
+		rooms = {}
+
 		for jb in args["JBS"]:
 			if (not jb["ISIN"]): continue
-			jbs.append(jb)
 			print(jb)
+			if (jb["ROOM_ID"] not in rooms.keys()):
+				rooms[jb["ROOM_ID"]] = []
+			rooms[jb["ROOM_ID"]].append(jb)
+
+		for roomId in rooms.keys():
+			room = RoomsRepository.find(roomId)
+			jsonRoom = room.toJson()
+
+			price = 0
+			for jb in rooms[roomId]:
+				print(jb)
+				price += jsonRoom[jb["PACKAGE"]] * (len(jb["ROOMING_LIST"])-1)
+				print(jb["PACKAGE"], jsonRoom[jb["PACKAGE"]])
+			print(price)
+
+		return cc.createResponse({"STATUS": "OK"}, 200)
 
 		
 
