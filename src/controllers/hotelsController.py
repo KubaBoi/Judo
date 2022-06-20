@@ -354,7 +354,7 @@ class HotelsController(cc):
 
 		elif (len(rooms) < roomCount):
 			less = roomCount - len(rooms)
-			HotelsController.createRooms(bed, less, hotelId, roomPrice)
+			HotelsController.createRooms(bed, less, hotelId, roomPrice, bb, hb, fb, liv)
 
 		for room in rooms:
 			room.price = roomPrice

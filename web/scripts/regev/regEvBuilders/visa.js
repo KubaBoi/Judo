@@ -68,7 +68,7 @@ function buildVisaTable() {
 
             createElement("button", roomingCheck, weekdayArray[o], [
                 {"name": "class", "value": cls},
-                {"name": "onclick", "value": `addDay(this, ${i}, ${o})`}
+                {"name": "onclick", "value": `addDay(this, ${i})`}
             ]);
         }
 
@@ -147,7 +147,7 @@ function needVisa(index) {
     checkIfDoneVisa();
 }
 
-function addDay(button, jbIndex, dayIndex) {
+function addDay(button, jbIndex, needsRepair=true) {
     if (button.classList.contains("sml")) {
         button.classList.remove("sml");
     }
@@ -155,7 +155,6 @@ function addDay(button, jbIndex, dayIndex) {
         button.classList.add("sml");
     }
 
-    console.log(jbs[jbIndex]);
     let parent = button.parentNode;
     let buttons = parent.getElementsByTagName("button");
 
@@ -166,11 +165,25 @@ function addDay(button, jbIndex, dayIndex) {
         jbs[jbIndex].ROOMING_LIST.push(i);
     }
 
-    for (let i = 0; i < jbs.length; i++) {
-        console.log(jbs[i].ROOMING_LIST);
+    if (needsRepair) {
+        repairDays(button, jbIndex);
+        lock();
+        checkIfDoneVisa();
     }
-    lock();
-    checkIfDoneVisa();
+}
+
+function repairDays(button, jbIndex) {
+    let parent = button.parentNode;
+    let buttons = parent.getElementsByTagName("button");
+
+    let first = jbs[jbIndex].ROOMING_LIST[0];
+    let last = jbs[jbIndex].ROOMING_LIST[jbs[jbIndex].ROOMING_LIST.length-1];
+
+    for (let i = first+1; i < last; i++) {
+        if (!jbs[jbIndex].ROOMING_LIST.includes(i)) {
+            addDay(buttons[i], jbIndex, false);
+        }
+    }
 }
 
 function changePackage(button, jbIndex) {
