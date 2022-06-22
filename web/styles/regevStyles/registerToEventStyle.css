@@ -145,27 +145,3 @@
 .buttSpan {
     position: relative;
 }
-
-.notification {
-    background-color: var(--main-color);
-    border-radius: 50%;
-    border-style: hidden;
-    width: 15px;
-    height: 15px;
-
-    position: absolute;
-    top: -1em;
-    right: 0.1em;
-}
-
-.notifPend {
-    background-color: var(--pending);
-}
-
-.notifErr {
-    background-color: var(--need-visa);
-}
-
-.notifDone {
-    background-color: var(--registered);
-}

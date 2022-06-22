@@ -8,23 +8,27 @@
             <button onclick="chooseRegTab(this, 'peopleDiv')" class="regTabButton" id="regTabB0">People</button>
             <span class="buttSpan">
                 <button onclick="chooseRegTab(this, 'accDiv')" class="regTabButton" id="regTabB1">Hotel form</button>
-                <img id="regTabC1" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+                <img id="notifAcc" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
             </span>
             <span class="buttSpan">
                 <button onclick="chooseRegTab(this, 'visaDiv')" class="regTabButton" id="regTabB2">Visa/Rooming list</button>
-                <img id="regTabC2" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+                <img id="notifVisa" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
             </span>
             <span class="buttSpan">
-                <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB3">Arrival</button>
-                <img id="regTabC3" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+                <button onclick="chooseRegTab(this, 'covidTestsDiv')" class="regTabButton" id="regTabB3">Covid Tests</button>
+                <img id="notifCovidTests" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+            </span>
+            <span class="buttSpan">
+                <button onclick="chooseRegTab(this, 'arrivalDiv')" class="regTabButton" id="regTabB4">Arrival</button>
+                <img id="notifArrival" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
             </span>
             <span class="buttSpan"> 
-                <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB4">Departure</button>
-                <img id="regTabC4" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+                <button onclick="chooseRegTab(this, 'departureDiv')" class="regTabButton" id="regTabB5">Departure</button>
+                <img id="notifDeparture" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
             </span>
             <span class="buttSpan">
-                <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB5">Billing</button>
-                <img id="regTabC5" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
+                <button onclick="chooseRegTab(this, 'billingDiv')" class="regTabButton" id="regTabB6">Billing</button>
+                <img id="notifBilling" class="notification" src="./images/emptyIcon5x5.png" title="There is something missing. Complete it.">
             </span>
         </div>
         <div id="regEvTablesDiv" class="regEvTablesDiv">
@@ -40,7 +44,7 @@
                 <div class="accPeopleDiv">
                     <button onclick="autoClass()">Auto</button>
                     <button onclick="resetBeds()">Reset</button><br>
-                    <label id="errorLabel1"></label>
+                    <label id="errorLabelnotifAcc"></label>
                     <table id="accPeopleTable"></table>
                 </div>
                 <div id="accRoomDiv" class="accRoomDiv">
@@ -49,7 +53,7 @@
             <hr>
             <h2>Visa</h2>
             <div id="visaDiv" class="lDiv">
-                <label id="errorLabel2"></label><br>
+                <label id="errorLabelnotifVisa"></label><br>
                 <div id="visaSwitchDiv" class="switchDiv" onclick="confirmVisa()">
                     <label id="switchLabel">Confirmed</label>
                     <div class="switchBorder">
@@ -62,10 +66,24 @@
                 </table>
             </div>
             <hr>
+            <h2>Covid Tests</h2>
+            <div id="covidTestsDiv" class="lDiv">
+                <label id="errorLabelnotifCovidTests"></label><br>
+                <div id="covidTestsSwitchDiv" class="switchDiv" onclick="confirmCovidTests()">
+                    <label id="switchLabel">Confirmed</label>
+                    <div class="switchBorder">
+                        <div class="switchButton"></div>
+                    </div>
+                </div><br>
+                <button onclick="resetPcrTests()">Reset PCR</button>
+                <button onclick="resetAgTests()">Reset AG</button>
+                <table id="regEvCovidTestsTable"></table>
+            </div>
+            <hr>
             <h2>Arrival</h2>
             <div id="arrivalDiv" class="accDiv lDiv"> 
                 <div class="accPeopleDiv">
-                    <label id="errorLabel3"></label>
+                    <label id="errorLabelnotifArrival"></label>
                     <table id="arrPeopleTable"></table>
                 </div>
                 <div id="arrRoomDiv" class="arrDiv">
@@ -77,7 +95,7 @@
             <h2>Departure</h2>
             <div id="departureDiv" class="accDiv lDiv">
                 <div class="accPeopleDiv">
-                    <label id="errorLabel4"></label>
+                    <label id="errorLabelnotifDeparture"></label>
                     <table id="depPeopleTable"></table>
                 </div>
                 <div id="depRoomDiv" class="arrDiv">
@@ -88,13 +106,15 @@
             <hr>
             <h2>Billing</h2>
             <div id="billingDiv" class="lDiv">
-                <label id="errorLabel5"></label><hr>
+                <label id="errorLabelnotifBilling"></label><hr>
                 <button>Download bill as PDF</button>
                 <button>Download bill as XLSX</button>
                 <h3>Accomodation</h3>
                 <table id="regEvBillAccTable"></table>
                 <h3>Packages</h3>
                 <table id="regEvBillPackTable"></table>
+                <h3>Summary</h3>
+                <table id="regEvBillSumTable"></table>
             </div>
         </div>
     </div>

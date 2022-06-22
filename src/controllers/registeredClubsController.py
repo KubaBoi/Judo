@@ -165,25 +165,31 @@ class RegisteredClubsController(cc):
 	def calculateBill(server, path, auth):
 		args = cc.readArgs(server)
 
-		cc.checkJson(["JBS", "EVENT_ID"], args)
+		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
 
 		event = EventsRepository.find(args["EVENT_ID"])
 
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
 
-		billAccData, billPackData = RegisteredClubsController.getCalculatedBillData(args["JBS"], event)
+		billAccData, billPackData, billSumData = RegisteredClubsController.getCalculatedBillData(
+			args["JBS"], 
+			event,
+			args["ARRIVALS"],
+			args["DEPARTS"]
+		)
 
 		return cc.createResponse(
 			{
 				"BILL_ACC_DATA": billAccData,
-				"BILL_PACK_DATA": billPackData
+				"BILL_PACK_DATA": billPackData,
+				"BILL_SUM_DATA": billSumData
 			}, 200)
 
 	# METHODS
 
 	@staticmethod
-	def getCalculatedBillData(jbsAll, event):
+	def getCalculatedBillData(jbsAll, event, arrivals, departs):
 		jbs = []
 		for jb in jbsAll:
 			if (not jb["ISIN"]): continue
@@ -196,7 +202,64 @@ class RegisteredClubsController(cc):
 		billAccData = RegisteredClubsController.getBillAccData(jbs, days)
 		billPackData = RegisteredClubsController.getBillPackData(jbs, days)
 
-		return (billAccData, billPackData)
+		billSumData = RegisteredClubsController.getBillSumData(jbs, days, event, arrivals, departs, billAccData, billPackData)
+
+		return (billAccData, billPackData, billSumData)
+
+	@staticmethod
+	def getBillSumData(jbs, days, event, arrivals, departs, billAccData, billPackData):
+		billSumData = {}
+		billSumData["ITEMS"] = []
+		print(event.toJson())
+		print(arrivals)
+
+		billSumData["ITEMS"].append({
+			"name": "Accomodation",
+			"number": 1,
+			"price": billAccData["total"],
+			"total": billAccData["total"]
+		})
+
+		billSumData["ITEMS"].append({
+			"name": "Packages",
+			"number": 1,
+			"price": billPackData["total"],
+			"total": billPackData["total"]
+		})
+
+		billSumData["ITEMS"].append({
+			"name": "PCR Tests",
+			"number": 1,
+			"price": event.pcr_price,
+			"total": billPackData["total"]
+		})
+
+		billSumData["ITEMS"].append({
+			"name": "AG Tests",
+			"number": 1,
+			"price": event.ag_price,
+			"total": billPackData["total"]
+		})
+
+		transCount = len([x for x in arrivals if x["NEED_TRANS"]])
+		transCount += len([x for x in departs if x["NEED_TRANS"]])
+		billSumData["ITEMS"].append({
+			"name": "Transport",
+			"number": transCount,
+			"price": event.trans_price,
+			"total": event.trans_price * transCount
+		})
+
+		billSumData["ITEMS"].append({
+			"name": "Other",
+			"number": 1,
+			"price": event.other_price,
+			"total": billPackData["total"]
+		})
+
+		billSumData["total"] = sum([x["total"] for x in billSumData["ITEMS"]])
+
+		return billSumData
 
 	@staticmethod
 	def getBillPackData(jbs, days):

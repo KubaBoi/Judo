@@ -11,6 +11,7 @@ function onscrollDiv() {
     let peoplePos = document.getElementById("peopleDiv").scrollHeight;
     let accoPos = document.getElementById("accDiv").scrollHeight;
     let visaPos = document.getElementById("visaDiv").scrollHeight;
+    let covidTestsDiv = document.getElementById("covidTestsDiv").scrollHeight;
     let arrivalPos = document.getElementById("arrivalDiv").scrollHeight;
     let departurePos = document.getElementById("departureDiv").scrollHeight;
     let billPos = document.getElementById("billingDiv").scrollHeight;
@@ -26,14 +27,17 @@ function onscrollDiv() {
     else if (peoplePos + accoPos + visaPos >= pos) {
         btn = document.getElementById("regTabB2");
     }
-    else if (peoplePos + accoPos + visaPos + arrivalPos >= pos) {
+    else if (peoplePos + accoPos + visaPos + covidTestsDiv >= pos) {
         btn = document.getElementById("regTabB3");
     }
-    else if (peoplePos + accoPos + visaPos + arrivalPos + departurePos >= pos) {
+    else if (peoplePos + accoPos + visaPos + covidTestsDiv + arrivalPos >= pos) {
         btn = document.getElementById("regTabB4");
     }
-    else if (peoplePos + accoPos + visaPos + arrivalPos + departurePos + billPos >= pos) {
+    else if (peoplePos + accoPos + visaPos + covidTestsDiv + arrivalPos + departurePos >= pos) {
         btn = document.getElementById("regTabB5");
+    }
+    else if (peoplePos + accoPos + visaPos + covidTestsDiv + arrivalPos + departurePos + billPos >= pos) {
+        btn = document.getElementById("regTabB6");
     }
     changeButton(btn);
 }
@@ -100,6 +104,7 @@ function rebuildRegEvTables() {
     buildRoomDiv();
 
     buildVisaTable();
+    buildCovidTestsTable();
     
     buildArrTable();
     buildDepTable();

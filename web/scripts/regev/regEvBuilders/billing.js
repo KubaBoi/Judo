@@ -1,18 +1,20 @@
 
 function isAllDone() {
-    for (let i = 1; i < 5; i++) {
-        if (getNotifStatus(i) != 1) return false;
+    let notifications = document.getElementsByClassName("notification");
+    for (let i = 0; i < notifications.length; i++) {
+        let notif = notifications[i];
+        if (getNotifStatus(notif.id) != 1) return false;
     }
     return true;
 }
 
 async function calculateBill() {
     if (!isAllDone()) {
-        changeNotification(5, "notifPend", "Calculation can be done when everything is set up properly", false);
-        showNotifError(5);
+        changeNotification("notifBilling", "notifPend", "Calculation can be done when everything is set up properly", false);
+        showNotifError("notifBilling");
         return;
     }
-    changeNotification(5, "notifDone", "Done", false);
+    changeNotification("notifBilling", "notifDone", "Done", false);
 
     let req = {
         "JBS": jbs,
@@ -25,6 +27,7 @@ async function calculateBill() {
     if (response.ERROR == null) {
         buildBillAccTable(response.BILL_ACC_DATA);
         buildBillPackTable(response.BILL_PACK_DATA);
+        buildBillSumTable(response.BILL_SUM_DATA);
     }
     else {
         showErrorAlert(response.ERROR, alertTime);
@@ -42,7 +45,7 @@ function buildBillAccTable(billAccData) {
         {"text": "Number of rooms"},
         {"text": "Number of people"},
         {"text": "Nights"},
-        {"text": "RO/night"},
+        {"text": "RO/night €"},
         {"text": "Total €"}
     ]);
 
@@ -85,7 +88,7 @@ function buildBillPackTable(billPackData) {
         {"text": "Number of rooms"},
         {"text": "Number of people"},
         {"text": "Nights"},
-        {"text": "Price per night"},
+        {"text": "Price per night €"},
         {"text": "Total €"}
     ]);
 
@@ -115,5 +118,35 @@ function buildBillPackTable(billPackData) {
         {"text": ""},
         {"text": ""},
         {"text": billPackData.total}
+    ]);
+}
+
+function buildBillSumTable(billSumData) {
+    let tbl = document.getElementById("regEvBillSumTable");
+    clearTable(tbl);
+
+    addHeader(tbl, [
+        {"text": "Name"},
+        {"text": "Number"},
+        {"text": "Price €"},
+        {"text": "Total €"}
+    ]);
+
+    for (let i = 0; i < billSumData.ITEMS.length; i++) {
+        let package = billSumData.ITEMS[i];
+
+        addRow(tbl, [
+            {"text": package.name},
+            {"text": package.number},
+            {"text": package.price},
+            {"text": package.total}
+        ]);
+    }
+
+    addHeader(tbl, [
+        {"text": "TOTAL"},
+        {"text": ""},
+        {"text": ""},
+        {"text": billSumData.total}
     ]);
 }

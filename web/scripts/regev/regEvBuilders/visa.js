@@ -2,7 +2,7 @@
 function buildVisaTable() {
     let visaTable = document.getElementById("regEvVisaTable");
     clearTable(visaTable);
-    lock();
+    lockVisa();
 
     addHeader(visaTable, [
         {"text": "Needs visa"},
@@ -174,7 +174,7 @@ function addDay(button, jbIndex, needsRepair=true) {
 
     if (needsRepair) {
         repairDays(button, jbIndex);
-        lock();
+        lockVisa();
         checkIfDoneVisa();
     }
 
@@ -217,7 +217,7 @@ function changePackage(button, jbIndex) {
     button.classList.add("checkedPackage");
     jbs[jbIndex].PACKAGE = button.innerHTML;
     
-    lock();
+    lockVisa();
     checkIfDoneVisa();
 }
 
@@ -226,7 +226,7 @@ function checkIfDoneVisa() {
     for (let i = 0; i < jbs.length; i++) {
         if (!jbs[i].ISIN) continue;
         if (jbs[i].ROOM_ID == -1) {
-            changeNotification(2, "notifPend", `There are some participants which are not assigned to any room.`);
+            changeNotification("notifVisa", "notifPend", `There are some participants which are not assigned to any room.`);
             return false;
         }
 
@@ -239,13 +239,13 @@ function checkIfDoneVisa() {
             if (passNum.value == "" ||
                 passRel.value == "" ||
                 passExp.value == "") {
-                    changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
+                    changeNotification("notifVisa", "notifPend", "Someone needs visa but does not have filled passport properties");
                     return false;
             }
         }
     }
 
-    changeNotification(2, "notifPend", "Confirm, so we know you are sure");
+    changeNotification("notifVisa", "notifPend", "Confirm, so we know you are sure");
     return true;
 }
 
@@ -279,17 +279,17 @@ function confirmVisa() {
         confirmedVisa = true;
 
         if (!checkIfDoneVisa()) {
-            showNotifError(2);
+            showNotifError("notifVisa");
             chooseRegTab(document.getElementById("regTabB2"), "visaDiv");
-            setTimeout(lock, 500);
+            setTimeout(lockVisa, 500);
         }
         else {
-            changeNotification(2, "notifDone", "Done");
+            changeNotification("notifVisa", "notifDone", "Done");
         }
     }
 }
 
-function lock() {
+function lockVisa() {
     let div = document.getElementById("visaSwitchDiv");
     let border = div.getElementsByClassName("switchBorder")[0];
     let button = div.getElementsByClassName("switchButton")[0];

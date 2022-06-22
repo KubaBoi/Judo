@@ -2,7 +2,7 @@ function buildDepTable() {
     let tbl = document.getElementById("depPeopleTable");
     clearTable(tbl);
 
-    changeNotification(4, "notifDone", "Done", false);
+    changeNotification("notifDeparture", "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
@@ -93,7 +93,7 @@ function createDepartures() {
 
         if (!jb.ISIN) {
             dv.classList.add("missing");
-            changeNotification(4, "notifErr", "Someone is assigned into flight but is not included in event");
+            changeNotification("notifDeparture", "notifErr", "Someone is assigned into flight but is not included in event");
         }
     }
 }
@@ -174,7 +174,7 @@ function checkIfDoneDep() {
 
         if (tm.value == "" ||
             num.value == "") {
-            changeNotification(4, "notifPend", "Some flight is missing time or number.");
+            changeNotification("notifDeparture", "notifPend", "Some flight is missing time or number.");
             return;
         }
     }
@@ -183,13 +183,13 @@ function checkIfDoneDep() {
         let jb = jbs[i];
         if (!jb.ISIN) continue;
         if (jb.DEP_FLIGHT == -1) {
-            changeNotification(4, "notifPend", "Someone does not have been assigned to any flight");
+            changeNotification("notifDeparture", "notifPend", "Someone does not have been assigned to any flight");
             return;
         }
     }
 
     // check if there is not an error
-    if (getNotifStatus(4) != 2) {
-        changeNotification(4, "notifDone", "Done");
+    if (getNotifStatus("notifDeparture") != 2) {
+        changeNotification("notifDeparture", "notifDone", "Done");
     }
 }
