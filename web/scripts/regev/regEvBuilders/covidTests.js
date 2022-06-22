@@ -53,6 +53,24 @@ function buildCovidTestsTable() {
     checkIfDoneCovidTests();
 }
 
+function resetPcrTests() {
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (!jb.ISIN) continue;
+        jb.PCR_TESTS = 1;
+    }
+    buildCovidTestsTable();
+}
+
+function resetAgTests() {
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (!jb.ISIN) continue;
+        jb.AG_TESTS = 0;
+    }
+    buildCovidTestsTable();
+}
+
 function changeCovidTestsAll(inp) {
     let idTemp = "pcrTestsInp";
     if (inp.id == "agTestsInpAll") idTemp = "agTestsInp";
