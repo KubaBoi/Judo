@@ -17,7 +17,7 @@ function buildCovidTestsTable() {
     addNumberInput(agTestsInp);
 
     addHeader(covidTestsTable, [
-        {"text": "To all"},
+        {"text": ""},
         {"text": pcrTestsInp.getElementOuterHtml()},
         {"text": agTestsInp.getElementOuterHtml()},
     ]);
@@ -59,6 +59,7 @@ function resetPcrTests() {
         if (!jb.ISIN) continue;
         jb.PCR_TESTS = 1;
     }
+    lockCovidTests();
     buildCovidTestsTable();
 }
 
@@ -68,6 +69,7 @@ function resetAgTests() {
         if (!jb.ISIN) continue;
         jb.AG_TESTS = 0;
     }
+    lockCovidTests();
     buildCovidTestsTable();
 }
 
@@ -89,6 +91,7 @@ function changeCovidTests(index) {
     jbs[index].PCR_TESTS = getNumberInput(`pcrTestsInp${index}`).getValue();
     jbs[index].AG_TESTS = getNumberInput(`agTestsInp${index}`).getValue();
 
+    lockCovidTests();
     checkIfDoneCovidTests();
 }
 

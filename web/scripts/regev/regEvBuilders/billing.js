@@ -3,6 +3,7 @@ function isAllDone() {
     let notifications = document.getElementsByClassName("notification");
     for (let i = 0; i < notifications.length; i++) {
         let notif = notifications[i];
+        if (notif.id == "notifBilling") continue;
         if (getNotifStatus(notif.id) != 1) return false;
     }
     return true;
