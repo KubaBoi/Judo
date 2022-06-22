@@ -167,14 +167,16 @@ class RegisteredClubsController(cc):
 
 		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
 
-		event = EventsRepository.find(args["EVENT_ID"])
-
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
+
+		event = EventsRepository.find(args["EVENT_ID"])
+		club = ClubsRepository.find(int(args["JBS"][0]["CLUB_ID"]))
 
 		billAccData, billPackData, billSumData = RegisteredClubsController.getCalculatedBillData(
 			args["JBS"], 
 			event,
+			club,
 			args["ARRIVALS"],
 			args["DEPARTS"]
 		)
@@ -189,7 +191,7 @@ class RegisteredClubsController(cc):
 	# METHODS
 
 	@staticmethod
-	def getCalculatedBillData(jbsAll, event, arrivals, departs):
+	def getCalculatedBillData(jbsAll, event, club, arrivals, departs):
 		jbs = []
 		for jb in jbsAll:
 			if (not jb["ISIN"]): continue
@@ -202,16 +204,14 @@ class RegisteredClubsController(cc):
 		billAccData = RegisteredClubsController.getBillAccData(jbs, days)
 		billPackData = RegisteredClubsController.getBillPackData(jbs, days)
 
-		billSumData = RegisteredClubsController.getBillSumData(jbs, days, event, arrivals, departs, billAccData, billPackData)
+		billSumData = RegisteredClubsController.getBillSumData(jbs, event, club, arrivals, departs, billAccData, billPackData)
 
 		return (billAccData, billPackData, billSumData)
 
 	@staticmethod
-	def getBillSumData(jbs, days, event, arrivals, departs, billAccData, billPackData):
+	def getBillSumData(jbs, event, club, arrivals, departs, billAccData, billPackData):
 		billSumData = {}
 		billSumData["ITEMS"] = []
-		print(event.toJson())
-		print(arrivals)
 
 		billSumData["ITEMS"].append({
 			"name": "Accomodation",
@@ -227,18 +227,28 @@ class RegisteredClubsController(cc):
 			"total": billPackData["total"]
 		})
 
+		ejuCount = 0 if club.eju else 1
 		billSumData["ITEMS"].append({
-			"name": "PCR Tests",
-			"number": 1,
-			"price": event.pcr_price,
-			"total": billPackData["total"]
+			"name": "EJU",
+			"number": ejuCount,
+			"price": event.eju_price,
+			"total": event.eju_price * ejuCount
 		})
 
+		pcrCount = sum([x["PCR_TESTS"] for x in jbs if x["ISIN"]])
+		billSumData["ITEMS"].append({
+			"name": "PCR Tests",
+			"number": pcrCount,
+			"price": event.pcr_price,
+			"total": event.pcr_price * pcrCount
+		})
+
+		agCount = sum([x["AG_TESTS"] for x in jbs if x["ISIN"]])
 		billSumData["ITEMS"].append({
 			"name": "AG Tests",
-			"number": 1,
+			"number": agCount,
 			"price": event.ag_price,
-			"total": billPackData["total"]
+			"total": event.ag_price * agCount
 		})
 
 		transCount = len([x for x in arrivals if x["NEED_TRANS"]])
@@ -254,7 +264,7 @@ class RegisteredClubsController(cc):
 			"name": "Other",
 			"number": 1,
 			"price": event.other_price,
-			"total": billPackData["total"]
+			"total": event.other_price
 		})
 
 		billSumData["total"] = sum([x["total"] for x in billSumData["ITEMS"]])
