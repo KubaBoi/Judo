@@ -34,7 +34,18 @@ function addArrival() {
 }
 
 function removeArrival(index) {
-    
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (jb.ARR_FLIGHT == index) {
+            jb.ARR_FLIGHT = -1;
+        }
+        else if (jb.ARR_FLIGHT > index) {
+            jb.ARR_FLIGHT -= 1;
+        }
+    }
+
+    removeFromArrayByIndex(arrivals, index)
+    buildArrTable();
 }
 
 function removeFromArr(index) {
@@ -55,7 +66,7 @@ function createArrivals() {
             {"text": `<label>Arrival time: </label><input type="datetime-local" id="arrTmInp${i}" value="${getTimestamp(arrival.TIME, false)}">`},
             {"text": `<label>Flight number: </label><input type="text" id="arrNumInp${i}" value="${arrival.NUMBER}">`},
             {"text": `<label>Need transport: </label><input type="checkbox" id="arrTranInp${i}" checked="${arrival.NEED_TRANS}">`},
-            {"text": `<img src="./images/deleteIcon48.png" title="Remove flight">`}
+            {"text": `<img src="./images/deleteIcon48.png" onclick=removeArrival(${i}) title="Remove flight">`}
         ]);
 
         let buttDiv = createElement("div", dv);

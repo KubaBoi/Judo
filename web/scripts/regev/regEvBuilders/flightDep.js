@@ -34,7 +34,18 @@ function addDeparture() {
 }
 
 function removeDepart(index) {
-    
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (jb.DEP_FLIGHT == index) {
+            jb.DEP_FLIGHT = -1;
+        }
+        else if (jb.DEP_FLIGHT > index) {
+            jb.DEP_FLIGHT -= 1;
+        }
+    }
+
+    removeFromArrayByIndex(departs, index)
+    buildDepTable();
 }
 
 function removeFromDep(index) {
@@ -55,7 +66,7 @@ function createDepartures() {
             {"text": `<label>Departure time: </label><input type="datetime-local" id="depTmInp${i}" value="${getTimestamp(depart.TIME, false)}">`},
             {"text": `<label>Flight number: </label><input type="text" id="depNumInp${i}" value="${depart.NUMBER}">`},
             {"text": `<label>Need transport: </label><input type="checkbox" id="depTranInp${i}" checked="${depart.NEED_TRANS}">`},
-            {"text": `<img src="./images/deleteIcon48.png">`}
+            {"text": `<img src="./images/deleteIcon48.png" onclick=removeDepart(${i}) title="Remove flight">`}
         ]);
 
         let buttDiv = createElement("div", dv);
