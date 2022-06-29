@@ -10,4 +10,6 @@ update bed set reg_jb_id=-1;
 update rooms set available=true;
 update registered_clubs set status=1 where event_id=1 and club_id=1;
 delete from registered_tests;
+delete from registered_jb;
+
 select * from bed where reg_jb_id != -1;

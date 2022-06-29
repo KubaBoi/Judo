@@ -159,6 +159,12 @@ class RegisteredClubsController(cc):
 			args["DEPARTS"]
 		)
 
+		print({
+				"BILL_ACC_DATA": billAccData,
+				"BILL_PACK_DATA": billPackData,
+				"BILL_SUM_DATA": billSumData
+			})
+
 		return cc.createResponse(
 			{
 				"BILL_ACC_DATA": billAccData,
@@ -237,6 +243,7 @@ class RegisteredClubsController(cc):
 
 	@staticmethod
 	def registerBed(roomId, jbModel, regBeds):
+		roomModel = RoomsRepository.find(roomId)
 		freeBeds = BedRepository.findByRoomId(roomId)
 		freeBed = None
 		for fBed in freeBeds:
@@ -244,14 +251,13 @@ class RegisteredClubsController(cc):
 				freeBed = fBed
 				break
 
-		if (freeBed == None):
+		if (freeBed == None or freeBed.reg_jb_id != -1 or not roomModel.available):
 			raise Conflict("Room is no longer available")
 
 		regBeds.append(freeBed.id)
 		freeBed.reg_jb_id = jbModel.id
 		BedRepository.update(freeBed)
 
-		roomModel = RoomsRepository.find(roomId)
 		roomModel.available = False
 		RoomsRepository.update(roomModel)
 		return regBeds
