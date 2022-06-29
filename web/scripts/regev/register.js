@@ -6,6 +6,12 @@ function regEvShow() {
     registerToEventDiv.style.animationDuration = "0.5s";
 }
 
+function regEvConfClose() {
+    showConfirm("Are you sure?", 
+        "Your progress will not be saved.",
+        regEvClose);
+}
+
 function regEvClose() {
     var registerToEventDiv = document.getElementById("registerToEventDiv");
     registerToEventDiv.style.animationName = "closeRegisterToEvent";

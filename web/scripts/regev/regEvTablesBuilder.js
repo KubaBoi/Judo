@@ -109,4 +109,3 @@ function rebuildRegEvTables() {
     buildArrTable();
     buildDepTable();
 }
-

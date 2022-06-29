@@ -4,8 +4,13 @@
 from Cheese.cheeseRepository import CheeseRepository
 
 #@repository bed;
-#@dbscheme (id, room_id, jb_id);
+#@dbscheme (id, room_id, reg_jb_id);
 #@dbmodel Bed;
 class BedRepository(CheeseRepository):
-	pass
+	
+	#@query "select * from bed where room_id=:roomId;";
+	#@return array;
+	@staticmethod
+	def findByRoomId(roomId):
+		return CheeseRepository.query(roomId=roomId)
 

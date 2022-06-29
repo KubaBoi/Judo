@@ -257,41 +257,7 @@ class HotelsController(cc):
 			room.beds = BedRepository.findBy("room_id", room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
-		return cc.createResponse(jsonResponse, 200)
-		
-
-	#@post /reserveBed;
-	@staticmethod
-	def reserveBed(server, path, auth):
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['HOTEL_ID', 'ROOM_ID', 'JBS'], args)):
-			raise BadRequest("Wrong json structure")
-
-		hotelId = args["HOTEL_ID"]
-		roomId = args["ROOM_ID"]
-		jbs = args["JBS"]
-
-		room = RoomsRepository.find(roomId)
-
-		if (not room.available):
-			raise Conflict("Room is already occupied")
-
-		beds = BedRepository.findBy("room_id", roomId)
-
-		if (len(beds) < len(jbs)):
-			raise Forbidden("Room does not have such a capacity")
-
-		for bed in beds:
-			if (bed.jb_id == -1):
-				bed.jb_id = jbs
-				BedRepository.update(bed)
-
-		room.available = False
-		RoomsRepository.update(room)
-
-		return cc.createResponse({'STATUS': 'Bed has been reserved'}, 200)
-		
+		return cc.createResponse(jsonResponse, 200)		
 
 	#@get /remove;
 	@staticmethod
@@ -337,7 +303,7 @@ class HotelsController(cc):
 
 			for o in range(countOfBeds):
 				newBed = BedRepository.model()
-				newBed.jb_id = -1
+				newBed.reg_jb_id = -1
 				newBed.room_id = newRoom.id
 				BedRepository.save(newBed)
 

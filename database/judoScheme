@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS public.bed
 (
     id bigint NOT NULL,
     room_id bigint NOT NULL,
-    jb_id bigint NOT NULL,
+    reg_jb_id bigint NOT NULL,
     CONSTRAINT bed_pkey PRIMARY KEY (id)
 );
 
