@@ -3,9 +3,10 @@
         "enabled": true,
         "types": [
             {
-                "patern": "(?P<login>[a-zA-Z0-9@.]+):(?P<password>[a-zA-Z0-9@._]+)",
+                "patern": "(?P<login>[a-zA-Z0-9@.]+):(?P<password>[a-zA-Z0-9@.$_]+)",
                 "validation": "select * from passwords where password = $password$ and login = $login$",
-                "roleId": "select role_id from users where login = $login$"
+                "roleId": "select role_id from users where login = $login$",
+                "encoders": {}
             }
         ]
     },
@@ -32,7 +33,9 @@
         "/users/get": {
             "minRoleId": 2 
         },
-
+        "/events/*": {
+            "minRoleId": 2
+        },
         "/events/create": {
             "minRoleId": 1
         },
@@ -42,11 +45,9 @@
         "/events/remove": {
             "minRoleId": 1
         },
-
         "/clubs/*": {
             "minRoleId": 2
         },
-
         "/jb/create": {
             "minRoleId": 1
         },
@@ -65,7 +66,6 @@
         "/jb/remove": {
             "minRoleId": 2
         },
-        
         "/hotels/create": {
             "minRoleId": 1
         }
