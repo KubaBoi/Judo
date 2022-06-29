@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+    </head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        table, td {
+            border: solid;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table {
+            margin: 0;
+            border-width: 2px;
+            width: 100%;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .centerBig {
+            text-align: center;
+            font-size: 25px;
+            padding: 10px;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .left {
+            text-align: left;
+        }
+    </style>
+    <body>
+        <img src="http://localhost:$PORT$/images/szj_logo.png"><br><br>
+        <!-- HEADER -->
+        <table>
+            <tr>
+                <td colspan="3" class="centerBig"><b>Český svaz juda / Czech Judo Federation</b></td>
+            </tr>
+            <tr>
+                <td>Zátopkova 100/2, 160 17 Praha 6 - Břevno</td>
+                <td rowspan="3">Bank:</td>
+                <td>MONETA MONEY BANK</td>
+            </tr>
+            <tr>
+                <td>Czech Republic</td>
+                <td>Vítězné nám. 2</td>
+            </tr>
+            <tr>
+                <td>Id. No.: 00537560</td>
+                <td>160 00 Praha 6, Czech Republic</td>
+            </tr>
+            <tr>
+                <td>VAT: CZ00537560</td>
+                <td>A/C No.:</td>
+                <td>181 060 351/0600</td>
+            </tr>
+            <tr>
+                <td>tel: +420-233-355-280 </td>
+                <td>IBAN:</td>
+                <td>CZ14 0600 0000 0001 8106 0351</td>
+            </tr>
+            <tr>
+                <td>fax: +420-257-214-265</td>
+                <td>SWIFT:</td>
+                <td>AGBACZPP</td>
+            </tr>
+            <tr>
+                <td colspan="3">e-mail: czechjudo@czechjudo.cz</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="centerBig"><b>$EVENT_NAME$</b></td>
+                <td class="centerBig"><b>$PLACE_YEAR$</b></td>
+            </tr>
+        </table>
+        
+        <!-- INVOICE -->
+        <table>
+            <tr>
+                <td class="right">INVOICE no.:</td>
+                <td class="left"><b>$INVOICE$</b></td>
+                <td class="right">Date:</td>
+                <td class="left"><b>$DATE$</b></td>
+            </tr>
+            <tr>
+                <td rowspan="3" class="centerBig right"><b>To:</b></td>
+                <td rowspan="3" colspan="3" class="centerBig">$TO$</td>
+            </tr>
+        </table>
+        <br>
+        <!-- ACCOMODATION -->
+        <table>
+            <tr>
+                <td colspan="9" class="center"><b>TOURNAMENT ACCOMMODATION</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="center">Room type</td>
+                <td class="center">Arrival date</td>
+                <td class="center">Departure date</td>
+                <td class="center">Number / rooms</td>
+                <td class="center">Number / persons</td>
+                <td class="center">Nights</td>
+                <td class="center">PP/night</td>
+                <td class="center">TOTAL €</td>
+            </tr>
+            $ROOMS$
+            <tr>
+                <td colspan="8" class="center"><b>Accomodation total</b></td>
+                <td class="right"><b>$ACC_TOTAL$</b></td>
+            </tr>
+        </table>
+        <br>
+        <!-- PACKAGES -->
+        <table>
+            <tr>
+                <td colspan="10" class="center"><b>FOOD PACKAGES</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="center">Room type</td>
+                <td class="center">Package</td>
+                <td class="center">Arrival date</td>
+                <td class="center">Departure date</td>
+                <td class="center">Number / rooms</td>
+                <td class="center">Number / persons</td>
+                <td class="center">Nights</td>
+                <td class="center">PP/night</td>
+                <td class="center">TOTAL €</td>
+            </tr>
+            $PACKAGES$
+            <tr>
+                <td colspan="9" class="center"><b>Packages total</b></td>
+                <td class="right"><b>$PACKAGES_TOTAL$</b></td>
+            </tr>
+        </table>
+        <br>
+        <!-- SUMMARY -->
+        <table>
+            <tr>
+                <td colspan="4" class="center"><b>SUMMARY</b></td>
+            </tr>
+            <tr>
+                <td class="center">Name</td>
+                <td class="center">Number</td>
+                <td class="center">Price for one €</td>
+                <td class="center">Total €</td>
+            </tr>
+            $SUMMARY$
+            <tr>
+                <td colspan="3" class="centerBig"><b>TOTAL</b></td>
+                <td class="centerBig"><b>$SUMM_TOTAL$</b></td>
+            </tr>
+        </table>
+    </body>
+</html>

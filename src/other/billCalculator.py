@@ -3,6 +3,8 @@ from datetime import timedelta
 
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository as rcr
 from src.repositories.roomsRepository import RoomsRepository as rr
+from src.repositories.eventsRepository import EventsRepository
+from src.repositories.clubsRepository import ClubsRepository
 
 class BillCalculator:
 
@@ -22,7 +24,15 @@ class BillCalculator:
     }
 
     @staticmethod
-    def getCalculatedBillData(jbsAll, event, club, arrivals, departs):
+    def getCalculatedBillData(args):
+
+        event = EventsRepository.find(args["EVENT_ID"])
+        club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
+
+        jbsAll = args["JBS"]
+        arrivals = args["ARRIVALS"]
+        departs = args["DEPARTS"]
+
         jbs = []
         for jb in jbsAll:
             if (not jb["ISIN"]): continue

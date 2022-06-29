@@ -9,6 +9,52 @@ function isAllDone() {
     return true;
 }
 
+async function getPdfBill() {
+    if (!isAllDone()) {
+        showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
+        return;
+    }
+
+    let req = {
+        "JBS": jbs,
+        "ARRIVALS": arrivals,
+        "DEPARTS": departs,
+        "EVENT_ID": activeEvent.ID
+    }
+
+    var response = await callEndpoint("POST", "/bills/getBillPdf", req);
+    if (response.ERROR == null) {
+        bill = response.BILL;
+        window.open(`/bills/pdf/${bill}`, "_blank");
+    }
+    else {
+        showErrorAlert(response.ERROR, alertTime);
+    }
+}
+
+async function getXlsxBill() {
+    if (!isAllDone()) {
+        showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
+        return;
+    }
+
+    let req = {
+        "JBS": jbs,
+        "ARRIVALS": arrivals,
+        "DEPARTS": departs,
+        "EVENT_ID": activeEvent.ID
+    }
+
+    var response = await callEndpoint("POST", "/bills/getBillXlsx", req);
+    if (response.ERROR == null) {
+        bill = response.BILL;
+        window.open(`/bills/xlsx/${bill}`, "_blank");
+    }
+    else {
+        showErrorAlert(response.ERROR, alertTime);
+    }
+}
+
 async function calculateBill() {
     if (!isAllDone()) {
         changeNotification("notifBilling", "notifPend", "Calculation can be done when everything is set up properly", false);

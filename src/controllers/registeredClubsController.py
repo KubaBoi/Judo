@@ -148,22 +148,7 @@ class RegisteredClubsController(cc):
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
 
-		event = EventsRepository.find(args["EVENT_ID"])
-		club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
-
-		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(
-			args["JBS"], 
-			event,
-			club,
-			args["ARRIVALS"],
-			args["DEPARTS"]
-		)
-
-		print({
-				"BILL_ACC_DATA": billAccData,
-				"BILL_PACK_DATA": billPackData,
-				"BILL_SUM_DATA": billSumData
-			})
+		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(args)
 
 		return cc.createResponse(
 			{
@@ -189,15 +174,8 @@ class RegisteredClubsController(cc):
 
 		event = EventsRepository.find(args["EVENT_ID"])
 		reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["JBS"][0]["CLUB_ID"])
-		club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
 
-		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(
-			args["JBS"], 
-			event,
-			club,
-			args["ARRIVALS"],
-			args["DEPARTS"]
-		)
+		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(args)
 
 		cr.disableAutocommit()
 		try:
