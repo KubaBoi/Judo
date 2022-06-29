@@ -52,6 +52,7 @@ async function succLogin(response) {
     await getHtml("clubs", "main/",  "loggedDiv", "contentDiv");
     await getHtml("account", "main/",  "loggedDiv", "contentDiv");
     await getHtml("registerToEvent", "main/", "body", "registerToEventDiv");
+    await getHtml("registeredToEvent", "main/", "body", "registerToEventDiv");
     
     //newContent("mainDiv");
     buildEventTable();

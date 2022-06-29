@@ -162,4 +162,63 @@ CREATE TABLE IF NOT EXISTS public.users
     role_id bigint NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS public.bills
+(
+    id bigint NOT NULL,
+    event_id bigint NOT NULL,
+    reg_club_id bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_rooms
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    room_name text NOT NULL,
+    price_ro bigint NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    nights bigint NOT NULL,
+    count_people bigint NOT NULL,
+    count_room bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_items
+(
+    id bigint NOT NULL,
+    bill_id bigint NOT NULL,
+    name text NOT NULL,
+    "number" bigint NOT NULL,
+    price bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_packages
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    room_name text NOT NULL,
+    package_name text NOT NULL,
+    price bigint NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    nights bigint NOT NULL,
+    count_people bigint NOT NULL,
+    count_room bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_change_comments
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    comment text NOT NULL,
+    PRIMARY KEY (id)
+);
 END;

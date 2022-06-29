@@ -55,7 +55,7 @@ class BillCalculator:
         billSumData["ITEMS"] = []
 
         billSumData["ITEMS"].append({
-            "name": "Accomodation",
+            "name": "Accommodation",
             "number": 1,
             "price": billAccData["total"],
             "total": billAccData["total"]
@@ -146,8 +146,8 @@ class BillCalculator:
                     "room_name": BillCalculator.roomNames[beds],
                     "package_name": BillCalculator.packageNames[packageShort],
                     "price": price,
-                    "start_date": startDate.strftime("%d.%m"),
-                    "end_date": endDate.strftime("%d.%m"),
+                    "start_date": startDate,
+                    "end_date": endDate,
                     "nights": len(daysArr)-1,
                     "count_people": len(package["JBS"]),
                     "count_room": len(package["ROOM_ARRAY"]),
@@ -192,8 +192,8 @@ class BillCalculator:
                 {
                     "room_name": BillCalculator.roomNames[beds],
                     "price_ro": price,
-                    "start_date": startDate.strftime("%d.%m"),
-                    "end_date": endDate.strftime("%d.%m"),
+                    "start_date": startDate,
+                    "end_date": endDate,
                     "nights": len(daysArr)-1,
                     "count_people": len(room["JBS"]),
                     "count_room": len(room["ROOM_ARRAY"]),

@@ -79,6 +79,18 @@ class JbController(cc):
 
 		return cc.createResponse({'STATUS': 'Jb has been updated'}, 200)
 
+	#@get /get;
+	@staticmethod
+	def get(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["jbId"], args)
+
+		jb = JbRepository.find(args["jbId"])
+		if (jb == None):
+			raise NotFound("Jb was not found")
+
+		return cc.createResponse({"JB": jb.toJson()})
+
 
 	#@get /getByClub;
 	@staticmethod

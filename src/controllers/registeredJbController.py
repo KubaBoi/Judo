@@ -51,20 +51,14 @@ class RegisteredJbController(cc):
 	#@get /getByRegisteredClub;
 	@staticmethod
 	def getByRegisteredClub(server, path, auth):
-		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['regClubId'], args)):
-			raise BadRequest("Wrong json structure")
+		args = cc.getArgs(path)
+		cc.checkJson(["regClubId"], args)
 
 		regClubId = args["regClubId"]
 
 		registeredjbArray = RegisteredJbRepository.findBy("reg_club_id", regClubId)
-		jsonResponse = {}
-		jsonResponse["REGISTERED_JBS"] = []
-		for registered_jb in registeredjbArray:
-			jsonResponse["REGISTERED_JBS"].append(registered_jb.toJson())
 
-		return cc.createResponse(jsonResponse, 200)
+		return cc.createResponse({"REGISTERED_JBS": cc.modulesToJsonArray(registeredjbArray)})
 
 	#@post /remove;
 	@staticmethod

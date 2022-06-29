@@ -1,0 +1,65 @@
+<button class="rightButton" onclick="regIvClose()">X</button>
+<h1>Registered</h1>
+<div class="regEvDiv">
+    <h2 id="regIvName"></h2>
+    <div id="regIvInfoDiv" class="infoDiv"></div>
+    <div id="regIvFlightsDiv" class="flightDiv">
+        <div id="regIvContentsDiv" class="contents">
+            <button onclick="chooseRegTabI(this, 'peopleIDiv')" class="regTabButton" id="regITabB0">People</button>
+            <button onclick="chooseRegTabI(this, 'accIDiv')" class="regTabButton" id="regITabB1">Hotel form</button>
+            <button onclick="chooseRegTabI(this, 'visaIDiv')" class="regTabButton" id="regITabB2">Visa/Rooming list</button>
+            <button onclick="chooseRegTabI(this, 'covidTestsIDiv')" class="regTabButton" id="regITabB3">Covid Tests</button>
+            <button onclick="chooseRegTabI(this, 'arrivalIDiv')" class="regTabButton" id="regITabB4">Arrival</button>
+            <button onclick="chooseRegTabI(this, 'billingIDiv')" class="regTabButton" id="regITabB6">Billing</button>
+        </div>
+        <div id="regIvTablesDiv" class="regEvTablesDiv">
+            <div id="peopleIDiv" class="lDiv">
+                <table id="regIvPeopleTable">
+                </table>
+            </div>
+            <hr>
+            <h2>Hotel form</h2>
+            <div id="accIDiv" class="accDiv lDiv">
+                <div id="accRoomIDiv" class="accRoomDiv">
+                </div>
+            </div>
+            <hr>
+            <h2>Visa</h2>
+            <div id="visaIDiv" class="lDiv">
+                <table id="regIvVisaTable">
+                </table>
+            </div>
+            <hr>
+            <h2>Covid Tests</h2>
+            <div id="covidTestsIDiv" class="lDiv">
+                <table id="regIvCovidTestsTable"></table>
+            </div>
+            <hr>
+            <h2>Arrival</h2>
+            <div id="arrivalIDiv" class="accDiv lDiv"> 
+                <div id="arrRoomIDiv" class="arrDiv">
+                    <div id="arrFlightsIDiv"></div>
+                </div>
+            </div>
+            <hr>
+            <h2>Departure</h2>
+            <div id="departureIDiv" class="accDiv lDiv">
+                <div id="depRoomIDiv" class="arrDiv">
+                    <div id="depFlightsIDiv"></div>
+                </div>
+            </div>
+            <hr>
+            <h2>Billing</h2>
+            <div id="billingIDiv" class="lDiv">
+                <button onclick="getPdfBillI()">Download bill as PDF</button>
+                <button onclick="getXlsxBillI()">Download bill as XLSX</button>
+                <h3>Accommodation</h3>
+                <table id="regIvBillAccTable"></table>
+                <h3>Packages</h3>
+                <table id="regIvBillPackTable"></table>
+                <h3>Summary</h3>
+                <table id="regIvBillSumTable"></table>
+            </div>
+        </div>
+    </div>
+</div>

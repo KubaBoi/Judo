@@ -1,0 +1,11 @@
+select * from bills;
+select * from bill_items;
+select * from bill_rooms;
+select * from bill_packages;
+select * from bill_change_comments;
+
+delete from bills;
+delete from bill_items;
+delete from bill_rooms;
+delete from bill_packages;
+delete from bill_change_comments;

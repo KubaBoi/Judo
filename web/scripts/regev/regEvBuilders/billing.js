@@ -22,7 +22,7 @@ async function getPdfBill() {
         "EVENT_ID": activeEvent.ID
     }
 
-    var response = await callEndpoint("POST", "/bills/getBillPdf", req);
+    var response = await callEndpoint("POST", "/bills/postBillPdf", req);
     if (response.ERROR == null) {
         bill = response.BILL;
         window.open(`/bills/pdf/${bill}`, "_blank");
@@ -45,7 +45,7 @@ async function getXlsxBill() {
         "EVENT_ID": activeEvent.ID
     }
 
-    var response = await callEndpoint("POST", "/bills/getBillXlsx", req);
+    var response = await callEndpoint("POST", "/bills/postBillXlsx", req);
     if (response.ERROR == null) {
         bill = response.BILL;
         window.open(`/bills/xlsx/${bill}`, "_blank");
@@ -228,6 +228,8 @@ async function confirmRegPart2True() {
     let response = await callEndpoint("POST", "/registeredClubs/confirmReg", req);
     if (response.ERROR == null) {
         showOkAlert("Registered :)", "Your club has been successfully registered.");
+        buildEventTable();
+        regEvClose();
     }
     else {
         showErrorAlert(response.ERROR, alertTime);

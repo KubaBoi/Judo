@@ -35,7 +35,7 @@ function registerButton(eventId, status) {
         registerToEventShow(eventId);
     }
     else if (status == 2) {
-        showOkAlert("Registrated", "Your team is already registrated :)", alertTime);
+        registeredToEventShow(eventId);
     }
 }
 

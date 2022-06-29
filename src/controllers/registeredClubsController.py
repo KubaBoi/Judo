@@ -5,6 +5,8 @@ from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 from Cheese.cheeseRepository import CheeseRepository as cr
 
+from src.controllers.billsController import BillsController
+
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
 from src.repositories.clubsRepository import ClubsRepository
 from src.repositories.eventsRepository import EventsRepository
@@ -102,6 +104,18 @@ class RegisteredClubsController(cc):
 		return cc.createResponse(jsonResponse, 200)
 
 
+	#@get /getByEventAndClub;
+	@staticmethod
+	def getByEventAndClub(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["eventId", "clubId"], args)
+
+		regClub = RegisteredClubsRepository.registeredClubInEvent(args["eventId"], args["clubId"])
+		if (regClub == None):
+			raise NotFound("Club was not found")
+
+		return cc.createResponse({"REG_CLUB": regClub.toJson()})
+
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
@@ -175,12 +189,10 @@ class RegisteredClubsController(cc):
 		event = EventsRepository.find(args["EVENT_ID"])
 		reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["JBS"][0]["CLUB_ID"])
 
-		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(args)
-
 		cr.disableAutocommit()
 		try:
-			addJbsId = RegisteredJbRepository.findNewId()
-			addTestsId = RegisteredTestsRepository.findNewId()
+			addJbsId = 0
+			addTestsId = 0
 			regBeds = []
 			for jb in jbs:
 				arrival = args["ARRIVALS"][jb["ARR_FLIGHT"]]
@@ -196,10 +208,14 @@ class RegisteredClubsController(cc):
 
 			reg_club.status = 2
 			RegisteredClubsRepository.update(reg_club)
+
+			BillsController.saveBill(args)
+
 			cr.commit()
 		except Exception as e:
-			cr.disableAutocommit()
+			cr.enableAutocommit()
 			raise e
+		cr.enableAutocommit()
 
 		return cc.createResponse({"STATUS": "Club has been registered"}, 200)
 
