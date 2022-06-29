@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS public.registered_tests
     id bigint NOT NULL,
     reg_jb_id bigint NOT NULL,
     pcr boolean NOT NULL,
-    date timestamp with time zone NOT NULL,
+    date timestamp with time zone,
     CONSTRAINT registered_tests_pkey PRIMARY KEY (id)
 );
 
@@ -139,13 +139,6 @@ CREATE TABLE IF NOT EXISTS public.registrations
     CONSTRAINT registrations_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.roles
-(
-    id bigint NOT NULL,
-    "desc" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT roles_pkey PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS public.rooms
 (
     id bigint NOT NULL,
@@ -158,15 +151,6 @@ CREATE TABLE IF NOT EXISTS public.rooms
     fb bigint,
     liv bigint,
     CONSTRAINT rooms_pkey PRIMARY KEY (id)
-);
-
-CREATE TABLE IF NOT EXISTS public.tokens
-(
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    token text COLLATE pg_catalog."default" NOT NULL,
-    ip text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT tokens_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.users

@@ -25,7 +25,7 @@ var arrivals = [];
 
 function addArrival() {
     arrivals.push({
-        "TIME": null,
+        "TIME": activeEvent.ARRIVE,
         "NUMBER": "",
         "NEED_TRANS": false
     });

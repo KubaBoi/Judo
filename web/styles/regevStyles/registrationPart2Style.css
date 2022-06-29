@@ -76,3 +76,25 @@
     margin-top: 3px;
     width: max-content;
 }
+
+.confirmButt {
+    width: 98%;
+    background-color: var(--ok-color);
+    color: var(--main-text-color);
+}
+
+.confirmButt:hover {
+    background-color: var(--ok-light-color);
+    color: var(--main-text-color);
+}
+
+.confirmButt:disabled {
+    background-color: var(--lighter-color);
+    color: var(--main-color);
+}
+
+.confirmButt:disabled:hover {
+    background-color: var(--light-color);
+    color: var(--main-color);
+}
+

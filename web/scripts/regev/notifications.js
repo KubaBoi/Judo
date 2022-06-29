@@ -13,7 +13,7 @@ function changeNotification(id, newClass, comment=null, check=true) {
 
     if (comment != null) showNotifError(id, comment, newClass);
 
-    if (check == true) calculateBill();
+    if (check == true) setTimeout(calculateBill, 1000);
 }
 
 function getNotifStatus(id) {

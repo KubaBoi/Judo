@@ -25,7 +25,7 @@ var departs = [];
 
 function addDeparture() {
     departs.push({
-        "TIME": null,
+        "TIME": activeEvent.DEPART,
         "NUMBER": "",
         "NEED_TRANS": false
     });

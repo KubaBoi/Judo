@@ -13,6 +13,7 @@ async function calculateBill() {
     if (!isAllDone()) {
         changeNotification("notifBilling", "notifPend", "Calculation can be done when everything is set up properly", false);
         showNotifError("notifBilling");
+        changeConfirmButt(false);
         return;
     }
     changeNotification("notifBilling", "notifDone", "Done", false);
@@ -29,10 +30,17 @@ async function calculateBill() {
         buildBillAccTable(response.BILL_ACC_DATA);
         buildBillPackTable(response.BILL_PACK_DATA);
         buildBillSumTable(response.BILL_SUM_DATA);
+        changeConfirmButt(true);
     }
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+}
+
+function changeConfirmButt(enabled) {
+    let btn = document.getElementById("confirmButt");
+    if (enabled) btn.removeAttribute("disabled");
+    else btn.setAttribute("disabled", "");
 }
 
 function buildBillAccTable(billAccData) {
@@ -145,9 +153,38 @@ function buildBillSumTable(billSumData) {
     }
 
     addHeader(tbl, [
-        {"text": "TOTAL"},
+        {"text": "==== TOTAL ===="},
         {"text": ""},
         {"text": ""},
         {"text": billSumData.total}
     ]);
+}
+
+function confirmRegPart2() {
+    if (!isAllDone()) {
+        changeConfirmButt(false);
+        return;
+    }
+
+    showConfirm("Are you sure?", "You will not be able to do any changes after this confirmation.", confirmRegPart2True);
+}
+
+async function confirmRegPart2True() {
+    showLoader();
+
+    let req = {
+        "JBS": jbs,
+        "ARRIVALS": arrivals,
+        "DEPARTS": departs,
+        "EVENT_ID": activeEvent.ID
+    }
+
+    let response = await callEndpoint("POST", "/registeredClubs/confirmReg", req);
+    if (response.ERROR == null) {
+        showOkAlert("Registered :)", "Your club has been successfully registered.");
+    }
+    else {
+        showErrorAlert(response.ERROR, alertTime);
+    }
+    hideLoader();
 }

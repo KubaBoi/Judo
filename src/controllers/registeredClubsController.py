@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from datetime import timedelta, date, datetime
-
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
@@ -11,6 +9,8 @@ from src.repositories.clubsRepository import ClubsRepository
 from src.repositories.eventsRepository import EventsRepository
 from src.repositories.registeredJbRepository import RegisteredJbRepository
 from src.repositories.roomsRepository import RoomsRepository
+
+from src.other.billCalculator import BillCalculator
 
 #@controller /registeredClubs;
 class RegisteredClubsController(cc):
@@ -21,21 +21,6 @@ class RegisteredClubsController(cc):
 	1 - not checked by club owner
 	2 - registered
 	"""
-
-	roomNames = {
-		1: "Single",
-		2: "Double",
-		3: "Triple",
-		4: "Apartman"
-	}
-
-	packageNames = {
-		"RO": "Room Only",
-		"BB": "Bed and Breakfast",
-		"HB": "Half Board",
-		"FB": "Full Board",
-		"LIV": "Lunch In Venue"
-	}
 
 	#@post /create;
 	@staticmethod
@@ -157,6 +142,27 @@ class RegisteredClubsController(cc):
 
 		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
 
+		if (len(args["JBS"]) == 0):
+			raise BadRequest("There not any people")
+
+		jbs = []
+		for jb in args["JBS"]:
+			if (not jb["ISIN"]): continue
+			jbs.append(jb)
+
+		print(jbs)
+
+		event = EventsRepository.find(args["EVENT_ID"])
+		reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["JBS"][0]["CLUB_ID"])
+		club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
+
+		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(
+			args["JBS"], 
+			event,
+			club,
+			args["ARRIVALS"],
+			args["DEPARTS"]
+		)
 
 		return cc.createResponse({"STATUS": "Club has been registered"}, 200)
 
@@ -171,9 +177,9 @@ class RegisteredClubsController(cc):
 			raise BadRequest("There not any people")
 
 		event = EventsRepository.find(args["EVENT_ID"])
-		club = ClubsRepository.find(int(args["JBS"][0]["CLUB_ID"]))
+		club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
 
-		billAccData, billPackData, billSumData = RegisteredClubsController.getCalculatedBillData(
+		billAccData, billPackData, billSumData = BillCalculator.getCalculatedBillData(
 			args["JBS"], 
 			event,
 			club,
@@ -187,222 +193,5 @@ class RegisteredClubsController(cc):
 				"BILL_PACK_DATA": billPackData,
 				"BILL_SUM_DATA": billSumData
 			}, 200)
-
-	# METHODS
-
-	@staticmethod
-	def getCalculatedBillData(jbsAll, event, club, arrivals, departs):
-		jbs = []
-		for jb in jbsAll:
-			if (not jb["ISIN"]): continue
-			jbs.append(jb)
-
-		days = RegisteredClubsController.prepareDays(event)
-
-		#int(args["EVENT_ID"]), int(args["JBS"][0]["CLUB_ID"])
-
-		billAccData = RegisteredClubsController.getBillAccData(jbs, days)
-		billPackData = RegisteredClubsController.getBillPackData(jbs, days)
-
-		billSumData = RegisteredClubsController.getBillSumData(jbs, event, club, arrivals, departs, billAccData, billPackData)
-
-		return (billAccData, billPackData, billSumData)
-
-	@staticmethod
-	def getBillSumData(jbs, event, club, arrivals, departs, billAccData, billPackData):
-		billSumData = {}
-		billSumData["ITEMS"] = []
-
-		billSumData["ITEMS"].append({
-			"name": "Accomodation",
-			"number": 1,
-			"price": billAccData["total"],
-			"total": billAccData["total"]
-		})
-
-		billSumData["ITEMS"].append({
-			"name": "Packages",
-			"number": 1,
-			"price": billPackData["total"],
-			"total": billPackData["total"]
-		})
-
-		ejuCount = 0 if club.eju else 1
-		billSumData["ITEMS"].append({
-			"name": "EJU",
-			"number": ejuCount,
-			"price": event.eju_price,
-			"total": event.eju_price * ejuCount
-		})
-
-		pcrCount = sum([x["PCR_TESTS"] for x in jbs if x["ISIN"]])
-		billSumData["ITEMS"].append({
-			"name": "PCR Tests",
-			"number": pcrCount,
-			"price": event.pcr_price,
-			"total": event.pcr_price * pcrCount
-		})
-
-		agCount = sum([x["AG_TESTS"] for x in jbs if x["ISIN"]])
-		billSumData["ITEMS"].append({
-			"name": "AG Tests",
-			"number": agCount,
-			"price": event.ag_price,
-			"total": event.ag_price * agCount
-		})
-
-		transCount = len([x for x in arrivals if x["NEED_TRANS"]])
-		transCount += len([x for x in departs if x["NEED_TRANS"]])
-		billSumData["ITEMS"].append({
-			"name": "Transport",
-			"number": transCount,
-			"price": event.trans_price,
-			"total": event.trans_price * transCount
-		})
-
-		billSumData["ITEMS"].append({
-			"name": "Other",
-			"number": 1,
-			"price": event.other_price,
-			"total": event.other_price
-		})
-
-		billSumData["total"] = sum([x["total"] for x in billSumData["ITEMS"]])
-
-		return billSumData
-
-	@staticmethod
-	def getBillPackData(jbs, days):
-
-		packages = {}
-
-		for jb in jbs:
-
-			packageKey = RegisteredClubsController.getPackageKey(jb)
-			if (packageKey not in packages.keys()):
-				packages[packageKey] = {}
-				packages[packageKey]["JBS"] = []
-				packages[packageKey]["ROOM_ARRAY"] = []
-
-			packages[packageKey]["JBS"].append(jb)
-			if (jb["ROOM_ID"] not in packages[packageKey]["ROOM_ARRAY"]):
-				packages[packageKey]["ROOM_ARRAY"].append(jb["ROOM_ID"])
-
-		billPackData = {}
-		billPackData["PACKAGES"] = []
-
-		for packageKey in packages.keys():
-			package = packages[packageKey]
-
-			beds, packageShort, price, daysArr = RegisteredClubsController.decodePackageKey(packageKey)
-
-			startDate = days[int(daysArr[0].strip())]
-			endDate = days[int(daysArr[-1].strip())]
-
-			billPackData["PACKAGES"].append(
-				{
-					"room_name": RegisteredClubsController.roomNames[beds],
-					"package_name": RegisteredClubsController.packageNames[packageShort],
-					"price": price,
-					"start_date": startDate.strftime("%d.%m"),
-					"end_date": endDate.strftime("%d.%m"),
-					"nights": len(daysArr)-1,
-					"count_people": len(package["JBS"]),
-					"count_room": len(package["ROOM_ARRAY"]),
-					"total": len(package["JBS"]) * (len(daysArr)-1) * price 
-				}
-			)
-
-		total = 0
-		for room in billPackData["PACKAGES"]:
-			total += room["total"]
-		billPackData["total"] = total
-		return billPackData
-
-
-	@staticmethod
-	def getBillAccData(jbs, days):
-		rooms = {}
-
-		for jb in jbs:
-
-			roomKey = RegisteredClubsController.getRoomKey(jb)
-			if (roomKey not in rooms.keys()):
-				rooms[roomKey] = {}
-				rooms[roomKey]["JBS"] = []
-				rooms[roomKey]["ROOM_ARRAY"] = []
-
-			rooms[roomKey]["JBS"].append(jb)
-			if (jb["ROOM_ID"] not in rooms[roomKey]["ROOM_ARRAY"]):
-				rooms[roomKey]["ROOM_ARRAY"].append(jb["ROOM_ID"])
-
-		billAccData = {}
-		billAccData["ROOMS"] = []
-
-		for roomKey in rooms.keys():
-			room = rooms[roomKey]
-
-			beds, price, daysArr = RegisteredClubsController.decodeRoomKey(roomKey)
-
-			startDate = days[int(daysArr[0].strip())]
-			endDate = days[int(daysArr[-1].strip())]
-
-			billAccData["ROOMS"].append(
-				{
-					"room_name": RegisteredClubsController.roomNames[beds],
-					"price_ro": price,
-					"start_date": startDate.strftime("%d.%m"),
-					"end_date": endDate.strftime("%d.%m"),
-					"nights": len(daysArr)-1,
-					"count_people": len(room["JBS"]),
-					"count_room": len(room["ROOM_ARRAY"]),
-					"total": len(room["JBS"]) * (len(daysArr)-1) * price 
-				}
-			)
-
-		total = 0
-		for room in billAccData["ROOMS"]:
-			total += room["total"]
-		billAccData["total"] = total
-		return billAccData
-
-	@staticmethod
-	def getPackageKey(jb):
-		room = RoomsRepository.find(jb["ROOM_ID"])
-		return f"{room.bed}-{jb['PACKAGE']}-{getattr(room, jb['PACKAGE'].lower())}-{jb['ROOMING_LIST']}"
-
-	@staticmethod
-	def decodePackageKey(packageKey):
-		beds = int(packageKey.split("-")[0])
-		package = packageKey.split("-")[1]
-		price = int(packageKey.split("-")[2])
-		daysArr = packageKey.split("-")[3].replace("[", "").replace("]", "").split(",")
-
-		return (beds, package, price, daysArr)
-
-	@staticmethod
-	def getRoomKey(jb):
-		room = RoomsRepository.find(jb["ROOM_ID"])
-		return f"{room.bed}-{room.price}-{jb['ROOMING_LIST']}"
-
-	@staticmethod
-	def decodeRoomKey(roomKey):
-		beds = int(roomKey.split("-")[0])
-		price = int(roomKey.split("-")[1])
-		daysArr = roomKey.split("-")[2].replace("[", "").replace("]", "").split(",")
-		
-		return (beds, price, daysArr)
-
-	@staticmethod
-	def daterange(date1, date2):
-		for n in range(int ((date2 - date1).days)+1):
-			yield date1 + timedelta(n)
-
-	@staticmethod
-	def prepareDays(event):
-		days = []
-		for dt in RegisteredClubsController.daterange(event.event_start, event.event_end):
-			days.append(dt)
-		return days
 
 
