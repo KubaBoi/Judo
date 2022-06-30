@@ -1,0 +1,22 @@
+select * from registered_jb;
+select * from registered_tests;
+select * from bed;
+select * from rooms;
+select * from registered_clubs;
+select * from clubs;
+select * from room_data;
+
+/*reg reset*/
+update bed set reg_jb_id=-1;
+update rooms set available=true;
+update registered_clubs set status=1 where event_id=1 and club_id=1;
+delete from registered_tests;
+delete from registered_jb;
+delete from room_data;
+delete from bills;
+delete from bill_change_comments;
+delete from bill_items;
+delete from bill_rooms;
+delete from bill_packages;
+
+select * from bed where reg_jb_id != -1;

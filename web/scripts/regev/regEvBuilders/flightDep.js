@@ -2,7 +2,7 @@ function buildDepTable() {
     let tbl = document.getElementById("depPeopleTable");
     clearTable(tbl);
 
-    changeNotification(4, "notifDone", "Done", false);
+    changeNotification("notifDeparture", "notifDone", "Done", false);
 
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
@@ -25,7 +25,7 @@ var departs = [];
 
 function addDeparture() {
     departs.push({
-        "TIME": null,
+        "TIME": activeEvent.DEPART,
         "NUMBER": "",
         "NEED_TRANS": false
     });
@@ -34,7 +34,18 @@ function addDeparture() {
 }
 
 function removeDepart(index) {
-    
+    for (let i = 0; i < jbs.length; i++) {
+        let jb = jbs[i];
+        if (jb.DEP_FLIGHT == index) {
+            jb.DEP_FLIGHT = -1;
+        }
+        else if (jb.DEP_FLIGHT > index) {
+            jb.DEP_FLIGHT -= 1;
+        }
+    }
+
+    removeFromArrayByIndex(departs, index)
+    buildDepTable();
 }
 
 function removeFromDep(index) {
@@ -55,7 +66,7 @@ function createDepartures() {
             {"text": `<label>Departure time: </label><input type="datetime-local" id="depTmInp${i}" value="${getTimestamp(depart.TIME, false)}">`},
             {"text": `<label>Flight number: </label><input type="text" id="depNumInp${i}" value="${depart.NUMBER}">`},
             {"text": `<label>Need transport: </label><input type="checkbox" id="depTranInp${i}" checked="${depart.NEED_TRANS}">`},
-            {"text": `<img src="./images/deleteIcon48.png">`}
+            {"text": `<img src="./images/deleteIcon48.png" onclick=removeDepart(${i}) title="Remove flight">`}
         ]);
 
         let buttDiv = createElement("div", dv);
@@ -93,7 +104,7 @@ function createDepartures() {
 
         if (!jb.ISIN) {
             dv.classList.add("missing");
-            changeNotification(4, "notifErr", "Someone is assigned into flight but is not included in event");
+            changeNotification("notifDeparture", "notifErr", "Someone is assigned into flight but is not included in event");
         }
     }
 }
@@ -174,7 +185,7 @@ function checkIfDoneDep() {
 
         if (tm.value == "" ||
             num.value == "") {
-            changeNotification(4, "notifPend", "Some flight is missing time or number.");
+            changeNotification("notifDeparture", "notifPend", "Some flight is missing time or number.");
             return;
         }
     }
@@ -183,13 +194,13 @@ function checkIfDoneDep() {
         let jb = jbs[i];
         if (!jb.ISIN) continue;
         if (jb.DEP_FLIGHT == -1) {
-            changeNotification(4, "notifPend", "Someone does not have been assigned to any flight");
+            changeNotification("notifDeparture", "notifPend", "Someone does not have been assigned to any flight");
             return;
         }
     }
 
     // check if there is not an error
-    if (getNotifStatus(4) != 2) {
-        changeNotification(4, "notifDone", "Done");
+    if (getNotifStatus("notifDeparture") != 2) {
+        changeNotification("notifDeparture", "notifDone", "Done");
     }
 }

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS public.bed
 (
     id bigint NOT NULL,
     room_id bigint NOT NULL,
-    jb_id bigint NOT NULL,
+    reg_jb_id bigint NOT NULL,
     CONSTRAINT bed_pkey PRIMARY KEY (id)
 );
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS public.registered_tests
     id bigint NOT NULL,
     reg_jb_id bigint NOT NULL,
     pcr boolean NOT NULL,
-    date timestamp with time zone NOT NULL,
+    date timestamp with time zone,
     CONSTRAINT registered_tests_pkey PRIMARY KEY (id)
 );
 
@@ -139,13 +139,6 @@ CREATE TABLE IF NOT EXISTS public.registrations
     CONSTRAINT registrations_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.roles
-(
-    id bigint NOT NULL,
-    "desc" text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT roles_pkey PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS public.rooms
 (
     id bigint NOT NULL,
@@ -160,15 +153,6 @@ CREATE TABLE IF NOT EXISTS public.rooms
     CONSTRAINT rooms_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.tokens
-(
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    token text COLLATE pg_catalog."default" NOT NULL,
-    ip text COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT tokens_pkey PRIMARY KEY (id)
-);
-
 CREATE TABLE IF NOT EXISTS public.users
 (
     id bigint NOT NULL,
@@ -178,4 +162,74 @@ CREATE TABLE IF NOT EXISTS public.users
     role_id bigint NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS public.bills
+(
+    id bigint NOT NULL,
+    event_id bigint NOT NULL,
+    reg_club_id bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_rooms
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    room_name text NOT NULL,
+    price_ro bigint NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    nights bigint NOT NULL,
+    count_people bigint NOT NULL,
+    count_room bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_items
+(
+    id bigint NOT NULL,
+    bill_id bigint NOT NULL,
+    name text NOT NULL,
+    "number" bigint NOT NULL,
+    price bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_packages
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    room_name text NOT NULL,
+    package_name text NOT NULL,
+    price bigint NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    nights bigint NOT NULL,
+    count_people bigint NOT NULL,
+    count_room bigint NOT NULL,
+    total bigint NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bill_change_comments
+(
+    id bigint NOT NULL,
+    bill_item_id bigint NOT NULL,
+    comment text NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS public.room_data
+(
+    reg_jb_id bigint NOT NULL,
+    room_name text NOT NULL,
+    package_name text NOT NULL,
+    PRIMARY KEY (reg_jb_id)
+);
+
+COMMENT ON TABLE public.room_data
+    IS 'stores room name and package for every registered jb';
 END;

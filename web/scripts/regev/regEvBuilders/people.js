@@ -33,6 +33,10 @@ async function buildPeopleTable(header, attrs) {
             jbs[i].DEP_FLIGHT = -1;
             jbs[i].ROOMING_LIST = defWeekdayArr;
             jbs[i].PACKAGE = "BB";
+            jbs[i].PCR_TESTS = 1;
+            jbs[i].AG_TESTS = 0;
+            arrivals = [];
+            departs = [];
         
             let checkbox = document.getElementById(`checkbox${i}`);
             checkbox.addEventListener("change", function(){changeJbArray(checkbox, i)});

@@ -7,6 +7,7 @@ from Cheese.cheeseController import CheeseController as cc
 from src.repositories.hotelsRepository import HotelsRepository
 from src.repositories.roomsRepository import RoomsRepository
 from src.repositories.bedRepository import BedRepository
+from src.repositories.roomDatasRepository import RoomDatasRepository
 
 #@controller /hotels;
 class HotelsController(cc):
@@ -257,41 +258,17 @@ class HotelsController(cc):
 			room.beds = BedRepository.findBy("room_id", room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
-		return cc.createResponse(jsonResponse, 200)
-		
+		return cc.createResponse(jsonResponse, 200)		
 
-	#@post /reserveBed;
+	#@get /getRoomData;
 	@staticmethod
-	def reserveBed(server, path, auth):
-		args = cc.readArgs(server)
+	def getRoomData(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["regJbId"], args)
 
-		if (not cc.validateJson(['HOTEL_ID', 'ROOM_ID', 'JBS'], args)):
-			raise BadRequest("Wrong json structure")
+		roomDataModel = RoomDatasRepository.find(args["regJbId"])
 
-		hotelId = args["HOTEL_ID"]
-		roomId = args["ROOM_ID"]
-		jbs = args["JBS"]
-
-		room = RoomsRepository.find(roomId)
-
-		if (not room.available):
-			raise Conflict("Room is already occupied")
-
-		beds = BedRepository.findBy("room_id", roomId)
-
-		if (len(beds) < len(jbs)):
-			raise Forbidden("Room does not have such a capacity")
-
-		for bed in beds:
-			if (bed.jb_id == -1):
-				bed.jb_id = jbs
-				BedRepository.update(bed)
-
-		room.available = False
-		RoomsRepository.update(room)
-
-		return cc.createResponse({'STATUS': 'Bed has been reserved'}, 200)
-		
+		return cc.createResponse({"ROOM_DATA": roomDataModel.toJson()})
 
 	#@get /remove;
 	@staticmethod
@@ -337,7 +314,7 @@ class HotelsController(cc):
 
 			for o in range(countOfBeds):
 				newBed = BedRepository.model()
-				newBed.jb_id = -1
+				newBed.reg_jb_id = -1
 				newBed.room_id = newRoom.id
 				BedRepository.save(newBed)
 
@@ -354,7 +331,7 @@ class HotelsController(cc):
 
 		elif (len(rooms) < roomCount):
 			less = roomCount - len(rooms)
-			HotelsController.createRooms(bed, less, hotelId, roomPrice)
+			HotelsController.createRooms(bed, less, hotelId, roomPrice, bb, hb, fb, liv)
 
 		for room in rooms:
 			room.price = roomPrice

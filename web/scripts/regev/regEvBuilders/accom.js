@@ -19,8 +19,8 @@ function buildAccTable() {
         }
     }
 
-    if (isDone) changeNotification(1, "notifDone", "Done");
-    else changeNotification(1, "notifPend", "Someone has not assigned room");
+    if (isDone) changeNotification("notifAcc", "notifDone", "Done");
+    else changeNotification("notifAcc", "notifPend", "Someone has not assigned room");
 
     buildVisaTable();
 }
@@ -80,7 +80,7 @@ function buildRoomDiv() {
 
         if (!jb.ISIN) {
             rw.classList.add("missing");
-            changeNotification(1, "notifErr", "Someone has assigned room but is not included in event");
+            changeNotification("notifAcc", "notifErr", "Someone has assigned room but is not included in event");
         }
     }
 }

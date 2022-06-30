@@ -2,7 +2,7 @@
 function buildVisaTable() {
     let visaTable = document.getElementById("regEvVisaTable");
     clearTable(visaTable);
-    lock();
+    lockVisa();
 
     addHeader(visaTable, [
         {"text": "Needs visa"},
@@ -39,13 +39,18 @@ function buildVisaTable() {
         ]);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
+        let nightsLabel = createElement("label", null, "", [
+            {"name": "id", "value": `nightsLabel${i}`},
+            {"name": "class", "value": "nightsLabel"}
+        ]);
+
         insertRow(visaTable, hdrRowIndex, [
             {"text": checkDiv.outerHTML},
             {"text": jb.SUR_NAME + " " + jb.NAME},
             {"text": `<input type="text" class="textBoxLight" id="passNumInp${i}">`},
             {"text": `<input type="date" class="textBoxLight" id="passRelInp${i}">`},
             {"text": `<input type="date" class="textBoxLight" id="passExpInp${i}">`},
-            {"text": `<div id=roomingCheck${i} class=roomingDivCls></div>`},
+            {"text": `${nightsLabel.outerHTML}<div id=roomingCheck${i} class=roomingDivCls></div>`},
             {"text": `<div id=packageCheck${i} class=packageDivCls></div>`}
         ]);
 
@@ -68,9 +73,11 @@ function buildVisaTable() {
 
             createElement("button", roomingCheck, weekdayArray[o], [
                 {"name": "class", "value": cls},
-                {"name": "onclick", "value": `addDay(this, ${i}, ${o})`}
+                {"name": "onclick", "value": `addDay(this, ${i})`}
             ]);
         }
+
+        changeNightsLabel(i);
 
         bbCls = "";
         hbCls = "";
@@ -147,20 +154,56 @@ function needVisa(index) {
     checkIfDoneVisa();
 }
 
-function addDay(button, jbIndex, dayIndex) {
+function addDay(button, jbIndex, needsRepair=true) {
     if (button.classList.contains("sml")) {
         button.classList.remove("sml");
-        jbs[jbIndex].ROOMING_LIST.push(dayIndex);  
     }
     else {
         button.classList.add("sml");
-        const index = jbs[jbIndex].ROOMING_LIST.indexOf(dayIndex);
-        if (index > -1) {
-            jbs[jbIndex].ROOMING_LIST.splice(index, 1);
+    }
+
+    let parent = button.parentNode;
+    let buttons = parent.getElementsByTagName("button");
+
+    jbs[jbIndex].ROOMING_LIST = [];
+    for (let i = 0; i < buttons.length; i++) {
+        let btn = buttons[i];
+        if (btn.classList.contains("sml")) continue;
+        jbs[jbIndex].ROOMING_LIST.push(i);
+    }
+
+    if (needsRepair) {
+        repairDays(button, jbIndex);
+        lockVisa();
+        checkIfDoneVisa();
+    }
+
+    changeNightsLabel(jbIndex);
+}
+
+function changeNightsLabel(jbIndex) {
+    let label = document.getElementById(`nightsLabel${jbIndex}`);
+    let nights = jbs[jbIndex].ROOMING_LIST.length-1;
+    if (nights > 0) {
+        label.innerHTML = `${nights} nights`;
+    }
+    else {
+        label.innerHTML = "";
+    }
+}
+
+function repairDays(button, jbIndex) {
+    let parent = button.parentNode;
+    let buttons = parent.getElementsByTagName("button");
+
+    let first = jbs[jbIndex].ROOMING_LIST[0];
+    let last = jbs[jbIndex].ROOMING_LIST[jbs[jbIndex].ROOMING_LIST.length-1];
+
+    for (let i = first+1; i < last; i++) {
+        if (!jbs[jbIndex].ROOMING_LIST.includes(i)) {
+            addDay(buttons[i], jbIndex, false);
         }
     }
-    lock();
-    checkIfDoneVisa();
 }
 
 function changePackage(button, jbIndex) {
@@ -173,7 +216,9 @@ function changePackage(button, jbIndex) {
 
     button.classList.add("checkedPackage");
     jbs[jbIndex].PACKAGE = button.innerHTML;
-    console.log(jbs[jbIndex].PACKAGE);
+    
+    lockVisa();
+    checkIfDoneVisa();
 }
 
 function checkIfDoneVisa() {
@@ -181,7 +226,7 @@ function checkIfDoneVisa() {
     for (let i = 0; i < jbs.length; i++) {
         if (!jbs[i].ISIN) continue;
         if (jbs[i].ROOM_ID == -1) {
-            changeNotification(2, "notifPend", `There are some participants which are not assigned to any room.`);
+            changeNotification("notifVisa", "notifPend", `There are some participants which are not assigned to any room.`);
             return false;
         }
 
@@ -194,13 +239,13 @@ function checkIfDoneVisa() {
             if (passNum.value == "" ||
                 passRel.value == "" ||
                 passExp.value == "") {
-                    changeNotification(2, "notifPend", "Someone needs visa but does not have filled passport properties");
+                    changeNotification("notifVisa", "notifPend", "Someone needs visa but does not have filled passport properties");
                     return false;
             }
         }
     }
 
-    changeNotification(2, "notifPend", "Confirm, so we know you are sure");
+    changeNotification("notifVisa", "notifPend", "Confirm, so we know you are sure");
     return true;
 }
 
@@ -234,17 +279,17 @@ function confirmVisa() {
         confirmedVisa = true;
 
         if (!checkIfDoneVisa()) {
-            showNotifError(2);
+            showNotifError("notifVisa");
             chooseRegTab(document.getElementById("regTabB2"), "visaDiv");
-            setTimeout(lock, 500);
+            setTimeout(lockVisa, 500);
         }
         else {
-            changeNotification(2, "notifDone", "Done");
+            changeNotification("notifVisa", "notifDone", "Done");
         }
     }
 }
 
-function lock() {
+function lockVisa() {
     let div = document.getElementById("visaSwitchDiv");
     let border = div.getElementsByClassName("switchBorder")[0];
     let button = div.getElementsByClassName("switchButton")[0];

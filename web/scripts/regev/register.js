@@ -6,6 +6,12 @@ function regEvShow() {
     registerToEventDiv.style.animationDuration = "0.5s";
 }
 
+function regEvConfClose() {
+    showConfirm("Are you sure?", 
+        "Your progress will not be saved.",
+        regEvClose);
+}
+
 function regEvClose() {
     var registerToEventDiv = document.getElementById("registerToEventDiv");
     registerToEventDiv.style.animationName = "closeRegisterToEvent";
@@ -29,7 +35,7 @@ function registerButton(eventId, status) {
         registerToEventShow(eventId);
     }
     else if (status == 2) {
-        showOkAlert("Registrated", "Your team is already registrated :)", alertTime);
+        registeredToEventShow(eventId);
     }
 }
 
@@ -142,14 +148,25 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
     createShowTableRow(table, "Phone: ",  user.PHONE);
 }
 
-function hideInfoDiv() {
-    let hideLabel = document.getElementById("hideLabel");
-    let flightDiv = document.getElementById("regEvFlightsDiv");
-    let infoDiv = document.getElementById("regEvInfoDiv");
+function hideInfoDiv(type=0) {
+    let hideLabel = null;
+    let flightDiv = null;
+    let infoDiv = null;
+    if (type == 0) {
+        hideLabel = document.getElementById("hideLabel");
+        flightDiv = document.getElementById("regEvFlightsDiv");
+        infoDiv = document.getElementById("regEvInfoDiv");
+    }
+    else {
+        hideLabel = document.getElementById("hideLabelI");
+        flightDiv = document.getElementById("regIvFlightsDiv");
+        infoDiv = document.getElementById("regIvInfoDiv");
+    }
 
     if (hideLabel.innerHTML == "<b>&lt;&lt;</b>") { // close
         hideLabel.innerHTML = "<b>>></b>";
         hideLabel.style.left = "-25px";
+
         flightDiv.style.width = "95%";
         infoDiv.style.opacity = "0%";
         infoDiv.style.width = "0";
@@ -157,6 +174,7 @@ function hideInfoDiv() {
     else { // open
         hideLabel.innerHTML = "<b><<</b>";
         hideLabel.style.left = "18%";
+
         flightDiv.style.width = "75%";
         infoDiv.style.opacity = "100%";
         infoDiv.style.width = "20%";

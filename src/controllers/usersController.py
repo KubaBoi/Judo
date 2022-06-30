@@ -1,24 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import random
-import string
 import os
-import json
 
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 from Cheese.resourceManager import ResMan
 
-from src.repositories.registeredClubsRepository import RegisteredClubsRepository
-
 from src.repositories.usersRepository import UsersRepository
 from src.repositories.clubsRepository import ClubsRepository
-from src.repositories.tokensRepository import TokensRepository
 from src.repositories.passwordsRepository import PasswordsRepository
 from src.repositories.registrationsRepository import RegistrationsRepository
 
-from src.emailSender import EmailSender
+from src.other.emailSender import EmailSender
 
 #@controller /users;
 class UsersController(cc):
@@ -52,6 +46,19 @@ class UsersController(cc):
 		if (user != None):
 			raise Conflict("User with this login already exists")
 
+		usersModel = UsersRepository.model()
+		usersModel.login = login
+		usersModel.phone = phone
+		usersModel.full_name = fullName
+		usersModel.role_id = 2
+		UsersRepository.save(usersModel)
+
+		passwordsModel = PasswordsRepository.model()
+		passwordsModel.password = password
+		passwordsModel.login = login
+		PasswordsRepository.save(passwordsModel)
+
+		"""
 		randomCode = UsersController.randomString(20)
 
 		registration = RegistrationsRepository.model()
@@ -69,7 +76,7 @@ class UsersController(cc):
 			template = template.replace("&CODE&", randomCode)
 			f.write(template)
 
-		EmailSender.sendRegistrationEmail(login, randomCode)
+		EmailSender.sendRegistrationEmail(login, randomCode)"""
 
 		return cc.createResponse({'STATUS': "Confirmation has been created"}, 200)
 
@@ -127,28 +134,5 @@ class UsersController(cc):
 
 		return cc.createResponse(jsonResponse, 200)
 
-	
-	# METHODS
-
-	@staticmethod
-	def getToken(userId, userIp):
-		token = TokensRepository.findToken(userId, userIp)
-		if (token == None):
-			tokenString = UsersController.randomString(10)
-			oldToken = TokensRepository.findBy("token", tokenString)
-			while (len(oldToken) > 0):
-				tokenString = UsersController.randomString(10)
-				oldToken = TokensRepository.findBy("token", tokenString)
-			
-			token = TokensRepository.model()
-			token.token = tokenString
-			token.user_id = userId
-			token.ip = userIp
-			TokensRepository.save(token)
-		return token
-
-	@staticmethod
-	def randomString(length):
-		return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
 		
 
