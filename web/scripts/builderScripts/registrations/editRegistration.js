@@ -84,7 +84,7 @@ function confirmRegisterButton(regId, status) {
         showWrongAlert("Confirmed", "Registration has been confirmed.<br>Wait until client's confirmation.", alertTime);
     }
     else if (status == 2) {
-        showOkAlert("Registrated", "Team is already registrated", alertTime);
+        showRegistration(regId);
     }
 }
 

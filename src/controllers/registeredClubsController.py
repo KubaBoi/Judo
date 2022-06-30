@@ -14,6 +14,7 @@ from src.repositories.registeredJbRepository import RegisteredJbRepository
 from src.repositories.roomsRepository import RoomsRepository
 from src.repositories.bedRepository import BedRepository
 from src.repositories.registeredTestsRepository import RegisteredTestsRepository
+from src.repositories.roomDatasRepository import RoomDatasRepository
 
 from src.other.billCalculator import BillCalculator
 
@@ -130,6 +131,24 @@ class RegisteredClubsController(cc):
 
 		return cc.createResponse({'STATUS': 'Club has been removed from registration'}, 200)
 
+	#@get /getAllDataForOne;
+	@staticmethod
+	def getAllDataForOne(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["regClubId"], args)
+
+		regClub = RegisteredClubsRepository.find(args["regClubId"])
+		if (regClub == None):
+			raise NotFound("Registered club was not found")
+
+		club = ClubsRepository.find(regClub.club_id)
+		event = EventsRepository.find(regClub.event_id)
+
+		setattr(regClub, "club", club)
+		setattr(regClub, "event", event)
+
+		return cc.createResponse({"REGISTERED_CLUB": regClub.toJson()})
+
 	#@get /getAllData;
 	@staticmethod
 	def getAllData(server, path, auth):
@@ -199,6 +218,16 @@ class RegisteredClubsController(cc):
 				depart = args["DEPARTS"][jb["DEP_FLIGHT"]]
 				jbModel = RegisteredClubsController.registerJb(jb, reg_club, arrival, depart, addJbsId)
 				addJbsId += 1
+
+				roomName = BillCalculator.roomNames[RoomsRepository.find(jb["ROOM_ID"]).bed]
+				packageName = BillCalculator.packageNames[jb["PACKAGE"]]
+				roomDataModel = RoomDatasRepository.model()
+				roomDataModel.setAttrs(
+					reg_jb_id=jbModel.id,
+					room_name=roomName,
+					package_name=packageName
+				)
+				RoomDatasRepository.save(roomDataModel)
 
 				roomId = jb["ROOM_ID"]
 				regBeds = RegisteredClubsController.registerBed(roomId, jbModel, regBeds)

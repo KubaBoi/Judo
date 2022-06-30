@@ -7,6 +7,7 @@ from Cheese.cheeseController import CheeseController as cc
 from src.repositories.hotelsRepository import HotelsRepository
 from src.repositories.roomsRepository import RoomsRepository
 from src.repositories.bedRepository import BedRepository
+from src.repositories.roomDatasRepository import RoomDatasRepository
 
 #@controller /hotels;
 class HotelsController(cc):
@@ -258,6 +259,16 @@ class HotelsController(cc):
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		return cc.createResponse(jsonResponse, 200)		
+
+	#@get /getRoomData;
+	@staticmethod
+	def getRoomData(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["regJbId"], args)
+
+		roomDataModel = RoomDatasRepository.find(args["regJbId"])
+
+		return cc.createResponse({"ROOM_DATA": roomDataModel.toJson()})
 
 	#@get /remove;
 	@staticmethod

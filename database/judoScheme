@@ -221,4 +221,15 @@ CREATE TABLE IF NOT EXISTS public.bill_change_comments
     comment text NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS public.room_data
+(
+    reg_jb_id bigint NOT NULL,
+    room_name text NOT NULL,
+    package_name text NOT NULL,
+    PRIMARY KEY (reg_jb_id)
+);
+
+COMMENT ON TABLE public.room_data
+    IS 'stores room name and package for every registered jb';
 END;
