@@ -32,13 +32,13 @@ async function registeredToEventShow(eventId) {
     hideLoader();
     regIvShow();
 
-    let hideLabel = document.getElementById("hideLabel");
+    let hideLabel = document.getElementById("hideLabelI");
     if (hideLabel == null) {
         let div = document.getElementById("registeredToEventDiv");
         createElement("button", div, "<b><<</b>", [
             {"name": "class", "value": "hideLabel"},
-            {"name": "id", "value": "hideLabel"},
-            {"name": "onclick", "value": "hideInfoDiv()"}
+            {"name": "id", "value": "hideLabelI"},
+            {"name": "onclick", "value": "hideInfoDiv(1)"}
         ]);
     }
 }
