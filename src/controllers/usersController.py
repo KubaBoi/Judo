@@ -46,6 +46,19 @@ class UsersController(cc):
 		if (user != None):
 			raise Conflict("User with this login already exists")
 
+		usersModel = UsersRepository.model()
+		usersModel.login = login
+		usersModel.phone = phone
+		usersModel.full_name = fullName
+		usersModel.role_id = 2
+		UsersRepository.save(usersModel)
+
+		passwordsModel = PasswordsRepository.model()
+		passwordsModel.password = password
+		passwordsModel.login = login
+		PasswordsRepository.save(passwordsModel)
+
+		"""
 		randomCode = UsersController.randomString(20)
 
 		registration = RegistrationsRepository.model()
@@ -63,7 +76,7 @@ class UsersController(cc):
 			template = template.replace("&CODE&", randomCode)
 			f.write(template)
 
-		EmailSender.sendRegistrationEmail(login, randomCode)
+		EmailSender.sendRegistrationEmail(login, randomCode)"""
 
 		return cc.createResponse({'STATUS': "Confirmation has been created"}, 200)
 

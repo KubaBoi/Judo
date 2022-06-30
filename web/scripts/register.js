@@ -1,6 +1,6 @@
 async function register() {
 
-    login = document.getElementById("mailInp").value;
+    loginName = document.getElementById("mailInp").value;
     password = document.getElementById("regPass1Inp").value;
     password2 = document.getElementById("regPass2Inp").value;
     fullName = document.getElementById("fullNameInp").value;
@@ -15,16 +15,17 @@ async function register() {
         return;
     }
 
-    if (!validateEmail(login)) {
+    /*
+    if (!validateEmail(loginName)) {
         showTimerAlert("Error", "Email is in wrong format", alertTime, "divWrongAlert",
             {"name": "okShowAlert", "duration": "0.5s"},
             {"name": "okHideAlert", "duration": "0.5s"}
         );
         return;
-    }
+    }*/
 
     request = {
-        "LOGIN": login,
+        "LOGIN": loginName,
         "PASSWORD": password,
         "PHONE": phone,
         "FULL_NAME": fullName
@@ -77,12 +78,6 @@ function comeRegistration() {
     regDiv.style.animationFillMode = "both";
 
     document.body.scrollTo(0, 0);
-}
-
-function logout() {
-    setCookie("userName", "", 0);
-    setCookie("password", "", 0);
-    location.reload();
 }
 
 function validateEmail(email) {
