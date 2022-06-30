@@ -96,6 +96,7 @@ function createEventHeaderRow() {
 }
 
 async function generateEventPdf(eventId) {
+    showLoader();
     let response = await callEndpoint("GET", `/bills/generateEventPdf?eventId=${eventId}`);
     if (response.ERROR == null) {
         pdf = response.PDF;
@@ -104,4 +105,5 @@ async function generateEventPdf(eventId) {
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+    hideLoader();
 } 

@@ -14,7 +14,7 @@ async function getPdfBill() {
         showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
         return;
     }
-
+    showLoader();
     let req = {
         "JBS": jbs,
         "ARRIVALS": arrivals,
@@ -30,6 +30,7 @@ async function getPdfBill() {
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+    hideLoader();
 }
 
 async function getXlsxBill() {
@@ -37,7 +38,7 @@ async function getXlsxBill() {
         showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
         return;
     }
-
+    showLoader();
     let req = {
         "JBS": jbs,
         "ARRIVALS": arrivals,
@@ -53,6 +54,7 @@ async function getXlsxBill() {
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+    hideLoader();
 }
 
 async function calculateBill() {
