@@ -40,7 +40,7 @@ class PdfCreator:
         else:
             pdfkit.from_file(tempFile, ResMan.web("bills", "pdf", fileName))
 
-        #os.remove(tempFile)
+        os.remove(tempFile)
         return fileName
         
         
