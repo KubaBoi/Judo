@@ -93,7 +93,7 @@ class BillCreator:
 
         data = BillCreator.createHtml(bad, bpd, bsd, event, club)
 
-        with open(tempFile, "w") as f:
+        with open(tempFile, "w", encoding="utf-8") as f:
             f.write(data)
 
         if (platform.system() == "Windows"):

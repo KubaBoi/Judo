@@ -16,6 +16,7 @@ from src.repositories.bills.billChangeCommentsRepository import BillChangeCommen
 
 from src.other.billCalculator import BillCalculator
 from src.other.billCreator import BillCreator
+from src.other.pdfCreator import PdfCreator
 
 #@controller /bills;
 class BillsController(cc):
@@ -175,6 +176,13 @@ class BillsController(cc):
 
         return cc.createResponse({"STATUS": "Recalculated"})
 
+    #@get /generateEventPdf;
+    @staticmethod
+    def generateEventPdf(server, path, auth):
+        args = cc.getArgs(path)
+        cc.checkJson(["eventId"], args)
+
+        return cc.createResponse({"PDF": PdfCreator.createPdf(args["eventId"])})
 
     # METHODS
 

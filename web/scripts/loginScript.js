@@ -56,7 +56,7 @@ async function succLogin(response) {
     await getHtml("registeredToEvent", "main/", "body", "registerToEventDiv");
     
     //newContent("mainDiv");
-    buildRegistrationsTable('registrationsDiv');
+    buildEventTable();
 
     var loggedAs = document.getElementById("loggedAs");
     loggedAs.innerHTML += response.USER.FULL_NAME;

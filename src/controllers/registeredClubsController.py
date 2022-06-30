@@ -214,8 +214,8 @@ class RegisteredClubsController(cc):
 			addTestsId = 0
 			regBeds = []
 			for jb in jbs:
-				arrival = args["ARRIVALS"][jb["ARR_FLIGHT"]]
-				depart = args["DEPARTS"][jb["DEP_FLIGHT"]]
+				arrival = args["ARRIVALS"][int(jb["ARR_FLIGHT"])]
+				depart = args["DEPARTS"][int(jb["DEP_FLIGHT"])]
 				jbModel = RegisteredClubsController.registerJb(jb, reg_club, arrival, depart, addJbsId)
 				addJbsId += 1
 
@@ -259,7 +259,8 @@ class RegisteredClubsController(cc):
 			arrive=arrival["TIME"],
 			departure=depart["TIME"],
 			transport=arrival["NEED_TRANS"],
-			flight_number=arrival["NUMBER"]
+			flight_number=arrival["NUMBER"],
+			dep_number=depart["NUMBER"]
 		)
 		RegisteredJbRepository.save(jbModel)
 		return jbModel

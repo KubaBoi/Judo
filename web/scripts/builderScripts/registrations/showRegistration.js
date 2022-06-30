@@ -103,7 +103,7 @@ function buildArrivals() {
         let jb = regJbs[i];
         let skip = false;
         for (let o = 0; o < arrs.length; o++) {
-            if (arrs[o].ARRIVE == jb.ARRIVE) {
+            if (arrs[o].NUMBER == jb.FLIGHT_NUMBER) {
                 skip = true;
                 arrs[o].JBS.push(jb);
                 break;
@@ -156,7 +156,7 @@ function buildDeparts() {
         let jb = regJbs[i];
         let skip = false;
         for (let o = 0; o < departs.length; o++) {
-            if (departs[o].DEPARTURE == jb.DEPARTURE) {
+            if (departs[o].NUMBER == jb.DEP_NUMBER) {
                 skip = true;
                 departs[o].JBS.push(jb);
                 break;
@@ -167,6 +167,7 @@ function buildDeparts() {
             {
                 "DEPARTURE": jb.DEPARTURE,
                 "TRANSPORT": jb.TRANSPORT,
+                "NUMBER": jb.DEP_NUMBER,
                 "JBS": [jb]
             }
         );
@@ -176,6 +177,7 @@ function buildDeparts() {
     clearTable(tbl);
     addHeader(tbl, [
         {"text": "Departure time"},
+        {"text": "Flight number"},
         {"text": "Need transport"},
         {"text": "Number of people"}
     ]);
@@ -193,6 +195,7 @@ function buildDeparts() {
 
         addRow(tbl, [
             {"text": formatDatetime(new Date(depart.DEPARTURE), false)},
+            {"text": depart.NUMBER},
             {"text": checkDiv.outerHTML},
             {"text": depart.JBS.length}
         ]);

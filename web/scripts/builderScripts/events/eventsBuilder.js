@@ -72,6 +72,13 @@ function buildEventRow(event) {
             {"name": "onclick", "value": "deleteEvent(" + event.ID + ")"},
             {"name": "title", "value": "Delete event"}
         ]);
+        
+        createElement("td", row, badgeTypes[2].replace("okIcon", "generatePdf"),
+        [
+            {"name": "class", "value": "smallCellLast"},
+            {"name": "onclick", "value": `generateEventPdf(${event.ID})`},
+            {"name": "title", "value": "Generate event PDF"}
+        ]);
     }
 }
 
@@ -84,5 +91,17 @@ function createEventHeaderRow() {
     if (loggedUser.ROLE_ID < 2) {
         createElement("th", row);
         createElement("th", row);
+        createElement("th", row);
     }
 }
+
+async function generateEventPdf(eventId) {
+    let response = await callEndpoint("GET", `/bills/generateEventPdf?eventId=${eventId}`);
+    if (response.ERROR == null) {
+        pdf = response.PDF;
+        window.open(`/bills/pdf/${pdf}`, "_blank");
+    }
+    else {
+        showErrorAlert(response.ERROR, alertTime);
+    }
+} 
