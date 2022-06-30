@@ -196,8 +196,8 @@ class BillCalculator:
                     "end_date": endDate,
                     "nights": len(daysArr)-1,
                     "count_people": len(room["JBS"]),
-                    "count_room": len(room["ROOM_ARRAY"]),
-                    "total": len(room["JBS"]) * (len(daysArr)-1) * price
+                    "count_room": len(room["ROOM_ARRAY"]), # tady nevim jestli tam dole ma byt tohle nebo len(room["JBS"])
+                    "total": len(room["ROOM_ARRAY"]) * (len(daysArr)-1) * price
                 }
             )
 

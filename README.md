@@ -10,6 +10,8 @@ https://kubaboi.github.io/CheeseFramework
 
 pip install pdfkit  
 
+pip install openpyxl
+
 sudo apt-get install wkhtmltopdf  
 
 config = pdfkit.configuration(wkhtmltopdf = r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")

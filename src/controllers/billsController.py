@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 from Cheese.cheeseRepository import CheeseRepository as cr
@@ -17,6 +18,16 @@ from src.other.billCreator import BillCreator
 
 #@controller /bills;
 class BillsController(cc):
+
+    #@get /getBillData;
+    @staticmethod
+    def getBillData(server, path, auth):
+        args = cc.getArgs(path)
+        cc.checkJson(["eventId", "regClubId"], args)
+        
+        bad, bpd, bsd, event, club = BillsController.prepareDataFromDb(args)
+
+        return cc.createResponse({"BAD": bad, "BPD": bpd, "BSD": bsd})
 
     #@get /getBillXlsx;
     @staticmethod
@@ -78,7 +89,85 @@ class BillsController(cc):
 
         return cc.createResponse({"BILL": billName})
     
+    #@post /recalculate;
+    @staticmethod
+    def recalculate(server, path, auth):
+        args = cc.readArgs(server)
+        cc.checkJson(["EVENT_ID", "REG_CLUB_ID", "BAD", "BPD", "BSD"], args)
+
+        billModel = BillsRepository.findByEventAndRegClub(args["EVENT_ID"], args["REG_CLUB_ID"])
+        billItems = BillItemsRepository.findBy("bill_id", billModel.id)
+        
+        acc = None
+        pack = None
+        for item in billItems:
+            if (item.name == "Accommodation"): acc = item
+            if (item.name == "Packages"): pack = item
+
+        billRooms = BillRoomsRepository.findBy("bill_item_id", acc.id)
+        billPackages = BillPackagesRepository.findBy("bill_item_id", pack.id)
+
+        cr.disableAutocommit()
+        try:
+            roomTotal = 0
+            for room in billRooms:
+                newRoom = BillsController.getItemById(room.id, args["BAD"]["ROOMS"])
+                room.toModel(newRoom)
+
+                room.start_date = BillsController.convertToDate(room.start_date)
+                room.end_date = BillsController.convertToDate(room.end_date)
+
+                room.nights = int((room.end_date - room.start_date).days)
+                room.total = room.price_ro * room.nights * room.count_room # zase nevim jestli count_room nebo count_people
+                roomTotal += room.total
+                BillRoomsRepository.update(room)
+            
+            packageTotal = 0
+            for package in billPackages:
+                newPackage = BillsController.getItemById(package.id, args["BPD"]["PACKAGES"])
+                package.toModel(newPackage)
+
+                package.start_date = BillsController.convertToDate(package.start_date)
+                package.end_date = BillsController.convertToDate(package.end_date)
+
+                package.nights = int((package.end_date - package.start_date).days)
+                package.total = package.price * package.nights * package.count_people
+                packageTotal += package.total
+                BillPackagesRepository.update(package)
+
+            acc.price = roomTotal
+            pack.price = packageTotal
+
+            sumTotal = 0
+            for item in billItems:
+                item.total = item.price * item.number
+                sumTotal += item.total
+                BillItemsRepository.update(item)
+
+            billModel.total = sumTotal
+            BillsRepository.update(billModel)
+
+            cr.commit()
+        except Exception as e:
+            cr.enableAutocommit()
+            raise e
+        cr.enableAutocommit()
+
+        return cc.createResponse({"STATUS": "Recalculated"})
+
+
     # METHODS
+
+    @staticmethod
+    def convertToDate(obj):
+        if (type(obj) is str):
+            return datetime.strptime(obj, "%Y-%m-%d")
+        return obj
+
+    @staticmethod
+    def getItemById(id, array):
+        for item in array:
+            if (item["id"] == id): return item
 
     @staticmethod
     def prepareDataFromDb(args):

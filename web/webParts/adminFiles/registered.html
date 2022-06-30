@@ -4,6 +4,8 @@
     <h2 id="regName"></h2>
     <div id="regInfoDiv" class="infoDiv"></div>
     <div id="regDiv" class="flightDiv">
+        <button onclick="getPdfBillI()">Download bill as PDF</button>
+        <button onclick="getXlsxBillI()">Download bill as XLSX</button>
         <div class="regEvTablesDiv">
             <h2>Arrivals</h2>
             <table id="registeredArrTable"></table>
@@ -11,6 +13,16 @@
             <table id="registeredDepTable"></table>
             <h2>Rooming list</h2>
             <table id="roomingListTable"></table>
+            <h2>Billing</h2>
+            <button onclick="updateBill()">Update Bill</button>
+            <h3>Accommodation</h3>
+            <table id="accBillTable"></table>
+            <h3>Packages</h3>
+            <table id="pckBillTable"></table>
+            <h3>Summary</h3>
+            <table id="sumBillTable"></table>
+            <h3>Change comments</h3>
+            <table id="comBillTable"></table>
         </div>
     </div>
     

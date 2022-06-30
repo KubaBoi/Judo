@@ -1,4 +1,4 @@
-debug = true;
+debug = false;
 
 const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
