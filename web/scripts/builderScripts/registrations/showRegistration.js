@@ -235,7 +235,24 @@ function buildRoomingList() {
     }
 }
 
+function updateBillComment() {
+    document.getElementById("commentText").value = "";
+    document.getElementById("commentText").setAttribute("placeholder", "Comment changes...");
+    let commentDiv = document.getElementById("commentDiv");
+    commentDiv.classList.add("commentDivIn");
+}
+
+function closeBillComment() {
+    let commentDiv = document.getElementById("commentDiv");
+    commentDiv.classList.remove("commentDivIn");
+}
+
 async function updateBill() {
+    if (document.getElementById("commentText").value == "") {
+        document.getElementById("commentText").setAttribute("placeholder", "You need to comment your changes");
+        return;
+    }
+    closeBillComment();
     showLoader();
 
     for (let i = 0; i < bad.ROOMS.length; i++) {
@@ -252,6 +269,7 @@ async function updateBill() {
     let req = {
         "EVENT_ID": activeEvent.ID,
         "REG_CLUB_ID": regClubId,
+        "COMMENT": document.getElementById("commentText").value,
         "BAD": bad,
         "BPD": bpd,
         "BSD": bsd
@@ -280,6 +298,8 @@ async function buildBillTbls() {
     buildBADTable(bad);
     buildBPDTable(bpd);
     buildBSDTable(bsd);
+
+    await buildCommentsTable();
 }
 
 function buildBADTable(billAccData) {
@@ -430,3 +450,28 @@ function buildBSDTable(billSumData) {
         {"text": billSumData.total}
     ]);
 }
+
+async function buildCommentsTable() {
+    let tbl = document.getElementById("comBillTable");
+    clearTable(tbl);
+
+    let response = await callEndpoint("GET", `/bills/comments?eventId=${activeEvent.ID}&regClubId=${regClubId}`);
+    if (response.ERROR != null) {
+        showErrorAlert(response.ERROR, alertTime);
+        return;
+    }
+
+    addHeader(tbl, [
+        {"text": "Time"},
+        {"text": "Comment"}
+    ]);
+
+    for (let i = 0; i < response.COMMENTS.length; i++) {
+        let comm = response.COMMENTS[i];
+
+        addRow(tbl, [
+            {"text": comm.DATUM},
+            {"text": comm.COMMENT}
+        ]);
+    }
+}   

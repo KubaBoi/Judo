@@ -4,6 +4,13 @@
     <h2 id="regName"></h2>
     <div id="regInfoDiv" class="infoDiv"></div>
     <div id="regDiv" class="flightDiv">
+        <div id="commentDiv" class="commentDiv">
+            <h2>Comment your change</h2>
+            <textarea rows="5" cols="50" id="commentText" placeholder="Comment changes...">
+            </textarea>
+            <button onclick="closeBillComment()">Cancel</button>
+            <button onclick="updateBill()">Submit</button>
+        </div>
         <button onclick="getPdfBillI()">Download bill as PDF</button>
         <button onclick="getXlsxBillI()">Download bill as XLSX</button>
         <div class="regEvTablesDiv">
@@ -14,7 +21,7 @@
             <h2>Rooming list</h2>
             <table id="roomingListTable"></table>
             <h2>Billing</h2>
-            <button onclick="updateBill()">Update Bill</button>
+            <button onclick="updateBillComment()">Update Bill</button>
             <h3>Accommodation</h3>
             <table id="accBillTable"></table>
             <h3>Packages</h3>

@@ -12,6 +12,7 @@ from src.repositories.bills.billsRepository import BillsRepository
 from src.repositories.bills.billItemsRepository import BillItemsRepository
 from src.repositories.bills.billRoomsRepository import BillRoomsRepository
 from src.repositories.bills.billPackagesRepository import BillPackagesRepository
+from src.repositories.bills.billChangeCommentsRepository import BillChangeCommentsRepository
 
 from src.other.billCalculator import BillCalculator
 from src.other.billCreator import BillCreator
@@ -89,11 +90,22 @@ class BillsController(cc):
 
         return cc.createResponse({"BILL": billName})
     
+    #@get /comments;
+    @staticmethod
+    def comments(server, path, auth):
+        args = cc.getArgs(path)
+        cc.checkJson(["eventId", "regClubId"], args)
+
+        billModel = BillsRepository.findByEventAndRegClub(args["eventId"], args["regClubId"])
+        comments = BillChangeCommentsRepository.findBy("bill_item_id", billModel.id)
+
+        return cc.createResponse({"COMMENTS": cc.modulesToJsonArray(comments)})
+
     #@post /recalculate;
     @staticmethod
     def recalculate(server, path, auth):
         args = cc.readArgs(server)
-        cc.checkJson(["EVENT_ID", "REG_CLUB_ID", "BAD", "BPD", "BSD"], args)
+        cc.checkJson(["EVENT_ID", "REG_CLUB_ID", "COMMENT", "BAD", "BPD", "BSD"], args)
 
         billModel = BillsRepository.findByEventAndRegClub(args["EVENT_ID"], args["REG_CLUB_ID"])
         billItems = BillItemsRepository.findBy("bill_id", billModel.id)
@@ -109,6 +121,14 @@ class BillsController(cc):
 
         cr.disableAutocommit()
         try:
+            commentModel = BillChangeCommentsRepository.model()
+            commentModel.setAttrs(
+                bill_item_id=billModel.id,
+                comment=args["COMMENT"],
+                datum=datetime.now()
+            )
+            BillChangeCommentsRepository.save(commentModel)
+
             roomTotal = 0
             for room in billRooms:
                 newRoom = BillsController.getItemById(room.id, args["BAD"]["ROOMS"])

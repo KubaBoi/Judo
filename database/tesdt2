@@ -20,3 +20,5 @@ delete from bill_rooms;
 delete from bill_packages;
 
 select * from bed where reg_jb_id != -1;
+
+alter table bill_change_comments add column datum timestamp;
