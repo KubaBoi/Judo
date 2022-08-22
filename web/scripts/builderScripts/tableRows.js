@@ -1,3 +1,11 @@
+function createElementFromHTML(htmlString) {
+    var div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+  
+    // Change this to div.childNodes to support multiple top-level nodes.
+    return div.firstChild;
+  }
+
 function createEditTableRow(tbl, label, id, defValue, type="text") {
     var row = createElement("tr", tbl);
     createElement("td", row, label);

@@ -14,6 +14,14 @@ pip install openpyxl
 
 sudo apt-get install wkhtmltopdf  
 
+### Centos
+
+wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1.centos8.x86_64.rpm
+
+sudo dnf localinstall wkhtmltox-0.12.6-1.centos8.x86_64.rpm
+
+### Windows
+
 config = pdfkit.configuration(wkhtmltopdf = r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 
 pdfkit.from_file("pdfTemp.html", "output.pdf", configuration=config)

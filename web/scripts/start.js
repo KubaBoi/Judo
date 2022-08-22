@@ -15,6 +15,15 @@ var password = getCookie("password");
 
 var loadingDiv = document.getElementById("loaderDiv");
 
+var countryCodes = "";
+getCountryCodes();
+async function getCountryCodes() {
+    let response = await callEndpoint("GET", "/webParts/authorization/countryCodes.html");
+    if (response.ERROR == null) {
+        countryCodes = response;
+    }
+}
+
 var badgeTypes = [
     createElement("img", null, "", [
         {"name": "src", "value": "./images/pendingIcon.png"},

@@ -33,7 +33,15 @@ async function editClubTab(clubId) {
         var tbl = createElement("table", editDiv);
 
         createEditTableRow(tbl, "Name: ", "nameInpEdit", activeClub.NAME);
-        createEditTableRow(tbl, "Country: ", "stateInpEdit", activeClub.STATE);
+        let selectInp = createElementFromHTML(countryCodes);
+        addRow(tbl, [
+            {"text": "Country"},
+            {"text": `<div class="custom-select">${selectInp.outerHTML}</div>`}
+        ]);
+        if (activeClub.STATE != "") {
+            document.getElementById("stateInpEdit").value = activeClub.STATE;
+        }
+        prepareSelect();
         createEditTableRow(tbl, "Address: ", "addressInpEdit", activeClub.ADDRESS);
         createEditTableRow(tbl, "EJU: ", "ejuInpEdit", activeClub.EJU, "checkbox");
 
@@ -64,13 +72,15 @@ async function saveClubChanges(clubId) {
     if (response.ERROR == null) {
         if (clubId) {
             buildClubTable();
-            showAlert("Success :)", "Club was updated");
+            showOkAlert("Success :)", "Club was updated", alertTime);
             response = await callEndpoint("GET", `/clubs/get?clubId=${clubId}`);
+            closeHiddenTab();
         }
         else {
             buildClubTable();
-            showAlert("Success :)", "Club was created");
+            showOkAlert("Success :)", "Club was created", alertTime);
             response = await callEndpoint("GET", `/clubs/get?clubId=${response.ID}`);
+            closeHiddenTab();
         }
 
         if (response.ERROR == null) {
@@ -90,7 +100,7 @@ function prepareClubChangedData() {
     var newClub = {
         "ID": activeClub.ID,
         "NAME": getValueOf("nameInpEdit"),
-        "STATE": getValueOf("stateInpEdit"),
+        "STATE": document.getElementById("stateInpEdit").value,
         "ADDRESS": getValueOf("addressInpEdit"),
         "EJU": getValueOf("ejuInpEdit"),
         "USER_ID": (!activeClub.USER_ID) ? loggedUser.ID : activeClub.USER_ID,
