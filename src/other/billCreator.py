@@ -29,11 +29,9 @@ class BillCreator:
         wb = openpyxl.load_workbook(ResMan.resources("xlsxTemp.xlsx"))
         sheet = wb.active
 
-        random.seed(event.event_start.strftime("%Y") + club.name)
-
         sheet.cell(11, 2, event.name)
         sheet.cell(11, 7, event.place.upper() + " " + event.event_start.strftime("%Y"))
-        sheet.cell(14, 4, str(random.random()+1).replace(".", "")[:10])
+        sheet.cell(14, 4, BillCreator.generateInvoiceNumber(event, club))
         sheet.cell(14, 7, datetime.now().strftime("%d.%m.%Y"))
         sheet.cell(15, 4, club.name)
 
@@ -113,12 +111,10 @@ class BillCreator:
         with open(ResMan.resources("pdfTemp.html"), "r", encoding="utf-8") as f:
             data = f.read()
 
-        random.seed(event.event_start.strftime("%Y") + club.name)
-
         data = data.replace("$PORT$", str(Settings.port))
         data = data.replace("$EVENT_NAME$", event.name)
         data = data.replace("$PLACE_YEAR$", event.place.upper() + " " + event.event_start.strftime("%Y"))
-        data = data.replace("$INVOICE$", str(random.random()+1).replace(".", "")[:10])
+        data = data.replace("$INVOICE$", BillCreator.generateInvoiceNumber(event, club))
         data = data.replace("$DATE$", datetime.now().strftime("%d.%m.%Y"))
         data = data.replace("$TO$", club.name)
         data = data.replace("$ROOMS$", BillCreator.prepareRooms(bad))
@@ -128,6 +124,11 @@ class BillCreator:
         data = data.replace("$SUMMARY$", BillCreator.prepareSummary(bsd))
         data = data.replace("$SUMM_TOTAL$", str(bsd["total"]) + " &#8364;")
         return data
+
+    @staticmethod
+    def generateInvoiceNumber(event, club):
+        random.seed(event.event_start.strftime("%Y") + club.name + event.name)
+        return str(random.random()+1).replace(".", "")[:10]
 
     @staticmethod
     def prepareRooms(bad):
