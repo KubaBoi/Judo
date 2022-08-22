@@ -3,6 +3,7 @@ import os
 import pdfkit
 import openpyxl
 import platform
+import random
 from datetime import datetime
 from openpyxl.styles import Font
 from openpyxl.styles import Alignment
@@ -28,9 +29,11 @@ class BillCreator:
         wb = openpyxl.load_workbook(ResMan.resources("xlsxTemp.xlsx"))
         sheet = wb.active
 
+        random.seed(event.event_start.strftime("%Y") + club.name)
+
         sheet.cell(11, 2, event.name)
         sheet.cell(11, 7, event.place.upper() + " " + event.event_start.strftime("%Y"))
-        sheet.cell(14, 4, "NEZAPOMENOUT")
+        sheet.cell(14, 4, str(random.random()+1).replace(".", "")[:10])
         sheet.cell(14, 7, datetime.now().strftime("%d.%m.%Y"))
         sheet.cell(15, 4, club.name)
 
@@ -107,13 +110,15 @@ class BillCreator:
 
     @staticmethod
     def createHtml(bad, bpd, bsd, event, club):
-        with open(ResMan.resources("pdfTemp.html"), "r") as f:
+        with open(ResMan.resources("pdfTemp.html"), "r", encoding="utf-8") as f:
             data = f.read()
+
+        random.seed(event.event_start.strftime("%Y") + club.name)
 
         data = data.replace("$PORT$", str(Settings.port))
         data = data.replace("$EVENT_NAME$", event.name)
         data = data.replace("$PLACE_YEAR$", event.place.upper() + " " + event.event_start.strftime("%Y"))
-        data = data.replace("$INVOICE$", "NEZAPOMENOUT")
+        data = data.replace("$INVOICE$", str(random.random()+1).replace(".", "")[:10])
         data = data.replace("$DATE$", datetime.now().strftime("%d.%m.%Y"))
         data = data.replace("$TO$", club.name)
         data = data.replace("$ROOMS$", BillCreator.prepareRooms(bad))
