@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS public.hotels
 CREATE TABLE IF NOT EXISTS public.jb
 (
     id bigint NOT NULL,
-    club_id bigint NOT NULL,
     jb text COLLATE pg_catalog."default" NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
     sur_name text COLLATE pg_catalog."default" NOT NULL,
@@ -107,6 +106,7 @@ CREATE TABLE IF NOT EXISTS public.registered_jb
     departure timestamp with time zone NOT NULL,
     transport boolean NOT NULL,
     flight_number text COLLATE pg_catalog."default" NOT NULL,
+    dep_number text NOT NULL,
     CONSTRAINT registered_jb_pkey PRIMARY KEY (id)
 );
 
@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS public.bill_change_comments
     id bigint NOT NULL,
     bill_item_id bigint NOT NULL,
     comment text NOT NULL,
+    datum timestamp with time zone NOT NULL,
     PRIMARY KEY (id)
 );
 

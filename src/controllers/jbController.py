@@ -14,9 +14,7 @@ class JbController(cc):
 	@staticmethod
 	def create(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["JB", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
 
 		jbModel = JbRepository.model()
 		jbModel.toModel(args)
@@ -28,9 +26,7 @@ class JbController(cc):
 	@staticmethod
 	def createFromCvs(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(["EVENT_ID", "DATA"], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["EVENT_ID", "DATA"], args)
 
 		eventId = args["EVENT_ID"]
 		data = args["DATA"]
@@ -55,9 +51,7 @@ class JbController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['ID', 'CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["ID", "CLUB_ID", "JB", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
 
 		id = args["ID"]
 
@@ -65,7 +59,7 @@ class JbController(cc):
 		jbModel.toModel(args)
 		JbRepository.update(jbModel)
 
-		return cc.createResponse({'STATUS': 'Jb has been updated'}, 200)
+		return cc.createResponse({"STATUS": "Jb has been updated"}, 200)
 
 	#@get /get;
 	@staticmethod
@@ -79,33 +73,21 @@ class JbController(cc):
 
 		return cc.createResponse({"JB": jb.toJson()})
 
-
-	#@get /getByClub;
+	#@get /getByCountry;
 	@staticmethod
-	def getByClub(server, path, auth):
+	def getByCountry(server, path, auth):
 		args = cc.getArgs(path)
+		cc.checkJson(["country"], args)
 
-		if (not cc.validateJson(['clubId'], args)):
-			raise BadRequest("Wrong json structure")
-
-		clubId = args["clubId"]
-
-		jbArray = JbRepository.findWhere(club_id=clubId)
-		jsonResponse = {}
-		jsonResponse["JBS"] = []
-		for jb in jbArray:
-			jsonResponse["JBS"].append(jb.toJson())
-
-		return cc.createResponse(jsonResponse, 200)
+		jbModels = JbRepository.findWhere(state=args["country"])
+		return cc.createResponse({"JBS": cc.modulesToJsonArray(jbModels)})
 
 
 	#@post /remove;
 	@staticmethod
 	def remove(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['ID'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["ID"], args)
 
 		id = args["ID"]
 

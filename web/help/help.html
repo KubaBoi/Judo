@@ -1,8 +1,47 @@
 <html>
 	<head><title>Help</title>
+		<link rel="stylesheet" href="/styles/color2.css">
+		<link rel="stylesheet" href="/styles/regevStyles/registrationsStyle.css">
+		<link rel="stylesheet" href="/styles/regevStyles/notifications.css">
+		<link rel="stylesheet" href="/styles/regevStyles/registerToEventStyle.css">
+
     	<link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/mdConverter/mdStyle.css">
         <link rel="stylesheet" href="https://kubaboi.github.io/CheeseFramework/mdConverter/codeStyles/general.css">
 	</head>
+
+	<style>
+		button {
+    background-color: var(--light-color);
+    color: var(--main-text-color);
+    border-width: 0px;
+    padding: 1em;
+    margin: 5px;
+    border-radius: 5px;
+
+    transition: all;
+    transition-duration: 0.5s;
+	}
+
+	button:hover {
+		background-color: var(--secondary-light-color);
+		color: var(--main-text-color);
+		border-width: 0px;
+		padding: 1em;
+		border-radius: 5px;
+
+		transition: all;
+		transition-duration: 0.5s;
+	}
+
+	button:disabled {
+		color: var(--main-color);
+	}
+
+	button:disabled:hover {
+		color: var(--lighter-color);
+		background-color: var(--light-color);
+	}
+	</style>
 
 	<body>
 		<div id="d" class="d">

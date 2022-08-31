@@ -3,7 +3,7 @@ async function buildPeopleTable(header, attrs) {
     let tbl = document.getElementById("regEvPeopleTable");
     clearTable(tbl);
 
-    let response = await callEndpoint("GET", `/jb/getByClub?clubId=${loggedClub.ID}`);
+    let response = await callEndpoint("GET", `/jb/getByCountry?country=${loggedClub.STATE}`);
     if (response.ERROR == null) {
         let items = response.JBS;
         jbs = items;

@@ -109,7 +109,7 @@ async function sendRegData(eventId, clubId) {
         buildRegistrationsTable();
     }
     else {
-        showErrorAlert(response.ERROR);
+        showErrorAlert(response.ERROR, alertTime);
     }
 
     hideLoader();
