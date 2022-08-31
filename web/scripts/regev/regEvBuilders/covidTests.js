@@ -30,7 +30,7 @@ function buildCovidTestsTable() {
         
         if (!jb.ISIN) continue;
 
-        let pcrTestsInp = new NumberInput(`pcrTestsInp${i}`, jb.PCR_TESTS, 1);
+        let pcrTestsInp = new NumberInput(`pcrTestsInp${i}`, jb.PCR_TESTS, 0);
         let agTestsInp = new NumberInput(`agTestsInp${i}`, jb.AG_TESTS, 0);
 
         addNumberInput(pcrTestsInp);
@@ -57,7 +57,7 @@ function resetPcrTests() {
     for (let i = 0; i < jbs.length; i++) {
         let jb = jbs[i];
         if (!jb.ISIN) continue;
-        jb.PCR_TESTS = 1;
+        jb.PCR_TESTS = 0;
     }
     lockCovidTests();
     buildCovidTestsTable();

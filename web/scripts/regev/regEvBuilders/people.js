@@ -33,7 +33,7 @@ async function buildPeopleTable(header, attrs) {
             jbs[i].DEP_FLIGHT = -1;
             jbs[i].ROOMING_LIST = defWeekdayArr;
             jbs[i].PACKAGE = "BB";
-            jbs[i].PCR_TESTS = 1;
+            jbs[i].PCR_TESTS = 0;
             jbs[i].AG_TESTS = 0;
             arrivals = [];
             departs = [];

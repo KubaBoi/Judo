@@ -62,10 +62,19 @@ function createDepartures() {
     for (let i = 0; i < departs.length; i++) {
         let depart = departs[i];
         tbl = createElement("table", dv);
+
+        let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
+        createElement("input", checkDiv, "", [
+            {"name": "type", "value": "checkbox"},
+            {"name": "id", "value": `depTranInp${i}`},
+            {"name": "checked", "value": depart.NEED_TRANS}
+        ]);
+        createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
+
         addHeader(tbl, [
-            {"text": `<label>Departure time: </label><input type="datetime-local" id="depTmInp${i}" value="${getTimestamp(depart.TIME, false)}">`},
-            {"text": `<label>Flight number: </label><input type="text" id="depNumInp${i}" value="${depart.NUMBER}">`},
-            {"text": `<label>Need transport: </label><input type="checkbox" id="depTranInp${i}" checked="${depart.NEED_TRANS}">`},
+            {"text": `<label>Departure time: </label><br><input type="datetime-local" id="depTmInp${i}" value="${getTimestamp(depart.TIME, false)}">`},
+            {"text": `<label>Flight number: </label><br><input type="text" id="depNumInp${i}" value="${depart.NUMBER}">`},
+            {"text": `<label>Need transport: </label><br>${checkDiv.outerHTML}`},
             {"text": `<img src="./images/deleteIcon48.png" onclick=removeDepart(${i}) title="Remove flight">`}
         ]);
 

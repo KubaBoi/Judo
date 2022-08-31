@@ -152,7 +152,7 @@ function chooseHotel(index, value) {
 
 async function saveEventChanges(eventId, hardCreate=false) {
     var response = null;
-    if (eventId) {
+    if (eventId != null) {
         var request = prepareEventChangedData(hardCreate)
         response = await callEndpoint("POST", "/events/update", request);
     }
@@ -161,12 +161,13 @@ async function saveEventChanges(eventId, hardCreate=false) {
         response = await callEndpoint("POST", "/events/create", request);
     }
     if (response.ERROR == null) {
-        if (eventId) {
+        if (eventId != null) {
             buildEventTable();
             showTimerAlert("Success :)", "Event has been updated", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );
+            closeHiddenTab();
         }
         else {
             buildEventTable();

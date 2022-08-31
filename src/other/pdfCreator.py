@@ -19,7 +19,7 @@ class PdfCreator:
     @staticmethod
     def createPdf(eventId):
         event = EventsRepository.find(eventId)
-        regClubs = RegisteredClubsRepository.findBy("event_id", eventId)
+        regClubs = RegisteredClubsRepository.findByColumns(event_id=eventId)
 
         clubsHtml = PdfCreator.prepareTables(regClubs)
 
@@ -61,7 +61,7 @@ class PdfCreator:
             data = data.replace("$PHONE$", userModel.phone)
             data = data.replace("$EMAIL$", userModel.login)
 
-            regJbs = RegisteredJbRepository.findBy("reg_club_id", regClub.id)
+            regJbs = RegisteredJbRepository.findByColumns(reg_club_id=regClub.id)
             if (len(regJbs) == 0):
                 data = data.replace("$ARRIVALS$", "<tr><td class='center' colspan='5'>No arrivals</td></tr>")
                 data = data.replace("$DEPARTURES$", "<tr><td class='center' colspan='5'>No departures</td></tr>")
@@ -74,7 +74,7 @@ class PdfCreator:
             totalPcrs = 0
             totalAgs = 0
             for regJb in regJbs:
-                tests = RegisteredTestsRepository.findBy("reg_jb_id", regJb.id)
+                tests = RegisteredTestsRepository.findByColumns(reg_jb_id=regJb.id)
                 pcrs = 0
                 ags = 0
                 for test in tests:

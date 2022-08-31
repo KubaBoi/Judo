@@ -15,7 +15,7 @@ class JbController(cc):
 	def create(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(['CLUB_ID', 'JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
+		if (not cc.validateJson(['JB', 'NAME', 'SUR_NAME', 'FUNCTION', 'BIRTHDAY', 'GENDER', 'PASS_ID', 'PASS_RELEASE', 'PASS_EXPIRATION'], args)):
 			raise BadRequest("Wrong json structure")
 
 		jbModel = JbRepository.model()
@@ -24,42 +24,30 @@ class JbController(cc):
 
 		return cc.createResponse({"ID": jbModel.id}, 200)
 
-
 	#@post /createFromCvs;
 	@staticmethod
 	def createFromCvs(server, path, auth):
 		args = cc.readArgs(server)
 
-		if (not cc.validateJson(["EVENT_ID", "CLUB_ID", "DATA"], args)):
+		if (not cc.validateJson(["EVENT_ID", "DATA"], args)):
 			raise BadRequest("Wrong json structure")
 
 		eventId = args["EVENT_ID"]
-		clubId = args["CLUB_ID"]
 		data = args["DATA"]
-
-		"""orFilter = ""
-		dataLen = len(data)-1
-		for i, oneJb in enumerate(data):
-			orFilter += f"jb='{oneJb['JB']}'"
-			if (i < dataLen):
-				orFilter += " or "
-
-		if (JbRepository.existsAny(orFilter)):
-			raise Conflict("Some id from JudoBase already exists")"""
 
 		for oneJB in data:
 			model = JbRepository.model()
 			model.toModel(oneJB)
 			model.setAttrs(
-				club_id=clubId,
 				pass_release=None,
 				pass_expiration=None
 			)
 			JbRepository.save(model)
 
-		regClub = RegisteredClubsRepository.registeredClubInEvent(eventId, clubId)
-		regClub.status = 1
-		RegisteredClubsRepository.update(regClub)
+		regClubs = RegisteredClubsRepository.findByColumns(event_id=eventId, status=0)
+		for regClub in regClubs:
+			regClub.status = 1
+			RegisteredClubsRepository.update(regClub)
 
 		return cc.createResponse({"STATUS": "OK"}, 200)
 
@@ -102,7 +90,7 @@ class JbController(cc):
 
 		clubId = args["clubId"]
 
-		jbArray = JbRepository.findBy("club_id", clubId)
+		jbArray = JbRepository.findByColumns(club_id=clubId)
 		jsonResponse = {}
 		jsonResponse["JBS"] = []
 		for jb in jbArray:
