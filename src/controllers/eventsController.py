@@ -23,7 +23,7 @@ class EventsController(cc):
 		hardCreate = args["HARD_CREATE"]
 		name = args["NAME"]
 
-		exists = EventsRepository.findByColumns(name=name)
+		exists = EventsRepository.findWhere(name=name)
 		if (exists == None):
 			return
 		if (len(exists) > 0 and not hardCreate):
@@ -80,11 +80,11 @@ class EventsController(cc):
 
 		column = args["column"]
 		userLogin = auth["login"]["login"]
-		user = UsersRepository.findOneByColumns(login=userLogin)
+		user = UsersRepository.findOneWhere(login=userLogin)
 		if (user == None):
 			raise NotFound("User was not found")
 
-		usersClubs = ClubsRepository.findByColumns(user_id=user.id)
+		usersClubs = ClubsRepository.findWhere(user_id=user.id)
 
 		eventsArray = EventsRepository.findBySorted(column)
 		jsonResponse = {}

@@ -53,7 +53,7 @@ class HotelsController(cc):
 		apartmanRoomLIV = args["APARTMAN_ROOM_LIV"]
 
 		if (not args["HARD_CREATE"]):
-			existingHotel = HotelsRepository.findByColumns(name=name)
+			existingHotel = HotelsRepository.findWhere(name=name)
 			if (existingHotel == None):
 				return
 			if (len(existingHotel) > 0):
@@ -231,12 +231,12 @@ class HotelsController(cc):
 			raise BadRequest("Wrong json structure")
 
 		hotelId = args["hotelId"]
-		roomsArray = RoomsRepository.findByColumns(hotel_id=hotelId)
+		roomsArray = RoomsRepository.findWhere(hotel_id=hotelId)
 
 		jsonResponse = {}
 		jsonResponse["ROOMS"] = []
 		for room in roomsArray:
-			room.beds = BedRepository.findByColumns(room_id=room.id)
+			room.beds = BedRepository.findWhere(room_id=room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		return cc.createResponse(jsonResponse, 200)
@@ -255,7 +255,7 @@ class HotelsController(cc):
 		jsonResponse = {}
 		jsonResponse["ROOMS"] = []
 		for room in roomsArray:
-			room.beds = BedRepository.findByColumns(room_id=room.id)
+			room.beds = BedRepository.findWhere(room_id=room.id)
 			jsonResponse["ROOMS"].append(room.toJson())
 
 		return cc.createResponse(jsonResponse, 200)		
@@ -280,9 +280,9 @@ class HotelsController(cc):
 
 		id = args["id"]
 
-		rooms = RoomsRepository.findByColumns(hotel_id=id)
+		rooms = RoomsRepository.findWhere(hotel_id=id)
 		for room in rooms:
-			beds = BedRepository.findByColumns(room_id=room.id)
+			beds = BedRepository.findWhere(room_id=room.id)
 			for bed in beds:
 				BedRepository.delete(bed)
 			RoomsRepository.delete(room)
@@ -323,7 +323,7 @@ class HotelsController(cc):
 		if (len(rooms) > roomCount):
 			more = len(rooms) - roomCount
 			for i in range(more):
-				beds = BedRepository.findByColumns(room_id=rooms[0].id)
+				beds = BedRepository.findWhere(room_id=rooms[0].id)
 				for bed in beds:
 					BedRepository.delete(bed)
 				RoomsRepository.delete(rooms[0])

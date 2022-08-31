@@ -22,8 +22,8 @@ class UsersController(cc):
 	def login(server, path, auth):
 		login = auth["login"]["login"]
 
-		user = UsersRepository.findOneByColumns(login=login)
-		club = ClubsRepository.findOneByColumns(user_id=user.id)
+		user = UsersRepository.findOneWhere(login=login)
+		club = ClubsRepository.findOneWhere(user_id=user.id)
 		if (club != None):
 			club = club.toJson()
 
@@ -42,7 +42,7 @@ class UsersController(cc):
 		phone = args["PHONE"]
 		fullName = args["FULL_NAME"]
 
-		user = UsersRepository.findOneByColumns(login=login)
+		user = UsersRepository.findOneWhere(login=login)
 		if (user != None):
 			raise Conflict("User with this login already exists")
 
@@ -89,7 +89,7 @@ class UsersController(cc):
 			raise BadRequest("Wrong json structure")
 
 		code = args["code"]
-		registration = RegistrationsRepository.findOneByColumns(registration_code=code)
+		registration = RegistrationsRepository.findOneWhere(registration_code=code)
 		if (registration == None):
 			raise Unauthorized("Registration is invalid")
 

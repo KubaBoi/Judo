@@ -98,7 +98,7 @@ class BillsController(cc):
         cc.checkJson(["eventId", "regClubId"], args)
 
         billModel = BillsRepository.findByEventAndRegClub(args["eventId"], args["regClubId"])
-        comments = BillChangeCommentsRepository.findByColumns(bill_item_id=billModel.id)
+        comments = BillChangeCommentsRepository.findWhere(bill_item_id=billModel.id)
 
         return cc.createResponse({"COMMENTS": cc.modulesToJsonArray(comments)})
 
@@ -109,7 +109,7 @@ class BillsController(cc):
         cc.checkJson(["EVENT_ID", "REG_CLUB_ID", "COMMENT", "BAD", "BPD", "BSD"], args)
 
         billModel = BillsRepository.findByEventAndRegClub(args["EVENT_ID"], args["REG_CLUB_ID"])
-        billItems = BillItemsRepository.findByColumns(bill_id=billModel.id)
+        billItems = BillItemsRepository.findWhere(bill_id=billModel.id)
         
         acc = None
         pack = None
@@ -117,8 +117,8 @@ class BillsController(cc):
             if (item.name == "Accommodation"): acc = item
             if (item.name == "Packages"): pack = item
 
-        billRooms = BillRoomsRepository.findByColumns(bill_item_id=acc.id)
-        billPackages = BillPackagesRepository.findByColumns(bill_item_id=pack.id)
+        billRooms = BillRoomsRepository.findWhere(bill_item_id=acc.id)
+        billPackages = BillPackagesRepository.findWhere(bill_item_id=pack.id)
 
         cr.disableAutocommit()
         try:
@@ -204,7 +204,7 @@ class BillsController(cc):
         club = ClubsRepository.find(regClub.club_id)
 
         billModel = BillsRepository.findByEventAndRegClub(args["eventId"], args["regClubId"])
-        billItems = BillItemsRepository.findByColumns(bill_id=billModel.id)
+        billItems = BillItemsRepository.findWhere(bill_id=billModel.id)
         
         acc = None
         pack = None
@@ -212,8 +212,8 @@ class BillsController(cc):
             if (item.name == "Accommodation"): acc = item
             if (item.name == "Packages"): pack = item
 
-        billRooms = BillRoomsRepository.findByColumns(bill_item_id=acc.id)
-        billPackages = BillPackagesRepository.findByColumns(bill_item_id=pack.id)
+        billRooms = BillRoomsRepository.findWhere(bill_item_id=acc.id)
+        billPackages = BillPackagesRepository.findWhere(bill_item_id=pack.id)
 
         bsd = {
             "ITEMS": cc.modulesToJsonArray(billItems, True, False),

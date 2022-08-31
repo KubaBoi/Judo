@@ -16,7 +16,7 @@ class BedsController(cc):
         args = cc.getArgs(path)
         cc.checkJson(["regJbId"], args)
 
-        bedModel = BedRepository.findOneByColumns(reg_jb_id=args["regJbId"])
+        bedModel = BedRepository.findOneWhere(reg_jb_id=args["regJbId"])
         roomModel = RoomsRepository.find(bedModel.room_id)
 
         return cc.createResponse({"ROOM": roomModel.toJson()})

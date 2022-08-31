@@ -44,7 +44,7 @@ class JbController(cc):
 			)
 			JbRepository.save(model)
 
-		regClubs = RegisteredClubsRepository.findByColumns(event_id=eventId, status=0)
+		regClubs = RegisteredClubsRepository.findWhere(event_id=eventId, status=0)
 		for regClub in regClubs:
 			regClub.status = 1
 			RegisteredClubsRepository.update(regClub)
@@ -90,7 +90,7 @@ class JbController(cc):
 
 		clubId = args["clubId"]
 
-		jbArray = JbRepository.findByColumns(club_id=clubId)
+		jbArray = JbRepository.findWhere(club_id=clubId)
 		jsonResponse = {}
 		jsonResponse["JBS"] = []
 		for jb in jbArray:

@@ -96,7 +96,7 @@ class RegisteredClubsController(cc):
 
 		eventId = args["eventId"]
 
-		registeredclubsArray = RegisteredClubsRepository.findByColumns(event_id=eventId)
+		registeredclubsArray = RegisteredClubsRepository.findWhere(event_id=eventId)
 		jsonResponse = {}
 		jsonResponse["REGISTERED_CLUBS"] = []
 		for registered_club in registeredclubsArray:

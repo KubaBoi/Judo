@@ -56,7 +56,7 @@ class RegisteredJbController(cc):
 
 		regClubId = args["regClubId"]
 
-		registeredjbArray = RegisteredJbRepository.findByColumns(reg_club_id=regClubId)
+		registeredjbArray = RegisteredJbRepository.findWhere(reg_club_id=regClubId)
 
 		return cc.createResponse({"REGISTERED_JBS": cc.modulesToJsonArray(registeredjbArray)})
 

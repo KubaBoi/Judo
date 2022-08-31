@@ -13,7 +13,7 @@ class RegisteredTestsController(cc):
         args = cc.getArgs(path)
         cc.checkJson(["regJbId"], args)
 
-        testModels = RegisteredTestsRepository.findByColumns(reg_jb_id=args["regJbId"])
+        testModels = RegisteredTestsRepository.findWhere(reg_jb_id=args["regJbId"])
 
         return cc.createResponse({"TESTS": cc.modulesToJsonArray(testModels)})
 
