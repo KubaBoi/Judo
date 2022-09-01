@@ -94,14 +94,8 @@ class BillCalculator:
             "total": event.ag_price * agCount
         })
 
-        transCount = 0
-        for x in jbs:
-            arrIndex = x["ARR_FLIGHT"]
-            depIndex = x["DEP_FLIGHT"]
-            print(arrivals[arrIndex])
-            print(departs[depIndex])
-            if (arrivals[arrIndex]["NEED_TRANS"]): transCount += 1
-            if (departs[depIndex]["NEED_TRANS"]): transCount += 1
+        transCount = sum([1 for x in jbs if arrivals[int(x["ARR_FLIGHT"])]["NEED_TRANS"]])
+        transCount += sum([1 for x in jbs if departs[int(x["DEP_FLIGHT"])]["NEED_TRANS"]])
 
         billSumData["ITEMS"].append({
             "name": "Transport",
