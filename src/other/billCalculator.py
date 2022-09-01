@@ -27,7 +27,7 @@ class BillCalculator:
     def getCalculatedBillData(args):
 
         event = EventsRepository.find(args["EVENT_ID"])
-        club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
+        club = ClubsRepository.find(args["CLUB_ID"])
 
         jbsAll = args["JBS"]
         arrivals = args["ARRIVALS"]
@@ -40,7 +40,7 @@ class BillCalculator:
 
         days = BillCalculator.prepareDays(event)
 
-        # int(args["EVENT_ID"]), int(args["JBS"][0]["CLUB_ID"])
+        # int(args["EVENT_ID"]), int(args["CLUB_ID"])
 
         billAccData = BillCalculator.getBillAccData(jbs, days)
         billPackData = BillCalculator.getBillPackData(jbs, days)

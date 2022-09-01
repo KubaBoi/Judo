@@ -176,7 +176,7 @@ class RegisteredClubsController(cc):
 	def calculateBill(server, path, auth):
 		args = cc.readArgs(server)
 
-		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
+		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID", "CLUB_ID"], args)
 
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")

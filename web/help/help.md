@@ -28,10 +28,11 @@
             - [Departure](#4236-departure)
             - [Billing](#4237-billing)
         - [Registered](#424-registered)
+- [Conclusion](#5-conclusion)
 
 # 1. Introduction
 
-Welcome to help page for [Czech Judo Web Application](http://frogie.cz:8005).
+Welcome to help page for [Czech Judo Web Application](/).
 
 # 2. Registration
 
@@ -300,3 +301,9 @@ Everything seems to be alright :tada:
 You can look at your registration but you cannot change it anymore. 
 
 Also check your bill and download it in `.pdf` or `.xlsx` format as in previous step. 
+
+# 5. Conclusion
+
+Now you know how to operate this application. 
+
+If you are an administrator or organiser, please continue here [Admin help](/help/helpAdmin.html)

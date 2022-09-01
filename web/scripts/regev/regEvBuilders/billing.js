@@ -28,6 +28,7 @@ async function getPdfBill() {
         window.open(`/bills/pdf/${bill}`, "_blank");
     }
     else {
+        changeNotification("notifBilling", "notifErr", "An error occured, please contact administrator", false);
         showErrorAlert(response.ERROR, alertTime);
     }
     hideLoader();
@@ -52,6 +53,7 @@ async function getXlsxBill() {
         window.open(`/bills/xlsx/${bill}`, "_blank");
     }
     else {
+        changeNotification("notifBilling", "notifErr", "An error occured, please contact administrator", false);
         showErrorAlert(response.ERROR, alertTime);
     }
     hideLoader();
@@ -81,6 +83,7 @@ async function calculateBill() {
         changeConfirmButt(true);
     }
     else {
+        changeNotification("notifBilling", "notifErr", "An error occured, please contact administrator", false);
         showErrorAlert(response.ERROR, alertTime);
     }
 }
