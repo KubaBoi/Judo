@@ -72,7 +72,8 @@ async function calculateBill() {
         "JBS": jbs,
         "ARRIVALS": arrivals,
         "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID
+        "EVENT_ID": activeEvent.ID,
+        "CLUB_ID": loggedClub.ID
     }
 
     var response = await callEndpoint("POST", "/registeredClubs/calculateBill", req);
