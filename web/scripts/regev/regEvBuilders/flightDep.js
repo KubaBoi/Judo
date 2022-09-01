@@ -64,11 +64,12 @@ function createDepartures() {
         tbl = createElement("table", dv);
 
         let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
-        createElement("input", checkDiv, "", [
+        let attrs = [
             {"name": "type", "value": "checkbox"},
-            {"name": "id", "value": `depTranInp${i}`},
-            {"name": "checked", "value": depart.NEED_TRANS}
-        ]);
+            {"name": "id", "value": `depTranInp${i}`}
+        ];
+        if (depart.NEED_TRANS) attrs.push({"name": "checked", "value": depart.NEED_TRANS});
+        createElement("input", checkDiv, "", attrs);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
         addHeader(tbl, [
@@ -123,7 +124,7 @@ function depChange(index) {
     depart.TIME = document.getElementById(`depTmInp${index}`).value;
     depart.NUMBER = document.getElementById(`depNumInp${index}`).value;
     depart.NEED_TRANS = document.getElementById(`depTranInp${index}`).checked;
-
+    
     checkIfDoneDep();
 }
 

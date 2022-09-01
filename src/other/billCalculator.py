@@ -94,8 +94,15 @@ class BillCalculator:
             "total": event.ag_price * agCount
         })
 
-        transCount = len([x for x in arrivals if x["NEED_TRANS"]])
-        transCount += len([x for x in departs if x["NEED_TRANS"]])
+        transCount = 0
+        for x in jbs:
+            arrIndex = x["ARR_FLIGHT"]
+            depIndex = x["DEP_FLIGHT"]
+            print(arrivals[arrIndex])
+            print(departs[depIndex])
+            if (arrivals[arrIndex]["NEED_TRANS"]): transCount += 1
+            if (departs[depIndex]["NEED_TRANS"]): transCount += 1
+
         billSumData["ITEMS"].append({
             "name": "Transport",
             "number": transCount,

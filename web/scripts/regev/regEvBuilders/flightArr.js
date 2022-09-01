@@ -63,12 +63,15 @@ function createArrivals() {
         let arrival = arrivals[i];
         tbl = createElement("table", dv);
 
+        console.log(arrival);
+
         let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
-        createElement("input", checkDiv, "", [
+        let attrs = [
             {"name": "type", "value": "checkbox"},
             {"name": "id", "value": `arrTranInp${i}`},
-            {"name": "checked", "value": arrival.NEED_TRANS}
-        ]);
+        ];
+        if (arrival.NEED_TRANS) attrs.push({"name": "checked", "value": arrival.NEED_TRANS});
+        createElement("input", checkDiv, "", attrs);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
         addHeader(tbl, [
