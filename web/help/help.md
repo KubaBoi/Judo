@@ -124,7 +124,7 @@ Every event has a status badge for your club. Status badge signalize in which pa
 <img src="/images/pendingIcon.png" class="checkedBadge" title="Waiting for client's confirmation">
 - Confirmed by organiser, waiting for client's (yours) confirmation.
     - Now you can complete registration.
-    - [How to complete registration](#123)
+    - [How to complete registration](#423-waiting-for-clients-confirmation)
 
 <img src="/images/okIcon.png" class="registeredBadge" title="Registered">
 - :tada: Congratulations, your club is officially registered into event :tada:
@@ -173,13 +173,14 @@ In the right form there is few bookmarks:
 - [Departure](#4236-departure)
 - [Billing](#4237-billing)
 
-Each bookmark will be described later. 
-
-Every bookmark except for [People](#4231-people) has own notification bubble. It signalize status of registration part. If everything is alright or not. You can get a hint what is missing by hovering with your mouse above bubble. 
+Each bookmark will be described later.  
 
 You can move between bookmarks via mouse scroll or by click the navigation buttons.
 
 ## Notification bubbles
+
+Every bookmark except for [People](#4231-people) has own notification bubble. It signalize status of registration part. If everything is alright or not. You can get a hint what is missing by hovering with your mouse above bubble.
+
 
 <span class="buttSpan">
     <button class="regTabButton" id="regTabB1">Hotel form</button>
