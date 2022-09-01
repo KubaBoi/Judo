@@ -195,7 +195,7 @@ class RegisteredClubsController(cc):
 	def confirmReg(server, path, auth):
 		args = cc.readArgs(server)
 
-		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
+		cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID", "CLUB_ID"], args)
 
 		if (len(args["JBS"]) == 0):
 			raise BadRequest("There not any people")
@@ -206,7 +206,7 @@ class RegisteredClubsController(cc):
 			jbs.append(jb)
 
 		event = EventsRepository.find(args["EVENT_ID"])
-		reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["JBS"][0]["CLUB_ID"])
+		reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["CLUB_ID"])
 
 		cr.disableAutocommit()
 		try:

@@ -58,13 +58,13 @@ class BillsController(cc):
     def postBillXlsx(server, path, auth):
         args = cc.readArgs(server)
 
-        cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
+        cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID", "CLUB_ID"], args)
 
         if (len(args["JBS"]) == 0):
             raise BadRequest("There not any people")
 
         event = EventsRepository.find(args["EVENT_ID"])
-        club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
+        club = ClubsRepository.find(args["CLUB_ID"])
 
         bad, bpd, bsd = BillCalculator.getCalculatedBillData(args)
 
@@ -77,13 +77,13 @@ class BillsController(cc):
     def postBillPdf(server, path, auth):
         args = cc.readArgs(server)
 
-        cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID"], args)
+        cc.checkJson(["JBS", "ARRIVALS", "DEPARTS", "EVENT_ID", "CLUB_ID"], args)
 
         if (len(args["JBS"]) == 0):
             raise BadRequest("There not any people")
 
         event = EventsRepository.find(args["EVENT_ID"])
-        club = ClubsRepository.find(args["JBS"][0]["CLUB_ID"])
+        club = ClubsRepository.find(args["CLUB_ID"])
 
         bad, bpd, bsd = BillCalculator.getCalculatedBillData(args)
 
@@ -233,7 +233,7 @@ class BillsController(cc):
     @staticmethod
     def saveBill(args):
         event = EventsRepository.find(args["EVENT_ID"])
-        reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["JBS"][0]["CLUB_ID"])
+        reg_club = RegisteredClubsRepository.registeredClubInEvent(event.id, args["CLUB_ID"])
 
         bad, bpd, bsd = BillCalculator.getCalculatedBillData(args)
 

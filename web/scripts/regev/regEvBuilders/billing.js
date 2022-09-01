@@ -19,7 +19,8 @@ async function getPdfBill() {
         "JBS": jbs,
         "ARRIVALS": arrivals,
         "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID
+        "EVENT_ID": activeEvent.ID,
+        "CLUB_ID": loggedClub.ID
     }
 
     var response = await callEndpoint("POST", "/bills/postBillPdf", req);
@@ -44,7 +45,8 @@ async function getXlsxBill() {
         "JBS": jbs,
         "ARRIVALS": arrivals,
         "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID
+        "EVENT_ID": activeEvent.ID,
+        "CLUB_ID": loggedClub.ID
     }
 
     var response = await callEndpoint("POST", "/bills/postBillXlsx", req);
@@ -228,7 +230,8 @@ async function confirmRegPart2True() {
         "JBS": jbs,
         "ARRIVALS": arrivals,
         "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID
+        "EVENT_ID": activeEvent.ID,
+        "CLUB_ID": loggedClub.ID
     }
 
     let response = await callEndpoint("POST", "/registeredClubs/confirmReg", req);
