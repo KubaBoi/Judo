@@ -23,11 +23,8 @@ class UsersController(cc):
 		login = auth["login"]["login"]
 
 		user = UsersRepository.findOneWhere(login=login)
-		club = ClubsRepository.findOneWhere(user_id=user.id)
-		if (club != None):
-			club = club.toJson()
 
-		return cc.createResponse({"USER": user.toJson(), "CLUB": club}, 200)
+		return cc.createResponse({"USER": user.toJson()}, 200)
 
 	#@post /register;
 	@staticmethod

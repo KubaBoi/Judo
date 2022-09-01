@@ -16,9 +16,7 @@ class EventsController(cc):
 	@staticmethod
 	def create(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['HARD_CREATE', 'NAME', 'CATEGORY', 'PLACE', 'EVENT_START', 'EVENT_END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["HARD_CREATE", "NAME", "CATEGORY", "PLACE", "EVENT_START", "EVENT_END", "ARRIVE", "DEPART", "END_VISA", "END_ROOM", "ORGANISER_ID", "VISA_MAIL", "VISA_PHONE", "EJU_PRICE", "PCR_PRICE", "AG_PRICE", "TRANS_PRICE", "OTHER_PRICE", "SHOW_HOTEL", "HOTELS"], args)
 
 		hardCreate = args["HARD_CREATE"]
 		name = args["NAME"]
@@ -39,9 +37,7 @@ class EventsController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['ID', 'NAME', 'CATEGORY', 'PLACE', 'EVENT_START', 'EVENT_END', 'ARRIVE', 'DEPART', 'END_VISA', 'END_ROOM', 'ORGANISER_ID', 'VISA_MAIL', 'VISA_PHONE', 'EJU_PRICE', 'PCR_PRICE', 'AG_PRICE', 'TRANS_PRICE', 'OTHER_PRICE', 'SHOW_HOTEL', 'HOTELS'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["ID", "NAME", "CATEGORY", "PLACE", "EVENT_START", "EVENT_END", "ARRIVE", "DEPART", "END_VISA", "END_ROOM", "ORGANISER_ID", "VISA_MAIL", "VISA_PHONE", "EJU_PRICE", "PCR_PRICE", "AG_PRICE", "TRANS_PRICE", "OTHER_PRICE", "SHOW_HOTEL", "HOTELS"], args)
 
 		id = args["ID"]
 		
@@ -49,15 +45,13 @@ class EventsController(cc):
 		eventsModel.toModel(args)
 		EventsRepository.update(eventsModel)
 
-		return cc.createResponse({'STATUS': 'Event has been changed'}, 200)
+		return cc.createResponse({"STATUS": "Event has been changed"}, 200)
 
 	#@get /get;
 	@staticmethod
 	def get(server, path, auth):
 		args = cc.getArgs(path)
-
-		if (not cc.validateJson(['eventId'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["eventId"], args)
 
 		id = args["eventId"]
 
@@ -74,9 +68,7 @@ class EventsController(cc):
 	@staticmethod
 	def getBy(server, path, auth):
 		args = cc.getArgs(path)
-
-		if (not cc.validateJson(["column"], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["column", "clubId"], args)
 
 		column = args["column"]
 		userLogin = auth["login"]["login"]
@@ -84,7 +76,7 @@ class EventsController(cc):
 		if (user == None):
 			raise NotFound("User was not found")
 
-		usersClubs = ClubsRepository.findWhere(user_id=user.id)
+		usersClub = ClubsRepository.find(args["clubId"])
 
 		eventsArray = EventsRepository.findBySorted(column)
 		jsonResponse = {}
@@ -93,10 +85,9 @@ class EventsController(cc):
 			jsn = event.toJson()
 
 			status = 3
-			for club in usersClubs:
-				if (RegisteredClubsRepository.isClubRegisteredInEvent(event.id, club.id)):
-					status = RegisteredClubsRepository.registeredClubInEvent(event.id, club.id).status
-					break
+			if (usersClub != None):
+				if (RegisteredClubsRepository.isClubRegisteredInEvent(event.id, usersClub.id)):
+					status = RegisteredClubsRepository.registeredClubInEvent(event.id, usersClub.id).status
 
 			jsn["STATUS"] = status
 			jsonResponse["EVENTS"].append(jsn)
@@ -107,14 +98,12 @@ class EventsController(cc):
 	@staticmethod
 	def remove(server, path, auth):
 		args = cc.readArgs(server)
-
-		if (not cc.validateJson(['EVENT_ID'], args)):
-			raise BadRequest("Wrong json structure")
+		cc.checkJson(["EVENT_ID"], args)
 
 		id = args["EVENT_ID"]
 
 		eventsModel = EventsRepository.find(id)
 		EventsRepository.delete(eventsModel)
 
-		return cc.createResponse({'STATUS': 'Event has been removed'}, 200)
+		return cc.createResponse({"STATUS": "Event has been removed"}, 200)
 

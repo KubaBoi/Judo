@@ -1,33 +1,35 @@
 var eventTable;
 
-async function buildEventTable() {
+async function buildEventTable(newCont=true) {
     showLoader();
     eventTable = document.getElementById("eventTable");
 
-    var response = await callEndpoint("GET", "/events/getBy" + createEventFilters());
-    if (!response.ERROR) {
+    var response = await callEndpoint("GET", `/events/getBy${createEventFilters()}`);
+    if (response.ERROR == null) {
         eventTable.innerHTML = "";
         createEventHeaderRow();
         for (var i = 0; i < response.EVENTS.length; i++) {
             buildEventRow(response.EVENTS[i]);
         }
     } 
-    else if (response.ERROR != "No cookies") {
+    else {
         showErrorAlert(response.ERROR, alertTime);
     }
 
     hideLoader();
-    newContent("eventsDiv");
+    if (newCont) {
+        newContent("eventsDiv");
+    }
 }
 
 function createEventFilters() {
-    var filter = "";
+    var filter = `?clubId=${loggedClub.ID}`;
 
     var values = ["nameEventSort", "categoryEventSort", "placeEventSort", "startEventSort"]
 
     for (let i = 0; i < values.length; i++) {
         var elem = document.getElementById(values[i]); 
-        if (elem.checked) filter = "?column=" + elem.value;
+        if (elem.checked) filter += "&column=" + elem.value;
     }
 
     return filter;

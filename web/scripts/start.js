@@ -8,6 +8,7 @@ var switchTime = 300;
 
 var loggedUser = null;
 var loggedClub = null;
+var usersClubs = null;
 
 var userAccountName;
 var userName = getCookie("login");

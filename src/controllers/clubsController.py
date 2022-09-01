@@ -61,12 +61,8 @@ class ClubsController(cc):
 	@staticmethod
 	def getAll(server, path, auth):
 		clubsArray = ClubsRepository.findAll()
-		jsonResponse = {}
-		jsonResponse["CLUBS"] = []
-		for club in clubsArray:
-			jsonResponse["CLUBS"].append(club.toJson())
 
-		return cc.createResponse(jsonResponse, 200)
+		return cc.createResponse({"CLUBS": cc.modulesToJsonArray(clubsArray)})
 
 	#@get /getByUser;
 	@staticmethod
@@ -79,12 +75,8 @@ class ClubsController(cc):
 		userId = int(args["userId"])
 
 		clubsArray = ClubsRepository.findWhere(user_id=userId)
-		jsonResponse = {}
-		jsonResponse["CLUBS"] = []
-		for club in clubsArray:
-			jsonResponse["CLUBS"].append(club.toJson())
 
-		return cc.createResponse(jsonResponse, 200)
+		return cc.createResponse({"CLUBS": cc.modulesToJsonArray(clubsArray)})
 
 	#@post /remove;
 	@staticmethod

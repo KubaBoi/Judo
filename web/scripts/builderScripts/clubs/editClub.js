@@ -41,7 +41,13 @@ async function editClubTab(clubId) {
         if (activeClub.STATE != "") {
             document.getElementById("stateInpEdit").value = activeClub.STATE;
         }
-        prepareSelect();
+        try {
+            prepareSelect();
+        }
+        catch {
+            document.getElementById("stateInpEdit").value = "CZE";
+            prepareSelect();
+        }
         createEditTableRow(tbl, "Address: ", "addressInpEdit", activeClub.ADDRESS);
         createEditTableRow(tbl, "EJU: ", "ejuInpEdit", activeClub.EJU, "checkbox");
 
@@ -73,23 +79,16 @@ async function saveClubChanges(clubId) {
         if (clubId) {
             buildClubTable();
             showOkAlert("Success :)", "Club was updated", alertTime);
-            response = await callEndpoint("GET", `/clubs/get?clubId=${clubId}`);
             closeHiddenTab();
         }
         else {
             buildClubTable();
             showOkAlert("Success :)", "Club was created", alertTime);
-            response = await callEndpoint("GET", `/clubs/get?clubId=${response.ID}`);
             closeHiddenTab();
         }
 
-        if (response.ERROR == null) {
-            loggedClub = response.CLUB;
-            activeClub = loggedClub;
-        }
-        else {
-            showErrorAlert(response.ERROR, alertTime);
-        }
+        await loadClubs();
+        activeClub = loggedClub;
     }
     else {
         showErrorAlert(response.ERROR, alertTime);

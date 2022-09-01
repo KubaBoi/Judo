@@ -11,7 +11,6 @@ async function login(alert=true) {
     if (!response.ERROR) {
         setCookie("token", response.TOKEN, 5);
         loggedUser = response.USER;
-        loggedClub = response.CLUB;
         succLogin(response);
     } 
     else if (response.ERROR != "No cookies") {
@@ -55,6 +54,8 @@ async function succLogin(response) {
     await getHtml("registerToEvent", "main/", "body", "registerToEventDiv");
     await getHtml("registeredToEvent", "main/", "body", "registerToEventDiv");
     
+    await loadClubs();
+
     //newContent("mainDiv");
     buildEventTable();
 
