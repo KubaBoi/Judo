@@ -68,7 +68,7 @@ class BillCalculator:
             "total": billPackData["total"]
         })
 
-        ejuCount = 0 if club.eju else 1
+        ejuCount = 0 if club.eju else len(jbs)
         billSumData["ITEMS"].append({
             "name": "EJU",
             "number": ejuCount,
