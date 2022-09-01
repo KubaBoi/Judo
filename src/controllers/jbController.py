@@ -37,15 +37,24 @@ class JbController(cc):
 			i = 0
 			modelTemp = JbRepository.model()
 			for oneJB in data:
-				model = modelTemp
-				model.id += i
-				model.toModel(oneJB)
-				model.setAttrs(
-					pass_release=None,
-					pass_expiration=None
-				)
-				JbRepository.save(model)
-				i += 1
+				if (JbRepository.exists(jb=oneJB["JB"])):
+					model = JbRepository.findOneWhere(jb=oneJB["JB"])
+					model.toModel(oneJB)
+					model.setAttrs(
+						pass_release=None,
+						pass_expiration=None
+					)
+					JbRepository.update(model)
+				else:
+					model = modelTemp
+					model.id += i
+					i += 1
+					model.toModel(oneJB)
+					model.setAttrs(
+						pass_release=None,
+						pass_expiration=None
+					)
+					JbRepository.save(model)
 
 			regClubs = RegisteredClubsRepository.findWhere(event_id=eventId, status=0)
 			for regClub in regClubs:
