@@ -3,6 +3,7 @@
 
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
+from Cheese.cheeseRepository import CheeseRepository as cr
 
 from src.repositories.jbRepository import JbRepository
 from src.repositories.registeredClubsRepository import RegisteredClubsRepository
@@ -31,19 +32,31 @@ class JbController(cc):
 		eventId = args["EVENT_ID"]
 		data = args["DATA"]
 
-		for oneJB in data:
-			model = JbRepository.model()
-			model.toModel(oneJB)
-			model.setAttrs(
-				pass_release=None,
-				pass_expiration=None
-			)
-			JbRepository.save(model)
+		cr.disableAutocommit()
+		try:
+			i = 0
+			modelTemp = JbRepository.model()
+			for oneJB in data:
+				model = modelTemp
+				model.id += i
+				model.toModel(oneJB)
+				model.setAttrs(
+					pass_release=None,
+					pass_expiration=None
+				)
+				JbRepository.save(model)
+				i += 1
 
-		regClubs = RegisteredClubsRepository.findWhere(event_id=eventId, status=0)
-		for regClub in regClubs:
-			regClub.status = 1
-			RegisteredClubsRepository.update(regClub)
+			regClubs = RegisteredClubsRepository.findWhere(event_id=eventId, status=0)
+			for regClub in regClubs:
+				regClub.status = 1
+				RegisteredClubsRepository.update(regClub)
+			
+			cr.commit()
+			cr.enableAutocommit()
+		except Exception as e:
+			cr.enableAutocommit()
+			raise e
 
 		return cc.createResponse({"STATUS": "OK"}, 200)
 
