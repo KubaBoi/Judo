@@ -25,7 +25,7 @@ var arrivals = [];
 
 function addArrival() {
     arrivals.push({
-        "TIME": activeEvent.ARRIVE,
+        "TIME": getTimestamp(activeEvent.ARRIVE, false),
         "NUMBER": "",
         "NEED_TRANS": false
     });
@@ -63,21 +63,37 @@ function createArrivals() {
         let arrival = arrivals[i];
         tbl = createElement("table", dv);
 
-        console.log(arrival);
+        let dis = "";
 
+        // BY CAR SELECT
+        let checkDivByCar =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
+        let attrsByCar = [
+            {"name": "type", "value": "checkbox"},
+            {"name": "id", "value": `arrByCarInp${i}`}
+        ];
+        if (arrival.NUMBER == "BY CAR") {
+            attrsByCar.push({"name": "checked", "value": ""});
+            dis = "disabled";
+        }
+        createElement("input", checkDivByCar, "", attrsByCar);
+        createElement("span", checkDivByCar, "", [{"name": "class", "value": "checkmark"}]);
+
+        // NEED TRANSPORT SELECT
         let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
         let attrs = [
             {"name": "type", "value": "checkbox"},
-            {"name": "id", "value": `arrTranInp${i}`},
+            {"name": "id", "value": `arrTranInp${i}`}
         ];
-        if (arrival.NEED_TRANS) attrs.push({"name": "checked", "value": arrival.NEED_TRANS});
+        if (arrival.NEED_TRANS) attrs.push({"name": "checked", "value": ""});
+        if (dis == "disabled") attrs.push({"name": "disabled", "value": ""});
         createElement("input", checkDiv, "", attrs);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
         addHeader(tbl, [
-            {"text": `<label>Arrival time: </label><br><input type="datetime-local" id="arrTmInp${i}" value="${getTimestamp(arrival.TIME, false)}">`},
-            {"text": `<label>Flight number: </label><br><input type="text" id="arrNumInp${i}" value="${arrival.NUMBER}">`},
-            {"text": `<label>Need transport: </label><br>${checkDiv.outerHTML}`},
+            {"text": `<label>Arrival time:</label><br><input type="datetime-local" id="arrTmInp${i}" value="${arrival.TIME}">`},
+            {"text": `<label>By Car:</label><br>${checkDivByCar.outerHTML}`},
+            {"text": `<label>Flight number:</label><br><input type="text" id="arrNumInp${i}" value="${arrival.NUMBER}" ${dis}>`},
+            {"text": `<label>Need transport:</label><br>${checkDiv.outerHTML}`},
             {"text": `<img src="./images/deleteIcon48.png" onclick=removeArrival(${i}) title="Remove flight">`}
         ]);
 
@@ -95,10 +111,12 @@ function createArrivals() {
         ]);
 
         let arrTmInp = document.getElementById(`arrTmInp${i}`);
+        let arrByCarInp = document.getElementById(`arrByCarInp${i}`);
         let arrNumInp = document.getElementById(`arrNumInp${i}`);
         let arrTranInp = document.getElementById(`arrTranInp${i}`);
 
         arrTmInp.addEventListener("change", function(){arrChange(i)});
+        arrByCarInp.addEventListener("change", function(){arrChange(i)});
         arrNumInp.addEventListener("change", function(){arrChange(i)});
         arrTranInp.addEventListener("change", function(){arrChange(i)});
     }
@@ -125,7 +143,16 @@ function arrChange(index) {
     arrival.TIME = document.getElementById(`arrTmInp${index}`).value;
     arrival.NUMBER = document.getElementById(`arrNumInp${index}`).value;
     arrival.NEED_TRANS = document.getElementById(`arrTranInp${index}`).checked;
+    
+    if (document.getElementById(`arrByCarInp${index}`).checked) {
+        arrival.NUMBER = "BY CAR";
+        arrival.NEED_TRANS = false; 
+    }
+    else if (arrival.NUMBER == "BY CAR") {
+        arrival.NUMBER = "";
+    }
 
+    createArrivals();
     checkIfDoneArr();
 }
 

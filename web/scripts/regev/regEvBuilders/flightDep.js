@@ -25,7 +25,7 @@ var departs = [];
 
 function addDeparture() {
     departs.push({
-        "TIME": activeEvent.DEPART,
+        "TIME": getTimestamp(activeEvent.DEPART, false),
         "NUMBER": "",
         "NEED_TRANS": false
     });
@@ -63,19 +63,39 @@ function createDepartures() {
         let depart = departs[i];
         tbl = createElement("table", dv);
 
+        let dis = "";
+
+        // BY CAR SELECT
+        let checkDivByCar =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
+        let attrsByCar = [
+            {"name": "type", "value": "checkbox"},
+            {"name": "id", "value": `depByCarInp${i}`}
+        ];
+        if (depart.NUMBER == "BY CAR") {
+            attrsByCar.push({"name": "checked", "value": ""});
+            dis = "disabled";
+        }
+        createElement("input", checkDivByCar, "", attrsByCar);
+        createElement("span", checkDivByCar, "", [{"name": "class", "value": "checkmark"}]);
+
+
+        // NEED TRANSPORT SELECT
         let checkDiv =  createElement("label", null, "", [{"name": "class", "value": "checkBoxDiv"}]);
         let attrs = [
             {"name": "type", "value": "checkbox"},
             {"name": "id", "value": `depTranInp${i}`}
         ];
         if (depart.NEED_TRANS) attrs.push({"name": "checked", "value": depart.NEED_TRANS});
+        if (dis == "disabled") attrs.push({"name": "disabled", "value": ""});
+        
         createElement("input", checkDiv, "", attrs);
         createElement("span", checkDiv, "", [{"name": "class", "value": "checkmark"}]);
 
         addHeader(tbl, [
-            {"text": `<label>Departure time: </label><br><input type="datetime-local" id="depTmInp${i}" value="${getTimestamp(depart.TIME, false)}">`},
-            {"text": `<label>Flight number: </label><br><input type="text" id="depNumInp${i}" value="${depart.NUMBER}">`},
-            {"text": `<label>Need transport: </label><br>${checkDiv.outerHTML}`},
+            {"text": `<label>Departure time:</label><br><input type="datetime-local" id="depTmInp${i}" value="${depart.TIME}">`},
+            {"text": `<label>By Car:</label><br>${checkDivByCar.outerHTML}`},
+            {"text": `<label>Flight number:</label><br><input type="text" id="depNumInp${i}" value="${depart.NUMBER}" ${dis}>`},
+            {"text": `<label>Need transport:</label><br>${checkDiv.outerHTML}`},
             {"text": `<img src="./images/deleteIcon48.png" onclick=removeDepart(${i}) title="Remove flight">`}
         ]);
 
@@ -93,13 +113,14 @@ function createDepartures() {
         ]);
 
         let depTmInp = document.getElementById(`depTmInp${i}`);
+        let depByCarInp = document.getElementById(`depByCarInp${i}`);
         let depNumInp = document.getElementById(`depNumInp${i}`);
         let depTranInp = document.getElementById(`depTranInp${i}`);
 
         depTmInp.addEventListener("change", function(){depChange(i)});
+        depByCarInp.addEventListener("change", function(){depChange(i)});
         depNumInp.addEventListener("change", function(){depChange(i)});
         depTranInp.addEventListener("change", function(){depChange(i)});
-    
     }
 
     for (let i = 0; i < jbs.length; i++) {
@@ -125,6 +146,15 @@ function depChange(index) {
     depart.NUMBER = document.getElementById(`depNumInp${index}`).value;
     depart.NEED_TRANS = document.getElementById(`depTranInp${index}`).checked;
     
+    if (document.getElementById(`depByCarInp${index}`).checked) {
+        depart.NUMBER = "BY CAR";
+        depart.NEED_TRANS = false; 
+    }
+    else if (depart.NUMBER == "BY CAR") {
+        depart.NUMBER = "";
+    }
+
+    createDepartures();
     checkIfDoneDep();
 }
 
