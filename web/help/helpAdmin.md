@@ -14,9 +14,9 @@
     - [Hotels](#26-hotels)
     - [My account](#27-my-account)
     - [Logout](#28-logout)
-- [Creating new event](#3-creating-new-event)
-- [Event confirmations](#4-event-confirmations)
-- [Hotels](#5-hotels)
+- [Hotels](#3-hotels)
+- [Creating new event](#4-creating-new-event)
+- [Event confirmation](#5-event-confirmation)
 
 
 # 1. Introduction
@@ -51,9 +51,39 @@ Same as [Help page - My account](/help/help.html#314-my-account).
 
 Same as [Help page - Logo](/help/help.html#315-logout).
 
-# 3. Creating new event
+# 3. Hotels
 
-# 4. Event confirmations
+Before creating a new event there need to be some hotels. 
 
-# 5. Hotels
+Go to [Hotels](#26-hotels) tab and check if there are all hotels for your event. If not just make one by clicking at `Add hotel` button:
+
+<img src="/help/images/img17.png">
+
+Hotel form will be open so fill in informations about hotel, count of rooms and its prices. And save new hotel via `Save changes` button in top right corner of course.
+
+<img src="/help/images/img18.png">
+
+New hotel should appear in list of hotels.
+
+Editing and removing hotels is done by same buttons as for [Creating new club](/help/help.html#32-creating-new-club).
+
+# 4. Creating new event
+
+Now you can finally create an event. Go to [Events](#22-events) tab and click at `Add event` button.
+
+<img src="/help/images/img19.png">
+
+Create new event form will popup. Insert informations about your event. And choose hotels which will be available for the event. 
+
+For choosing hotel just `double click` them. 
+
+Create new event via `Save changes` button.
+
+<img src="/help/images/img20.png">
+
+New event should appear in list of events.
+
+Editing and removing events is done by same buttons as for [Creating new club](/help/help.html#32-creating-new-club).
+
+# 5. Event confirmation
 

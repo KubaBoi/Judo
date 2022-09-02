@@ -160,6 +160,8 @@ Now just wait until event organiser confirms your registration and uploads data 
 
 An email will be send to you automatically when it is done.
 
+If you are the organiser check [Event confirmation](/help/helpAdmin.html#5-event-confirmation).
+
 ### 4.2.3 Waiting for client's confirmation
 
 <img src="/images/pendingIcon.png" class="checkedBadge" title="Waiting for client's confirmation">

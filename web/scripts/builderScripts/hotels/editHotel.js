@@ -130,6 +130,8 @@ async function editHotelTab(hotelId) {
 }
 
 async function saveHotelChanges(hotelId, hardCreate=false) {
+    showLoader();
+
     var response = null;
     var request = prepareHotelChangedData(hardCreate);
     if (hotelId != null) {
@@ -164,6 +166,8 @@ async function saveHotelChanges(hotelId, hardCreate=false) {
     else {
         showErrorAlert(response.ERROR, alertTime);
     }
+
+    hideLoader();
 }
 
 function prepareHotelChangedData(hardCreate) {

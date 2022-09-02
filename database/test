@@ -9,6 +9,8 @@ select * from rooms;
 select * from users;
 select * from passwords;
 select * from jb;
+select * from roles;
+select * from hotels;
 
 delete from jb;
 update registered_clubs set status=0 where club_id=5 and event_id=2;
