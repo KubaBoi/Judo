@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from cmath import atanh
 from Cheese.httpClientErrors import *
 from Cheese.cheeseController import CheeseController as cc
 
@@ -63,6 +64,27 @@ class EventsController(cc):
 		jsonResponse["EVENT"] = event.toJson()
 
 		return cc.createResponse(jsonResponse, 200)
+
+	#@get /getByOrganiser;
+	@staticmethod
+	def getByOrganiser(server, path, auth):
+		events = EventsRepository.findWhere(organiser_id=auth["userData"][0])
+
+		return cc.createResponse({"EVENTS": cc.modulesToJsonArray(events)})
+
+	#@get /getByOrganiserAllData;
+	@staticmethod
+	def getByOrganiserAllData(server, path, auth):
+		events = EventsRepository.findWhere(organiser_id=auth["userData"][0])
+
+		for event in events:
+			regClubs = RegisteredClubsRepository.findWhere(event_id=event.id)
+			for regClub in regClubs:
+				club = ClubsRepository.find(regClub.club_id)
+				setattr(regClub, "CLUB", club)
+			setattr(event, "REG_CLUBS", regClubs)
+
+		return cc.createResponse({"EVENTS": cc.modulesToJsonArray(events)})
 
 	#@get /getBy;
 	@staticmethod

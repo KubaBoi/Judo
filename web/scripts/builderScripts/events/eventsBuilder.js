@@ -59,29 +59,6 @@ function buildEventRow(event) {
             ]
         }
     ]);
-    
-    if (loggedUser.ROLE_ID < 2) {
-        createElement("td", row, "<img src='/images/editIcon48.png'>",
-        [
-            {"name": "class", "value": "smallCell"},
-            {"name": "onclick", "value": "editEventTab(" + event.ID + ")"},
-            {"name": "title", "value": "Edit event"}
-        ]);
-
-        createElement("td", row, "<img src='/images/deleteIcon48.png'>",
-        [
-            {"name": "class", "value": "smallCellLast"},
-            {"name": "onclick", "value": "deleteEvent(" + event.ID + ")"},
-            {"name": "title", "value": "Delete event"}
-        ]);
-        
-        createElement("td", row, badgeTypes[2].replace("okIcon", "generatePdf"),
-        [
-            {"name": "class", "value": "smallCellLast"},
-            {"name": "onclick", "value": `generateEventPdf(${event.ID})`},
-            {"name": "title", "value": "Generate event PDF"}
-        ]);
-    }
 }
 
 function createEventHeaderRow() {
@@ -90,11 +67,6 @@ function createEventHeaderRow() {
     createElement("th", row, "Start");
     createElement("th", row, "Place");
     createElement("th", row);
-    if (loggedUser.ROLE_ID < 2) {
-        createElement("th", row);
-        createElement("th", row);
-        createElement("th", row);
-    }
 }
 
 async function generateEventPdf(eventId) {

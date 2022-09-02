@@ -6,6 +6,7 @@
                 "patern": "(?P<login>[a-zA-Z0-9@.]+):(?P<password>[a-zA-Z0-9@.$_]+)",
                 "validation": "select * from passwords where password = $password$ and login = $login$",
                 "roleId": "select role_id from users where login = $login$",
+                "userData": "select id, phone, full_name from users where login = $login$;",
                 "encoders": {}
             }
         ]
