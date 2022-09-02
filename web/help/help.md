@@ -42,7 +42,7 @@ First of all you need to have an user account. You can make the account by click
 
 It will redirect you to `Registration` screen. Fill in all rows with true informations and click to `Register` button. 
 
-If everything is filled properly there will be an confirmation email in your mail box. Check your email and complete registration by validating your email address as.
+If everything is filled properly there will be an confirmation email in your mail box. Check your email and complete registration by validating your email address.
 
 Confirmation email:
 
@@ -84,6 +84,10 @@ You can manage your account in here.
 
 This is last part of [Top menu](#31-top-menu). You can see your name and `Log out` button which will discard your login cookies and reload application.
 
+There is also combo box with your own clubs. The chosen one will be set as `active` and used for every registration actions. 
+
+<img src="/help/images/img16.png">
+
 ## 3.2. Creating new club
 
 After you successfuly sing in to the application you need to create a club. There will be an alert which asks you to create one. If you click at `OK` button of the alert you will be redirected to [My club](#313-my-club) tab. 
@@ -104,6 +108,8 @@ Now you can see your new club in [My club](#313-my-club) tab.
 For editing or removing clubs use buttons in right of clubs table:
 
 <img src="/help/images/img09.png">
+
+Do not forget to always save your changes while editing via `Save changes` button.
 
 # 4. Events
 
@@ -180,8 +186,9 @@ You can move between bookmarks via mouse scroll or by click the navigation butto
 
 ## Notification bubbles
 
-Every bookmark except for [People](#4231-people) has own notification bubble. It signalize status of registration part. If everything is alright or not. You can get a hint what is missing by hovering with your mouse above bubble.
+Every bookmark except for [People](#4231-people) has its own notification bubble. It signalize status of registration part. If everything is alright or not. You can get a hint what is missing by hovering with your mouse above bubble.
 
+Examples are not images but actual html elements so you can try hover above them.
 
 <span class="buttSpan">
     <button class="regTabButton" id="regTabB1">Hotel form</button>
@@ -255,7 +262,7 @@ If your people need visa for the event just marks them as `Needs visa`. If perso
 
 Rooming list is list of days. Mark all days when the person will be occur in hotel. It will count number of nights. 
 
-There is an algorithm that does not allow you to mark not continous sequence of days. That means you need to unmark from start od end of the row. (Not from the middle)
+There is an algorithm that does not allow you to mark not continous sequence of days. That means you need to unmark from start or end of the row. (Not from the middle)
 
 <img src="/help/images/img15.png">
 
