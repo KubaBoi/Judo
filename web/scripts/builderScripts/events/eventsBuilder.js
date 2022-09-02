@@ -3,17 +3,22 @@ var eventTable;
 async function buildEventTable(newCont=true) {
     showLoader();
     eventTable = document.getElementById("eventTable");
+    eventTable.innerHTML = "";
 
-    var response = await callEndpoint("GET", `/events/getBy${createEventFilters()}`);
-    if (response.ERROR == null) {
-        eventTable.innerHTML = "";
-        createEventHeaderRow();
-        for (var i = 0; i < response.EVENTS.length; i++) {
-            buildEventRow(response.EVENTS[i]);
-        }
-    } 
+    if (loggedClub == null) {
+        addRow(eventTable, [{"text": "You do not own any club. Please make one."}]);
+    }
     else {
-        showErrorAlert(response.ERROR, alertTime);
+        let response = await callEndpoint("GET", `/events/getBy${createEventFilters()}`);
+        if (response.ERROR == null) {
+            createEventHeaderRow();
+            for (let i = 0; i < response.EVENTS.length; i++) {
+                buildEventRow(response.EVENTS[i]);
+            }
+        } 
+        else {
+            showErrorAlert(response.ERROR, alertTime);
+        }
     }
 
     hideLoader();
@@ -36,14 +41,14 @@ function createEventFilters() {
 }
 
 function buildEventRow(event) {
-    let row = addRow(eventTable, [
+    addRow(eventTable, [
         {
             "text": event.NAME, "attributes": [
                 {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
             ]
         },
         {
-            "text": event.START, "attributes": [
+            "text": formatDate(new Date(event.EVENT_START)), "attributes": [
                 {"name": "onclick", "value": "showEventTab(" + event.ID + ")"}
             ]
         },
@@ -62,7 +67,7 @@ function buildEventRow(event) {
 }
 
 function createEventHeaderRow() {
-    var row = createElement("tr", eventTable);
+    let row = createElement("tr", eventTable);
     createElement("th", row, "Name");
     createElement("th", row, "Start");
     createElement("th", row, "Place");

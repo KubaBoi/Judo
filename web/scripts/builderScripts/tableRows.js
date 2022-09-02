@@ -49,10 +49,17 @@ function createShowTableRow(tbl, label, defValue) {
     createElement("td", row, defValue);
 }
 
-function createShowTableRowHeader(tbl, label, defValue) {
+function createShowTableRowHeader(tbl, label, defValue=null) {
     var row = createElement("tr", tbl);
-    createElement("th", row, label);
-    createElement("th", row, defValue);
+    if (defValue == null) {
+        createElement("th", row, label, [
+            {"name": "colspan", "value": 2}
+        ]);
+    }
+    else {
+        createElement("th", row, label);
+        createElement("th", row, defValue);
+    }
 }
 
 function createShowTableRowMulti(tbl, label, cells=[]) {

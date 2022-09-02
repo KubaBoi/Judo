@@ -124,25 +124,25 @@ async function registerToEvent(eventId) {
 }
 
 function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
-    createShowTableRowHeader(table, "EVENT", "");
+    createShowTableRowHeader(table, "EVENT");
     createShowTableRow(table, "Name: ", event.NAME);
     createShowTableRow(table, "Category: ", event.CATEGORY);
     createShowTableRow(table, "Place: ", event.PLACE);
     createShowTableRow(table, "E-mail for visa: ", event.VISA_MAIL);
     createShowTableRow(table, "Phone for visa: ", event.VISA_PHONE);
-    createShowTableRow(table, "EJU price: ", event.EJU_PRICE);
-    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE);
-    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE);
-    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE);
-    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE);
+    createShowTableRow(table, "EJU price: ", event.EJU_PRICE + " €");
+    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE + " €");
+    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE + " €");
+    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE + " €");
+    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE + " €");
 
-    createShowTableRowHeader(table, "CLUB", "");
+    createShowTableRowHeader(table, "CLUB");
     createShowTableRow(table, "Name: ",  club.NAME);
     createShowTableRow(table, "Country: ", club.STATE);
     createShowTableRow(table, "Address: ", club.ADDRESS);
     createShowTableRow(table, "EJU: ", club.EJU);
 
-    createShowTableRowHeader(table, "OWNER", "");
+    createShowTableRowHeader(table, "OWNER");
     createShowTableRow(table, "Name: ",  user.FULL_NAME);
     createShowTableRow(table, "E-mail: ",  user.LOGIN);
     createShowTableRow(table, "Phone: ",  user.PHONE);

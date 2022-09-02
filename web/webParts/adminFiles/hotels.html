@@ -1,42 +1,5 @@
 <div id="hotelsFilterDiv">
-    <input type="text" class="textBoxDark" id="hotelSearchInp"/>
-    <label>Search hotel by:</label>
-    <div class="custom-select">
-        <select id="typeHotelSearchInp">
-            <option value=-1></option>
-            <option value=0 selected="selected">Title</option>
-            <option value=1>City</option>
-        </select>
-    </div>
-    <div>
-        <label><b>Only rooms with:</b></label>
-        <ul id="changeType" class="filter-switch">
-            <li class="filter-switch-item">
-                <input type="checkbox" name="changeType" id="1bed" onclick="buildHotelTable()" class="sr-only" checked>
-                <label for="1bed">
-                    1 bed
-                </label>
-            </li>
-            <li class="filter-switch-item">
-                <input type="checkbox" name="changeType" id="2bed" onclick="buildHotelTable()" class="sr-only" checked>
-                <label for="2bed">
-                    2 bed
-                </label>
-            </li>
-            <li class="filter-switch-item">
-                <input type="checkbox" name="changeType" id="3bed" onclick="buildHotelTable()" class="sr-only" checked>
-                <label for="3bed">
-                    3 bed
-                </label>
-            </li>
-            <li class="filter-switch-item">
-                <input type="checkbox" name="changeType" id="4bed" onclick="buildHotelTable()" class="sr-only" checked>
-                <label for="4bed">
-                    4 bed
-                </label>
-            </li>
-        </ul>
-    </div>
     <button class="rightButton" onclick="editHotelTab(null)">Add Hotel</button>
+    <br><br>
 </div>
 <table id="hotelTable"></table>

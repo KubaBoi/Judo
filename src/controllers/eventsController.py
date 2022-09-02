@@ -60,10 +60,10 @@ class EventsController(cc):
 		if (event == None):
 			raise NotFound("Event was not found")
 
-		jsonResponse = {}
-		jsonResponse["EVENT"] = event.toJson()
+		organiser = UsersRepository.find(event.organiser_id)
+		setattr(event, "ORGANISER", organiser)
 
-		return cc.createResponse(jsonResponse, 200)
+		return cc.createResponse({"EVENT": event.toJson()}, 200)
 
 	#@get /getByOrganiser;
 	@staticmethod
