@@ -1,11 +1,10 @@
-var activeRegistration;
-async function editRegistrationTab(registrationId) {
+async function editRegistrationTab(eventId) {
     showLoader();
-    var response = null;
-    response = await callEndpoint("GET", "/registeredClubs/get?id=" + registrationId);
 
-    if (!response.ERROR) {
-        activeRegistration = response.REGISTERED_CLUB;
+    var response = null;
+    response = await callEndpoint("GET", `/events/getAllData?eventId=${eventId}`);
+    if (response.ERROR == null) {
+        let event = response.EVENT;
         var hiddenTab = getHiddenTab();
 
         createElement("h2", hiddenTab, "Confirm registration");
@@ -18,15 +17,8 @@ async function editRegistrationTab(registrationId) {
             {"name": "class", "value": "infoDiv"}
         ]);
         var tbl = createElement("table", infoDiv);
-        
-        var event = await getEventInfo(`/events/get?eventId=${activeRegistration.EVENT_ID}`);
-        event = event.EVENT;
-        var club = await getEventInfo(`/clubs/get?clubId=${activeRegistration.CLUB_ID}`);
-        club = club.CLUB;
-        var owner = await getEventInfo(`/users/get?userId=${club.USER_ID}`);
-        owner = owner.USER;
 
-        setDataToInfoTable(tbl, event, club, owner);
+        setDataToInfoRegTable(tbl, event);
 
         var flightDiv = createElement("div", mainDiv, "", [
             {"name": "class", "value": "flightDiv"}
@@ -62,7 +54,7 @@ async function editRegistrationTab(registrationId) {
         createElement("button", hiddenTab, "Upload data", 
         [
             {"name": "class", "value": "rightButton"},
-            {"name": "onclick", "value": `sendRegData(${event.ID}, ${club.ID})`}
+            {"name": "onclick", "value": `sendRegDataCheck(${event.ID})`}
         ]);
 
         cvsContents = [];
@@ -76,29 +68,22 @@ async function editRegistrationTab(registrationId) {
     hideLoader();
 }
 
-function confirmRegisterButton(regId, status) {
-    if (status == 0) {
-        editRegistrationTab(regId);
+function sendRegDataCheck(eventId) {
+    if (cvsContents.length == 0) {
+        showConfirm("No data", "There are no data to be uploaded.<br>That's not a problem just reminder.<br>Do you want to continue?",
+            function() {sendRegData(eventId);}
+        );
     }
-    else if (status == 1) {
-        showWrongAlert("Confirmed", "Registration has been confirmed.<br>Wait until client's confirmation.", alertTime);
-    }
-    else if (status == 2) {
-        showRegistration(regId);
+    else {
+        sendRegData(eventId);
     }
 }
 
-async function sendRegData(eventId, clubId) {
-    if (cvsContents.length == 0) {
-        showWrongAlert("No data", "You need to open file with data first", alertTime);
-        return;
-    }
-
+async function sendRegData(eventId) {
     showLoader();
     
     let req = {
         "EVENT_ID": eventId,
-        "CLUB_ID": clubId,
         "DATA": cvsContents
     };
 
@@ -113,4 +98,25 @@ async function sendRegData(eventId, clubId) {
     }
 
     hideLoader();
+}
+
+function setDataToInfoRegTable(table, event) {
+    createShowTableRowHeader(table, "EVENT", "");
+    createShowTableRow(table, "Name: ", event.NAME);
+    createShowTableRow(table, "Category: ", event.CATEGORY);
+    createShowTableRow(table, "Place: ", event.PLACE);
+    createShowTableRow(table, "E-mail for visa: ", event.VISA_MAIL);
+    createShowTableRow(table, "Phone for visa: ", event.VISA_PHONE);
+    createShowTableRow(table, "EJU price: ", event.EJU_PRICE);
+    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE);
+    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE);
+    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE);
+    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE);
+
+    createShowTableRowHeader(table, "CLUBS", "");
+    let regClubs = event.REG_CLUBS;
+    for (let i = 0; i < regClubs.length; i++) {
+        let regClub = regClubs[i];
+        createShowTableRow(table, regClub.CLUB.NAME, badgeTypes[regClub.STATUS]);
+    }
 }

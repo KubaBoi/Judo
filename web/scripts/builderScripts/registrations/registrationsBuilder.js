@@ -52,7 +52,7 @@ async function buildRegistrationsTable() {
                     let regClub = regClubs[o];
                     addRow(registrationsTable, [
                         {"text": regClub.CLUB.NAME},
-                        {"text": regClub.CLUB.ADDRESS + " " + regClub.CLUB.STATE},
+                        {"text": regClub.CLUB.STATE + " " + regClub.CLUB.ADDRESS},
                         {"text": badgeTypes[regClub.STATUS], "attributes": [
                             {"name": "class", "value": "smallCellLast"}
                         ]}
@@ -101,7 +101,7 @@ function createEditRow(event) {
     let regButt = createElement("img", null, "",
     [
         {"name": "src", "value": "./images/jbIcon.png"},
-        {"name": "onclick", "value": `confirmRegisterButton()`},
+        {"name": "onclick", "value": `editRegistrationTab(${event.ID})`},
         {"name": "class", "value": "pendingBadge"},
         {"name": "title", "value": "Upload JBs and confirm club's registrations"}
     ]);

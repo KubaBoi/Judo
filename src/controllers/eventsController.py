@@ -86,6 +86,24 @@ class EventsController(cc):
 
 		return cc.createResponse({"EVENTS": cc.modulesToJsonArray(events)})
 
+	#@get /getAllData;
+	@staticmethod
+	def getAllData(server, path, auth):
+		args = cc.getArgs(path)
+		cc.checkJson(["eventId"], args)
+
+		event = EventsRepository.find(args["eventId"])
+		if (event.organiser_id != auth["userData"][0]):
+			raise Unauthorized("You do not have access to this events")
+
+		regClubs = RegisteredClubsRepository.findWhere(event_id=event.id)
+		for regClub in regClubs:
+			club = ClubsRepository.find(regClub.club_id)
+			setattr(regClub, "CLUB", club)
+		setattr(event, "REG_CLUBS", regClubs)
+
+		return cc.createResponse({"EVENT": event.toJson()})
+
 	#@get /getBy;
 	@staticmethod
 	def getBy(server, path, auth):
