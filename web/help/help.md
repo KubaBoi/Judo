@@ -107,7 +107,7 @@ Now you can see your new club in [My club](#313-my-club) tab.
 
 For editing or removing clubs use buttons in right of clubs table:
 
-<img src="/help/images/img09.png">
+<img src="/help/images/img09.png" id="img09">
 
 Do not forget to always save your changes while editing via `Save changes` button.
 

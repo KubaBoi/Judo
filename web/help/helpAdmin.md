@@ -65,7 +65,7 @@ Hotel form will be open so fill in informations about hotel, count of rooms and 
 
 New hotel should appear in list of hotels.
 
-Editing and removing hotels is done by same buttons as for [Creating new club](/help/help.html#32-creating-new-club).
+Editing and removing hotels is done by same buttons as for [Creating new club](/help/help.html#img09).
 
 # 4. Creating new event
 
@@ -83,7 +83,7 @@ Create new event via `Save changes` button.
 
 New event should appear in list of events.
 
-Editing and removing events is done by same buttons as for [Creating new club](/help/help.html#32-creating-new-club).
+Editing and removing events is done by same buttons as for [Creating new club](/help/help.html#img09).
 
 # 5. Event confirmation
 
