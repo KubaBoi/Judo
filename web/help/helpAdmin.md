@@ -87,3 +87,5 @@ Editing and removing events is done by same buttons as for [Creating new club](/
 
 # 5. Event confirmation
 
+Now when your event is created other users can register their teams into it.
+
