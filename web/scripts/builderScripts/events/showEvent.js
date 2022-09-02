@@ -41,7 +41,7 @@ async function showEventTab(eventId) {
 
         openHiddenTab();
     } 
-    else if (response.ERROR != "No cookies") {
+    else {
         showErrorAlert(response.ERROR, alertTime);
     }
 
