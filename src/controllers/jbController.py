@@ -15,7 +15,10 @@ class JbController(cc):
 	@staticmethod
 	def create(server, path, auth):
 		args = cc.readArgs(server)
-		cc.checkJson(["JB", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
+		cc.checkJson(["STATE", "JB", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
+
+		if (JbRepository.exists(jb=args["JB"])):
+			raise Conflict("JudoBase ID already exists")
 
 		jbModel = JbRepository.model()
 		jbModel.toModel(args)
@@ -73,7 +76,7 @@ class JbController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		args = cc.readArgs(server)
-		cc.checkJson(["ID", "NAME", "SUR_NAME", "FUNCTION", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
+		cc.checkJson(["ID", "NAME", "SUR_NAME", "FUNCTION", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION", "BIRTHDAY", "GENDER"], args)
 
 		id = args["ID"]
 
@@ -120,7 +123,9 @@ class JbController(cc):
 
 		id = args["ID"]
 
-		jbModel = JbRepository.findById(id)
+		jbModel = JbRepository.find(id)
+		if (jbModel == None):
+			raise NotFound("JB not found")
 		JbRepository.delete(jbModel)
 
 		return cc.createResponse({'STATUS': 'Jb has been removed'}, 200)

@@ -1,6 +1,6 @@
 
 function getImage(code) {
-    return `<img src="${flagsDict[code]}"><label> ${code}</label>`;
+    return `<label style="white-space: nowrap;"><img src="${flagsDict[code]}"> ${code}</label>`;
 }
 
 var flagsDict = {
