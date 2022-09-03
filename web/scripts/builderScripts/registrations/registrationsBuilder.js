@@ -52,7 +52,7 @@ async function buildRegistrationsTable() {
                     let regClub = regClubs[o];
                     addRow(registrationsTable, [
                         {"text": regClub.CLUB.NAME},
-                        {"text": regClub.CLUB.STATE + " " + regClub.CLUB.ADDRESS},
+                        {"text": getImage(regClub.CLUB.STATE) + " " + regClub.CLUB.ADDRESS},
                         {"text": badgeTypes[regClub.STATUS], "attributes": [
                             {"name": "class", "value": "smallCellLast"}
                         ]}

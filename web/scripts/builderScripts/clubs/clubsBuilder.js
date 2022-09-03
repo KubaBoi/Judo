@@ -47,7 +47,7 @@ async function buildClubRow(club, owner=false) {
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);
 
-    createElement("td", row, club.STATE, 
+    createElement("td", row, getImage(club.STATE), 
     [
         {"name": "onclick", "value": "showClubTab(" + club.ID + ")"}
     ]);

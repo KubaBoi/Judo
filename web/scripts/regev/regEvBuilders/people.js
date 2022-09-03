@@ -76,6 +76,9 @@ function preparePeople(item, attrs, i) {
     
                 itm = `${img.outerHTML} ${itm}`;
             }
+            if (attr == "STATE") {
+                itm = getImage(itm);
+            }
         }
         prepItem.push({"text": itm});
     } 

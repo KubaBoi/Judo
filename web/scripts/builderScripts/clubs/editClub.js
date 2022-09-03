@@ -33,6 +33,7 @@ async function editClubTab(clubId) {
         var tbl = createElement("table", editDiv);
 
         createEditTableRow(tbl, "Name: ", "nameInpEdit", activeClub.NAME);
+
         let selectInp = createElementFromHTML(countryCodes);
         addRow(tbl, [
             {"text": "Country"},
@@ -48,6 +49,7 @@ async function editClubTab(clubId) {
             document.getElementById("stateInpEdit").value = "CZE";
             prepareSelect();
         }
+        
         createEditTableRow(tbl, "Address: ", "addressInpEdit", activeClub.ADDRESS);
         createEditTableRow(tbl, "EJU: ", "ejuInpEdit", activeClub.EJU, "checkbox");
 

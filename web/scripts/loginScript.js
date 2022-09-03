@@ -42,6 +42,7 @@ async function succLogin(response) {
         await getHtml("allClubs", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("registrations", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("hotels", "adminFiles/",  "loggedDiv", "contentDiv");
+        await getHtml("jbAdministration", "adminFiles/",  "loggedDiv", "contentDiv");
         await getHtml("registered", "adminFiles/", "body", "registerToEventDiv");
 
         var loggedAs = document.getElementById("loggedAs");

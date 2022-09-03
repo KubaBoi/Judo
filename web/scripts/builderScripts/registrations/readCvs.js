@@ -69,7 +69,7 @@ function buildJbTable() {
             {"text": row.JB},
             {"text": row.SUR_NAME},
             {"text": row.NAME},
-            {"text": row.STATE},
+            {"text": getImage(row.STATE)},
             {"text": row.BIRTHDAY},
             {"text": row.FUNCTION},
             {"text": row.GENDER}

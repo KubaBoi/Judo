@@ -73,7 +73,7 @@ class JbController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		args = cc.readArgs(server)
-		cc.checkJson(["ID", "CLUB_ID", "JB", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
+		cc.checkJson(["ID", "NAME", "SUR_NAME", "FUNCTION", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION"], args)
 
 		id = args["ID"]
 
@@ -94,6 +94,13 @@ class JbController(cc):
 			raise NotFound("Jb was not found")
 
 		return cc.createResponse({"JB": jb.toJson()})
+
+	#@get /getAll;
+	@staticmethod
+	def getAll(server, path, auth):
+		jbs = JbRepository.findAllOrderByState()
+
+		return cc.createResponse({"JBS": cc.modulesToJsonArray(jbs)})
 
 	#@get /getByCountry;
 	@staticmethod

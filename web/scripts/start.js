@@ -17,12 +17,11 @@ var password = getCookie("password");
 var loadingDiv = document.getElementById("loaderDiv");
 
 var countryCodes = "";
-getCountryCodes();
-async function getCountryCodes() {
-    let response = await callEndpoint("GET", "/webParts/authorization/countryCodes.html");
-    if (response.ERROR == null) {
-        countryCodes = response;
-    }
+var functionsCodes = "";
+loadHtmlCodes();
+async function loadHtmlCodes() {
+    countryCodes = await getHtmlCode("/webParts/authorization/countryCodes.html");
+    functionsCodes = await getHtmlCode("/webParts/authorization/functions.html");
 }
 
 var badgeTypes = [
@@ -56,7 +55,7 @@ async function loadPage(startArray, doAfter=false) {
     for (let i = 0; i < startArray.length; i++) {
         var name = startArray[i];
         var response = await callEndpoint("GET", "/webParts/authorization/" + name + ".html")
-        if (!response.ERROR) {
+        if (response.ERROR == null) {
             var div = document.getElementById(name + "Div");
             div.innerHTML = response;
         }
@@ -91,4 +90,12 @@ function after() {
     }
 
     prepareSelect();
+}
+
+async function getHtmlCode(url) {
+    let response = await callEndpoint("GET", url);
+    if (response.ERROR == null) {
+        return response;
+    }
+    return "";
 }

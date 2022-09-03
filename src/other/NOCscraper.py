@@ -32,9 +32,16 @@ with open("./countryData.json", "w", encoding="utf-8") as f:
     f.write(json.dumps({"dataList": dataList}, indent=4, sort_keys=True))
 
 optionsString = """<select id="stateInpEdit">\n"""
+flagsString = """var flagsDict = {\n"""
 for country in dataList:
     optionsString += f"""\t<option value="{country['code']}">{country['text']}</option>\n"""
+    flagsString += f"""\t"{country['code']}": "{country['src']}",\n"""
+
 optionsString += "</select>"
+flagsString += "};"
 
 with open("./countryCodes.html", "w", encoding="utf-8") as f:
     f.write(optionsString)
+
+with open("./countryFlags.js", "w", encoding="utf-8") as f:
+    f.write(flagsString)

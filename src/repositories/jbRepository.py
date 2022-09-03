@@ -7,5 +7,10 @@ from Cheese.cheeseRepository import CheeseRepository
 #@dbscheme (id, birthday, pass_release, pass_expiration, function, pass_id, gender, jb, name, sur_name, state);
 #@dbmodel Jb;
 class JbRepository(CheeseRepository):
-	pass
+	
+	#@query "select * from jb order by state, sur_name, id;";
+	#@return array;
+	@staticmethod
+	def findAllOrderByState():
+		return CheeseRepository.query()
 
