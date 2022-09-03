@@ -3,24 +3,18 @@
     <table>
         <tr>
             <td>Last name:</td>
-            <td><input type="text" id="lastNameSearchInp" onchange="searchJbs()"></td>
+            <td><input type="text" id="lastNameSearchInp" onchange="searchJbs()" class="textBoxLight"></td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td id="countrySearchInpTd"></td>
         </tr>
         <tr>
             <td>Function:</td>
-            <td>
-                <select id="functionsSearchInp" onchange="searchJbs()">
-                    <option value=""></option>
-                    <option value="Competitor">Competitor</option>
-                    <option value="Coach">Coach</option>
-                    <option value="Referee">Referee</option>
-                    <option value="Physiotherapist">Physiotherapist</option>
-                    <option value="Staff">Staff</option>
-                    <option value="Team-Official">Team-Official</option>
-                    <option value="Others">Others</option>
-                </select>
-            </td>
+            <td id="funcSearchInpTd"></td>
         </tr>
     </table>
+    <button onclick="clearJbSearch()">Clear search</button><br>
     <label id="totalJbsLbl"></label><br>
     <label id="shownJbsLbl"></label>
 </div>
