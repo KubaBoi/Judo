@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from Cheese.httpClientErrors import *
+from Cheese.Logger import Logger
 from Cheese.cheeseController import CheeseController as cc
 from Cheese.cheeseRepository import CheeseRepository as cr
 
@@ -61,7 +62,7 @@ class JbController(cc):
 			for regClub in regClubs:
 				regClub.status = 1
 				RegisteredClubsRepository.update(regClub)
-			
+			Logger.okGreen("Prepare for commit done")
 			cr.commit()
 			cr.enableAutocommit()
 		except Exception as e:
