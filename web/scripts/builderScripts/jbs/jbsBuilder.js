@@ -44,7 +44,7 @@ function buildJbsLocalTable(jbs) {
         
         let functionSelectInp = createElementFromHTML(functionsCodes);
         functionSelectInp.setAttribute("id", `funcSelInp${i}`);
-        
+
         addRow(jbTable, [
             {"text": getImage(jb.STATE)},
             {"text": `<input type="text" value="${jb.SUR_NAME}" id="lastNameInp${i}" class="textBoxLight">`},
@@ -104,11 +104,29 @@ async function jbOnChange(id, index) {
         "BIRTHDAY": (birthdayInp.value == "") ? null : birthdayInp.value,
         "GENDER": genderInp.value
     };
+
+    let jbIndex = 0;
+    for (let i = 0; i < localJbs.length; i++) {
+        if (id == localJbs[i].ID) {
+            jbIndex = i;
+            break;
+        }
+    }
+
+    localJbs[jbIndex].SUR_NAME = req.SUR_NAME;
+    localJbs[jbIndex].NAME = req.NAME;
+    localJbs[jbIndex].FUNCTION = req.FUNCTION;
+    localJbs[jbIndex].BIRTHDAY = req.BIRTHDAY;
+    localJbs[jbIndex].GENDER = req.GENDER;
     
     if (targetProxy.adminAccess) {
         req.PASS_ID = passIdInp.value;
         req.PASS_RELEASE = (passRelInp.value == "") ? null : passRelInp.value;
         req.PASS_EXPIRATION = (passExpInp.value == "") ? null : passExpInp.value;
+
+        localJbs[jbIndex].PASS_ID = req.PASS_ID;
+        localJbs[jbIndex].PASS_RELEASE = req.PASS_RELEASE;
+        localJbs[jbIndex].PASS_EXPIRATION = req.PASS_EXPIRATION;
     }
 
     let response = await callEndpoint("POST", "/jb/update", req);
