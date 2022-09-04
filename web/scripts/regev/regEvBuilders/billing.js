@@ -236,7 +236,7 @@ async function confirmRegPart2True() {
 
     let response = await callEndpoint("POST", "/registeredClubs/confirmReg", req);
     if (response.ERROR == null) {
-        showOkAlert("Registered :)", "Your club has been successfully registered.");
+        showOkAlert("Registered :)", "Your club has been successfully registered.", alertTime);
         buildEventTable();
         regEvClose();
     }

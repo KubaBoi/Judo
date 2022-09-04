@@ -54,7 +54,8 @@ async function buildRegistrationsTable() {
                         {"text": regClub.CLUB.NAME},
                         {"text": getImage(regClub.CLUB.STATE) + " " + regClub.CLUB.ADDRESS},
                         {"text": badgeTypes[regClub.STATUS], "attributes": [
-                            {"name": "class", "value": "smallCellLast"}
+                            {"name": "class", "value": "smallCellLast"},
+                            {"name": "onclick", "value": (regClub.STATUS == 2) ? `showRegistration(${regClub.ID})` : ""}
                         ]}
                     ], [
                         {"name": "class", "value": `eventClubsRow${i} eventOpenedRows`}

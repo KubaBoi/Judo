@@ -76,8 +76,8 @@ function preparePeople(item, attrs, i) {
     
                 itm = `${img.outerHTML} ${itm}`;
             }
-            if (attr == "STATE") {
-                itm = getImage(itm);
+            if (attr == "BIRTHDAY") {
+                itm = formatDate(new Date(itm));
             }
         }
         prepItem.push({"text": itm});

@@ -120,6 +120,8 @@ To confirm registrations click at `Upload data`. If there are not JB data a warn
 
 After confrimation all registered clubs with `Waiting for organiser's confirmation` status badge will be changed to `Waiting for client's confirmation` status badge.
 
+<img src="/help/images/img25.png">
+
 # 6. Admin Access Mode
 
 `Admin Access Mode` is used when there are some sensitive informations like `passport data`.

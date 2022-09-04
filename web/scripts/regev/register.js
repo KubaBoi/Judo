@@ -138,9 +138,11 @@ function setDataToInfoTable(table, event, club=loggedClub, user=loggedUser) {
 
     createShowTableRowHeader(table, "CLUB");
     createShowTableRow(table, "Name: ",  club.NAME);
-    createShowTableRow(table, "Country: ", club.STATE);
+    createShowTableRow(table, "Country: ", getImage(club.STATE));
     createShowTableRow(table, "Address: ", club.ADDRESS);
-    createShowTableRow(table, "EJU: ", club.EJU);
+    createShowTableRow(table, "EJU: ", (club.EJU) ? 
+        `<img width=20 height=20 src="/images/trueIcon.png">` : 
+        `<img width=20 height=20 src="/images/falseIcon.png">`);
 
     createShowTableRowHeader(table, "OWNER");
     createShowTableRow(table, "Name: ",  user.FULL_NAME);
