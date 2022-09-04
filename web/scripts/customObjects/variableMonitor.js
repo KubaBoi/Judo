@@ -13,5 +13,5 @@ function adminAccChangeJbsBuilder() {
     if (activeContent == null) return;
     if (activeContent.id != "jbAdministrationDiv") return;
 
-    searchJbs();
+    setTimeout(searchJbs, 550);
 }
