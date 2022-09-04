@@ -76,7 +76,7 @@ class JbController(cc):
 	@staticmethod
 	def update(server, path, auth):
 		args = cc.readArgs(server)
-		cc.checkJson(["ID", "NAME", "SUR_NAME", "FUNCTION", "PASS_ID", "PASS_RELEASE", "PASS_EXPIRATION", "BIRTHDAY", "GENDER"], args)
+		cc.checkJson(["ID", "NAME", "SUR_NAME", "FUNCTION", "BIRTHDAY", "GENDER"], args)
 
 		id = args["ID"]
 

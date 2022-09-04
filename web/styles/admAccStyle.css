@@ -1,0 +1,48 @@
+#adminAccessDiv {
+    position: fixed;
+    border-radius: 5px;
+    left: 50%;
+    margin-left: -250px;
+    padding-top: 14px;
+    text-align: center;
+    width: 500px;
+    height: 230px;
+    background-color: var(--ok-color);
+}
+
+.adminAccessOpen {
+    top: -200px;
+
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+.adminAccessCheck {
+    top: -8px;
+
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+.adminAccessClosed {
+    top: -500px;
+
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+.adminAccessOpen #adminAccessTrueDiv {
+    visibility: visible;
+}
+
+.adminAccessCheck #adminAccessTrueDiv {
+    visibility: collapse;
+    height: 0;
+}
+
+.closeAdmAccLabel {
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}

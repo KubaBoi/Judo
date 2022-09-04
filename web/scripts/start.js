@@ -6,9 +6,13 @@ var activeContent;
 var alertTime = 3000;
 var switchTime = 300;
 
+var adminAccessMaxTime = 1*60; // ten minutes;
+
 var loggedUser = null;
 var loggedClub = null;
 var usersClubs = null;
+
+targetProxy.adminAccess = false;
 
 var userAccountName;
 var userName = getCookie("login");

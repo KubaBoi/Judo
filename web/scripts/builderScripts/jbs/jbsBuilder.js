@@ -44,15 +44,15 @@ function buildJbsLocalTable(jbs) {
         
         let functionSelectInp = createElementFromHTML(functionsCodes);
         functionSelectInp.setAttribute("id", `funcSelInp${i}`);
-
+        
         addRow(jbTable, [
             {"text": getImage(jb.STATE)},
             {"text": `<input type="text" value="${jb.SUR_NAME}" id="lastNameInp${i}" class="textBoxLight">`},
             {"text": `<input type="text" value="${jb.NAME}" id="firstNameInp${i}" class="textBoxLight">`},
             {"text": functionSelectInp.outerHTML},// `<div class="custom-select">${functionSelectInp.outerHTML}</div>`},
-            {"text": `<input type="text" value="${(jb.PASS_ID == null) ? '' : jb.PASS_ID}" id="passIdInp${i}" class="textBoxLight">`},
-            {"text": `<input type="date" value="${jb.PASS_RELEASE}" id="passRelInp${i}" class="textBoxLight">`},
-            {"text": `<input type="date" value="${jb.PASS_EXPIRATION}" id="passExpInp${i}" class="textBoxLight">`},
+            {"text": (!targetProxy.adminAccess) ? "Sensitive" : `<input type="text" value="${(jb.PASS_ID == null) ? '' : jb.PASS_ID}" id="passIdInp${i}" class="textBoxLight">`},
+            {"text": (!targetProxy.adminAccess) ? "Sensitive" : `<input type="date" value="${jb.PASS_RELEASE}" id="passRelInp${i}" class="textBoxLight">`},
+            {"text": (!targetProxy.adminAccess) ? "Sensitive" : `<input type="date" value="${jb.PASS_EXPIRATION}" id="passExpInp${i}" class="textBoxLight">`},
             {"text": `<input type="date" value="${jb.BIRTHDAY}" id="birthdayInp${i}" class="textBoxLight">`},
             {"text": `<select id="genderInp${i}" class="textBoxLight"><option value="m">Man</option><option value="w">Woman</option></select>`},
             {"text": jb.JB},
@@ -77,9 +77,9 @@ function buildJbsLocalTable(jbs) {
         lastNameInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
         firstNameInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
         funcSelInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
-        passIdInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
-        passRelInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
-        passExpInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
+        if (targetProxy.adminAccess) passIdInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
+        if (targetProxy.adminAccess) passRelInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
+        if (targetProxy.adminAccess) passExpInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
         birthdayInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
         genderInp.addEventListener("change", function(){jbOnChange(jb.ID, i);});
     }
@@ -101,13 +101,16 @@ async function jbOnChange(id, index) {
         "SUR_NAME": lastNameInp.value,
         "NAME": firstNameInp.value,
         "FUNCTION": (funcSelInp.value == "") ? "Others" : funcSelInp.value,
-        "PASS_ID": passIdInp.value,
-        "PASS_RELEASE": (passRelInp.value == "") ? null : passRelInp.value,
-        "PASS_EXPIRATION": (passExpInp.value == "") ? null : passExpInp.value,
         "BIRTHDAY": (birthdayInp.value == "") ? null : birthdayInp.value,
         "GENDER": genderInp.value
     };
     
+    if (targetProxy.adminAccess) {
+        req.PASS_ID = passIdInp.value;
+        req.PASS_RELEASE = (passRelInp.value == "") ? null : passRelInp.value;
+        req.PASS_EXPIRATION = (passExpInp.value == "") ? null : passExpInp.value;
+    }
+
     let response = await callEndpoint("POST", "/jb/update", req);
     if (response.ERROR != null) {
         showErrorAlert(response.ERROR, alertTime);
