@@ -6,7 +6,7 @@ var activeContent;
 var alertTime = 3000;
 var switchTime = 300;
 
-var adminAccessMaxTime = 1*60; // ten minutes;
+var adminAccessMaxTime = 10*60; // ten minutes;
 
 var loggedUser = null;
 var loggedClub = null;
