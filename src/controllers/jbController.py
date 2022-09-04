@@ -37,7 +37,6 @@ class JbController(cc):
 
 		cr.disableAutocommit()
 		try:
-			i = 0
 			modelTemp = JbRepository.model()
 			for oneJB in data:
 				if (JbRepository.exists(jb=oneJB["JB"])):
@@ -50,8 +49,7 @@ class JbController(cc):
 					JbRepository.update(model)
 				else:
 					model = modelTemp
-					model.id += i
-					i += 1
+					model.id += 1
 					model.toModel(oneJB)
 					model.setAttrs(
 						pass_release=None,

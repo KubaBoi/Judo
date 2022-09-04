@@ -19,7 +19,7 @@ async function buildJbsTable() {
 }
 
 function buildJbsLocalTable(jbs) {
-    let jbTable = document.getElementById("jbsTable");
+    let jbTable = document.getElementById("jbsAdmsTable");
     clearTable(jbTable);
 
     document.getElementById("totalJbsLbl").innerHTML = `Total results: ${localJbs.length}`;
@@ -225,7 +225,7 @@ function addNewJbRow(butt) {
         return;
     }
 
-    let jbTable = document.getElementById("jbsTable");
+    let jbTable = document.getElementById("jbsAdmsTable");
 
     let countrySelInp = createElementFromHTML(countryCodes);
     countrySelInp.setAttribute("id", "addJbCountrySelInp");

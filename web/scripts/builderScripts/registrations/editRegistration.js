@@ -107,16 +107,16 @@ function setDataToInfoRegTable(table, event) {
     createShowTableRow(table, "Place: ", event.PLACE);
     createShowTableRow(table, "E-mail for visa: ", event.VISA_MAIL);
     createShowTableRow(table, "Phone for visa: ", event.VISA_PHONE);
-    createShowTableRow(table, "EJU price: ", event.EJU_PRICE);
-    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE);
-    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE);
-    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE);
-    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE);
+    createShowTableRow(table, "EJU price: ", event.EJU_PRICE + " €");
+    createShowTableRow(table, "PCR tests price: ", event.PCR_PRICE + " €");
+    createShowTableRow(table, "Antigen tests price: ", event.AG_PRICE + " €");
+    createShowTableRow(table, "Transport price: ", event.TRANS_PRICE + " €");
+    createShowTableRow(table, "Other prices: ", event.OTHER_PRICE + " €");
 
     createShowTableRowHeader(table, "CLUBS", "");
     let regClubs = event.REG_CLUBS;
     for (let i = 0; i < regClubs.length; i++) {
         let regClub = regClubs[i];
-        createShowTableRow(table, regClub.CLUB.NAME, badgeTypes[regClub.STATUS]);
+        createShowTableRow(table, getImage(regClub.CLUB.STATE, false) + " " + regClub.CLUB.NAME, badgeTypes[regClub.STATUS]);
     }
 }

@@ -162,7 +162,7 @@ async function saveEventChanges(eventId, hardCreate=false) {
     }
     if (response.ERROR == null) {
         if (eventId != null) {
-            buildEventTable();
+            buildRegistrationsTable();
             showTimerAlert("Success :)", "Event has been updated", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
@@ -170,7 +170,7 @@ async function saveEventChanges(eventId, hardCreate=false) {
             closeHiddenTab();
         }
         else {
-            buildEventTable();
+            buildRegistrationsTable();
             showTimerAlert("Success :)", "Event has been created", alertTime, "divOkAlert",
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
@@ -242,7 +242,7 @@ async function reallyDeleteEvent(eventId) {
                 {"name": "okShowAlert", "duration": "0.5s"},
                 {"name": "okHideAlert", "duration": "0.5s"}
             );
-        buildEventTable();
+        buildRegistrationsTable();
     }
     else {
         showErrorAlert(response.ERROR, alertTime);
