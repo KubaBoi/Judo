@@ -98,6 +98,13 @@ function createEditRow(event) {
         {"name": "title", "value": "Generate event PDF"}
     ]);
 
+    let pdfShortButton = createElement("img", null, "", [
+        {"name": "src", "value": "./images/pdfShortIcon.png"},
+        {"name": "onclick", "value": `generateEventPdf(${event.ID})`},
+        {"name": "class", "value": "registeredBadge"},
+        {"name": "title", "value": "Generate event PDF"}
+    ]);
+
     let regButt = createElement("img", null, "",
     [
         {"name": "src", "value": "./images/jbIcon.png"},
@@ -110,6 +117,7 @@ function createEditRow(event) {
         editButt.outerHTML + 
         deleteButt.outerHTML + 
         pdfButton.outerHTML + 
+        pdfShortButton.outerHTML +
         regButt.outerHTML
     );
 }

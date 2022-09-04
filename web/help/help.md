@@ -34,6 +34,10 @@
 
 Welcome to help page for [Czech Judo Web Application](/).
 
+This application is powered by web framework [Cheese Framework](https://kubaboi.github.io/CheeseFramework/).
+
+Author Jakub Anderle.
+
 # 2. Registration
 
 First of all you need to have an user account. You can make the account by clicking at `Registration` button in `Sing in` screen:

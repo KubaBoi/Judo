@@ -8,15 +8,18 @@
 - [Admin page layout](#2-admin-page-layout)
     - [Logo](#21-logo)
     - [Events](#22-events)
-    - [My club](#23-my-club)
+    - [My clubs](#23-my-clubs)
     - [All clubs](#24-all-clubs)
-    - [Registrations](#25-registrations)
-    - [Hotels](#26-hotels)
-    - [My account](#27-my-account)
-    - [Logout](#28-logout)
+    - [My events](#25-my-events)
+    - [Jb administration](#26-jb-administration)
+    - [Hotels](#27-hotels)
+    - [My account](#28-my-account)
+    - [Logout](#29-logout)
 - [Hotels](#3-hotels)
 - [Creating new event](#4-creating-new-event)
 - [Event confirmation](#5-event-confirmation)
+- [Admin Access Mode](#6-admin-access-mode)
+    - [Enter Admin Access Mode](#61-enter-admin-access-mode)
 
 
 # 1. Introduction
@@ -33,21 +36,37 @@ Same as [Help page - Logo](/help/help.html#311-logo).
 
 ## 2.2. Events
 
-## 2.3. My club
+Same as [Help page - Events](/help/help.html#312-events).
+
+## 2.3. My clubs
 
 Same as [Help page - My club](/help/help.html#313-my-club).
 
 ## 2.4. All clubs
 
-## 2.5. Registrations
+There is list of all clubs created in this application.
 
-## 2.6. Hotels
+## 2.5. My events
 
-## 2.7. My account
+There is finally some administration. You can see there your own events.
+
+<img src="/help/images/img21.png">
+
+## 2.6. JB administration
+
+In this tab you can see all JBs, manage them or adding new ones.
+
+There is used [Admin Access Mode](#6-admin-access-mode).
+
+## 2.7. Hotels
+
+List of all hotels. Also you can create a new hotels in this tab.
+
+## 2.8. My account
 
 Same as [Help page - My account](/help/help.html#314-my-account).
 
-## 2.8. Logout
+## 2.9. Logout
 
 Same as [Help page - Logo](/help/help.html#315-logout).
 
@@ -69,7 +88,7 @@ Editing and removing hotels is done by same buttons as for [Creating new club](/
 
 # 4. Creating new event
 
-Now you can finally create an event. Go to [Events](#22-events) tab and click at `Add event` button.
+Now you can finally create an event. Go to [My events](#25-my-events) tab and click at `Add event` button.
 
 <img src="/help/images/img19.png">
 
@@ -89,3 +108,34 @@ Editing and removing events is done by same buttons as for [Creating new club](/
 
 Now when your event is created other users can register their teams into it.
 
+To confirm their registrations into event go to [My events](#25-my-events) tab and click at `JB` button in said event.
+
+<img src="/help/images/img24.png">
+
+In the form that pops up there are informations about event, registered clubs and theirs [Status badges](/help/help.html#41-event-badges). 
+
+There is also table for uploading JBs from JudoBase export file. Click at `Open File` button and choose the file. Then file will be parsed and all JBs will be shown in the table. But this step is not necessary.
+
+To confirm registrations click at `Upload data`. If there are not JB data a warning dialog would pop up. You can ignore that and just click at `OK` button.
+
+After confrimation all registered clubs with `Waiting for organiser's confirmation` status badge will be changed to `Waiting for client's confirmation` status badge.
+
+# 6. Admin Access Mode
+
+`Admin Access Mode` is used when there are some sensitive informations like `passport data`.
+
+It will automatically expire in 10 minutes and after expiration every sensitive inforamtions will be hidden.
+
+You can also leave `Admin Access Mode` manually by clicking at `x` button in right bottom corner.
+
+<img src="/help/images/img23.png">
+
+## 6.1 Enter Admin Access Mode
+
+If `Admin Access Mode` is required there would be `Enter Admin Access Mode` button.
+
+After clicking at this button an `Admin Access Mode Check` form popup:
+
+<img src="/help/images/img22.png">
+
+Insert your password and click at `Enter` button or press `enter key`.

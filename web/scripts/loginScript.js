@@ -57,8 +57,8 @@ async function succLogin(response) {
     
     await loadClubs();
 
-    //newContent("mainDiv");
-    buildJbsTable();
+    newContent("mainDiv");
+    //buildJbsTable();
     //buildEventTable();
 
     var loggedAs = document.getElementById("loggedAs");

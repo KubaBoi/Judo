@@ -89,6 +89,19 @@ function after() {
     document.getElementById("passInp").value = password;
     document.body.scrollTo(0, 0);
 
+    document.getElementById("nameInp").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            login();
+        }
+    });
+    document.getElementById("passInp").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            login();
+        }
+    });
+
     if (userName && password) {
         login(false);
     }
