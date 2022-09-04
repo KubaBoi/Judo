@@ -10,7 +10,9 @@ document.getElementById("admAccPassInp").addEventListener("keypress", function(e
 });
 
 function closeAdminAccess() {
-    targetProxy.adminAccess = false;
+    if (targetProxy.adminAccess) {
+        targetProxy.adminAccess = false;
+    }
     let admAccDiv = document.getElementById("adminAccessDiv");
     admAccDiv.setAttribute("class", "adminAccessClosed");
     document.getElementById("admAccPassInp").value = "";
