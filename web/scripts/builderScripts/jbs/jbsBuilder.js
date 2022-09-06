@@ -4,6 +4,8 @@ var newJbRow = null;
 async function buildJbsTable() {
     showLoader();
 
+    document.getElementById("addPersonButt").innerHTML = "Add person";
+
     let response = await callEndpoint("GET", "/jb/getAll");
     if (response.ERROR == null) {
         localJbs = response.JBS;
