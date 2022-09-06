@@ -71,7 +71,7 @@ async function showRegistration(regId) {
             regJbs[i].JB = {"NAME": " Found", "SUR_NAME": "Not"}
         } else regJbs[i].JB = response.JB;
 
-        response = await callEndpoint("GET", `/hotels/getRoomData?regJbId=${regJbs[i].JB_ID}`);
+        response = await callEndpoint("GET", `/hotels/getRoomData?regJbId=${regJbs[i].ID}`);
         if (response.ERROR != null) {
             showErrorAlert(response.ERROR, alertTime);
             hideLoader();
@@ -79,7 +79,7 @@ async function showRegistration(regId) {
             regJbs[i].ROOM_DATA = {"ROOM_NAME": "Not Found", "PACKAGE_NAME": "Not Found"}
         } else regJbs[i].ROOM_DATA = response.ROOM_DATA;
 
-        response = await callEndpoint("GET", `/registeredTests/getByRegJb?regJbId=${regJbs[i].JB_ID}`);
+        response = await callEndpoint("GET", `/registeredTests/getByRegJb?regJbId=${regJbs[i].ID}`);
         if (response.ERROR != null) {
             showErrorAlert(response.ERROR, alertTime);
             hideLoader();
@@ -228,8 +228,8 @@ function buildRoomingList() {
 
         addRow(tbl, [
             {"text": jb.JB.SUR_NAME + " " + jb.JB.NAME},
-            {"text": formatDate(new Date(jb.ARRIVE), false)},
-            {"text": formatDate(new Date(jb.DEPARTURE), false)},
+            {"text": formatDate(new Date(jb.ARRIVE))},
+            {"text": formatDate(new Date(jb.DEPARTURE))},
             {"text": jb.ROOM_DATA.ROOM_NAME},
             {"text": jb.ROOM_DATA.PACKAGE_NAME},
             {"text": pcrs},

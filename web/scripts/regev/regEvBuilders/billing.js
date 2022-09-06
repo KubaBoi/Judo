@@ -117,8 +117,8 @@ function buildBillAccTable(billAccData) {
 
         addRow(tbl, [
             {"text": room.room_name},
-            {"text": room.start_date},
-            {"text": room.end_date},
+            {"text": formatDate(new Date(room.start_date))},
+            {"text": formatDate(new Date(room.end_date))},
             {"text": room.count_room},
             {"text": room.count_people},
             {"text": room.nights},
@@ -161,8 +161,8 @@ function buildBillPackTable(billPackData) {
         addRow(tbl, [
             {"text": package.room_name},
             {"text": package.package_name},
-            {"text": package.start_date},
-            {"text": package.end_date},
+            {"text": formatDate(new Date(package.start_date))},
+            {"text": formatDate(new Date(package.end_date))},
             {"text": package.count_room},
             {"text": package.count_people},
             {"text": package.nights},

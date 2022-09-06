@@ -120,6 +120,8 @@ Do not forget to always save your changes while editing via `Save changes` butto
 For browsing all currently open events use [Events](#312-events) tab. 
 You can sort them by `Start date` (default), `Name`, `Category` or `Place`.
 
+Every date is in european/world-wide standart formats `DD.MM.YYYY` or `YYYY-MM-DD`.
+
 ## 4.1. Event badges
 
 Every event has a status badge for your club. Status badge signalize in which part of registration your club is.
