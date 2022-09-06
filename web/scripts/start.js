@@ -2,6 +2,14 @@ debug = false;
 
 const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
+// DETECT SAFARI
+var isSafari = window.safari !== undefined;
+if (isSafari) {
+    showAlert("Safari!", `You are using Safari, but the developer does not have Safari. 
+    So there is no guarantee that everything will work properly.<br>Sorry about that.`
+    );
+}
+
 var activeContent;
 var alertTime = 3000;
 var switchTime = 300;
