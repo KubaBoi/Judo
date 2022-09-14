@@ -154,7 +154,7 @@ class PdfCreator:
             data += f"<td>{totalLIV}</td>"
             data += f"<td>{totalTransport}</td>"
             data += f"<td>{totalEjuFee} €</td>"
-            data += f"<td>{totalClovekonoci}</td>"
+            data += f"<td>{totalClovekonoci}</td></tr>"
 
         return data + "</table>"
 
