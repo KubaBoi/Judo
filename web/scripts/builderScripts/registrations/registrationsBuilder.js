@@ -101,7 +101,7 @@ function createEditRow(event) {
 
     let pdfShortButton = createElement("img", null, "", [
         {"name": "src", "value": "./images/pdfShortIcon.png"},
-        {"name": "onclick", "value": `generateEventPdf(${event.ID})`},
+        {"name": "onclick", "value": `generateEventShortPdf(${event.ID})`},
         {"name": "class", "value": "registeredBadge"},
         {"name": "title", "value": "Generate event PDF"}
     ]);

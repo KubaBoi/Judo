@@ -72,17 +72,4 @@ function createEventHeaderRow() {
     createElement("th", row, "Start");
     createElement("th", row, "Place");
     createElement("th", row);
-}
-
-async function generateEventPdf(eventId) {
-    showLoader();
-    let response = await callEndpoint("GET", `/bills/generateEventPdf?eventId=${eventId}`);
-    if (response.ERROR == null) {
-        pdf = response.PDF;
-        window.open(`/bills/pdf/${pdf}`, "_blank");
-    }
-    else {
-        showErrorAlert(response.ERROR, alertTime);
-    }
-    hideLoader();
 } 

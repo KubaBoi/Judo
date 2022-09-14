@@ -14,6 +14,8 @@ from src.repositories.registeredJbRepository import RegisteredJbRepository
 from src.repositories.roomDatasRepository import RoomDatasRepository
 from src.repositories.registeredTestsRepository import RegisteredTestsRepository
 
+from src.other.billCalculator import BillCalculator
+
 class PdfCreator:
 
     @staticmethod
@@ -43,7 +45,119 @@ class PdfCreator:
         os.remove(tempFile)
         return fileName
         
-        
+    @staticmethod
+    def createShortPdf(eventId):
+        event = EventsRepository.find(eventId)
+        regClubs = RegisteredClubsRepository.findWhere(event_id=eventId)
+
+        with open(ResMan.resources("pdfEventTemp.html"), "r") as f:
+            data = f.read()
+
+        data = data.replace("$PORT$", str(Settings.port))
+        data = data.replace("$EVENT$", event.name)
+        data = data.replace("$CLUBS$", PdfCreator.prepareShortClubs(event, regClubs))
+
+        fileName = f"event-{event.name}-{event.event_start}-short.pdf"
+        tempFile = ResMan.resources(f"event-{event.name}-{event.event_start}-short.html")
+        with open(tempFile, "w", encoding="utf-8") as f:
+            f.write(data)
+
+        if (platform.system() == "Windows"):
+            config = pdfkit.configuration(wkhtmltopdf = r"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe") 
+            pdfkit.from_file(tempFile, ResMan.web("bills", "pdf", fileName), configuration=config)
+        else:
+            pdfkit.from_file(tempFile, ResMan.web("bills", "pdf", fileName))
+
+        os.remove(tempFile)
+        return fileName
+
+
+    @staticmethod
+    def prepareShortClubs(event, regClubs):
+        data = """
+        <table>
+            <tr>
+                <th rowspan=2>Name</th>
+                <th colspan=2>Tests</th>
+                <th colspan=4>Meals</th>
+                <th rowspan=2>Transports</th>
+                <th rowspan=2>EJU fee</th>
+                <th rowspan=2>Clovekonoci</th>
+            </tr>
+            <tr>
+                <th>PCR</th>
+                <th>AC</th>
+                <th>BB</th>
+                <th>HB</th>
+                <th>FB</th>
+                <th>LIV</th>
+            </tr>
+        """
+
+        for regClub in regClubs:
+            club = ClubsRepository.find(regClub.club_id)
+
+            data += "<tr>"
+            data += f"<td>{club.name}</td>"
+
+            if (regClub.status == 0):
+                data += "<td colspan=9 class='notChecked'>Waiting for organiser</td>"
+                continue
+            elif (regClub.status == 1):
+                data += "<td colspan=9 class='notCheckedOwner'>Waiting for client</td>"
+                continue
+
+            jbs = RegisteredJbRepository.findWhere(reg_club_id=regClub.id)
+
+            totalPcrs = 0
+            totalAgs = 0
+            totalBB = 0
+            totalHB = 0
+            totalFB = 0
+            totalLIV = 0
+            totalTransport = 0
+            totalEjuFee = 0
+            totalClovekonoci = 0
+
+            for regJb in jbs:
+                tests = RegisteredTestsRepository.findWhere(reg_jb_id=regJb.id)
+                pcrs = 0
+                ags = 0
+                for test in tests:
+                    if (test.pcr): pcrs += 1
+                    else: ags += 1
+
+                totalPcrs += pcrs
+                totalAgs += ags
+
+                jb = JbRepository.find(regJb.jb_id)
+                roomData = RoomDatasRepository.find(regJb.id)
+
+                totalBB += 1 if (roomData.package_name == BillCalculator.packageNames["BB"]) else 0
+                totalHB += 1 if (roomData.package_name == BillCalculator.packageNames["HB"]) else 0
+                totalFB += 1 if (roomData.package_name == BillCalculator.packageNames["FB"]) else 0
+                totalLIV += 1 if (roomData.package_name == BillCalculator.packageNames["LIV"]) else 0
+
+                totalTransport += 1 if (regJb.transport) else 0
+
+                totalEjuFee += event.eju_price if (not club.eju and jb.function == "Competitor") else 0
+
+                for i in BillCalculator.daterange(regJb.arrive, regJb.departure):
+                    totalClovekonoci += 1
+                totalClovekonoci -= 1
+                    
+            data += f"<td>{totalPcrs}</td>"
+            data += f"<td>{totalAgs}</td>"
+            data += f"<td>{totalBB}</td>"
+            data += f"<td>{totalHB}</td>"
+            data += f"<td>{totalFB}</td>"
+            data += f"<td>{totalLIV}</td>"
+            data += f"<td>{totalTransport}</td>"
+            data += f"<td>{totalEjuFee} €</td>"
+            data += f"<td>{totalClovekonoci}</td>"
+
+        return data + "</table>"
+
     @staticmethod
     def prepareTables(regClubs):
         clubsHtml = ""

@@ -184,6 +184,14 @@ class BillsController(cc):
 
         return cc.createResponse({"PDF": PdfCreator.createPdf(args["eventId"])})
 
+    #@get /generateEventShortPdf;
+    @staticmethod
+    def generateEventShortPdf(server, path, auth):
+        args = cc.getArgs(path)
+        cc.checkJson(["eventId"], args)
+
+        return cc.createResponse({"PDF": PdfCreator.createShortPdf(args["eventId"])})
+
     # METHODS
 
     @staticmethod

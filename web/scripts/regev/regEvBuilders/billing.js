@@ -9,58 +9,6 @@ function isAllDone() {
     return true;
 }
 
-async function getPdfBill() {
-    if (!isAllDone()) {
-        showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
-        return;
-    }
-    showLoader();
-    let req = {
-        "JBS": jbs,
-        "ARRIVALS": arrivals,
-        "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID,
-        "CLUB_ID": loggedClub.ID
-    }
-
-    var response = await callEndpoint("POST", "/bills/postBillPdf", req);
-    if (response.ERROR == null) {
-        bill = response.BILL;
-        window.open(`/bills/pdf/${bill}`, "_blank");
-    }
-    else {
-        changeNotification("notifBilling", "notifErr", "An error occured, please contact administrator", false);
-        showErrorAlert(response.ERROR, alertTime);
-    }
-    hideLoader();
-}
-
-async function getXlsxBill() {
-    if (!isAllDone()) {
-        showWrongAlert("Error", "Calculation can be done when everything is set up properly", alertTime);
-        return;
-    }
-    showLoader();
-    let req = {
-        "JBS": jbs,
-        "ARRIVALS": arrivals,
-        "DEPARTS": departs,
-        "EVENT_ID": activeEvent.ID,
-        "CLUB_ID": loggedClub.ID
-    }
-
-    var response = await callEndpoint("POST", "/bills/postBillXlsx", req);
-    if (response.ERROR == null) {
-        bill = response.BILL;
-        window.open(`/bills/xlsx/${bill}`, "_blank");
-    }
-    else {
-        changeNotification("notifBilling", "notifErr", "An error occured, please contact administrator", false);
-        showErrorAlert(response.ERROR, alertTime);
-    }
-    hideLoader();
-}
-
 async function calculateBill() {
     if (!isAllDone()) {
         changeNotification("notifBilling", "notifPend", "Calculation can be done when everything is set up properly", false);
